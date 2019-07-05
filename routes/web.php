@@ -12,6 +12,7 @@ Route::redirect('/', 'home');
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('home', 'HomeController@index')->name('home');
 
+
     Route::resource('teachers', 'TeacherController', ['except' => ['create', 'edit']]);
     Route::resource('beneficiaries', 'BeneficiaryController', ['except' => ['create', 'edit']]);
     Route::resource('courses', 'CourseController', ['except' => ['create', 'edit']]);

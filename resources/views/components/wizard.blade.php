@@ -1,6 +1,6 @@
 @php
     $files = false;
-    $numFields = 5;
+    $numFields = 100;
     $valFields = array();
 @endphp
 @foreach($fields as $field)
@@ -83,20 +83,30 @@
                     </div>
                 @endfor
             </div>
-            <div class="m-portlet__foot m-portlet__foot--fit">
-                <div class="m-form__actions m-form__actions" style="padding: 15px;">
-                    <div class="row align-items-center">
-                        <div class="col-lg-8 m--align-left">
-                            {{Form::button(__('base.buttons.create'), ['id' => 'formButton', 'class' => 'btn btn-primary', 'data-action' => 'create'])}}
-                            {{Form::button(__('base.buttons.cancel'), ['id' => 'formReset', 'class' => 'btn btn-secondary'])}}
-                        </div>
-                        <div class="col-lg-4 m--align-right">
-                            {{Form::button('<i class="fa fa-chevron-left"></i><span></span>', ['class' => 'btn btn-secondary', 'data-wizard-action' => 'prev'])}}
-                            {{Form::button('<span></span><i class="fa fa-chevron-right"></i>', ['class' => 'btn btn-secondary', 'data-wizard-action' => 'next'])}}
+            @if(
+                $crud !== 'nurse.turns' and
+                $crud !== 'turns.turn_cures' and
+                $crud !== 'turns.turn_fluids' and
+                $crud !== 'turns.turn_medicines' and
+                $crud !== 'turns.turn_notes' and
+                $crud !== 'turns.turn_supplies' and
+                $crud !== 'turns.turn_vital_signs'
+            )
+                <div class="m-portlet__foot m-portlet__foot--fit">
+                    <div class="m-form__actions m-form__actions" style="padding: 15px;">
+                        <div class="row align-items-center">
+                            <div class="col-lg-8 m--align-left">
+                                {{Form::button(__('base.buttons.create'), ['id' => 'formButton', 'class' => 'btn btn-primary', 'data-action' => 'create'])}}
+                                {{Form::button(__('base.buttons.cancel'), ['id' => 'formReset', 'class' => 'btn btn-secondary'])}}
+                            </div>
+                            <div class="col-lg-4 m--align-right">
+                                {{Form::button('<i class="fa fa-chevron-left"></i><span></span>', ['class' => 'btn btn-secondary', 'data-wizard-action' => 'prev'])}}
+                                {{Form::button('<span></span><i class="fa fa-chevron-right"></i>', ['class' => 'btn btn-secondary', 'data-wizard-action' => 'next'])}}
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            @endif
             {{Form::close()}}
         </div>
     </div>
@@ -112,12 +122,22 @@
         @endcomponent
         {{Form::close()}}
     </div>
-    <div class="m-portlet__foot">
-        <div class="row align-items-center">
-            <div class="col-lg-12">
-                {{Form::button(__('base.buttons.create'), ['id' => 'formButton', 'class' => 'btn btn-primary', 'data-action' => 'create'])}}
-                {{Form::button(__('base.buttons.cancel'), ['id' => 'formReset', 'class' => 'btn btn-secondary'])}}
+    @if(
+        $crud !== 'nurse.turns' and
+        $crud !== 'turns.turn_cures' and
+        $crud !== 'turns.turn_fluids' and
+        $crud !== 'turns.turn_medicines' and
+        $crud !== 'turns.turn_notes' and
+        $crud !== 'turns.turn_supplies' and
+        $crud !== 'turns.turn_vital_signs'
+    )
+        <div class="m-portlet__foot">
+            <div class="row align-items-center">
+                <div class="col-lg-12">
+                    {{Form::button(__('base.buttons.create'), ['id' => 'formButton', 'class' => 'btn btn-primary', 'data-action' => 'create'])}}
+                    {{Form::button(__('base.buttons.cancel'), ['id' => 'formReset', 'class' => 'btn btn-secondary'])}}
+                </div>
             </div>
         </div>
-    </div>
+    @endif
 @endif

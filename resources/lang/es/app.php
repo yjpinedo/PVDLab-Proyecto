@@ -4,6 +4,10 @@ return [
 
     'titles' => [
         'beneficiaries' => 'Beneficiarios',
+        'beneficiary' => [
+            'courses' => 'Cursos',
+            'projects' => 'Proyectos',
+        ],
         'beneficiary_courses' => 'Beneficiarios - Cursos',
         'beneficiary_lessons' => 'Beneficiarios - Lecciones',
         'categories' => 'Categorías',

@@ -1,32 +1,27 @@
 @extends((!empty($form ?? []) and !empty($table ?? [])) ? 'layouts.crud' : (!empty($table ?? []) ? 'layouts.table' : 'layouts.form'))
 
-@section('title', $title ?? null)
+@section('title', $title)
 
 @section('subtitle', $subtitle ?? null)
 
 @section('subtitle_form', $subtitle_form ?? null)
 
-@if(!empty($table ?? []))
-@section('table_tools')
+@section('tools')
     @component('components.tools', [
         'crud' => $crud,
-        'reload' => $tools['reload'] ?? false,
-        'filters' => !empty($filters ?? []),
-        'massive' => !empty($massive ?? []),
-        'active' => $table['active'] ?? false,
-        'export' => $tools['export'] ?? false,
-        'import' => $tools['import'] ?? false,
         'create' => $tools['create'] ?? false and !empty($form),
+        'reload' => $tools['reload'] ?? false,
+        'export' => $tools['export'] ?? false,
     ])@endcomponent
 @endsection
 
-@section('filters')
-    @component('components.filters', [
-        'crud' => $crud,
-        'active' => $table['active'] ?? false,
-        'fields' => $filters ?? [],
-    ])@endcomponent
-@endsection
+{{--@section('filters')--}}
+    {{--@component('components.filters', [--}}
+        {{--'crud' => $crud,--}}
+        {{--'active' => $table['active'] ?? false,--}}
+        {{--'fields' => $filters ?? [],--}}
+    {{--])@endcomponent--}}
+{{--@endsection--}}
 
 @section('table')
     @component('components.table', [
@@ -36,23 +31,14 @@
         'actions' => $table['actions'] ?? false,
     ])@endcomponent
 @endsection
-@endif
 
-@if(!empty($form ?? []))
-    @section('form_tools')
-        @component('components.tools', [
-            'crud' => $crud,
-            'edit' => $tools['edit'] ?? false,
-        ])@endcomponent
-    @endsection
-
-    @section('form')
-        @component('components.wizard', [
-            'crud' => $crud,
-            'fields' => $form ?? [],
-        ])@endcomponent
-    @endsection
-@endif
+@section('form')
+    @component('components.wizard', [
+        'crud' => $crud,
+        'edit' => $tools['edit'] ?? false,
+        'fields' => $form ?? [],
+    ])@endcomponent
+@endsection
 
 @push('scripts')
     @include('includes.scripts')

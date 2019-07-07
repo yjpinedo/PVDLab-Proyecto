@@ -5,10 +5,10 @@
                 <div class="m-stack m-stack--ver m-stack--general">
                     <div class="m-stack__item m-stack__item--middle m-brand__logo">
                         <a href="{{ route('home') }}" class="m-brand__logo-wrapper">
-                            @if(file_exists('images/auth/logo_default.png'))
-                                <img src="{{ asset('images/auth/logo_default.png') }}" />
+                            @if(file_exists('img/logo_default.png'))
+                                <img src="{{ asset('img/logo_default.png') }}" alt="Logo"/>
                             @else
-                                <h4>{{ config('app.name') }}</h4>
+                                <h3>{{ config('app.name') }}</h3>
                             @endif
                         </a>
                     </div>
@@ -31,7 +31,7 @@
                         <div class="d-flex align-items-center">
                             <div class="mr-auto">
                                 <h3 class="m-subheader__title m-subheader__title--separator">@yield('title')</h3>
-                                {{ (new \App\Utils\Base())->breadCrumbs() }}
+                                {{ (new App\Utils\Base())->breadCrumbs() }}
                             </div>
                         </div>
                     </div>
@@ -42,13 +42,9 @@
                             <li class="m-nav__item m-topbar__user-profile m-topbar__user-profile--img m-dropdown m-dropdown--medium m-dropdown--arrow m-dropdown--header-bg-fill m-dropdown--align-right m-dropdown--mobile-full-width m-dropdown--skin-light" m-dropdown-toggle="click">
                                 <a href="#" class="m-nav__link m-dropdown__toggle">
                                     <span class="m-topbar__userpic">
-                                        @if(file_exists(storage_path('img/users/' . Auth::id() . '.jpg')))
-                                            <img src="{{ storage_path('img/users/' . Auth::id() . '.jpg') }}" class="m--img-rounded m--marginless" />
-                                        @else
-                                            <span class="m-type m--bg-brand">
-                                                <span class="m--font-light">{{ str_limit(Auth::user()->name, 1, '') }}</span>
-                                            </span>
-                                        @endif
+                                        <span class="m-type m--bg-brand">
+                                            <span class="m--font-light">{{ str_limit(Auth::user()->name, 1, '') }}</span>
+                                        </span>
                                     </span>
                                     <span class="m-topbar__username m--hide">{{ Auth::user()->name }}</span>
                                 </a>
@@ -58,13 +54,9 @@
                                         <div class="m-dropdown__header m--align-center m--bg-brand">
                                             <div class="m-card-user m-card-user--skin-dark">
                                                 <div class="m-card-user__pic">
-                                                    @if(file_exists(storage_path('img/users/' . Auth::id() . '.jpg')))
-                                                        <img src="{{ storage_path('images' . Auth::id() . '.jpg') }}" class="m--img-rounded m--marginless" alt="" />
-                                                    @else
-                                                        <span class="m-type m-type--lg m--bg-danger">
-                                                            <span class="m--font-light">{{ str_limit(Auth::user()->name, 1, '') }}</span>
-                                                        </span>
-                                                    @endif
+                                                    <span class="m-type m-type--lg m--bg-danger">
+                                                        <span class="m--font-light">{{ str_limit(Auth::user()->name, 1, '') }}</span>
+                                                    </span>
                                                 </div>
                                                 <div class="m-card-user__details">
                                                     <span class="m-card-user__name m--font-weight-500">{{ str_limit(Auth::user()->name, 30, '...') }}</span>
@@ -75,6 +67,8 @@
                                         <div class="m-dropdown__body">
                                             <div class="m-dropdown__content">
                                                 <ul class="m-nav m-nav--skin-light">
+                                                    <li class="m-nav__separator m-nav__separator--fit">
+                                                    </li>
                                                     <li class="m-nav__item">
                                                         <a href="{{ route('logout') }}"
                                                            onclick="event.preventDefault();

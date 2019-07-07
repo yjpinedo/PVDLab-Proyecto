@@ -5,9 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ config('app.name') . ' - ' }}@yield('title')</title>
-    <script src="{{ asset('js/vendors.bundle.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/vendors.bundle.js') }}" type="text/javascript" defer></script>
     <script src="{{ asset('js/scripts.bundle.js') }}" type="text/javascript" defer></script>
     <script src="{{ asset('js/datatables.bundle.js') }}" type="text/javascript" defer></script>
+    <!--script src="{{ asset('js/app.js') }}" type="text/javascript" defer></script-->
     @stack('scripts')
     <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
     <script>

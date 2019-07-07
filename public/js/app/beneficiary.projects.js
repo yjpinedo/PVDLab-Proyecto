@@ -1,7 +1,9 @@
 columnsDataTable = [
-    {data: 'id'},
-    {data: 'project.name'},
-    {data: 'beneficiary.full_name'},
+    {data: 'code'},
+    {data: 'name'},
+    {data: 'start'},
+    {data: 'type'},
+    {data: 'concept'},
 ];
 
 /**

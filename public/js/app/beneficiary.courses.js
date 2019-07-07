@@ -1,7 +1,7 @@
 columnsDataTable = [
     {data: 'id'},
-    {data: 'transfer.type'},
-    {data: 'furniture.name'},
+    {data: 'code'},
+    {data: 'name'},
 ];
 
 /**

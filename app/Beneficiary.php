@@ -140,33 +140,27 @@ class Beneficiary extends Base
     // Relationships
 
     /**
-     * beneficiaryCourse relationship
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * The courses that belong to the beneficiary.
      */
-    public function beneficiaryCourse()
+    public function courses()
     {
-        return $this->hasMany(BeneficiaryCourse::class);
+        return $this->belongsToMany(Course::class);
     }
 
     /**
-     * beneficiaryCourse relationship
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * The lessons that belong to the beneficiary.
      */
-    public function beneficiaryLesson()
+    public function lessons()
     {
-        return $this->hasMany(BeneficiaryLesson::class);
+        return $this->belongsToMany(Lesson::class);
     }
 
     /**
-     * BeneficiaryProject relationship
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * The projects that belong to the beneficiary.
      */
-    public function projectBeneficiary()
+    public function projects()
     {
-        return $this->hasMany(BeneficiaryProject::class);
+        return $this->belongsToMany(Project::class);
     }
 
     /**

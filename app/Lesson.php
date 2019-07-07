@@ -66,6 +66,14 @@ class Lesson extends Base
     // Relationships
 
     /**
+     * The beneficiaries that belong to the lesson.
+     */
+    public function beneficiaries()
+    {
+        return $this->belongsToMany(Beneficiary::class);
+    }
+
+    /**
      * Course relationship
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -74,16 +82,4 @@ class Lesson extends Base
     {
         return $this->belongsTo(Course::class);
     }
-
-    /**
-     * beneficiary Lesson relationship
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function beneficiaryLesson()
-    {
-        return $this->hasMany(BeneficiaryLesson::class);
-    }
-
-
 }

@@ -107,6 +107,14 @@ class Transfer extends Base
     }
 
     /**
+     * The furniture that belong to the transfer.
+     */
+    public function furniture()
+    {
+        return $this->belongsToMany(Furniture::class);
+    }
+
+    /**
      * Project relationship
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -114,15 +122,5 @@ class Transfer extends Base
     public function project()
     {
         return $this->belongsTo(Project::class);
-    }
-
-    /**
-     * FurnitureTransfer relationship
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function transfer_furniture()
-    {
-        return $this->hasMany(FurnitureTransfer::class);
     }
 }

@@ -96,13 +96,11 @@ class Project extends Base
     // Relationships
 
     /**
-     * BeneficiaryProject relationship
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * The beneficiaries that belong to the project.
      */
-    public function projectBeneficiary()
+    public function beneficiaries()
     {
-        return $this->hasMany(BeneficiaryProject::class);
+        return $this->belongsToMany(Beneficiary::class);
     }
 
     /**

@@ -89,12 +89,10 @@ class Furniture extends Base
     }
 
     /**
-     * FurnitureTransfer relationship
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * The transfers that belong to the furniture.
      */
-    public function transfer_furniture()
+    public function transfers()
     {
-        return $this->hasMany(FurnitureTransfer::class);
+        return $this->belongsToMany(Transfer::class);
     }
 }

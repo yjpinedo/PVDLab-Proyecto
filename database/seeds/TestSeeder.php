@@ -12,6 +12,7 @@ use App\FurnitureTransfer;
 use App\Lesson;
 use App\Location;
 use App\Project;
+use App\Teacher;
 use App\User;
 use Illuminate\Database\Seeder;
 
@@ -56,6 +57,29 @@ class TestSeeder extends Seeder
                 factory(BeneficiaryLesson::class)->create([
                     'beneficiary_id' => $beneficiary->id,
                     'lesson_id' => random_int(1, Lesson::count()),
+                ]);
+            }
+        }
+
+        $teacher = factory(Beneficiary::class)->create([
+            'email' => 'teacher@admin.com'
+        ]);
+
+        factory(User::class)->create([
+            'name' => $teacher->full_name,
+            'email' => $teacher->email,
+            'model_type' => 'App\Teacher',
+            'model_id' => $teacher->id,
+        ])->assignRole('teacher');
+
+        factory(Teacher::class, 35)->create();
+
+        $teachers = Teacher::all();
+
+        foreach ($teachers as $teacher) {
+            for ($i = 0; $i < random_int(1, 10); $i++) {
+                factory(Course::class)->create([
+                    'teacher_id' => $teacher->id,
                 ]);
             }
         }

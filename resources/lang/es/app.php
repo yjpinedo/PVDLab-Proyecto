@@ -24,6 +24,10 @@ return [
         'projects' => 'Proyectos',
         'project_beneficiaries' => 'Proyectos - Beneficios',
         'teachers' => 'Docentes',
+        'teacher' => [
+            'courses' => 'Cursos',
+            'lessons' => 'Lecciones',
+        ],
         'transfers' => 'Tranferencias',
         'transfer_furnitures' => 'Tranferencias - Muebles',
     ],

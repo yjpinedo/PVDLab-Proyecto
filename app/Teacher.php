@@ -137,7 +137,7 @@ class Teacher extends Base
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function course()
+    public function courses()
     {
         return $this->hasMany(Course::class);
     }

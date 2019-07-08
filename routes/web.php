@@ -50,21 +50,26 @@ Route::middleware(['auth', 'verified'])->group(function () {
     });
 
     // Beneficiaries
-    Route::middleware(['role:beneficiaries'])->namespace('Beneficiary')->prefix('beneficiary')->group(function () {
+    Route::middleware(['role:beneficiary'])->namespace('Beneficiary')->prefix('beneficiary')->group(function () {
         // Courses
         Route::resource('courses', 'CourseController', ['except' => ['create', 'destroy', 'edit', 'store']])->names('beneficiary.courses');
         // Projects
         Route::resource('projects', 'ProjectController', ['except' => ['create', 'destroy']])->names('beneficiary.projects');
+        // Lessons
+        Route::resource('lessons', 'LessonController', ['except' => ['create', 'destroy', 'edit', 'store']])->names('beneficiary.lessons');
 
     });
 
+    // Teachers
+    Route::middleware(['role:teacher'])->namespace('Teacher')->prefix('teacher')->group(function () {
+        // Courses
+        Route::resource('courses', 'CourseController', ['except' => ['create', 'destroy', 'edit', 'store']])->names('teacher.courses');
+        // Lessons
+        Route::resource('lessons', 'LessonController', ['except' => ['create']])->names('teacher.lessons');
+
+    });
 
     Route::get('select', 'AppController@select')->middleware('ajax');
 
-    /*Route::get('select', function (Request $request) {
-        $request->request->add(['data' => Base::select($request->input('name'))]);
-
-        return response()->json($request);
-    })->middleware('ajax');*/
 });
 

@@ -7,6 +7,7 @@ return [
         'beneficiary' => [
             'courses' => 'Cursos',
             'projects' => 'Proyectos',
+            'lessons' => 'Lecciones',
         ],
         'beneficiary_courses' => 'Beneficiarios - Cursos',
         'beneficiary_lessons' => 'Beneficiarios - Lecciones',
@@ -120,5 +121,13 @@ return [
                 '6' => '6',
             ],
         ],
+    ],
+
+
+    'roles' => [
+        'admin' => 'Administrador',
+        'beneficiary' => 'Beneficiario',
+        'teacher' => 'Docente',
+        'employee' => 'Empleado',
     ],
 ];

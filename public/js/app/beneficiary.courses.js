@@ -1,7 +1,7 @@
 columnsDataTable = [
-    {data: 'id'},
     {data: 'code'},
     {data: 'name'},
+    {data: 'teacher.full_name'},
 ];
 
 /**

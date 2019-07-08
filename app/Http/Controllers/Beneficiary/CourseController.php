@@ -21,7 +21,7 @@ class CourseController extends BaseController
         $this->crud = 'beneficiary.courses';
 
         $this->middleware(function ($request, $next) {
-            $beneficiary = Beneficiary::where('id', Auth::user()['model_id'])->first();
+            $beneficiary = Beneficiary::where('id', Auth::user()['model_id'])->with('courses.teacher')->first();
 
             if ( !is_null($beneficiary) ) {
                 $request->request->add(['data' => [
@@ -30,12 +30,7 @@ class CourseController extends BaseController
                         'reload' => false,
                         'export' => false,
                     ],
-                    'table' => [
-                        'check' => false,
-                        'fields' => ['id', 'code', 'name'],
-                        'active' => false,
-                        'actions' => false,
-                    ],
+                    'form' => [],
                 ]]);
 
                 $request->request->add(['beneficiary_id' => $beneficiary->id]);

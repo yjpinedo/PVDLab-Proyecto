@@ -12,6 +12,7 @@ class Course extends Base
     protected $layout = [
         'tools' => [
             'create' => true,
+            'export' => true,
             'reload' => false,
         ],
         'table' => [

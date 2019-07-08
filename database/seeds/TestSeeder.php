@@ -1,14 +1,17 @@
 <?php
 
+use App\Beneficiary;
 use App\BeneficiaryCourse;
 use App\BeneficiaryLesson;
 use App\BeneficiaryProject;
 use App\Category;
+use App\Course;
 use App\Employee;
 use App\Furniture;
 use App\FurnitureTransfer;
 use App\Location;
 use App\Project;
+use App\User;
 use Illuminate\Database\Seeder;
 
 class TestSeeder extends Seeder
@@ -17,10 +20,35 @@ class TestSeeder extends Seeder
      * Run the database seeds.
      *
      * @return void
+     * @throws Exception
      */
     public function run()
     {
-        factory(BeneficiaryCourse::class, 5)->create();
+        $beneficiary = factory(Beneficiary::class)->create([
+            'email' => 'beneficiary@admin.com'
+        ]);
+
+        factory(User::class)->create([
+            'name' => $beneficiary->full_name,
+            'email' => $beneficiary->email,
+            'model_type' => 'App\Beneficiary',
+            'model_id' => $beneficiary->id,
+        ])->assignRole('beneficiaries');
+
+        factory(Beneficiary::class, 25)->create();
+        factory(Course::class, 10)->create();
+
+        $beneficiaries = Beneficiary::all();
+
+        foreach ($beneficiaries as $beneficiary) {
+            for ($i = 0; $i < random_int(1, 10); $i++) {
+                factory(BeneficiaryCourse::class)->create([
+                    'beneficiary_id' => $beneficiary->id,
+                    'course_id' => random_int(1, Course::count()),
+                ]);
+            }
+        }
+
         factory(BeneficiaryLesson::class, 5)->create();
         factory(Category::class, 5)->create();
         factory(Location::class, 5)->create();

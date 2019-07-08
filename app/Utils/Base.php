@@ -34,8 +34,8 @@ class Base
             ->addClass('m-subheader__breadcrumbs m-nav m-nav--inline')
             ->add(
                 Link::toRoute('home', '<i class="m-nav__link-icon la la-home"></i>')
-                    ->addClass('m-nav_link m-nav_link--icon')
-                    ->addParentClass('m-nav_item m-nav_item--home')
+                    ->addClass('m-nav__link m-nav__link--icon')
+                    ->addParentClass('m-nav__item m-nav__item--home')
             )
         ;
 
@@ -107,22 +107,22 @@ class Base
         return Menu::build($options['submenu'], function ($menu, $option) {
             if (!isset($option['submenu'])) {
                 $menu->route(isset($option['route']) ? $option['route'] : $option['crud'] . '.index',
-                    '<i class="m-menu_link-bullet m-menu_link-bullet--dot">' .
+                    '<i class="m-menu__link-bullet m-menu__link-bullet--dot">' .
                     '<span></span>' .
                     '</i>' .
-                    '<span class="m-menu_link-text">' . _('app.titles.' . $option['crud']) . '</span>'
+                    '<span class="m-menu__link-text">' . __('app.titles.' . $option['crud']) . '</span>'
                 );
             } else {
                 $menu->add(
                     Link::to('#',
-                        '<i class="m-menu_link-bullet m-menu_link-bullet--dot">' .
+                        '<i class="m-menu__link-bullet m-menu__link-bullet--dot">' .
                         '<span></span>' .
                         '</i>' .
-                        '<span class="m-menu_link-text">' . _('app.titles.' . $option['name']) . '</span>' .
+                        '<span class="m-menu__link-text">' . __('app.titles.' . $option['name']) . '</span>' .
                         '<i class="m-menu__ver-arrow la la-angle-right"></i>'
                     )
-                        ->addParentClass('m-menu_item m-menu_item--submenu')
-                        ->addClass('m-menu_link m-menu_toggle')
+                        ->addParentClass('m-menu__item m-menu__item--submenu')
+                        ->addClass('m-menu__link m-menu__toggle')
                         ->append($this->items($option))
                         ->setParentAttributes(['aria-haspopup' =>'true', 'm-menu-submenu-toggle' => 'hover'])
                 );
@@ -179,7 +179,7 @@ class Base
             if (isset($option['section'])) {
                 $menu->html(
                     '<li class="m-menu__section ">' .
-                    '<h4 class="m-menu_section-text">' . _('app.roles.' . $option['section']) . '</h4>' .
+                    '<h4 class="m-menu__section-text">' . __('app.roles.' . $option['section']) . '</h4>' .
                     '<i class="m-menu__section-icon flaticon-more-v2"></i>' .
                     '</li>'
                 );
@@ -189,7 +189,7 @@ class Base
                         '<i class="m-menu__link-icon ' . $option['icon'] . '"></i>' .
                         '<span class="m-menu__link-title">' .
                         '<span class="m-menu__link-wrap">' .
-                        '<span class="m-menu_link-text">' . _('app.titles.' . $option['crud']) . '</span>' .
+                        '<span class="m-menu__link-text">' . __('app.titles.' . $option['crud']) . '</span>' .
                         '</span>' .
                         '</span>'
                     );
@@ -197,11 +197,11 @@ class Base
                     $menu->add(
                         Link::to('#',
                             '<i class="m-menu__link-icon ' . $option['icon'] . '"></i>' .
-                            '<span class="m-menu_link-text">' . _('app.titles.' . $option['name']) . '</span>' .
+                            '<span class="m-menu__link-text">' . __('app.titles.' . $option['name']) . '</span>' .
                             '<i class="m-menu__ver-arrow la la-angle-right"></i>'
 
                         )
-                            ->addParentClass('m-menu_item m-menu_item--submenu')
+                            ->addParentClass('m-menu__item m-menu__item--submenu')
                             ->addClass('m-menu__toggle')
                             ->append($this->items($option))
                             ->setParentAttribute('m-menu-submenu-toggle', 'hover')
@@ -209,7 +209,7 @@ class Base
                 }
             }
         })
-            ->addClass('m-menu_nav m-menu_nav--dropdown-submenu-arrow')
+            ->addClass('m-menu__nav m-menu__nav--dropdown-submenu-arrow')
             ->append('</div></div>')
             ->each(function (Link $link) {
                 $link->addClass('m-menu__link')
@@ -233,7 +233,7 @@ class Base
      */
     public static function dynamicModelInstance(string $model)
     {
-        $model = '\\App\\' . str_replace('', '', ucwords(str_replace('_id', '', $model), ''));
+        $model = '\\App\\' . str_replace('_', '', ucwords(str_replace('_id', '', $model), '_'));
         return  new $model;
     }
 
@@ -265,7 +265,7 @@ class Base
      */
     public static function findBy(string $model, string $where, $value)
     {
-        $entity = Base::dynamicModelInstance($model);
+        $entity = Base::dynamicInstanceModel($model);
         $entity = $entity->where($where, $value)->first();
         return is_null($entity) ? -1 : $entity->id;
     }

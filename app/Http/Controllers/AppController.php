@@ -26,10 +26,10 @@ class AppController extends Controller
      */
     public function home()
     {
-        if (Auth::user()->hasRole('beneficiaries')) return redirect()->route('beneficiary.courses.index');
-        else if (Auth::user()->hasRole('teachers')) return redirect()->route('teachers.index');
-        else if (Auth::user()->hasRole('employees')) return redirect()->route('employees.index');
-        else if (Auth::user()->hasRole('admin')) return redirect()->route('beneficiaries.index');
+        if (Auth::user()->hasRole('beneficiary')) return redirect()->route('beneficiary.project.index');
+        else if (Auth::user()->hasRole('teacher')) return redirect()->route('teachers.index');
+        else if (Auth::user()->hasRole('employee')) return redirect()->route('employees.index');
+        else if (Auth::user()->hasRole('admin')) return redirect()->route('projects.index');
         else return abort(404);
     }
 

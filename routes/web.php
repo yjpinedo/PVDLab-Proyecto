@@ -10,8 +10,8 @@ Auth::routes(['verify' => true]);
 Route::redirect('/', 'home');
 
 Route::middleware(['auth', 'verified'])->group(function () {
-
-    Route::get('home', 'HomeController@index')->name('home');
+    // Home
+    Route::get('home', 'AppController@home')->name('home');
 
     // Admin
     Route::middleware(['role:admin'])->group(function () {
@@ -58,10 +58,13 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     });
 
-    Route::get('select', function (Request $request) {
+
+    Route::get('select', 'AppController@select')->middleware('ajax');
+
+    /*Route::get('select', function (Request $request) {
         $request->request->add(['data' => Base::select($request->input('name'))]);
 
         return response()->json($request);
-    })->middleware('ajax');
+    })->middleware('ajax');*/
 });
 

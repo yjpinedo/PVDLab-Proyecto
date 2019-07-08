@@ -111,8 +111,8 @@ formButton.on("click", function () {
         disableForm(false);
         $('#form .form-group:first .form-control').focus();
         formReset.removeClass("m--hide");
-        formTitle.html(Lang.get('cruds/base.titles.update', {name: formTitle.attr('data-name')}));
-        formButton.html(Lang.get('cruds/base.buttons.update')).attr('data-action', 'update');
+        formTitle.html(Lang.get('base/base.titles.update', {name: formTitle.attr('data-name')}));
+        formButton.html(Lang.get('base/base.buttons.update')).attr('data-action', 'update');
     } else {
         let url = routes['update'].url.replace(':id', id);
         ajaxRequest(url, formData, routes['update'].method, createRow, formPortlet);
@@ -140,7 +140,7 @@ function resetForm(action = 'create', name) {
         disableForm(false);
         action = 'creating';
         formReset.removeClass("m--hide");
-        formTitle.html(Lang.get('cruds/base.titles.create'));
+        formTitle.html(Lang.get('base/base.titles.create'));
     } else if (action === 'creating') {
         disableForm(true, true);
         formReset.removeClass("m--hide");
@@ -148,10 +148,12 @@ function resetForm(action = 'create', name) {
     } else if (action === 'show') {
         disableForm(true, false);
         formReset.addClass("m--hide");
-        formTitle.html(Lang.get('cruds/base.titles.show', {name: name})).attr('data-name', name);
+        formTitle.html(Lang.get('base/base.titles.show', {name: name})).attr('data-name', name);
     }
 
-    formButton.html(Lang.get('cruds/base.buttons.' + action)).attr('data-action', action);
+    if (crud === '/professional/medical_appointments' && action === 'show') {
+        formButton.html('Atender').attr('data-action', action);
+    } else formButton.html(Lang.get('base/base.buttons.' + action)).attr('data-action', action);
     $('span[name=form-error]').remove();
     $('#validations').addClass('m--hide');
     form.find('select').selectpicker('refresh');
@@ -230,7 +232,7 @@ function reloadSelect(results) {
     select.empty();
     select.append($('<option>', {
         value: '',
-        text : Lang.get('cruds/base.placeholder')
+        text : Lang.get('base/base.placeholder')
     }));
     $.each(results.data, function(key, value) {
         select.append($('<option>', {
@@ -251,7 +253,7 @@ function state(id, next) {
 }
 
 $(document).ready( function () {
-    $('li.m-menu_item > div > ul > li.m-menuitem--active').parents('li.m-menuitem').addClass('m-menuitem--open m-menu_item--expanded');
+    $('li.m-menu__item > div > ul > li.m-menu__item--active').parents('li.m-menu__item').addClass('m-menu__item--open m-menu__item--expanded');
 
     $('.select-reload').each(function() {
         dataSelect($(this));

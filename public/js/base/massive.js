@@ -18,6 +18,6 @@ function openMassive(callback, parameters) {
     if ($('.m-checkable:checked').length > 0) {
         callback(parameters);
     } else {
-        showMessage(Lang.get('cruds/base.messages.massive'), true);
+        showMessage(Lang.get('base/base.messages.massive'), true);
     }
 }

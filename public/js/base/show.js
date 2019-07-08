@@ -2,13 +2,11 @@ function show(id) {
     if (id !== 0) {
         let url = routes.show.url.replace(':id', id);
         ajaxRequest(url, null, routes.show.method, showEntity, formPortlet);
-    } else {
-        create();
-    }
+    } else create();
 }
 
 function showEntity(results) {
-    resetForm('show', results.full_name);
+    resetForm('show', results['full_name']);
 
     if (results.picture) $('#preview').attr('src', results.picture);
 

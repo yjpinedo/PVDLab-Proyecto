@@ -53,7 +53,7 @@ $(document).ready(function () {
 
 $('#search_filter').tagEditor({
     delimiter: ', ',
-    placeholder: Lang.get('cruds/base.fields.search'),
+    placeholder: Lang.get('base/base.fields.search'),
     onChange: function(field, editor, tags) {
         if (tags.length) {
             if( tags.length > 1 ) {
@@ -104,7 +104,7 @@ function aoColumnDefs(currentDataTable) {
             },
             {
                 'orderable': false,
-                'width': '20%',
+                'width': '12%',
                 'targets': -1,
                 'sClass': 'dt-center'
             }
@@ -118,7 +118,7 @@ function aoColumnDefs(currentDataTable) {
     } else if (actions) {
         aoColumnDefs.push({
             'orderable': false,
-            'width': '20%',
+            'width': '12%',
             'targets': -1,
             'sClass': 'dt-center'
         })

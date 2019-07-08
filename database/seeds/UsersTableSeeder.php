@@ -20,9 +20,9 @@ class UsersTableSeeder extends Seeder
         DB::table((new User)->getTable())->delete();
 
         Role::create(['name' => 'admin']);
-        Role::create(['name' => 'beneficiaries']);
-        Role::create(['name' => 'teachers']);
-        Role::create(['name' => 'employees']);
+        Role::create(['name' => 'beneficiary']);
+        Role::create(['name' => 'teacher']);
+        Role::create(['name' => 'employee']);
 
         factory(User::class)->create([
             'email' => 'admin@admin.com',

@@ -131,6 +131,16 @@ class Employee extends Base
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
+    public function projects()
+    {
+        return $this->hasMany(Project::class);
+    }
+
+    /**
+     * Transfer relationship
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function transfer()
     {
         return $this->hasMany(Transfer::class);

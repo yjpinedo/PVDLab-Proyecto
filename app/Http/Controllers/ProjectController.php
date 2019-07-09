@@ -16,6 +16,7 @@ class ProjectController extends BaseController
     public function __construct(Project $entity)
     {
         parent::__construct($entity, false);
+        $this->model = $this->entity->with('employee')->orderBy('created_at');
     }
 
     /**

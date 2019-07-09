@@ -16,7 +16,7 @@ class Project extends Base
         ],
         'table' => [
             'check' => false,
-            'fields' => ['code', 'name', 'start', 'type', 'concept'],
+            'fields' => ['code', 'name', 'start', 'type', 'employee_id', 'concept'],
             'active' => false,
             'actions' => false,
         ],
@@ -90,6 +90,10 @@ class Project extends Base
                 'type' => 'select',
                 'value' => 'app.selects.project.concept',
             ],
+            [
+                'name' => 'employee_id',
+                'type' => 'select_reload',
+            ],
         ],
     ];
 
@@ -101,6 +105,16 @@ class Project extends Base
     public function beneficiaries()
     {
         return $this->belongsToMany(Beneficiary::class);
+    }
+
+    /**
+     * Position relationship
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function employee()
+    {
+        return $this->belongsTo(Employee::class);
     }
 
     /**

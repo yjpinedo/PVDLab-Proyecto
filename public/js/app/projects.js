@@ -3,6 +3,7 @@ columnsDataTable = [
     {data: 'name'},
     {data: 'start'},
     {data: 'type'},
+    {data: 'employee.full_name'},
     {data: 'concept'},
 ];
 

@@ -2,6 +2,7 @@
 
 /** @var Factory $factory */
 
+use App\Employee;
 use App\Project;
 use Illuminate\Database\Eloquent\Factory;
 use Faker\Generator as Faker;
@@ -27,5 +28,8 @@ $factory->define(Project::class, function (Faker $faker) {
         'financing_description' => $faker->text($maxNbChars = 200),
         'observations' => $faker->text($maxNbChars = 200),
         'concept' => $faker->randomElement(array_keys(__('app.selects.project.concept'))),
+        'employee_id' => function () {
+            return factory(Employee::class)->create()->id;
+        },
     ];
 });

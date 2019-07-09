@@ -30,6 +30,8 @@ class CreateProjectsTable extends Migration
             $table->string('financing_description', 200)->nullable();
             $table->string('observations', 200)->nullable();
             $table->enum('concept',  array_keys(__('app.selects.project.concept')))->default('PENDIENTE');
+            $table->unsignedInteger('employee_id');
+            $table->foreign('employee_id')->references('id')->on('employees');
             $table->timestamps();
             $table->softDeletes();
         });

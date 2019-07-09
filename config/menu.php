@@ -26,11 +26,11 @@ return [
             [
                 'crud' => 'teacher.courses',
                 'icon' => 'fa fa-clipboard-list',
-            ],
+            ],/*
             [
                 'crud' => 'teacher.lessons',
                 'icon' => 'fa fa-list-ul',
-            ],
+            ],*/
         ],
     ],
 

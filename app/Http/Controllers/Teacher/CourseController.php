@@ -30,6 +30,12 @@ class CourseController extends BaseController
                         'reload' => false,
                         'export' => false,
                     ],
+                    'table' => [
+                        'check' => false,
+                        'fields' => ['code', 'name', 'teacher'],
+                        'active' => false,
+                        'actions' => false,
+                    ],
                     'form' => [
                         [
                             'name' => 'teacher_id',

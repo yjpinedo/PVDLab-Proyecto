@@ -13,6 +13,7 @@ use App\Lesson;
 use App\Location;
 use App\Project;
 use App\Teacher;
+use App\Transfer;
 use App\User;
 use Illuminate\Database\Seeder;
 
@@ -61,7 +62,7 @@ class TestSeeder extends Seeder
             }
         }
 
-        $teacher = factory(Beneficiary::class)->create([
+        $teacher = factory(Teacher::class)->create([
             'email' => 'teacher@admin.com'
         ]);
 
@@ -84,12 +85,35 @@ class TestSeeder extends Seeder
             }
         }
 
+        $employee = factory(Employee::class)->create([
+            'email' => 'employee@admin.com'
+        ]);
+
+        factory(User::class)->create([
+            'name' => $employee->full_name,
+            'email' => $employee->email,
+            'model_type' => 'App\Employee',
+            'model_id' => $employee->id,
+        ])->assignRole('employee');
+
+        factory(Employee::class, 35)->create();
+
+        $employees = Employee::all();
+
+        foreach ($employees as $employee) {
+            for ($i = 0; $i < random_int(1, 10); $i++) {
+                factory(Transfer::class)->create([
+                    'employee_id' => $employee->id,
+                ]);
+            }
+        }
+
         //factory(BeneficiaryLesson::class, 5)->create();
         factory(Category::class, 5)->create();
         factory(Location::class, 5)->create();
         factory(Furniture::class, 5)->create();
-        factory(Employee::class, 5)->create();
-        factory(FurnitureTransfer::class, 5)->create();
+        //factory(Employee::class, 5)->create();
+        //factory(FurnitureTransfer::class, 5)->create();
         //factory(BeneficiaryProject::class, 5)->create();
     }
 }

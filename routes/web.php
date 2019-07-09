@@ -69,6 +69,19 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     });
 
+    // Employees
+    Route::middleware(['role:employee'])->namespace('Employee')->prefix('employee')->group(function () {
+        // Transfers
+        Route::resource('transfers', 'TransferController', ['except' => ['create', 'destroy', 'edit', 'store']])->names('employee.transfers');
+        // Beneficiaries
+        Route::resource('beneficiaries', 'BeneficiaryController', ['except' => ['create', 'destroy', 'edit', 'store']])->names('employee.beneficiaries');
+        // Projects
+        Route::resource('projects', 'ProjectController', ['except' => ['create']])->names('employee.projects');
+        // Courses
+        // Route::resource('courses', 'CourseController', ['except' => ['create', 'destroy', 'edit', 'store']])->names('teacher.courses');
+
+    });
+
     Route::get('select', 'AppController@select')->middleware('ajax');
 
 });

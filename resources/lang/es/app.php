@@ -15,6 +15,11 @@ return [
         'configuration' => 'Configuracion',
         'courses' => 'Cursos',
         'employees' => 'Empleados',
+        'employee' => [
+            'transfers' => 'Transferencias',
+            'beneficiaries' => 'Beneficiarios',
+            'projects' => 'Proyectos',
+        ],
         'furniture' => 'Muebles',
         'furniture_categories' => 'Categorias - Muebles',
         'home' => 'Inicio',

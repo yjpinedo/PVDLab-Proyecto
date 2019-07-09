@@ -20,6 +20,25 @@ return [
         ],
     ],
 
+
+    [
+        'name' => 'employee',
+        'menu' => [
+            [
+                'crud' => 'employee.transfers',
+                'icon' => 'fa fa-exchange-alt',
+            ],
+            [
+                'crud' => 'employee.beneficiaries',
+                'icon' => 'fa fa-users',
+            ],
+            [
+                'crud' => 'employee.projects',
+                'icon' => 'fa fa-project-diagram',
+            ],
+        ],
+    ],
+
     [
         'name' => 'teacher',
         'menu' => [

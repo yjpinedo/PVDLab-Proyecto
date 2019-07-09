@@ -5,6 +5,15 @@ namespace App;
 class Course extends Base
 {
     /**
+     * The mutated attributes that should be added for arrays.
+     *
+     * @var array
+     */
+    protected $appends = [
+        'full_name',
+    ];
+
+    /**
      * The data to build the layout.
      *
      * @var array
@@ -40,6 +49,18 @@ class Course extends Base
             ],
         ],
     ];
+
+    // Mutator
+
+    /**
+     * Mutator for the full name
+     *
+     * @return string
+     */
+    public function getFullNameAttribute()
+    {
+        return $this->name;
+    }
 
     // Relationships
 

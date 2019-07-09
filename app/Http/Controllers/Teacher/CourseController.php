@@ -18,7 +18,7 @@ class CourseController extends BaseController
     {
         parent::__construct($entity);
 
-        $this->crud = 'beneficiary.courses';
+        $this->crud = 'teacher.courses';
 
         $this->middleware(function ($request, $next) {
             $teacher = Teacher::where('id', Auth::user()['model_id'])->with('courses.teacher')->first();
@@ -34,7 +34,7 @@ class CourseController extends BaseController
                         'check' => false,
                         'fields' => ['code', 'name', 'teacher'],
                         'active' => false,
-                        'actions' => false,
+                        'actions' => true,
                     ],
                     'form' => [
                         [

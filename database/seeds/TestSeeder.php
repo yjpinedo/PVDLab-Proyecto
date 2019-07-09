@@ -27,6 +27,7 @@ class TestSeeder extends Seeder
      */
     public function run()
     {
+        // Beneficiaries
         $beneficiary = factory(Beneficiary::class)->create([
             'email' => 'beneficiary@admin.com'
         ]);
@@ -62,6 +63,7 @@ class TestSeeder extends Seeder
             }
         }
 
+        // Teachers
         $teacher = factory(Teacher::class)->create([
             'email' => 'teacher@admin.com'
         ]);
@@ -85,6 +87,17 @@ class TestSeeder extends Seeder
             }
         }
 
+        $courses = Course::all();
+
+        foreach ($courses as $course) {
+            for ($i = 0; $i < random_int(1, 100); $i++) {
+                factory(Lesson::class)->create([
+                    'course_id' => $course->id,
+                ]);
+            }
+        }
+
+        // Employees
         $employee = factory(Employee::class)->create([
             'email' => 'employee@admin.com'
         ]);
@@ -96,13 +109,18 @@ class TestSeeder extends Seeder
             'model_id' => $employee->id,
         ])->assignRole('employee');
 
-        factory(Employee::class, 35)->create();
+        factory(Employee::class, 25)->create();
 
         $employees = Employee::all();
 
         foreach ($employees as $employee) {
             for ($i = 0; $i < random_int(1, 10); $i++) {
                 factory(Transfer::class)->create([
+                    'employee_id' => $employee->id,
+                ]);
+            }
+            for ($i = 0; $i < random_int(1, 10); $i++) {
+                factory(Project::class)->create([
                     'employee_id' => $employee->id,
                 ]);
             }

@@ -64,8 +64,14 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::middleware(['role:teacher'])->namespace('Teacher')->prefix('teacher')->group(function () {
         // Courses
         Route::resource('courses', 'CourseController', ['except' => ['create', 'destroy', 'edit', 'store']])->names('teacher.courses');
+
+        Route::name('course_')->group(function () {
+            // Lessons
+            Route::resource('courses/{course}/lessons', 'LessonController', ['except' => ['create', 'destroy', 'edit']]);
+        });
+
         // Lessons
-        Route::resource('lessons', 'LessonController', ['except' => ['create']])->names('teacher.lessons');
+        // Route::resource('lessons', 'LessonController', ['except' => ['create']])->names('teacher.lessons');
 
     });
 

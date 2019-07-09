@@ -6,6 +6,7 @@ use App\Beneficiary;
 use App\Http\Controllers\BaseController;
 use App\Project;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 
 class ProjectController extends BaseController
@@ -112,27 +113,5 @@ class ProjectController extends BaseController
 
             return abort(404);
         });
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param Request $request
-     * @return Response
-     */
-    public function statusUpdate(Request $request)
-    {
-        $turn = $this->entity::find($request->input('id'));
-
-        if ( is_null($turn) ) return abort(404);
-
-        if ($request->input('state') == __('app.selects.turns.state_next.' . $turn->state)) {
-            $turn->state = $request->input('state');
-            $turn->save();
-        }
-
-        return response()->json([
-            'message' => __('app.messages.turns.' . $turn->state),
-        ]);
     }
 }

@@ -2,9 +2,9 @@ columnsDataTable = [
     {data: 'code'},
     {data: 'name'},
     {data: 'start'},
-    {data: 'type'},
     {data: 'employee.full_name'},
-    {data: 'concept'},
+    {data: 'translated_concept', searchable: false, className: 'dt-center', customValue: true},
+    {data: 'actions', searchable: false, className: 'dt-center', customValue: true},
 ];
 
 /**
@@ -16,5 +16,19 @@ columnsDataTable = [
  * @returns {String} The HTML string with the status
  */
 function getStatus(column, value) {
+    if (column === 4) {
+        return '<span class="m-badge m-badge--' + value.class + ' m-badge--wide">' + value.concept + '</span>';
+    } else if (column === 5) {
+        let actions = '';
 
+        if (value.cancel) {
+            actions =
+                '<a onclick="concept(' + value.id + ',\'RECHAZADO\')" class="m-portlet__nav-link btn m-btn m-btn--icon m-btn--icon-only m-btn--pill m-btn--hover-danger" title="Rechazar">' +
+                '<i class="fa fa-file-excel"></i>' +
+                '</a>'
+            ;
+        }
+
+        return actions;
+    }
 }

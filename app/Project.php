@@ -2,8 +2,21 @@
 
 namespace App;
 
+/**
+ * @property mixed concept
+ * @property mixed id
+ */
 class Project extends Base
 {
+    /**
+     * The mutated attributes that should be added for arrays.
+     *
+     * @var array
+     */
+    protected $appends = [
+        'actions', 'full_name', 'translated_concept',
+    ];
+
     /**
      * The data to build the layout.
      *
@@ -16,9 +29,9 @@ class Project extends Base
         ],
         'table' => [
             'check' => false,
-            'fields' => ['code', 'name', 'start', 'type', 'employee_id', 'concept'],
+            'fields' => ['code', 'name', 'start', 'employee_id', 'concept'],
             'active' => false,
-            'actions' => false,
+            'actions' => true,
         ],
         'form' => [
             [
@@ -96,6 +109,45 @@ class Project extends Base
             ],
         ],
     ];
+
+    // Mutator
+
+    /**
+     * Mutator for the actions
+     *
+     * @return array
+     */
+    public function getActionsAttribute()
+    {
+        return [
+            'id' => $this->id,
+            'cancel' => $this->concept == 'PENDIENTE',
+            'next' => __('app.selects.project.concept_next.' . $this->concept),
+        ];
+    }
+
+    /**
+     * Mutator for the actions
+     *
+     * @return array
+     */
+    public function getTranslatedConceptAttribute()
+    {
+        return [
+            'concept' => $this->concept,
+            'class' => __('app.selects.project.concept_class.' . $this->concept),
+        ];
+    }
+
+    /**
+     * Mutator for the full name
+     *
+     * @return string
+     */
+    public function getFullNameAttribute()
+    {
+        return $this->name;
+    }
 
     // Relationships
 

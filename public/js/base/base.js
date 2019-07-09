@@ -251,6 +251,14 @@ function state(id, next) {
     let url = routes.update.url.replace('/:id', '');
     ajaxRequest(url, formData, routes.update.method, createRow, tablePortlet);
 }
+function concept(id, next) {
+    let formData = new FormData();
+    formData.append('concept', next);
+    formData.append('id', id);
+
+    let url = routes.update.url.replace('/:id', '');
+    ajaxRequest(url, formData, routes.update.method, createRow, tablePortlet);
+}
 
 $(document).ready( function () {
     $('li.m-menu__item > div > ul > li.m-menu__item--active').parents('li.m-menu__item').addClass('m-menu__item--open m-menu__item--expanded');

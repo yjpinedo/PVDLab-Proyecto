@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Employee;
 
 use App\Employee;
 use App\Http\Controllers\BaseController;
+use App\Http\Requests\ProjectRequest;
 use App\Project;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -35,7 +36,7 @@ class ProjectController extends BaseController
                         'check' => false,
                         'fields' => ['code', 'name', 'start', 'type', 'concept'],
                         'active' => false,
-                        'actions' => false,
+                        'actions' => true,
                     ],
                     'form' => [
                         [
@@ -124,24 +125,47 @@ class ProjectController extends BaseController
     }
 
     /**
+     * Store a newly created resource in storage.
+     *
+     * @param ProjectRequest $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(ProjectRequest $request)
+    {
+        return parent::storeBase($request, false);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param ProjectRequest $request
+     * @param int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(ProjectRequest $request, int $id)
+    {
+        return parent::updateBase($request, $id);
+    }
+
+    /**
      * Update the specified resource in storage.
      *
      * @param Request $request
      * @return Response
      */
-    public function statusUpdate(Request $request)
+    public function conceptUpdate(Request $request)
     {
-        $turn = $this->entity::find($request->input('id'));
+        $project = $this->entity::find($request->input('id'));
 
-        if ( is_null($turn) ) return abort(404);
+        if ( is_null($project) ) return abort(404);
 
-        if ($request->input('state') == __('app.selects.turns.state_next.' . $turn->state)) {
-            $turn->state = $request->input('state');
-            $turn->save();
+        if ($request->input('concept') == __('app.selects.project.concept_next.' . $project->concept)) {
+            $project->concept = $request->input('concept');
+            $project->save();
         }
 
         return response()->json([
-            'message' => __('app.messages.turns.' . $turn->state),
+            'message' => __('app.messages.project.' . $project->concept),
         ]);
     }
 }

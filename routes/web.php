@@ -40,8 +40,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::resource('employees', 'EmployeeController', ['except' => ['create', 'edit']]);
         // Projects
         Route::resource('projects', 'ProjectController', ['except' => ['create', 'edit']]);
+        Route::put('projects', 'ProjectController@conceptUpdate');
         // Projects - Beneficiaries
         Route::resource('beneficiary_projects', 'BeneficiaryProjectController', ['except' => ['create', 'edit']]);
+        // Transfers
         Route::resource('transfers', 'TransferController', ['except' => ['create', 'edit']]);
         // Transfers
         Route::resource('furniture_transfers', 'FurnitureTransferController', ['except' => ['create', 'edit']]);
@@ -83,6 +85,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::resource('beneficiaries', 'BeneficiaryController', ['except' => ['create', 'destroy', 'edit', 'store']])->names('employee.beneficiaries');
         // Projects
         Route::resource('projects', 'ProjectController', ['except' => ['create']])->names('employee.projects');
+        Route::put('projects', 'ProjectController@conceptUpdate');
         // Courses
         // Route::resource('courses', 'CourseController', ['except' => ['create', 'destroy', 'edit', 'store']])->names('teacher.courses');
 

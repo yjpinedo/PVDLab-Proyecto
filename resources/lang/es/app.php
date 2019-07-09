@@ -2,6 +2,15 @@
 
 return [
 
+    'messages' => [
+        'project' => [
+            'APROBADO' => 'Proyecto Aprobado',
+            'RECHAZADO' => 'Proyecto Rechazado',
+            'PENDIENTE' => 'Proyecto Pendiente',
+            'update' => 'No se puede aprobar un proyecto RECHAZADO',
+        ],
+    ],
+
     'titles' => [
         'beneficiaries' => 'Beneficiarios',
         'beneficiary' => [
@@ -68,8 +77,18 @@ return [
         'project' => [
             'concept' => [
                 'APROBADO' => 'APROBADO',
-                'NO APROBADO' => 'NO APROBADO',
+                'RECHAZADO' => 'RECHAZADO',
                 'PENDIENTE' => 'PENDIENTE',
+            ],
+            'concept_class' => [
+                'APROBADO' => 'success',
+                'RECHAZADO' => 'danger',
+                'PENDIENTE' => 'warning',
+            ],
+            'concept_next' => [
+                'APROBADO' => '',
+                'RECHAZADO' => '',
+                'PENDIENTE' => 'APROBADO',
             ],
             'financing' => [
                 'SI' => 'SI',

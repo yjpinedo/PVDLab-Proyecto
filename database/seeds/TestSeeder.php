@@ -90,7 +90,7 @@ class TestSeeder extends Seeder
         $courses = Course::all();
 
         foreach ($courses as $course) {
-            for ($i = 0; $i < random_int(1, 100); $i++) {
+            for ($i = 0; $i < random_int(1, 10); $i++) {
                 factory(Lesson::class)->create([
                     'course_id' => $course->id,
                 ]);

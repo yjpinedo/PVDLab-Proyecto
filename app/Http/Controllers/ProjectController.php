@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ProjectRequest;
 use App\Project;
+use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
 class ProjectController extends BaseController
@@ -40,5 +41,27 @@ class ProjectController extends BaseController
     public function update(ProjectRequest $request, int $id)
     {
         return parent::updateBase($request, $id);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param Request $request
+     * @return Response
+     */
+    public function conceptUpdate(Request $request)
+    {
+        $project = $this->entity::find($request->input('id'));
+
+        if ( is_null($project) ) return abort(404);
+
+        if ($request->input('concept') == 'RECHAZADO' and $project->concept == 'PENDIENTE') {
+            $project->concept = $request->input('concept');
+            $project->save();
+        }
+
+        return response()->json([
+            'message' => __('app.messages.project.' . $project->concept),
+        ]);
     }
 }

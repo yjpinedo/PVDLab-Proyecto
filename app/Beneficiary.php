@@ -31,6 +31,7 @@ class Beneficiary extends Base
         'tools' => [
             'create' => true,
             'reload' => false,
+            'export' => true,
         ],
         'table' => [
             'check' => false,

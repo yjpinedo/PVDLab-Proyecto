@@ -75,6 +75,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::middleware(['role:beneficiary'])->namespace('Beneficiary')->prefix('beneficiary')->group(function () {
         // Courses
         Route::resource('courses', 'CourseController', ['except' => ['create', 'destroy', 'edit', 'store']])->names('beneficiary.courses');
+
+        Route::name('course_')->group(function () {
+            // Lessons
+            Route::resource('courses/{course}/lessons', 'LessonController', ['except' => ['create', 'destroy', 'edit']]);
+        });
+
         // Projects
         Route::resource('projects', 'ProjectController', ['except' => ['create', 'destroy']])->names('beneficiary.projects');
         // Lessons

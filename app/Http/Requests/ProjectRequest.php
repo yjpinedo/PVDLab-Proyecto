@@ -26,7 +26,7 @@ class ProjectRequest extends BaseRequest
             'financial_entity' => 'max:90',
             'financing_description' => 'max:200',
             'observations' => 'max:200',
-            'concept' => 'required|in:' . implode(',', array_keys(__('app.selects.project.concept'))),
+            'concept' => 'in:' . implode(',', array_keys(__('app.selects.project.concept'))),
         ];
     }
 }

@@ -3,12 +3,15 @@
 namespace App\Http\Controllers\Beneficiary;
 
 use App\Beneficiary;
+use App\Course;
 use App\Lesson;
 use App\Http\Controllers\BaseController;
 use Illuminate\Support\Facades\Auth;
 
 class LessonController extends BaseController
 {
+    private $id;
+
     /**
      * Create a controller instance.
      *
@@ -18,29 +21,36 @@ class LessonController extends BaseController
     {
         parent::__construct($entity);
 
-        $this->crud = 'beneficiary.lessons';
-
         $this->middleware(function ($request, $next) {
-            $beneficiary = Beneficiary::where('id', Auth::user()['model_id'])->with('lessons.course')->first();
+            $this->id = $request->lesson;
+            $course = Course::where([['id', $request->course]])->with('lessons.course')->first();
 
-            if ( !is_null($beneficiary) ) {
+            if ( !is_null($course) ) {
                 $request->request->add(['data' => [
-                    'tools' => [
-                        'create' => false,
-                        'reload' => false,
-                        'export' => false,
-                    ],
+                    'title' => __('app.titles.beneficiary.courses'),
+                    'subtitle' => __('app.titles.beneficiary.lessons', ['name' => $course->full_name]),
                     'form' => [],
                 ]]);
 
-                $request->request->add(['beneficiary_id' => $beneficiary->id]);
-                $this->model = $beneficiary->lessons->sortByDesc('name');
+                $request->request->add(['course_id' => $course->id]);
+                $this->model = $course->lessons->sortByDesc('name');
 
                 return $next($request);
             }
 
             return abort(404);
         });
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show(int $id)
+    {
+        return parent::show($this->id);
     }
 
 }

@@ -42,24 +42,7 @@ class CourseController extends BaseController
                         'active' => false,
                         'actions' => false,
                     ],
-                    'form' => [
-                        [
-                            'name' => 'teacher_id',
-                            'type' => 'select_reload',
-                        ],
-                        [
-                            'name' => 'code',
-                            'type' => 'text',
-                        ],
-                        [
-                            'name' => 'name',
-                            'type' => 'text',
-                        ],
-                        [
-                            'name' => 'description',
-                            'type' => 'textarea',
-                        ],
-                    ],
+                    'form' => [],
                 ]]);
                 $request->request->add(['beneficiary_id' => $beneficiary->id]);
                 $this->model = $beneficiary->courses->sortByDesc('name');

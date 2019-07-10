@@ -13,10 +13,6 @@ return [
                 'crud' => 'beneficiary.courses',
                 'icon' => 'fa fa-clipboard-list',
             ],
-            [
-                'crud' => 'beneficiary.lessons',
-                'icon' => 'fa fa-list-ul',
-            ],
         ],
     ],
 

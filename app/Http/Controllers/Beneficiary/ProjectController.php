@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Beneficiary;
 
 use App\Beneficiary;
 use App\Http\Controllers\BaseController;
+use App\Http\Requests\ProjectRequest;
 use App\Project;
-use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 
@@ -28,7 +28,7 @@ class ProjectController extends BaseController
             if ( !is_null($beneficiary) ) {
                 $request->request->add(['data' => [
                     'tools' => [
-                        'create' => false,
+                        'create' => true,
                         'reload' => false,
                         'export' => false,
                     ],
@@ -103,6 +103,10 @@ class ProjectController extends BaseController
                             'name' => 'financing_description',
                             'type' => 'textarea',
                         ],
+                        [
+                            'name' => 'employee_id',
+                            'type' => 'select_reload',
+                        ],
                     ],
                 ]]);
                 $request->request->add(['beneficiary_id' => $beneficiary->id]);
@@ -113,5 +117,28 @@ class ProjectController extends BaseController
 
             return abort(404);
         });
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param ProjectRequest $request
+     * @return Response
+     */
+    public function store(ProjectRequest $request)
+    {
+        return parent::storeBase($request, false);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param ProjectRequest $request
+     * @param int $id
+     * @return Response
+     */
+    public function update(ProjectRequest $request, int $id)
+    {
+        return parent::updateBase($request, $id);
     }
 }

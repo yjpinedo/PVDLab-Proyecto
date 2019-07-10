@@ -33,7 +33,7 @@ class ProjectController extends BaseController
                     'title' => __('app.titles.beneficiaries'),
                     'subtitle' => __('app.titles.beneficiary.projects', ['name' => $beneficiary->full_name]),
                     'tools' => [
-                        'create' => false,
+                        'create' => true,
                         'reload' => false,
                         'export' => true,
                     ],

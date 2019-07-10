@@ -16,9 +16,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
     // Admin
     Route::middleware(['role:admin'])->group(function () {
 
-        // Teachers
-        Route::resource('teachers', 'TeacherController', ['except' => ['create', 'edit']]);
-
         // Beneficiaries
         Route::resource('beneficiaries', 'BeneficiaryController', ['except' => ['create', 'edit']]);
 
@@ -34,17 +31,18 @@ Route::middleware(['auth', 'verified'])->group(function () {
             'as' => 'beneficiaries_projects'
         ]);
 
+        // Teachers
+        Route::resource('teachers', 'TeacherController', ['except' => ['create', 'edit']]);
+
         // Courses
         Route::resource('courses', 'CourseController', ['except' => ['create', 'edit']]);
+        Route::name('course_')->group(function () {
+            // Lessons
+            Route::resource('courses/{course}/lessons', 'Beneficiaries\LessonController', ['except' => ['create', 'destroy', 'edit']]);
+        });
 
         // Lessons
         Route::resource('lessons', 'LessonController', ['except' => ['create', 'edit']]);
-
-        // Beneficiaries - Courses
-        Route::resource('beneficiary_courses', 'BeneficiaryCourseController', ['except' => ['create', 'edit']]);
-
-        // Beneficiaries - Lessons
-        Route::resource('beneficiary_lessons', 'BeneficiaryLessonController', ['except' => ['create', 'edit']]);
 
         // Categories
         Route::resource('categories', 'CategoryController', ['except' => ['create', 'edit']]);
@@ -65,15 +63,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::resource('projects', 'ProjectController', ['except' => ['create', 'edit']]);
         Route::put('projects', 'ProjectController@conceptUpdate');
 
-        // Projects - Beneficiaries
-        Route::resource('beneficiary_projects', 'BeneficiaryProjectController', ['except' => ['create', 'edit']]);
-
         // Transfers
         Route::resource('transfers', 'TransferController', ['except' => ['create', 'edit']]);
 
-        // Transfers
-        Route::resource('furniture_transfers', 'FurnitureTransferController', ['except' => ['create', 'edit']]);
         // Transfer - Furniture
+        Route::resource('furniture_transfers', 'FurnitureTransferController', ['except' => ['create', 'edit']]);
 
     });
 

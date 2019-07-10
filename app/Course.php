@@ -28,7 +28,7 @@ class Course extends Base
             'check' => false,
             'fields' => ['code', 'name', 'teacher'],
             'active' => false,
-            'actions' => false,
+            'actions' => true,
         ],
         'form' => [
             [

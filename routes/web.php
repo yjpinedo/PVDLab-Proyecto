@@ -28,6 +28,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
             'as' => 'beneficiaries_courses'
         ]);
 
+        // Beneficiaries - Projects
+        Route::resource('beneficiaries/{beneficiary}/projects', 'Beneficiaries\ProjectController', [
+            'except' => ['create', 'destroy', 'edit'],
+            'as' => 'beneficiaries_projects'
+        ]);
+
         // Courses
         Route::resource('courses', 'CourseController', ['except' => ['create', 'edit']]);
 

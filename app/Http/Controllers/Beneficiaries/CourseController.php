@@ -43,7 +43,6 @@ class CourseController extends BaseController
                         'actions' => false,
                     ],
                     'form' => [
-
                         [
                             'name' => 'teacher_id',
                             'type' => 'select_reload',

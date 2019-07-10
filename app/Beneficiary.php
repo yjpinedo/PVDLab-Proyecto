@@ -34,7 +34,7 @@ class Beneficiary extends Base
         ],
         'table' => [
             'check' => false,
-            'fields' => ['id', 'name', 'last_name', 'sex', 'ethnic_group'],
+            'fields' => ['id', 'name', 'sex', 'ethnic_group'],
             'active' => false,
             'actions' => true,
         ],

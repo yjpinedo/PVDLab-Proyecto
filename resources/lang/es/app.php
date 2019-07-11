@@ -39,6 +39,7 @@ return [
         'project_beneficiaries' => 'Proyectos - Beneficios',
         'teachers' => 'Docentes',
         'teacher' => [
+            'beneficiaries' => 'Beneficiarios',
             'courses' => 'Cursos',
             'lessons' => 'Lecciones',
         ],

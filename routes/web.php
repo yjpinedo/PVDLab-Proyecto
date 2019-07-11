@@ -94,12 +94,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::resource('courses', 'CourseController', ['except' => ['create', 'destroy', 'edit', 'store']])->names('teacher.courses');
 
         Route::name('course_')->group(function () {
+            // Beneficiaries
+            Route::resource('courses/{course}/beneficiaries', 'BeneficiaryController', ['except' => ['create', 'destroy', 'edit', 'store']]);
             // Lessons
             Route::resource('courses/{course}/lessons', 'LessonController', ['except' => ['create', 'destroy', 'edit']]);
         });
-
-        // Lessons
-        // Route::resource('lessons', 'LessonController', ['except' => ['create']])->names('teacher.lessons');
 
     });
 

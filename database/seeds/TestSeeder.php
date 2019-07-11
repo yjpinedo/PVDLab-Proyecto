@@ -39,7 +39,51 @@ class TestSeeder extends Seeder
             'model_id' => $beneficiary->id,
         ])->assignRole('beneficiary');
 
-        factory(Beneficiary::class, 35)->create();
+        // Teachers
+        $teacher = factory(Teacher::class)->create([
+            'email' => 'teacher@admin.com'
+        ]);
+
+        factory(User::class)->create([
+            'name' => $teacher->full_name,
+            'email' => $teacher->email,
+            'model_type' => 'App\Teacher',
+            'model_id' => $teacher->id,
+        ])->assignRole('teacher');
+
+        // Employees
+        $employee = factory(Employee::class)->create([
+            'email' => 'employee@admin.com'
+        ]);
+
+        factory(User::class)->create([
+            'name' => $employee->full_name,
+            'email' => $employee->email,
+            'model_type' => 'App\Employee',
+            'model_id' => $employee->id,
+        ])->assignRole('employee');
+
+        $teachers = Teacher::all();
+
+        foreach ($teachers as $teacher) {
+            for ($i = 0; $i < random_int(1, 10); $i++) {
+                factory(Course::class)->create([
+                    'teacher_id' => $teacher->id,
+                ]);
+            }
+        }
+
+        $courses = Course::all();
+
+        foreach ($courses as $course) {
+            for ($i = 0; $i < random_int(1, 10); $i++) {
+                factory(Lesson::class)->create([
+                    'course_id' => $course->id,
+                ]);
+            }
+        }
+
+        factory(Beneficiary::class, 25)->create();
         factory(Course::class, 10)->create();
         factory(Project::class, 10)->create();
         factory(Lesson::class, 10)->create();
@@ -62,52 +106,6 @@ class TestSeeder extends Seeder
                 ]);
             }
         }
-
-        // Teachers
-        $teacher = factory(Teacher::class)->create([
-            'email' => 'teacher@admin.com'
-        ]);
-
-        factory(User::class)->create([
-            'name' => $teacher->full_name,
-            'email' => $teacher->email,
-            'model_type' => 'App\Teacher',
-            'model_id' => $teacher->id,
-        ])->assignRole('teacher');
-
-        factory(Teacher::class, 35)->create();
-
-        $teachers = Teacher::all();
-
-        foreach ($teachers as $teacher) {
-            for ($i = 0; $i < random_int(1, 10); $i++) {
-                factory(Course::class)->create([
-                    'teacher_id' => $teacher->id,
-                ]);
-            }
-        }
-
-        $courses = Course::all();
-
-        foreach ($courses as $course) {
-            for ($i = 0; $i < random_int(1, 10); $i++) {
-                factory(Lesson::class)->create([
-                    'course_id' => $course->id,
-                ]);
-            }
-        }
-
-        // Employees
-        $employee = factory(Employee::class)->create([
-            'email' => 'employee@admin.com'
-        ]);
-
-        factory(User::class)->create([
-            'name' => $employee->full_name,
-            'email' => $employee->email,
-            'model_type' => 'App\Employee',
-            'model_id' => $employee->id,
-        ])->assignRole('employee');
 
         factory(Employee::class, 25)->create();
 

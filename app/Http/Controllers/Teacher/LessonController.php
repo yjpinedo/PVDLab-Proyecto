@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Teacher;
 
 use App\Course;
 use App\Http\Controllers\BaseController;
+use App\Http\Requests\LessonRequest;
 use App\Lesson;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 
 class LessonController extends BaseController
@@ -28,6 +30,12 @@ class LessonController extends BaseController
                 $request->request->add(['data' => [
                     'title' => __('app.titles.teacher.courses'),
                     'subtitle' => __('app.titles.teacher.lessons', ['name' => $course->full_name]),
+                    'form' => [
+                        [
+                            'name' => 'date',
+                            'type' => 'date',
+                        ],
+                    ],
                 ]]);
 
                 $request->request->add(['course_id' => $course->id]);
@@ -44,10 +52,33 @@ class LessonController extends BaseController
      * Display the specified resource.
      *
      * @param  int $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function show(int $id)
     {
         return parent::show($this->id);
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param LessonRequest $request
+     * @return Response
+     */
+    public function store(LessonRequest $request)
+    {
+        return parent::storeBase($request, false);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param LessonRequest $request
+     * @param int $id
+     * @return Response
+     */
+    public function update(LessonRequest $request, int $id)
+    {
+        return parent::updateBase($request, $id);
     }
 }

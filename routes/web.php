@@ -100,7 +100,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     // Teachers
     Route::middleware(['role:teacher'])->namespace('Teacher')->prefix('teacher')->group(function () {
         // Courses
-        Route::resource('courses', 'CourseController', ['except' => ['create', 'destroy', 'edit', 'store']])->names('teacher.courses');
+        Route::resource('courses', 'CourseController', ['except' => ['create', 'destroy', 'edit']])->names('teacher.courses');
 
         Route::name('course_')->group(function () {
             // Beneficiaries

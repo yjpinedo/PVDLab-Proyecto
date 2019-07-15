@@ -155,7 +155,6 @@ return [
         'remember' => 'Recordar Sesión',
         'search' => 'Buscar',
 
-
         // App
 
 
@@ -193,6 +192,7 @@ return [
         'occupation' => 'Ocupación',
         'origin' => 'Origen',
         'origin_id' => 'Origen',
+        'other_ethnic_group' => 'Otro',
         'other_origin' => 'Otro',
         'other_type' => 'Otro',
         'pattern' => 'Modelo',

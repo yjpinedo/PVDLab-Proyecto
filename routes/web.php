@@ -66,6 +66,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
         // Transfers
         Route::resource('transfers', 'TransferController', ['except' => ['create', 'edit']]);
 
+        // Member
+        Route::resource('members', 'MemberController', ['except' => ['create', 'edit']]);
+
         // Transfer - Furniture
         Route::resource('furniture_transfers', 'FurnitureTransferController', ['except' => ['create', 'edit']]);
 

@@ -3,14 +3,13 @@
 use App\Beneficiary;
 use App\BeneficiaryCourse;
 use App\BeneficiaryLesson;
-use App\BeneficiaryProject;
 use App\Category;
 use App\Course;
 use App\Employee;
 use App\Furniture;
-use App\FurnitureTransfer;
 use App\Lesson;
 use App\Location;
+use App\Member;
 use App\Project;
 use App\Teacher;
 use App\Transfer;
@@ -96,9 +95,8 @@ class TestSeeder extends Seeder
                     'beneficiary_id' => $beneficiary->id,
                     'course_id' => random_int(1, Course::count()),
                 ]);
-                factory(BeneficiaryProject::class)->create([
+                factory(Project::class)->create([
                     'beneficiary_id' => $beneficiary->id,
-                    'project_id' => random_int(1, Project::count()),
                 ]);
                 factory(BeneficiaryLesson::class)->create([
                     'beneficiary_id' => $beneficiary->id,
@@ -120,6 +118,16 @@ class TestSeeder extends Seeder
             for ($i = 0; $i < random_int(1, 10); $i++) {
                 factory(Project::class)->create([
                     'employee_id' => $employee->id,
+                ]);
+            }
+        }
+
+        $projects = Project::all();
+
+        foreach ($projects as $project) {
+            for ($i = 0; $i < random_int(1, 10); $i++) {
+                factory(Member::class)->create([
+                    'project_id' => $project->id,
                 ]);
             }
         }

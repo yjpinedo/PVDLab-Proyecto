@@ -34,6 +34,7 @@ return [
         'home' => 'Inicio',
         'lessons' => 'Lecciones',
         'locations' => 'Localizaciones',
+        'members' => 'Integrantes',
         'positions' => 'Cargos',
         'projects' => 'Proyectos',
         'project_beneficiaries' => 'Proyectos - Beneficios',
@@ -140,6 +141,7 @@ return [
                 'COMUNIDADES NEGRAS O AFROCOLOMBIANAS' => 'COMUNIDADES NEGRAS O AFROCOLOMBIANAS',
                 'COMUNIDAD RAIZAL' => 'COMUNIDAD RAIZAL',
                 'NO PERTENECE A NINGUNO DE LOS ANTERIORES' => 'NO PERTENECE A NINGUNO DE LOS ANTERIORES',
+                'OTROS' => 'OTROS',
             ],
             'stratum' => [
                 '1' => '1',

@@ -200,6 +200,7 @@ return [
         'place_of_birth' => 'Lugar de Nacimiento',
         'position_id' => 'Cargo',
         'project_id' => 'Proyecto',
+        'reviewed_at' => 'Fecha de Revisión',
         'serial' => 'Serial',
         'sex' => 'Sexo',
         'start' => 'Inicio',

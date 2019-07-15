@@ -36,7 +36,7 @@ class ProjectController extends BaseController
                         'check' => false,
                         'fields' => ['code', 'name', 'start', 'type', 'concept'],
                         'active' => false,
-                        'actions' => false,
+                        'actions' => true,
                     ],
                     'form' => [
                         [
@@ -104,8 +104,8 @@ class ProjectController extends BaseController
                             'type' => 'textarea',
                         ],
                         [
-                            'name' => 'employee_id',
-                            'type' => 'select_reload',
+                            'name' => 'reviewed_at',
+                            'type' => 'date',
                         ],
                     ],
                 ]]);

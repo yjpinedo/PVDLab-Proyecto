@@ -86,6 +86,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
         // Projects
         Route::resource('projects', 'ProjectController', ['except' => ['create', 'destroy']])->names('beneficiary.projects');
+
+        Route::name('project_')->group(function () {
+            // Member
+            Route::resource('projects/{project}/members', 'MemberController', ['except' => ['create', 'destroy', 'edit']]);
+        });
+
         // Lessons
         Route::resource('lessons', 'LessonController', ['except' => ['create', 'destroy', 'edit', 'store']])->names('beneficiary.lessons');
 

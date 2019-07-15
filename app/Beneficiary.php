@@ -108,6 +108,10 @@ class Beneficiary extends Base
                 'value' => 'app.selects.person.ethnic_group',
             ],
             [
+                'name' => 'other_ethnic_group',
+                'type' => 'text',
+            ],
+            [
                 'name' => 'stratum',
                 'type' => 'select',
                 'value' => 'app.selects.person.stratum',
@@ -161,7 +165,7 @@ class Beneficiary extends Base
      */
     public function projects()
     {
-        return $this->belongsToMany(Project::class);
+        return $this->hasMany(Project::class);
     }
 
     /**

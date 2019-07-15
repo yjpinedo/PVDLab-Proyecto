@@ -29,6 +29,7 @@ class CreateBeneficiariesTable extends Migration
             $table->string('email')->unique();
             $table->string('occupation', 70)->nullable();
             $table->enum('ethnic_group',  array_keys(__('app.selects.person.ethnic_group')));
+            $table->string('other_ethnic_group', 90)->nullable();
             $table->enum('stratum', array_keys(__('app.selects.person.stratum')));
             $table->timestamps();
             $table->softDeletes();

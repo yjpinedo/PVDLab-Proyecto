@@ -105,8 +105,16 @@ class Project extends Base
                 'value' => 'app.selects.project.concept',
             ],
             [
+                'name' => 'beneficiary_id',
+                'type' => 'select_reload',
+            ],
+            [
                 'name' => 'employee_id',
                 'type' => 'select_reload',
+            ],
+            [
+                'name' => 'reviewed_at',
+                'type' => 'date',
             ],
         ],
     ];
@@ -157,17 +165,27 @@ class Project extends Base
      */
     public function beneficiaries()
     {
-        return $this->belongsToMany(Beneficiary::class);
+        return $this->belongsTo(Beneficiary::class);
     }
 
     /**
-     * Position relationship
+     * Employee relationship
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function employee()
     {
         return $this->belongsTo(Employee::class);
+    }
+
+    /**
+     * Employee relationship
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function members()
+    {
+        return $this->hasMany(Member::class);
     }
 
     /**

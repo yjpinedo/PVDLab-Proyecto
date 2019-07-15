@@ -8,6 +8,8 @@ use Faker\Generator as Faker;
 
 $factory->define(Beneficiary::class, function (Faker $faker) {
     $gender = $faker->randomElement(array_keys(__('app.selects.person.sex')));
+    $ethnic_group =  $faker->randomElement(array_keys(__('app.selects.person.ethnic_group')));
+
     return [
         'document_type' => $faker->randomElement(array_keys(__('app.selects.person.document_type'))),
         'document' => $faker->unique()->randomNumber($nbDigits = 9),
@@ -22,7 +24,8 @@ $factory->define(Beneficiary::class, function (Faker $faker) {
         'cellphone' => '3' . random_int (0, 2) . random_int (0, 9) . $faker->unique()->randomNumber($nbDigits = 7),
         'email' => $faker->unique()->safeEmail,
         'occupation' => $faker->streetName,
-        'ethnic_group' => $faker->randomElement(array_keys(__('app.selects.person.ethnic_group'))),
+        'ethnic_group' => $ethnic_group,
+        'other_ethnic_group' => $ethnic_group === 'OTROS' ? $faker->jobTitle : null,
         'stratum' => $faker->randomElement(array_keys(__('app.selects.person.stratum'))),
     ];
 });

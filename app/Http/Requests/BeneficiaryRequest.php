@@ -26,6 +26,7 @@ class BeneficiaryRequest extends BaseRequest
             'email' => 'required|email|unique:users,email,' . $this->id . '|unique:beneficiaries,email,' . $this->id,
             'occupation' => 'min:3|max:200',
             'ethnic_group' => 'required|in:' . implode(',', array_keys(__('app.selects.person.ethnic_group'))),
+            'other_ethnic_group' => 'max:90',
             'stratum' => 'required|in:' . implode(',', array_keys(__('app.selects.person.stratum'))),
         ];
     }

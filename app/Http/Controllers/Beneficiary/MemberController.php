@@ -27,7 +27,7 @@ class MemberController extends BaseController
             if ( !is_null($project) ) {
                 $request->request->add(['data' => [
                     'title' => __('app.titles.beneficiary.projects'),
-                   // 'subtitle' => __('app.titles.beneficiary.member', ['name' => $project->full_name]),
+                    'subtitle' => __('app.titles.beneficiary.members', ['name' => $project->full_name]),
                     'form' => [
                         [
                             'type' => 'section',

@@ -4,6 +4,7 @@ columnsDataTable = [
     {data: 'start'},
     {data: 'translated_concept', searchable: false, className: 'dt-center', customValue: true},
     {data: 'actions', searchable: false, className: 'dt-center', customValue: true},
+    //{data: 'id', searchable: false, className: 'dt-center', customValue: true},
 ];
 
 /**
@@ -31,6 +32,6 @@ function getStatus(column, value) {
             ;
         }
 
-        return actions;
+        return actions
     }
 }

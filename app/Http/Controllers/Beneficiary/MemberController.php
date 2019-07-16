@@ -6,6 +6,7 @@ use App\Http\Controllers\BaseController;
 use App\Http\Requests\MemberRequest;
 use App\Member;
 use App\Project;
+use Illuminate\Http\Response;
 
 class MemberController extends BaseController
 {
@@ -122,7 +123,7 @@ class MemberController extends BaseController
      * Display the specified resource.
      *
      * @param  int $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function show(int $id)
     {
@@ -133,7 +134,7 @@ class MemberController extends BaseController
      * Store a newly created resource in storage.
      *
      * @param MemberRequest $request
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function store(MemberRequest $request)
     {
@@ -145,7 +146,7 @@ class MemberController extends BaseController
      *
      * @param MemberRequest $request
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function update(MemberRequest $request, int $id)
     {

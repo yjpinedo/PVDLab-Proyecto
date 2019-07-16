@@ -165,9 +165,21 @@
                 <option value="{{ __('app.selects.person.ethnic_group.COMUNIDADES NEGRAS O AFROCOLOMBIANAS') }}" {{ old('ethnic_group') == __('app.selects.person.ethnic_group.COMUNIDADES NEGRAS O AFROCOLOMBIANAS') ? 'selected' : '' }}>{{ __('app.selects.person.ethnic_group.COMUNIDADES NEGRAS O AFROCOLOMBIANAS') }}</option>
                 <option value="{{ __('app.selects.person.ethnic_group.PUEBLOS Y COMUNIDADES INDÍGENAS') }}" {{ old('ethnic_group') == __('app.selects.person.ethnic_group.PUEBLOS Y COMUNIDADES INDÍGENAS') ? 'selected' : '' }}>{{ __('app.selects.person.ethnic_group.PUEBLOS Y COMUNIDADES INDÍGENAS') }}</option>
                 <option value="{{ __('app.selects.person.ethnic_group.NO PERTENECE A NINGUNO DE LOS ANTERIORES') }}" {{ old('ethnic_group') == __('app.selects.person.ethnic_group.NO PERTENECE A NINGUNO DE LOS ANTERIORES') ? 'selected' : '' }}>{{ __('app.selects.person.ethnic_group.NO PERTENECE A NINGUNO DE LOS ANTERIORES') }}</option>
+                <option value="{{ __('app.selects.person.ethnic_group.OTROS') }}" {{ old('ethnic_group') == __('app.selects.person.ethnic_group.OTROS') ? 'selected' : '' }}>{{ __('app.selects.person.ethnic_group.OTROS') }}</option>
             </select>
 
             @error('ethnic_group')
+            <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
+        </div>
+
+        <div class="form-group m-form__group">
+            <label for="other_ethnic_group" class="m--hide">{{ __('validation.attributes.other_ethnic_group') }}</label>
+            <input id="other_ethnic_group" type="text" class="form-control @error('other_ethnic_group') is-invalid @enderror" name="other_ethnic_group" value="{{ old('other_ethnic_group') }}" placeholder="{{ __('validation.attributes.other_ethnic_group') }}" required autocomplete="on">
+
+            @error('other_ethnic_group')
             <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
                 </span>

@@ -64,4 +64,35 @@ class ProjectController extends BaseController
             'message' => __('app.messages.project.' . $project->concept),
         ]);
     }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param Request $request
+     * @return Response
+     */
+    public function updateConcept(Request $request)
+    {
+        $project = $this->entity::find($request->input('id'));
+
+        if ( is_null($project) ) return abort(404);
+
+        if ($project->concept !== 'RECHAZADO') {
+
+            $project->concept = 'APROBADO';
+
+            $project->save();
+
+            return response()->json([
+                'data' => $project,
+                'message' => __('app.messages.project.APROBADO'),
+            ]);
+        } else {
+            return response()->json([
+                'error' => true,
+                'message' => __('app.messages.project.update'),
+            ]);
+        }
+
+    }
 }

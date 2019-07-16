@@ -6,6 +6,7 @@ use App\Beneficiary;
 use App\Http\Controllers\BaseController;
 use App\Http\Requests\ProjectRequest;
 use App\Project;
+use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
 class ProjectController extends BaseController
@@ -41,7 +42,7 @@ class ProjectController extends BaseController
                         'check' => false,
                         'fields' => ['code', 'name', 'start', 'concept'],
                         'active' => false,
-                        'actions' => false,
+                        'actions' => true,
                     ],
                     'form' => [
                         [
@@ -160,5 +161,36 @@ class ProjectController extends BaseController
     public function update(ProjectRequest $request)
     {
         return parent::updateBase($request,$this->id);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param Request $request
+     * @return Response
+     */
+    public function updateConcept(Request $request)
+    {
+        $project = $this->entity::find($request->input('id'));
+
+        if ( is_null($project) ) return abort(404);
+
+        if ($project->concept !== 'RECHAZADO') {
+
+            $project->concept = 'APROBADO';
+
+            $project->save();
+
+            return response()->json([
+                'data' => $project,
+                'message' => __('app.messages.project.APROBADO'),
+            ]);
+        } else {
+            return response()->json([
+                'error' => true,
+                'message' => __('app.messages.project.update'),
+            ]);
+        }
+
     }
 }

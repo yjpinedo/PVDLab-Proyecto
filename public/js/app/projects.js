@@ -2,7 +2,6 @@ columnsDataTable = [
     {data: 'code'},
     {data: 'name'},
     {data: 'start'},
-    {data: 'employee.full_name'},
     {data: 'translated_concept', searchable: false, className: 'dt-center', customValue: true},
     {data: 'actions', searchable: false, className: 'dt-center', customValue: true},
 ];
@@ -24,7 +23,10 @@ function getStatus(column, value) {
         if (value.cancel) {
             actions =
                 '<a onclick="concept(' + value.id + ',\'RECHAZADO\')" class="m-portlet__nav-link btn m-btn m-btn--icon m-btn--icon-only m-btn--pill m-btn--hover-danger" title="Rechazar">' +
-                '<i class="fa fa-file-excel"></i>' +
+                '<i class="fa fa-times"></i>' +
+                '</a>'+
+                '<a onclick="concept(' + value.id + ',\'APROBADO\')" class="m-portlet__nav-link btn m-btn m-btn--icon m-btn--icon-only m-btn--pill m-btn--hover-success" title="Aprobar">' +
+                '<i class="fa fa-plus"></i>' +
                 '</a>'
             ;
         }

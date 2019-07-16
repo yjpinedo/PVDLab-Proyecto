@@ -17,6 +17,7 @@ return [
             'courses' => 'Cursos',
             'projects' => 'Proyectos',
             'lessons' => 'Lecciones',
+            'members' => 'Integrantes',
         ],
         'beneficiary_courses' => 'Beneficiarios - Cursos',
         'beneficiary_lessons' => 'Beneficiarios - Lecciones',

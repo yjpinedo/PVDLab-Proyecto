@@ -30,7 +30,7 @@ class Project extends Base
         ],
         'table' => [
             'check' => false,
-            'fields' => ['code', 'name', 'start', 'employee_id', 'concept'],
+            'fields' => ['code', 'name', 'start', 'concept'],
             'active' => false,
             'actions' => true,
         ],

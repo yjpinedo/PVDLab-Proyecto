@@ -80,6 +80,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
         // Courses
         Route::resource('courses', 'CourseController', ['except' => ['create', 'destroy', 'edit', 'store']])->names('beneficiary.courses');
 
+        Route::resource('courses_lists', 'CourseListController', ['except' => ['create', 'destroy', 'edit', 'store']])->names('beneficiary.courses_lists');
+        Route::resource('courses_lists/{course}/application_course', 'ApplicationCourseController', ['only' => ['store', 'index']]);
+
+
         Route::name('course_')->group(function () {
             // Lessons
             Route::resource('courses/{course}/lessons', 'LessonController', ['except' => ['create', 'destroy', 'edit']]);

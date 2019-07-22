@@ -122,20 +122,20 @@
         @endcomponent
         {{Form::close()}}
     </div>
-    @if(
-        $crud !== 'nurse.turns' and
-        $crud !== 'turns.turn_cures' and
-        $crud !== 'turns.turn_fluids' and
-        $crud !== 'turns.turn_medicines' and
-        $crud !== 'turns.turn_notes' and
-        $crud !== 'turns.turn_supplies' and
-        $crud !== 'turns.turn_vital_signs'
-    )
+    @if($crud !== 'beneficiary.courses_application')
         <div class="m-portlet__foot">
             <div class="row align-items-center">
                 <div class="col-lg-12">
                     {{Form::button(__('base.buttons.create'), ['id' => 'formButton', 'class' => 'btn btn-primary', 'data-action' => 'create'])}}
                     {{Form::button(__('base.buttons.cancel'), ['id' => 'formReset', 'class' => 'btn btn-secondary'])}}
+                </div>
+            </div>
+        </div>
+    @else
+        <div class="m-portlet__foot">
+            <div class="row align-items-center">
+                <div class="col-lg-12">
+                    {{Form::button(__('app.buttons.apply'), ['id' => 'apply', 'class' => 'btn btn-primary', 'data-action' => 'create'])}}
                 </div>
             </div>
         </div>

@@ -9,13 +9,24 @@ return [
             'PENDIENTE' => 'Proyecto Pendiente',
             'update' => 'No se puede aprobar un proyecto RECHAZADO',
         ],
+        'apply' => [
+            'apply' => 'Se ha Registrado en el curso :name',
+            'error' => 'Ya se encuentra registrado en el curso :name'
+        ],
+
+    ],
+
+    'buttons' => [
+        'apply' => 'Aplicar',
     ],
 
     'titles' => [
         'beneficiaries' => 'Beneficiarios',
         'beneficiary' => [
-            'courses' => 'Cursos',
-            'projects' => 'Proyectos',
+            'courses_lists' => 'Cursos',
+            'application_course' => 'Aplicar Curso',
+            'courses' => ' Mis Cursos',
+            'projects' => 'Mis Proyectos',
             'lessons' => 'Lecciones',
             'members' => 'Integrantes',
         ],

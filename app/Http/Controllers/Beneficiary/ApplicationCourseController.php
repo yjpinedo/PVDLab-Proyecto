@@ -5,10 +5,8 @@ namespace App\Http\Controllers\Beneficiary;
 use App\Beneficiary;
 use App\Course;
 use App\Http\Controllers\BaseController;
-use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
-use Yajra\DataTables\Facades\DataTables;
-
 
 class ApplicationCourseController extends BaseController
 {
@@ -28,6 +26,7 @@ class ApplicationCourseController extends BaseController
 
         $this->middleware(function ($request, $next) {
             $this->id = $request->course;
+            $this->model = $this->entity->where('id', $this->id);
             $this->beneficiary = Beneficiary::where('id', Auth::user()['model_id'])->first();
 
             if ( !is_null($this->beneficiary) ) {
@@ -64,25 +63,9 @@ class ApplicationCourseController extends BaseController
     }
 
     /**
-     * Display a listing of the resource.
-     *
-     * @param Request $request
-     * @return Response
-     * @throws \Exception
-     */
-    protected function index(Request $request)
-    {
-        if ($request->ajax()) return $this->entity->find($this->id);
-
-        return view('app.index')->with(array_merge(array_merge([
-            'crud' => $this->crud,
-        ], $this->entity->getLayout()), $request->input('data') ?? []));
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     public function store()
     {

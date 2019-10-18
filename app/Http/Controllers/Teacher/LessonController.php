@@ -22,6 +22,8 @@ class LessonController extends BaseController
     {
         parent::__construct($entity);
 
+        $this->crud = 'teacher.lessons';
+
         $this->middleware(function ($request, $next) {
             $this->id = $request->lesson;
             $course = Course::where([['id', $request->course], ['teacher_id', Auth::user()['model_id']]])->with('lessons.course')->first();
@@ -30,6 +32,12 @@ class LessonController extends BaseController
                 $request->request->add(['data' => [
                     'title' => __('app.titles.teacher.courses'),
                     'subtitle' => __('app.titles.teacher.lessons', ['name' => $course->full_name]),
+                    'table' => [
+                        'check' => false,
+                        'fields' => ['id','date', 'course_id'],
+                        'active' => false,
+                        'actions' => true,
+                    ],
                     'form' => [
                         [
                             'name' => 'date',

@@ -13,6 +13,10 @@ return [
             'apply' => 'Se ha Registrado en el curso :name',
             'error' => 'Ya se encuentra registrado en el curso :name'
         ],
+        'task_assistance' => [
+            'assistance' => 'Se ha tomado la asistencia del alumno :name',
+            'error' => 'Ya se encuentra lista el alumno :name'
+        ],
 
     ],
 

@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 
 class BeneficiaryController extends BaseController
 {
-    private $id;
+    //private $id;
 
     /**
      * Create a controller instance.
@@ -21,16 +21,18 @@ class BeneficiaryController extends BaseController
     {
         parent::__construct($entity);
 
+        $this->crud = 'teacher.beneficiaries';
+
         $this->middleware(function ($request, $next) {
-            $this->id = $request->beneficiary;
-            $course = Course::where([['id', $request->course], ['teacher_id', Auth::user()['model_id']]])->first();
+        //    $this->id = $request->beneficiary;
+            $course = Course::where([['id', $request->course], ['teacher_id', Auth::user()['model_id']]])->with('beneficiaries.lessons')->first();
 
             if ( !is_null($course) ) {
                 $request->request->add(['data' => [
                     'title' => __('app.titles.teacher.courses'),
                     'subtitle' => __('app.titles.teacher.beneficiaries', ['name' => $course->full_name]),
                     'tools' => [
-                        'create' => true,
+                        'create' => false,
                         'reload' => false,
                         'export' => true,
                     ],
@@ -38,7 +40,7 @@ class BeneficiaryController extends BaseController
                         'check' => false,
                         'fields' => ['id', 'name', 'sex', 'ethnic_group'],
                         'active' => false,
-                        'actions' => true,
+                        'actions' => false,
                     ],
                     'form' => [],
                 ]]);

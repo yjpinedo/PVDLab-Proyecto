@@ -177,7 +177,7 @@
 
         <div class="form-group m-form__group">
             <label for="other_ethnic_group" class="m--hide">{{ __('validation.attributes.other_ethnic_group') }}</label>
-            <input id="other_ethnic_group" type="text" class="form-control @error('other_ethnic_group') is-invalid @enderror" name="other_ethnic_group" value="{{ old('other_ethnic_group') }}" placeholder="{{ __('validation.attributes.other_ethnic_group') }}" required autocomplete="on">
+            <input id="other_ethnic_group" type="text" class="form-control @error('other_ethnic_group') is-invalid @enderror" name="other_ethnic_group" value="{{ old('other_ethnic_group') }}" placeholder="{{ __('validation.attributes.other_ethnic_group') }}" autocomplete="on">
 
             @error('other_ethnic_group')
             <span class="invalid-feedback" role="alert">

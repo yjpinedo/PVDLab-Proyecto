@@ -15,7 +15,7 @@ class TeacherController extends BaseController
      */
     public function __construct(Teacher $entity)
     {
-        parent::__construct($entity, false);
+        parent::__construct($entity, true);
     }
 
     /**

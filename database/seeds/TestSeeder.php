@@ -36,7 +36,7 @@ class TestSeeder extends Seeder
             'email' => $beneficiary->email,
             'model_type' => 'App\Beneficiary',
             'model_id' => $beneficiary->id,
-        ])->assignRole('beneficiary');
+        ])->assignRole('beneficiaries');
 
         // Teachers
         $teacher = factory(Teacher::class)->create([
@@ -48,7 +48,7 @@ class TestSeeder extends Seeder
             'email' => $teacher->email,
             'model_type' => 'App\Teacher',
             'model_id' => $teacher->id,
-        ])->assignRole('teacher');
+        ])->assignRole('teachers');
 
         // Employees
         $employee = factory(Employee::class)->create([
@@ -60,7 +60,7 @@ class TestSeeder extends Seeder
             'email' => $employee->email,
             'model_type' => 'App\Employee',
             'model_id' => $employee->id,
-        ])->assignRole('employee');
+        ])->assignRole('employees');
 
         $teachers = Teacher::all();
 

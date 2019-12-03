@@ -15,7 +15,7 @@ class EmployeeController extends BaseController
      */
     public function __construct(Employee $entity)
     {
-        parent::__construct($entity);
+        parent::__construct($entity, true);
         $this->model = $this->entity->with('position')->orderBy('created_at');
     }
 

@@ -24,7 +24,7 @@ class AssistanceController extends BaseController
 
         $this->middleware(function ($request, $next) {
             $this->id = $request->beneficiary;
-            $lesson = Lesson::where([['id', $request->course]])->with('beneficiaries.lessons')->first();
+            $lesson = Lesson::where('id', $request->lesson)->with('beneficiaries.lessons')->first();
 
             if ( !is_null($lesson) ) {
                 $request->request->add(['data' => [
@@ -34,6 +34,7 @@ class AssistanceController extends BaseController
                         'create' => false,
                         'reload' => false,
                         'export' => true,
+                        'to_return' => true,
                     ],
                     'table' => [
                         'check' => false,

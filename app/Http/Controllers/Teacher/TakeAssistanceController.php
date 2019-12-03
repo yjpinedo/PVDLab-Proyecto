@@ -12,7 +12,8 @@ class TakeAssistanceController extends BaseController
 {
     private $id;
     private $course;
-    //private $beneficiary;
+    private $beneficiary_id;
+    private $beneficiary;
 
     /**
      * Create a controller instance.
@@ -27,7 +28,9 @@ class TakeAssistanceController extends BaseController
 
         $this->middleware(function ($request, $next) {
             $this->id = $request->lesson;
+            $this->beneficiary_id = $request->beneficiary_id;
             $this->course = Course::where([['id', $request->course], ['teacher_id', Auth::user()['model_id']]])->with('beneficiaries.lessons')->first();
+            $this->beneficiary = $this->entity::where('id', $this->beneficiary_id)->first();
 
             if ( !is_null($this->course) ) {
                 $request->request->add(['data' => [
@@ -37,6 +40,7 @@ class TakeAssistanceController extends BaseController
                         'create' => false,
                         'reload' => false,
                         'export' => true,
+                        'to_return' => true,
                     ],
                     'table' => [
                         'check' => false,
@@ -64,30 +68,21 @@ class TakeAssistanceController extends BaseController
      */
     public function store()
     {
-        //$location = route('course_assistance.index');
 
-        /*$this->entity->lessons()->attach($this->id);
-
-        return response()->json([
-            'message' => __('app.messages.task_assistance.assistance', ['name' => $this->entity->find($this->id)->full_name]),
-            //'location' => $location
-        ]);*/
-
-        dd($this->course->beneficiaries);
-
-       /* if (! $this->beneficiary->courses->contains($this->id)) {
-            $this->beneficiary->courses()->attach($this->id);
+        //$location = route('teacher.courses');
+       if (! $this->beneficiary->lessons->contains($this->id)) {
+           $this->beneficiary->lessons()->attach($this->id);
 
             return response()->json([
-                'message' => __('app.messages.apply.apply', ['name' => $this->entity->find($this->id)->full_name]),
-                'location' => $location
+                'message' => __('app.messages.task_assistance.assistance', ['name' => $this->entity->find($this->beneficiary_id)->full_name]),
+                //'location' => $location
             ]);
         } else {
             return response()->json([
-                'message' => __('app.messages.apply.error', ['name' => $this->entity->find($this->id)->full_name]),
+                'message' => __('app.messages.task_assistance.error', ['name' => $this->entity->find($this->beneficiary_id)->full_name]),
                 'error' => true,
-                'location' => $location
+                //'location' => $location
             ]);
-        }*/
+        }
     }
 }

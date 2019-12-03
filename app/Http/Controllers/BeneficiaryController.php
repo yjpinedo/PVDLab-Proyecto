@@ -15,7 +15,7 @@ class BeneficiaryController extends BaseController
      */
     public function __construct(Beneficiary $entity)
     {
-        parent::__construct($entity, false);
+        parent::__construct($entity, true);
     }
 
     /**

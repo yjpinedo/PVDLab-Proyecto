@@ -8,6 +8,7 @@
 <script type="text/javascript" src="{{ asset('js/base/massive.js') }}" defer></script>
 <script type="text/javascript" src="{{ asset('js/base/filters.js') }}" defer></script>
 <script type="text/javascript" src="{{ asset('js/base/download.js') }}" defer></script>
+<script type="text/javascript" src="{{ asset('js/base/to_return.js') }}" defer></script>
 <script type="text/javascript" src="{{ asset('js/datatables/base.js') }}" defer></script>
 <script type="text/javascript" src="{{ asset('js/datatables/ajax.js') }}" defer></script>
 

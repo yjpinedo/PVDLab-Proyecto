@@ -3,6 +3,7 @@ columnsDataTable = [
     {data: 'full_name'},
     {data: 'sex'},
     {data: 'ethnic_group'},
+    //{data: 'assistance_value', searchable: false, className: 'dt-center', customValue: true},
     {data: 'id', searchable: false, className: 'dt-center', customValue: true},
 ];
 
@@ -16,20 +17,24 @@ columnsDataTable = [
  */
 function getStatus(column, value) {
     if (column === 4) {
+
         return (
-            '<a onclick="action()" class="m-portlet__nav-link btn m-btn m-btn--icon m-btn--icon-only m-btn--pill m-btn--hover-brand" title="Tomar Asistencia" data-action="create">' +
+            '<a onclick="action(' + value + ')" class="m-portlet__nav-link btn m-btn m-btn--icon m-btn--icon-only m-btn--pill m-btn--hover-brand" title="Tomar Asistencia" data-action="create">' +
             '<i class="fa fa-clipboard-check"></i>'
         );
     }
 }
 
-function action () {
-    ajaxRequest(routes['create'].url, null, routes['create'].method, assistance, formPortlet);
-};
+function action (value) {
+    let formData = new FormData();
+    formData.append('beneficiary_id', value);
+
+    ajaxRequest(routes['create'].url, formData, routes['create'].method, assistance, formPortlet);
+}
 
 function assistance(results) {
 
-   // if (results.message) showMessage(results.message, !!results.error);
+   if (results.message) showMessage(results.message, !!results.error);
 
-    //if (results.location) location.href = results.location;
+    if (results.location) location.href = results.location;
 }

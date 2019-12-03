@@ -26,3 +26,12 @@
         </a>
     </li>
 @endif
+@if($to_return)
+    <li class="m-portlet__nav-item">
+        <a onclick="_to_return()"
+           data-toggle="m-tooltip" data-original-title="{{__('base.buttons.to_return')}}"
+           class="m-portlet__nav-link btn btn-lg btn-secondary m-btn m-btn--outline-2x m-btn--air m-btn--icon m-btn--icon-only m-btn--pill">
+            <i class="fa fa-arrow-left m--font-brand"></i>
+        </a>
+    </li>
+@endif

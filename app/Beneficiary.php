@@ -2,6 +2,10 @@
 
 namespace App;
 
+/**
+ * @property mixed id
+ * @property mixed lesson
+ */
 class Beneficiary extends Base
 {
     /**
@@ -10,7 +14,7 @@ class Beneficiary extends Base
      * @var array
      */
     protected $appends = [
-        'full_name',
+        'full_name', 'assistance_value',
     ];
 
     /**
@@ -122,6 +126,19 @@ class Beneficiary extends Base
     // Mutator
 
     /**
+     * Mutator for the value to show in the select
+     *
+     * @return array
+     */
+    public function getAssistanceValueAttribute()
+    {
+        return [
+            "id" => $this->id,
+            "lessons" => $this->lesson
+        ];
+    }
+
+    /**
      * Mutator for the full name
      *
      * @return string
@@ -130,7 +147,6 @@ class Beneficiary extends Base
     {
         return $this->name . ' ' . $this->last_name;
     }
-
 
     /**
      * Mutator for the value to show in the select

@@ -12,6 +12,7 @@
         'create' => $tools['create'] ?? false and !empty($form),
         'reload' => $tools['reload'] ?? false,
         'export' => $tools['export'] ?? false,
+        'to_return' => $tools['to_return'] ?? false
     ])@endcomponent
 @endsection
 

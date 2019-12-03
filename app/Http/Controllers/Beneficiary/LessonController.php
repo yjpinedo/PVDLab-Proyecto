@@ -29,6 +29,10 @@ class LessonController extends BaseController
                 $request->request->add(['data' => [
                     'title' => __('app.titles.beneficiary.courses'),
                     'subtitle' => __('app.titles.beneficiary.lessons', ['name' => $course->full_name]),
+                    'tools' => [
+                        'export' => false,
+                        'to_return' => true,
+                    ],
                     'form' => [],
                 ]]);
 

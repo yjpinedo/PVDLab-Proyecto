@@ -22,6 +22,7 @@ return [
         'logout' => 'Cerrar sesión',
         'massive' => 'Masivos',
         'reload' => 'Recargar',
+        'to_return' => 'Regresar',
         'sign_in' => 'Iniciar sesión',
         'sign_up' => 'Regístrate',
         'submit' => 'Solicitar',

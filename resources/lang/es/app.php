@@ -173,8 +173,8 @@ return [
 
     'roles' => [
         'admin' => 'Administrador',
-        'beneficiary' => 'Beneficiario',
-        'teacher' => 'Docente',
-        'employee' => 'Empleado',
+        'beneficiaries' => 'Beneficiarios',
+        'teachers' => 'Docentes',
+        'employees' => 'Empleados',
     ],
 ];

@@ -3,7 +3,7 @@
 return [
 
     [
-        'name' => 'beneficiary',
+        'name' => 'beneficiaries',
         'menu' => [
             [
                 'crud' => 'beneficiary.projects',
@@ -22,7 +22,7 @@ return [
 
 
     [
-        'name' => 'employee',
+        'name' => 'employees',
         'menu' => [
             [
                 'crud' => 'employee.transfers',
@@ -40,7 +40,7 @@ return [
     ],
 
     [
-        'name' => 'teacher',
+        'name' => 'teachers',
         'menu' => [
             [
                 'crud' => 'teacher.courses',
@@ -103,6 +103,18 @@ return [
                     ],
                     [
                         'crud' => 'positions',
+                    ],
+                ],
+            ],
+            [
+                'icon' => 'fa fa-file-alt',
+                'name' => 'formats',
+                'submenu' => [
+                    [
+                        'crud' => 'responsibility',
+                    ],
+                    [
+                        'crud' => 'authorization',
                     ],
                 ],
             ],

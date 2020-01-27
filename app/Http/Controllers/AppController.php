@@ -34,7 +34,7 @@ class AppController extends Controller
     }
 
     /**
-     * Redirects to the home page according to the role of the user.
+       * Redirects to the home page according to the role of the user.
      *
      * @param Request $request
      * @return Renderable

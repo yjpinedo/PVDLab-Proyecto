@@ -180,6 +180,7 @@ return [
         'end' => 'Hora de Fin',
         'ending_date' => 'Fecha de Fin',
         'ethnic_group' => 'Grupo Étnico',
+        'expedition_place' => 'Lugar de Expedición',
         'financing' => 'Financiación',
         'financial_entity' => 'Entidad',
         'financing_description' => 'Descripción',

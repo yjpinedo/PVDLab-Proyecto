@@ -6,6 +6,7 @@ use App\BeneficiaryLesson;
 use App\Category;
 use App\Course;
 use App\Employee;
+use App\Format;
 use App\Furniture;
 use App\Lesson;
 use App\Location;
@@ -131,6 +132,18 @@ class TestSeeder extends Seeder
                 ]);
             }
         }
+
+        factory(Format::class)->create([
+            'name' => "Autorización de uso de derecho de imagen y fotografías y fijaciones audiovisuales (Videos) PTV"
+        ]);
+
+        factory(Format::class)->create([
+            'name' => "Acuerdo de responsabilidad en prestamo de equipos"
+        ]);
+
+        factory(Format::class)->create([
+            'name' => "Salida de equipos"
+        ]);
 
         //factory(BeneficiaryLesson::class, 5)->create();
         factory(Category::class, 5)->create();

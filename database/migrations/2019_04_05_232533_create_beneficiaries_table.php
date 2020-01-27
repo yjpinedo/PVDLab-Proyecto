@@ -17,6 +17,7 @@ class CreateBeneficiariesTable extends Migration
             $table->increments('id');
             $table->enum('document_type', array_keys(__('app.selects.person.document_type')));
             $table->string('document', 12)->unique();
+            $table->string('expedition_place', 50);
             $table->string('name', 50);
             $table->string('last_name',50);;
             $table->enum('sex', array_keys(__('app.selects.person.sex')));

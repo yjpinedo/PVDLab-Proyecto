@@ -17,7 +17,6 @@ columnsDataTable = [
  */
 function getStatus(column, value) {
     if (column === 4) {
-
         return (
             '<a onclick="action(' + value + ')" class="m-portlet__nav-link btn m-btn m-btn--icon m-btn--icon-only m-btn--pill m-btn--hover-brand" title="Tomar Asistencia" data-action="create">' +
             '<i class="fa fa-clipboard-check"></i>'

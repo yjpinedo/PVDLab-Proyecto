@@ -58,6 +58,10 @@ class Beneficiary extends Base
                 'type' => 'text',
             ],
             [
+                'name' => 'expedition_place',
+                'type' => 'text',
+            ],
+            [
                 'name' => 'name',
                 'type' => 'text',
             ],

@@ -65,6 +65,10 @@ return [
                 'icon' => 'fa fa-users',
             ],
             [
+                'crud' => 'formats',
+                'icon' => 'fa fa-file-alt',
+            ],
+            [
                 'icon' => 'fa fa-boxes',
                 'name' => 'furniture',
                 'submenu' => [
@@ -105,19 +109,7 @@ return [
                         'crud' => 'positions',
                     ],
                 ],
-            ],
-            [
-                'icon' => 'fa fa-file-alt',
-                'name' => 'formats',
-                'submenu' => [
-                    [
-                        'crud' => 'responsibility',
-                    ],
-                    [
-                        'crud' => 'authorization',
-                    ],
-                ],
-            ],
+            ]
         ],
     ],
 

@@ -33,6 +33,17 @@
         </div>
 
         <div class="form-group m-form__group">
+            <label for="expedition_place" class="m--hide">{{ __('validation.attributes.expedition_place') }}</label>
+            <input id="expedition_place" type="text" class="form-control @error('expedition_place') is-invalid @enderror" name="expedition_place" value="{{ old('expedition_place') }}" placeholder="{{ __('validation.attributes.expedition_place') }}" required autocomplete="country-name">
+
+            @error('expedition_place')
+            <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
+        </div>
+
+        <div class="form-group m-form__group">
             <label for="name" class="m--hide">{{ __('validation.attributes.name') }}</label>
             <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" placeholder="{{ __('validation.attributes.name') }}" required autocomplete="name">
 

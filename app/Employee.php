@@ -44,6 +44,10 @@ class Employee extends Base
                 'type' => 'text',
             ],
             [
+                'name' => 'expedition_place',
+                'type' => 'text',
+            ],
+            [
                 'name' => 'name',
                 'type' => 'text',
             ],

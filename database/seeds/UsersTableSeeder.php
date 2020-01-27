@@ -1,5 +1,6 @@
 <?php
 
+use App\Employee;
 use App\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Seeder;
@@ -24,8 +25,15 @@ class UsersTableSeeder extends Seeder
         Role::create(['name' => 'teachers']);
         Role::create(['name' => 'employees']);
 
+        $employee = factory(Employee::class)->create([
+            'email' => 'admin@admin.com'
+        ]);
+
         factory(User::class)->create([
-            'email' => 'admin@admin.com',
+            'name' => $employee->full_name,
+            'email' => $employee->email,
+            'model_type' => 'App\Employee',
+            'model_id' => $employee->id,
         ])->assignRole('admin');
 
         Model::reguard();

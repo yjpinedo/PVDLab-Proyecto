@@ -13,6 +13,7 @@ $factory->define(Beneficiary::class, function (Faker $faker) {
     return [
         'document_type' => $faker->randomElement(array_keys(__('app.selects.person.document_type'))),
         'document' => $faker->unique()->randomNumber($nbDigits = 9),
+        'expedition_place' => $faker->streetName,
         'name' => $faker->firstName($gender),
         'last_name' => $faker->lastName . ' ' . $faker->lastName,
         'sex' => $gender,

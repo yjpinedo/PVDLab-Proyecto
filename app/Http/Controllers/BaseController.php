@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use Exception;
+use Illuminate\Contracts\View\Factory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\View\View;
 use Yajra\DataTables\DataTables;
 
 class BaseController extends Controller
@@ -29,15 +32,15 @@ class BaseController extends Controller
         $this->crud = $this->entity->getTable();
         $this->model = $this->entity->orderBy('created_at');
         $this->user = $user;
-        $this->middleware('ajax')->except('index');
+        $this->middleware('ajax')->except('index', 'format_responsibility', 'format_authorization');
     }
 
     /**
      * Display a listing of the resource.
      *
      * @param Request $request
-     * @return Response
-     * @throws \Exception
+     * @return Factory|View
+     * @throws Exception
      */
     protected function index(Request $request)
     {

@@ -68,20 +68,15 @@ class TakeAssistanceController extends BaseController
      */
     public function store()
     {
-
-        //$location = route('teacher.courses');
        if (! $this->beneficiary->lessons->contains($this->id)) {
            $this->beneficiary->lessons()->attach($this->id);
-
             return response()->json([
                 'message' => __('app.messages.task_assistance.assistance', ['name' => $this->entity->find($this->beneficiary_id)->full_name]),
-                //'location' => $location
             ]);
         } else {
             return response()->json([
                 'message' => __('app.messages.task_assistance.error', ['name' => $this->entity->find($this->beneficiary_id)->full_name]),
                 'error' => true,
-                //'location' => $location
             ]);
         }
     }

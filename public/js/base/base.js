@@ -50,7 +50,6 @@ let crud = window.location.pathname,
 
 function ajaxRequest(url, data, method, callback, element) {
     block(element);
-
     if(method === 'PUT'){
         method = 'POST';
         data.append('_method', 'PUT');
@@ -113,6 +112,9 @@ formButton.on("click", function () {
         formReset.removeClass("m--hide");
         formTitle.html(Lang.get('base/base.titles.update', {name: formTitle.attr('data-name')}));
         formButton.html(Lang.get('base/base.buttons.update')).attr('data-action', 'update');
+        if (crud === '/formats') {
+            formButton.html('Descargar');
+        }
     } else {
         let url = routes['update'].url.replace(':id', id);
         ajaxRequest(url, formData, routes['update'].method, createRow, formPortlet);
@@ -148,10 +150,18 @@ function resetForm(action = 'create', name) {
     } else if (action === 'show') {
         disableForm(true, false);
         formReset.addClass("m--hide");
-        formTitle.html(Lang.get('base/base.titles.show', {name: name})).attr('data-name', name);
+        if (crud !== '/formats') {
+            formTitle.html(Lang.get('base/base.titles.show', {name: name})).attr('data-name', name);
+        } else {
+            disableForm(false, false);
+            formTitle.html('Selecciona Beneficiario');
+        }
     }
 
     formButton.html(Lang.get('base/base.buttons.' + action)).attr('data-action', action);
+    if (crud === '/formats') {
+        formButton.html('Descargar').attr('data-action', 'creating');
+    }
     $('span[name=form-error]').remove();
     $('#validations').addClass('m--hide');
     form.find('select').selectpicker('refresh');

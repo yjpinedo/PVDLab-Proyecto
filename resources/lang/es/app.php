@@ -22,6 +22,7 @@ return [
 
     'buttons' => [
         'apply' => 'Aplicar',
+        'download' => 'Descargar',
     ],
 
     'titles' => [
@@ -47,6 +48,7 @@ return [
         ],
         'furniture' => 'Muebles',
         'furniture_categories' => 'Categorias - Muebles',
+        'formats' => 'Formatos',
         'home' => 'Inicio',
         'lessons' => 'Lecciones',
         'locations' => 'Localizaciones',

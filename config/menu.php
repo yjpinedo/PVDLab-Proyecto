@@ -20,7 +20,6 @@ return [
         ],
     ],
 
-
     [
         'name' => 'employees',
         'menu' => [
@@ -69,8 +68,8 @@ return [
                 'icon' => 'fa fa-file-alt',
             ],
             [
-                'icon' => 'fa fa-boxes',
-                'name' => 'furniture',
+                'icon' => 'fa fa-exchange-alt',
+                'name' => 'movements',
                 'submenu' => [
                     [
                         'crud' => 'transfers',
@@ -109,8 +108,42 @@ return [
                         'crud' => 'positions',
                     ],
                 ],
-            ]
+            ],
+           [
+                'icon' => 'fa fa-exchange-alt',
+                'name' => 'movements',
+                'submenu' => [
+                    [
+                        'crud' => 'warehouses',
+                    ],
+                    [
+                        'crud' => 'articles',
+                    ],
+                ],
+            ],
         ],
     ],
 
 ];
+
+/*
+ * [
+                'icon' => 'fa fa-boxes',
+                'name' => 'furniture',
+                'submenu' => [
+                    [
+                        'crud' => 'transfers',
+                    ],
+                    [
+                        'crud' => 'furniture',
+                    ],
+                    [
+                        'crud' => 'locations',
+                    ],
+                    [
+                        'crud' => 'categories',
+                    ],
+                ],
+            ],
+ *
+ * */

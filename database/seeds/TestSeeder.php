@@ -1,5 +1,6 @@
 <?php
 
+use App\Article;
 use App\Beneficiary;
 use App\BeneficiaryCourse;
 use App\BeneficiaryLesson;
@@ -15,6 +16,7 @@ use App\Project;
 use App\Teacher;
 use App\Transfer;
 use App\User;
+use App\Warehouse;
 use Illuminate\Database\Seeder;
 
 class TestSeeder extends Seeder
@@ -152,5 +154,7 @@ class TestSeeder extends Seeder
         //factory(Employee::class, 5)->create();
         //factory(FurnitureTransfer::class, 5)->create();
         //factory(BeneficiaryProject::class, 5)->create();
+        factory(Warehouse::class, 10)->create();
+        factory(Article::class, 10)->create();
     }
 }

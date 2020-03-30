@@ -82,6 +82,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::resource('formats', 'FormatController', ['only' => ['store', 'show', 'index']]);
         Route::get('/format-responsibility/{beneficiary_id}', 'FormatController@format_responsibility');
         Route::get('/format-authorization/{beneficiary_id}', 'FormatController@format_authorization');
+
+        // Warehouses
+        Route::resource('warehouses', 'WarehouseController', ['except' => ['create', 'edit']]);
+        Route::resource('articles', 'ArticleController', ['except' => ['create', 'edit']]);
     });
 
     // Beneficiaries

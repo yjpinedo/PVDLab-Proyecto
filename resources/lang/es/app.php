@@ -64,6 +64,9 @@ return [
         ],
         'transfers' => 'Tranferencias',
         'transfer_furnitures' => 'Tranferencias - Muebles',
+        'movements' => 'Movimientos',
+        'warehouses' => 'Almacén',
+        'articles' => 'Artículos'
     ],
 
     'sections' => [
@@ -72,6 +75,8 @@ return [
         'personal_information' => 'Información Personal',
         'project_information' => 'Información del Proyecto',
         'financing_information' => 'Información de Financiación',
+        'article_information' => 'Información del Artículo',
+        'warehouse_information' => 'Información del Almacén',
     ],
 
     'selects' => [

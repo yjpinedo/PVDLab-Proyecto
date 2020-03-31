@@ -12,6 +12,7 @@ use App\Furniture;
 use App\Lesson;
 use App\Location;
 use App\Member;
+use App\Movement;
 use App\Project;
 use App\Teacher;
 use App\Transfer;
@@ -147,14 +148,11 @@ class TestSeeder extends Seeder
             'name' => "Salida de equipos"
         ]);
 
-        //factory(BeneficiaryLesson::class, 5)->create();
         factory(Category::class, 5)->create();
         factory(Location::class, 5)->create();
         factory(Furniture::class, 5)->create();
-        //factory(Employee::class, 5)->create();
-        //factory(FurnitureTransfer::class, 5)->create();
-        //factory(BeneficiaryProject::class, 5)->create();
         factory(Warehouse::class, 10)->create();
         factory(Article::class, 10)->create();
+        factory(Movement::class, 10)->create();
     }
 }

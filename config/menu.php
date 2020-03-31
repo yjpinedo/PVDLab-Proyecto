@@ -68,24 +68,6 @@ return [
                 'icon' => 'fa fa-file-alt',
             ],
             [
-                'icon' => 'fa fa-exchange-alt',
-                'name' => 'movements',
-                'submenu' => [
-                    [
-                        'crud' => 'transfers',
-                    ],
-                    [
-                        'crud' => 'furniture',
-                    ],
-                    [
-                        'crud' => 'locations',
-                    ],
-                    [
-                        'crud' => 'categories',
-                    ],
-                ],
-            ],
-            [
                 'icon' => 'fa fa-clipboard-list',
                 'name' => 'courses',
                 'submenu' => [
@@ -118,6 +100,9 @@ return [
                     ],
                     [
                         'crud' => 'articles',
+                    ],
+                    [
+                        'crud' => 'movements',
                     ],
                 ],
             ],

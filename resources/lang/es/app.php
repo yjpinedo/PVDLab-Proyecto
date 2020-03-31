@@ -175,6 +175,22 @@ return [
                 '6' => '6',
             ],
         ],
+        'movement' =>
+        [
+            'type' => [
+                'ENTRADA' => 'ENTRADA',
+                'SALIDA' => 'SALIDA',
+                'TRASPASO' => 'TRASPASO',
+                'BLOQUEO' => 'BLOQUEO',
+                'DESBLOQUEAR' => 'DESBLOQUEAR',
+                'RESERVA' => 'RESERVA',
+                'RESERVA FICTICIA' => 'RESERVA FICTICIA',
+                'FABRICACIÓN' => 'FABRICACIÓN',
+                'FABRICACIÓN FICTICIA' => 'FABRICACIÓN FICTICIA',
+                'REGULARIZACIÓN' => 'REGULACIÓN',
+                'LIBERACIÓN' => 'LIBERACIÓN',
+            ],
+        ],
     ],
 
 

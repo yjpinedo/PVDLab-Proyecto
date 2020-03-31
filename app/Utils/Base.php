@@ -222,7 +222,7 @@ class Base
             )
             ->setActive(url()->current())
             ->setActiveClass('m-menu__item--active')
-            ;
+        ;
     }
 
     /**

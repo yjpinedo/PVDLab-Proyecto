@@ -215,7 +215,8 @@ return [
         'type' => 'Tipo',
         'title_type' => 'Tipo de Título',
         'year' => 'Año',
-
+        'stock' => 'Cantidad',
+        'warehouse_id' => 'Almacén',
     ],
 
 ];

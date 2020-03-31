@@ -85,7 +85,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
         // Warehouses
         Route::resource('warehouses', 'WarehouseController', ['except' => ['create', 'edit']]);
+        Route::resource('warehouses/{warehouse}/articles', 'Articles\ArticleController', ['except' => ['create', 'edit']]);
         Route::resource('articles', 'ArticleController', ['except' => ['create', 'edit']]);
+        Route::resource('movements', 'MovementController', ['except' => ['create', 'edit']]);
     });
 
     // Beneficiaries

@@ -20,7 +20,7 @@ class Warehouse extends Base
             'check' => false,
             'fields' => ['code', 'name',],
             'active' => false,
-            'actions' => false,
+            'actions' => true,
         ],
         'form' => [
             [

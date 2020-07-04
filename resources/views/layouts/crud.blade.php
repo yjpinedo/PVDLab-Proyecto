@@ -9,4 +9,11 @@
             @include('includes.form')
         </div>
     </div>
+    @if($crud === 'articles')
+        <div class="row">
+            <div class="col-xl-12">
+                @include('includes.tableWarehouse')
+            </div>
+        </div>
+    @endif
 @endsection

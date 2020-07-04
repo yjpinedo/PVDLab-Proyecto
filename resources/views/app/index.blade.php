@@ -41,6 +41,17 @@
     ])@endcomponent
 @endsection
 
+@if($crud === 'articles')
+    @section('tableWarehouse')
+        @component('components.tableWarehouse', [
+            'check' => $tableWarehouse['check'] ?? false,
+            'fields' => $tableWarehouse['fields'] ?? [],
+            'active' => $tableWarehouse['active'] ?? false,
+            'actions' => $tableWarehouse['actions'] ?? false,
+        ])@endcomponent
+    @endsection
+@endif
+
 @push('scripts')
     @include('includes.scripts')
     @if (file_exists('js/app/' . $crud . '.js'))

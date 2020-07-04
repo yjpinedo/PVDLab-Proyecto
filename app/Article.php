@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Article extends Base
 {
@@ -20,9 +21,9 @@ class Article extends Base
         ],
         'table' => [
             'check' => false,
-            'fields' => ['code', 'name', 'serial', 'category_id', 'warehouse_id'],
+            'fields' => ['code', 'name', 'serial', 'category_id',],
             'active' => false,
-            'actions' => false,
+            'actions' => true,
         ],
         'form' => [
             [
@@ -70,6 +71,16 @@ class Article extends Base
                 'type' => 'text',
             ],
         ],
+        'toolsWarehouse' => [
+            'create' => false,
+            'reload' => false,
+        ],
+        'tableWarehouse' => [
+            'check' => false,
+            'fields' => ['code', 'name', 'stock'],
+            'active' => false,
+            'actions' => false,
+        ],
     ];
 
     // Relationships
@@ -85,12 +96,12 @@ class Article extends Base
     }
 
     /**
-     * Location relationship
+     * Warehouse relationship
      *
-     * @return BelongsTo
+     * @return BelongsToMany
      */
-    public function warehouse()
+    public function warehouses()
     {
-        return $this->belongsTo(Warehouse::class);
+        return $this->belongsToMany(Warehouse::class, 'article_warehouse')->withPivot('stock')->withTimestamps();
     }
 }

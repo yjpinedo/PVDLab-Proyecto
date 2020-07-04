@@ -233,7 +233,11 @@ class Base
      */
     public static function dynamicModelInstance(string $model)
     {
-        $model = '\\App\\' . str_replace('_', '', ucwords(str_replace('_id', '', $model), '_'));
+        if  ($model ==! 'Origin' && $model ==! 'Destination'){
+            $model = '\\App\\' . str_replace('_', '', ucwords(str_replace('_id', '', $model), '_'));
+        } else {
+            $model = '\\App\\' . str_replace('_', '', ucwords(str_replace('_id', '', 'warehouse'), '_'));
+        }
         return  new $model;
     }
 

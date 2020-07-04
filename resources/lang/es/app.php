@@ -66,7 +66,8 @@ return [
         'transfer_furnitures' => 'Tranferencias - Muebles',
         'movements' => 'Movimientos',
         'warehouses' => 'Almacén',
-        'articles' => 'Artículos'
+        'articles' => 'Artículos',
+         'warehouses_articles' => 'Almacén - Artículos'
     ],
 
     'sections' => [

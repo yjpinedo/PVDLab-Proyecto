@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Articles;
+namespace App\Http\Controllers\Warehouses;
 
 use App\Article;
 use App\Http\Controllers\BaseController;
@@ -28,7 +28,7 @@ class ArticleController extends BaseController
             if ( !is_null($warehouse) ) {
                 $request->request->add(['data' => [
                     'title' => __('app.titles.warehouses'),
-                    'subtitle' => __('app.titles.warehouses.articles', ['name' => $warehouse->name]),
+                    'subtitle' => __('app.titles.warehouses_articles', ['name' => $warehouse->name]),
                     'tools' => [
                         'create' => false,
                         'reload' => false,
@@ -37,7 +37,7 @@ class ArticleController extends BaseController
                     ],
                     'table' => [
                         'check' => false,
-                        'fields' => ['code', 'name', 'serial', 'category_id',],
+                        'fields' => ['code', 'name', 'serial', 'stock', 'category_id',],
                         'active' => false,
                         'actions' => false,
                     ],

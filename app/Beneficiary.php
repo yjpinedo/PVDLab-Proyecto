@@ -2,6 +2,8 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Relations\HasMany;
+
 /**
  * @property mixed id
  * @property mixed lesson
@@ -191,7 +193,7 @@ class Beneficiary extends Base
     /**
      * Transfer relationship
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      */
     public function transfer()
     {

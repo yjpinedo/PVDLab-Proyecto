@@ -1,12 +1,14 @@
 <?php
 
 use App\Article;
+use App\ArticleWarehouse;
 use App\Beneficiary;
 use App\BeneficiaryCourse;
 use App\BeneficiaryLesson;
 use App\Category;
 use App\Course;
 use App\Employee;
+use App\Existing;
 use App\Format;
 use App\Furniture;
 use App\Lesson;
@@ -152,7 +154,25 @@ class TestSeeder extends Seeder
         factory(Location::class, 5)->create();
         factory(Furniture::class, 5)->create();
         factory(Warehouse::class, 10)->create();
-        factory(Article::class, 10)->create();
-        factory(Movement::class, 10)->create();
+        factory(Movement::class, 40)->create();
+
+        $warehouses = Warehouse::all();
+        $articles = Article::all();
+
+        foreach ($warehouses as $warehouse){
+            for ($i = 0; $i < random_int(1, 10); $i++) {
+                factory(ArticleWarehouse::class)->create([
+                    'warehouse_id' => $warehouse->id,
+                ]);
+            }
+        }
+
+        foreach ($articles as $article){
+            for ($i = 0; $i < random_int(1, 10); $i++) {
+                factory(ArticleWarehouse::class)->create([
+                    'article_id' => $article->id,
+                ]);
+            }
+        }
     }
 }

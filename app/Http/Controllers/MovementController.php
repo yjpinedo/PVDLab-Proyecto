@@ -16,7 +16,7 @@ class MovementController extends BaseController
     public function __construct(Movement $entity)
     {
         parent::__construct($entity, false);
-        $this->model = $this->entity->with('warehouse')->orderBy('created_at');
+        $this->model = $this->entity->with('warehouse_origin', 'warehouse_destination')->orderBy('created_at');
     }
 
     /**

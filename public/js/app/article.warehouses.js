@@ -1,9 +1,6 @@
 columnsDataTable = [
     {data: 'code'},
     {data: 'name'},
-    {data: 'serial'},
-    {data: 'pivot', customValue: true},
-    {data: 'category.name'},
 ];
 
 /**
@@ -15,7 +12,5 @@ columnsDataTable = [
  * @returns {String} The HTML string with the status
  */
 function getStatus(column, value) {
-    if (column === 3) {
-        return value === null ? 0 : value.stock;
-    }
+
 }

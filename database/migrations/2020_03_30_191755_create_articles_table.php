@@ -22,9 +22,7 @@ class CreateArticlesTable extends Migration
             $table->string('pattern', 90);
             $table->string('description', 200);
             $table->unsignedInteger('category_id');
-            $table->foreign('category_id')->references('id')->on('categories');
-            $table->unsignedBigInteger('warehouse_id');
-            $table->foreign('warehouse_id')->references('id')->on('warehouses');
+            $table->foreign('category_id')->references('id')->on('categories');;
             $table->timestamps();
             $table->softDeletes();
         });

@@ -28,7 +28,7 @@ class Movement extends Base
         ],
         'table' => [
             'check' => false,
-            'fields' => ['id', 'type', 'warehouse_id'],
+            'fields' => ['id', 'type', 'origin_id', 'destination_id'],
             'active' => false,
             'actions' => false,
         ],
@@ -47,7 +47,11 @@ class Movement extends Base
                 'type' => 'text',
             ],
             [
-                'name' => 'warehouse_id',
+                'name' => 'origin_id',
+                'type' => 'select_reload',
+            ],
+            [
+                'name' => 'destination_id',
                 'type' => 'select_reload',
             ],
         ],
@@ -63,15 +67,25 @@ class Movement extends Base
         return $this->type;
     }
 
-
+    // Relationship
 
     /**
      * Furniture relationship
      *
      * @return BelongsTo
      */
-    public function warehouse()
+    public function warehouse_origin()
     {
-        return $this->belongsTo(Warehouse::class);
+        return $this->belongsTo(Warehouse::class, 'origin_id');
+    }
+
+    /**
+     * Furniture relationship
+     *
+     * @return BelongsTo
+     */
+    public function warehouse_destination()
+    {
+        return $this->belongsTo(Warehouse::class, 'destination_id');
     }
 }

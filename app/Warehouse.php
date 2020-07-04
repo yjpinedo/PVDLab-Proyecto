@@ -2,7 +2,7 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Warehouse extends Base
 {
@@ -41,12 +41,12 @@ class Warehouse extends Base
     // Relationships
 
     /**
-     * Furniture relationship
+     * Article relationship
      *
-     * @return HasMany
+     * @return BelongsToMany
      */
     public function articles()
     {
-        return $this->hasMany(Article::class);
+        return $this->belongsToMany(Article::class, 'article_warehouse')->withPivot('stock')->withTimestamps();
     }
 }

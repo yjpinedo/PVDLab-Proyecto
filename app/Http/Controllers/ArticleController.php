@@ -23,6 +23,22 @@ class ArticleController extends BaseController
         $this->model = $this->entity->with('category', 'warehouses')->orderBy('created_at');
     }
 
+    public function create(){
+        return view('articles.create');
+    }
+
+    public function edit($id){
+
+        $article =  Article::findOrFail($id)->load([
+            'category' => function ($q) {
+                $q->select('id', 'name');
+            }
+        ]);
+        return view('articles.edit', [
+            'article' => $article
+        ]);
+    }
+
     /**
      * Store a newly created resource in storage.
      *

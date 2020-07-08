@@ -76,7 +76,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::resource('furniture_transfers', 'FurnitureTransferController', ['except' => ['create', 'edit']]);
 
         // responsibility
-        Route::resource('responsibility', 'ResponsibilityController');
+        //Route::resource('responsibility', 'ResponsibilityController');
 
         // Format
         Route::resource('formats', 'FormatController', ['only' => ['store', 'show', 'index']]);
@@ -86,7 +86,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         // Warehouses
         Route::resource('warehouses', 'WarehouseController', ['except' => ['create', 'edit']]);
         Route::resource('warehouses/{warehouse}/article', 'Warehouses\ArticleController', ['except' => ['create', 'edit']]);
-        Route::resource('articles', 'ArticleController', ['except' => ['create', 'edit']]);
+        Route::resource('articles', 'ArticleController');
         Route::resource('articles/{article}/warehouse', 'Articles\WarehouseController', ['except' => ['create', 'edit']]);
         Route::resource('movements', 'MovementController', ['except' => ['create', 'edit']]);
     });
@@ -155,8 +155,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
 });
 
 
-Route::get('foo', function (PDF $pdf) {
+/*Route::get('foo', function (PDF $pdf) {
    $fecha = new DateTime();
 
     var_dump($fecha->format('Y'));
-});
+});*/

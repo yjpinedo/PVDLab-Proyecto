@@ -230,9 +230,13 @@ $('#picture_form').on('change', function(){
 });
 
 function dataSelect(reload) {
-    let select = reload.parent().siblings('div').children('select');
-    let url = routes['select'].url + '?id=' + select.attr('id') + '&name=' + select.attr('name');
-    ajaxRequest(url, null, routes['select'].method, reloadSelect, formPortlet);
+    if (crud !== '/articles/create') {
+        let select = reload.parent().siblings('div').children('select');
+        let url = routes['select'].url + '?id=' + select.attr('id') + '&name=' + select.attr('name');
+        ajaxRequest(url, null, routes['select'].method, reloadSelect, formPortlet);
+    } else {
+        ajaxRequest('/select?id=category_id_form&name=category_id', null, 'GET', reloadSelect, formPortlet);
+    }
 }
 
 function reloadSelect(results) {
@@ -285,7 +289,12 @@ $(document).ready( function () {
 
     //Init bootstrap switch
     $('.switch').bootstrapSwitch();
-
-    if (form.length !== 0) disableForm(true);
+    if (form.length !== 0){
+        if (crud === '/articles/create') {
+            disableForm(false, false);
+        } else {
+            disableForm(true);
+        }
+    }
     if (table.length === 0) ajaxRequest(routes.data.url, null, routes.data.method, show, formPortlet);
 });

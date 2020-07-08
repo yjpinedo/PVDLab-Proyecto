@@ -7,9 +7,13 @@ function active(id, active) {
 }
 
 function create() {
-    resetForm();
-    $('#form .form-group:first .form-control').focus();
-    dataTable.rows().deselect();
+    if (crud !== '/articles') {
+        resetForm();
+        $('#form .form-group:first .form-control').focus();
+        dataTable.rows().deselect();
+    } else {
+        window.location.href = '/articles/create';
+    }
 }
 
 function createRow(results) {

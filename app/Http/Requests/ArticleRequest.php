@@ -20,9 +20,9 @@ class ArticleRequest extends BaseRequest
             'serial' => 'required|numeric|digits_between:6,12|unique:articles,serial,' . $this->id,
             'pattern' => 'required|min:3|max:50',
             'description' => 'min:3|max:200',
-            'stock' => 'required|numeric',
+            //'stock' => 'required|numeric',
             'category_id' => 'required|exists:categories,id',
-            'warehouse_id' => 'required|exists:warehouses,id',
+            //'warehouse_id' => 'required|exists:warehouses,id',
         ];
     }
 }

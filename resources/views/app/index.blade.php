@@ -9,7 +9,7 @@
 @section('tools')
     @component('components.tools', [
         'crud' => $crud,
-        'create' => $tools['create'] ?? false and !empty($form),
+        'create' => $crud !== 'articles' ? $tools['create'] ?? false and !empty($form) : $tools['create'] ?? false,
         'reload' => $tools['reload'] ?? false,
         'export' => $tools['export'] ?? false,
         'to_return' => $tools['to_return'] ?? false
@@ -40,17 +40,6 @@
         'fields' => $form ?? [],
     ])@endcomponent
 @endsection
-
-@if($crud === 'articles')
-    @section('tableWarehouse')
-        @component('components.tableWarehouse', [
-            'check' => $tableWarehouse['check'] ?? false,
-            'fields' => $tableWarehouse['fields'] ?? [],
-            'active' => $tableWarehouse['active'] ?? false,
-            'actions' => $tableWarehouse['actions'] ?? false,
-        ])@endcomponent
-    @endsection
-@endif
 
 @push('scripts')
     @include('includes.scripts')

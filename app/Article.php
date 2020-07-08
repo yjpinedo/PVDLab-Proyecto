@@ -25,62 +25,7 @@ class Article extends Base
             'active' => false,
             'actions' => true,
         ],
-        'form' => [
-            [
-                'type' => 'section',
-                'value' => 'app.sections.article_information',
-            ],
-            [
-                'name' => 'category_id',
-                'type' => 'select_reload',
-            ],
-            [
-                'name' => 'code',
-                'type' => 'text',
-            ],
-            [
-                'name' => 'name',
-                'type' => 'text',
-            ],
-            [
-                'name' => 'brand',
-                'type' => 'text',
-            ],
-            [
-                'name' => 'serial',
-                'type' => 'text',
-            ],
-            [
-                'name' => 'pattern',
-                'type' => 'text',
-            ],
-            [
-                'name' => 'description',
-                'type' => 'textarea',
-            ],
-            [
-                'type' => 'section',
-                'value' => 'app.sections.warehouse_information',
-            ],
-            [
-                'name' => 'warehouse_id',
-                'type' => 'select_reload',
-            ],
-            [
-                'name' => 'stock',
-                'type' => 'text',
-            ],
-        ],
-        'toolsWarehouse' => [
-            'create' => false,
-            'reload' => false,
-        ],
-        'tableWarehouse' => [
-            'check' => false,
-            'fields' => ['code', 'name', 'stock'],
-            'active' => false,
-            'actions' => false,
-        ],
+        'form' => [],
     ];
 
     // Relationships

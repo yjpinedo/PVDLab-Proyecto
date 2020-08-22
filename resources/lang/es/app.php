@@ -15,6 +15,7 @@ return [
         ],
         'task_assistance' => [
             'assistance' => 'Se ha tomado la asistencia del alumno :name',
+            'not_assistance' => 'Se ha cancelado la asistencia del alumno :name',
             'error' => 'Ya se encuentra lista el alumno :name'
         ],
 
@@ -81,6 +82,20 @@ return [
     ],
 
     'selects' => [
+        'lesson' => [
+            'assistance' => [
+                'ASISTIO' => 'ASISTIÓ',
+                'FALLO' => 'FALLÓ',
+            ],
+            'assistance_class' => [
+                'ASISTIO' => 'success',
+                'FALLO' => 'danger',
+            ],
+            'assistance_next' => [
+                'ASISTIO' => '',
+                'FALLO' => 'ASISTIO',
+            ],
+        ],
         'course' => [
             'days' => [
                 'LUNES' => 'LUNES',

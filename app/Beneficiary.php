@@ -16,7 +16,7 @@ class Beneficiary extends Base
      * @var array
      */
     protected $appends = [
-        'full_name', 'assistance_value',
+       'actions', 'full_name', 'translated_assistance'
     ];
 
     /**
@@ -132,15 +132,40 @@ class Beneficiary extends Base
     // Mutator
 
     /**
-     * Mutator for the value to show in the select
+     * Mutator for the actions
      *
      * @return array
      */
-    public function getAssistanceValueAttribute()
+    public function getTranslatedAssistanceAttribute()
     {
+        $lessons = [];
+        foreach ($this->lessons as $lesson) {
+            $lessons[] = $lesson->id;
+        }
+
         return [
-            "id" => $this->id,
-            "lessons" => $this->lesson
+            'id' => $this->id,
+            'lessons' => $lessons,
+            'assistance' => 'FALLO',
+            'class' => __('app.selects.lesson.assistance_class.FALLO'),
+        ];
+    }
+
+    /**
+     * Mutator for the actions
+     *
+     * @return array
+     */
+    public function getActionsAttribute()
+    {
+        $lessons = [];
+        foreach ($this->lessons as $lesson) {
+            $lessons[] = $lesson->id;
+        }
+
+        return [
+            'id' => $this->id,
+            'lessons' => $lessons,
         ];
     }
 
@@ -171,7 +196,7 @@ class Beneficiary extends Base
      */
     public function courses()
     {
-        return $this->belongsToMany(Course::class);
+        return $this->belongsToMany(Course::class)->withTimestamps();
     }
 
     /**
@@ -179,7 +204,7 @@ class Beneficiary extends Base
      */
     public function lessons()
     {
-        return $this->belongsToMany(Lesson::class);
+        return $this->belongsToMany(Lesson::class)->withTimestamps();
     }
 
     /**
@@ -195,7 +220,7 @@ class Beneficiary extends Base
      *
      * @return HasMany
      */
-    public function transfer()
+    public function transfers()
     {
         return $this->hasMany(Transfer::class);
     }

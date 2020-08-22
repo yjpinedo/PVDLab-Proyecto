@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Article;
+use App\Category;
 use App\Http\Requests\ArticleRequest;
 use App\Http\Requests\WarehouseRequest;
 use App\Movement;
+use App\Warehouse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Arr;
@@ -24,18 +26,22 @@ class ArticleController extends BaseController
     }
 
     public function create(){
-        return view('articles.create');
+        $warehouses = Warehouse::orderBy('created_at', 'DESC')->get();
+        return view('articles.create', compact('warehouses'));
     }
 
     public function edit($id){
-
         $article =  Article::findOrFail($id)->load([
             'category' => function ($q) {
                 $q->select('id', 'name');
             }
         ]);
+        $warehouses = Warehouse::orderBy('created_at', 'DESC')->get();
+        $articleWarehouses = $article->warehouses;
         return view('articles.edit', [
-            'article' => $article
+            'article'    => $article,
+            'warehouses' => $warehouses,
+            'articleWarehouses' => $articleWarehouses
         ]);
     }
 
@@ -47,22 +53,15 @@ class ArticleController extends BaseController
      */
     public function store(ArticleRequest $request)
     {
-        $input = $request->all();
-        $article = null;
-
-        if ($request->validated()) {
-            if (!empty($input['warehouse_id']) && !empty($input['stock'])) {
-                $input = Arr::except($input, ['warehouse_id']);
-                $input = Arr::except($input, ['stock']);
-                $article = Article::create($input);
-            }
-
-            if ($article) {
-                $article->warehouses()->attach($request->input('warehouse_id'), ['stock' => $request->input('stock')]);
+        $input = $request->except(['warehouse_id', 'stock']);
+        $article = Article::create($input);
+        foreach ($request->input('warehouse_id') as $key=>$warehouse) {
+            if ($request->input('stock')[$key] != '0') {
+                $article->warehouses()->attach($warehouse, ['stock' => $request->input('stock')[$key]]);
                 Movement::create([
                     'date' => date('Y-m-d h:i:s'),
-                    'stock' => $request->input('stock'),
-                    'origin_id' => $request->input('warehouse_id'),
+                    'stock' => $request->input('stock')[$key],
+                    'origin_id' => $warehouse,
                 ]);
             }
         }
@@ -82,23 +81,21 @@ class ArticleController extends BaseController
      */
     public function update(ArticleRequest $request, int $id)
     {
-        $input = $request->all();
-        $article = Article::findOrFail($id);
+        $input = $request->except(['warehouse_id', 'stock']);
+        $article = Article::find($id)->fill($input);
 
         if ($request->validated()) {
-            $input = Arr::except($input, ['warehouse_id']);
-            $input = Arr::except($input, ['stock']);
             $article->update($input);
 
-            if (!empty($input['warehouse_id']) && !empty($input['stock'])) {
-                $checked = $article->warehouses()
-                                   ->wherePivot('warehouse_id', $request->input('warehouse_id'))
-                                   ->wherePivot('article_id', $article->id)
-                                   ->first();
-                if ($checked !== null) {
-                    $article->warehouses()->updateExistingPivot($request->input('warehouse_id'), ['stock' => $request->input('stock')]);
-                } else {
-
+            foreach ($request->input('warehouse_id') as $key=>$warehouse) {
+                if ($request->input('stock')[$key] != '0') {
+                    $checked = $article->warehouses()
+                        ->wherePivot('warehouse_id', $warehouse)
+                        ->wherePivot('article_id', $article->id)
+                        ->first();
+                    if ($checked !== null) {
+                        $article->warehouses()->updateExistingPivot($warehouse, ['stock' => $request->input('stock')[$key]]);
+                    }
                 }
             }
         }

@@ -9,7 +9,7 @@
                 <div class="m-portlet__head">
                     <div class="m-portlet__head-caption">
                         <div class="m-portlet__head-title">
-                            <h3 id="formTitle" class="m-portlet__head-text m--font-brand">Información del Artículo</h3>
+                            <h3 id="formTitle" class="m-portlet__head-text m--font-brand">Crear Artículo</h3>
                         </div>
                     </div>
                 </div>
@@ -32,6 +32,11 @@
                                         <span style="width: 3rem; height: 3rem; margin:-4.5rem auto 0 auto; color:#fff; font-weight:bold">2</span>
                                     </a>
                                 </div>
+                                <div class="m-wizard__step" m-wizard-target="m_wizard_form_step_3">
+                                    <a href="javascript:" class="m-wizard__step-number">
+                                        <span style="width: 3rem; height: 3rem; margin:-4.5rem auto 0 auto; color:#fff; font-weight:bold">3</span>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -41,10 +46,14 @@
                         </div>
                     </div>
                     <div class="m-wizard__form">
-                        <form method="POST" action="{{ route('articles.store') }}" accept-charset="UTF-8" class="m-form" id="form">
+                        <form method="POST" accept-charset="UTF-8" class="m-form" id="form">
+                            @csrf
                             <div class="m-portlet__body m--padding-10">
                                 <div class="m-wizard__form-step m-wizard__form-step--current" id="m_wizard_form_step_1">
                                     <div class="m-form__section m-form__section--first">
+                                        <div class="form-group m-form__group col-12">
+                                            <h5>Información del Artículo</h5>
+                                        </div>
                                         <div class="form-group m-form__group col-12">
                                             <label for="category_id_form">Categorías</label>
                                             <div class="input-group">
@@ -88,6 +97,35 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="m-wizard__form-step " id="m_wizard_form_step_3">
+                                    <div class="m-form__section m-form__section--first">
+                                        <div class="form-group m-form__group col-12">
+                                            <h5>Información de Almacén</h5>
+                                        </div>
+                                        <div class="form-group m-form__group col-12">
+                                            <table id="test" class="table table-striped- table-bordered table-hover table-checkable table-component dtr-inline">
+                                                <thead>
+                                                <tr>
+                                                    <th>Código</th>
+                                                    <th>Nombre</th>
+                                                    <th>Stock</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach($warehouses as $warehouse)
+                                                        <tr>
+                                                            <td><input type="hidden" name="warehouse_id[]" class="form-control m-input" value="{{ $warehouse->id }}">{{ $warehouse->code }}</td>
+                                                            <td>{{ $warehouse->name }}</td>
+                                                            <td>
+                                                                <input type="number" name="stock[]" class="form-control m-input" value="0">
+                                                            </td>
+                                                        </tr>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <div class="m-portlet__foot m-portlet__foot--fit">
                                 <div class="m-form__actions m-form__actions" style="padding: 15px;">
@@ -112,4 +150,41 @@
 
 @push('scripts')
     @include('includes.scripts')
+    <script>
+        $(function () {
+            $('#test').DataTable({
+                "language" : {
+                    'sProcessing':     'Procesando...',
+                    'sLengthMenu':     'Mostrar _MENU_ registros',
+                    'sZeroRecords':    'No se encontraron resultados',
+                    'sEmptyTable':     'Ningún dato disponible en esta tabla',
+                    'sInfo':           'Mostrando del _START_ al _END_ de _TOTAL_ registros',
+                    'sInfoEmpty':      'Mostrando del 0 al 0 de 0 registros',
+                    'sInfoFiltered':   '(filtrado de _MAX_ registros)',
+                    'sInfoPostFix':    '',
+                    'sSearch':         'Buscar:',
+                    'sUrl':            '',
+                    'sInfoThousands':  ',',
+                    'sLoadingRecords': 'Cargando...',
+                    'oPaginate': {
+                        'sFirst':    '<i class="la la-angle-double-left"></i>',
+                        'sLast':     '<i class="la la-angle-double-right"></i>',
+                        'sNext':     '<i class="la la-angle-right"></i>',
+                        'sPrevious': '<i class="la la-angle-left"></i>'
+                    },
+                    'select': {
+                        'rows': ''
+                    },
+                    'oAria': {
+                        'sSortAscending':  ': Activar para ordenar la columna de manera ascendente',
+                        'sSortDescending': ': Activar para ordenar la columna de manera descendente'
+                    }
+                },
+                "lengthChange": false,
+                initComplete: function () {
+                    $('.dataTables_filter input[type="search"]').css({ 'width': '350px', 'display': 'inline-block' });
+                }
+            });
+        })
+    </script>
 @endpush

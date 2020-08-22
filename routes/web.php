@@ -130,6 +130,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
             Route::resource('courses/{course}/lessons', 'LessonController', ['except' => ['create', 'destroy', 'edit']]);
             // Lessons - Beneficiaries
             Route::resource('courses/{course}/lessons/{lesson}/take_assistance', 'TakeAssistanceController', ['except' => ['create', 'destroy', 'edit']]);
+            //Route::put('projects', 'ProjectController@updateConcept');
             // Lessons - Beneficiaries
             Route::resource('courses/{course}/lessons/{lesson}/assistance', 'AssistanceController', ['except' => ['create', 'destroy', 'edit']]);
         });

@@ -105,7 +105,7 @@ formButton.on("click", function () {
     let formData = new FormData(form[0]);
 
     if (action === 'create' || action === 'creating') {
-        ajaxRequest(routes['create'].url, formData, routes['create'].method, createRow, formPortlet);
+        ajaxRequest(crud.replace('/create', ''), formData, routes['create'].method, createRow, formPortlet);
     } else if (action === 'show') {
         disableForm(false);
         $('#form .form-group:first .form-control').focus();

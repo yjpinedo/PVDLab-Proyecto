@@ -15,6 +15,7 @@ use App\Lesson;
 use App\Location;
 use App\Member;
 use App\Movement;
+use App\Position;
 use App\Project;
 use App\Teacher;
 use App\Transfer;

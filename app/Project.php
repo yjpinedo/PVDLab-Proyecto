@@ -163,7 +163,7 @@ class Project extends Base
     /**
      * The beneficiaries that belong to the project.
      */
-    public function beneficiaries()
+    public function beneficiary()
     {
         return $this->belongsTo(Beneficiary::class);
     }
@@ -193,7 +193,7 @@ class Project extends Base
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function transfer()
+    public function transfers()
     {
         return $this->hasMany(Transfer::class);
     }

@@ -1,6 +1,7 @@
 <?php
 
 use App\Employee;
+use App\Position;
 use App\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Seeder;

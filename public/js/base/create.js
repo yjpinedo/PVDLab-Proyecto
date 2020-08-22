@@ -21,9 +21,11 @@ function createRow(results) {
 
     if (table.length !== 0) dataTable.ajax.reload();
 
-    if (form.length !== 0) {
+    if (form.length !== 0 && crud !== '/articles/create') {
         if (results.data) showEntity(results.data);
         else resetForm('creating');
+    } else {
+        window.location.href = '/articles';
     }
 
     if (results.message) showMessage(results.message, !!results.error);

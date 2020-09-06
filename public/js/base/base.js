@@ -290,7 +290,8 @@ $(document).ready( function () {
     //Init bootstrap switch
     $('.switch').bootstrapSwitch();
     if (form.length !== 0){
-        if (crud === '/articles/create') {
+        console.log(crud.indexOf('edit'));
+        if (crud === '/articles/create' || crud.indexOf('edit')) {
             disableForm(false, false);
         } else {
             disableForm(true);

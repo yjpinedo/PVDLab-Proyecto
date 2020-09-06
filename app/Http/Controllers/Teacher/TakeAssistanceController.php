@@ -15,8 +15,6 @@ class TakeAssistanceController extends BaseController
     private $course;
     private $beneficiary_id;
     private $beneficiary;
-    private $message;
-    private $error = false;
 
     /**
      * Create a controller instance.
@@ -71,17 +69,33 @@ class TakeAssistanceController extends BaseController
      */
     public function store()
     {
-       if (! $this->beneficiary->lessons->contains($this->id)) {
-           $this->beneficiary->lessons()->attach($this->id);
+       if (!$this->beneficiary->lessons->contains($this->id)) {
+           $error = $this->beneficiary->lessons()->attach($this->id);
+
             return response()->json([
                 'message' => __('app.messages.task_assistance.assistance', ['name' => $this->entity->find($this->beneficiary_id)->full_name]),
+                'error' => $error,
+                'id' => $this->beneficiary_id,
+                'assistance' => true,
+                'translated_assistance' => [
+                    'assistance' => 'ASISTIÓ',
+                    'class' => __('app.selects.lesson.assistance_class.ASISTIO'),
+                ],
             ]);
-        } else {
-            return response()->json([
-                'message' => __('app.messages.task_assistance.error', ['name' => $this->entity->find($this->beneficiary_id)->full_name]),
-                'error' => true,
-            ]);
-        }
+       } else {
+           $error = $this->beneficiary->lessons()->detach($this->id);
+
+           return response()->json([
+               'message' => __('app.messages.task_assistance.assistance', ['name' => $this->entity->find($this->beneficiary_id)->full_name]),
+               'error' => $error,
+               'id' => $this->beneficiary_id,
+               'assistance' => false,
+               'translated_assistance' => [
+                   'assistance' => 'NO ASISTIÓ',
+                   'class' => __('app.selects.lesson.assistance_class.FALLO'),
+               ],
+           ]);
+       }
     }
 
     /**

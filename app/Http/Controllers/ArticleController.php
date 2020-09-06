@@ -37,7 +37,12 @@ class ArticleController extends BaseController
             }
         ]);
         $warehouses = Warehouse::orderBy('created_at', 'DESC')->get();
-        $articleWarehouses = $article->warehouses;
+        $articleWarehouses = [];
+
+        foreach ($article->warehouses as $warehouse) {
+            $articleWarehouses[$warehouse->id] = $warehouse->pivot->stock;
+        }
+
         return view('articles.edit', [
             'article'    => $article,
             'warehouses' => $warehouses,

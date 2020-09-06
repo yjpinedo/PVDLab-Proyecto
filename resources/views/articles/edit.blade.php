@@ -116,7 +116,7 @@
                                                         <tr>
                                                             <td><input type="hidden" name="warehouse_id[]" class="form-control m-input" value="{{ $warehouse->id }}">{{ $warehouse->code }}</td>
                                                             <td>{{ $warehouse->name }}</td>
-                                                            <td><input type="number" name="stock[]" class="form-control m-input" value="0"></td>
+                                                            <td><input type="number" name="stock[]" class="form-control m-input" value="{{ array_key_exists($warehouse->id, $articleWarehouses) ? $articleWarehouses[$warehouse->id] : 0 }}"></td>
                                                         </tr>
                                                     @endforeach
                                                 </tbody>
@@ -129,7 +129,7 @@
                                 <div class="m-form__actions m-form__actions" style="padding: 15px;">
                                     <div class="row align-items-center">
                                         <div class="col-lg-8 m--align-left">
-                                            <button id="formButton" class="btn btn-primary" data-action="creating" type="button">Guardar</button>
+                                            <button id="formButton" class="btn btn-primary" data-action="create" type="button">Guardar</button>
                                         </div>
                                         <div class="col-lg-4 m--align-right">
                                             <button class="btn btn-secondary" data-wizard-action="prev" type="button" ><i class="fa fa-chevron-left"></i><span></span></button>

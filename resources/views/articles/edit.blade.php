@@ -149,6 +149,8 @@
 @push('scripts')
     @include('includes.scripts')
     <script>
+        $('#category_id_form').val({{ $article->category_id }});
+        $('#category_id_form').selectpicker('refresh');
         $(function () {
             $('#test').DataTable({
                 "language" : {

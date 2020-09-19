@@ -5,12 +5,9 @@ namespace App\Http\Controllers;
 use App\Article;
 use App\Category;
 use App\Http\Requests\ArticleRequest;
-use App\Http\Requests\WarehouseRequest;
 use App\Movement;
 use App\Warehouse;
-use Illuminate\Http\Request;
-use Illuminate\Http\Response;
-use Illuminate\Support\Arr;
+use Illuminate\Http\JsonResponse;
 
 class ArticleController extends BaseController
 {
@@ -36,6 +33,7 @@ class ArticleController extends BaseController
                 $q->select('id', 'name');
             }
         ]);
+        $categories = Category::orderBy('created_at', 'DESC')->get();
         $warehouses = Warehouse::orderBy('created_at', 'DESC')->get();
         $articleWarehouses = [];
 
@@ -44,8 +42,9 @@ class ArticleController extends BaseController
         }
 
         return view('articles.edit', [
-            'article'    => $article,
-            'warehouses' => $warehouses,
+            'categories'        => $categories,
+            'article'           => $article,
+            'warehouses'        => $warehouses,
             'articleWarehouses' => $articleWarehouses
         ]);
     }
@@ -54,10 +53,14 @@ class ArticleController extends BaseController
      * Store a newly created resource in storage.
      *
      * @param ArticleRequest $request
-     * @return Response
+     * @return JsonResponse
      */
     public function store(ArticleRequest $request)
     {
+        $request->validate([
+            'code' => 'required|unique:articles',
+            'serial' => 'required|numeric|digits_between:6,12|unique:articles',
+        ]);
         $input = $request->except(['warehouse_id', 'stock']);
         $article = Article::create($input);
         foreach ($request->input('warehouse_id') as $key=>$warehouse) {
@@ -82,10 +85,14 @@ class ArticleController extends BaseController
      *
      * @param ArticleRequest $request
      * @param int $id
-     * @return Response
+     * @return JsonResponse
      */
     public function update(ArticleRequest $request, int $id)
     {
+        $request->validate([
+            'code' => 'required|unique:articles,code,' . $id,
+            'serial' => 'required|numeric|digits_between:6,12|unique:articles,serial,' . $id,
+        ]);
         $input = $request->except(['warehouse_id', 'stock']);
         $article = Article::find($id)->fill($input);
 
@@ -98,8 +105,10 @@ class ArticleController extends BaseController
                         ->wherePivot('warehouse_id', $warehouse)
                         ->wherePivot('article_id', $article->id)
                         ->first();
-                    if ($checked !== null) {
+                    if ($checked != null) {
                         $article->warehouses()->updateExistingPivot($warehouse, ['stock' => $request->input('stock')[$key]]);
+                    } else {
+                        $article->warehouses()->attach($warehouse, ['stock' => $request->input('stock')[$key]]);
                     }
                 }
             }

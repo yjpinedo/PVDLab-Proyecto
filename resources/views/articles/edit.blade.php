@@ -56,16 +56,11 @@
                                         </div>
                                         <div class="form-group m-form__group col-12">
                                             <label for="category_id_form">Categorías</label>
-                                            <div class="input-group">
-                                                <div class="dropdown bootstrap-select input-group-btn form-control m-bootstrap-select m_">
-                                                    <select id="category_id_form" class="form-control m-bootstrap-select m_selectpicker" data-live-search="true" name="category_id" tabindex="-98">
-
-                                                    </select>
-                                                </div>
-                                                <div class="input-group-append">
-                                                    <button class="btn btn-secondary select-reload" type="button" ><i class="fa fa-circle-notch"></i></button>
-                                                </div>
-                                            </div>
+                                                <select id="category_id_form" class="form-control" name="category_id">
+                                                    @foreach($categories as $category)
+                                                            <option value="{{ $category->id }}" {{ old('category_id') == $category->id || $article->category_id == $category->id ? 'selected' : ""}}>{{ $category->name }}</option>
+                                                    @endforeach
+                                                </select>
                                         </div>
                                         <div class="form-group m-form__group col-12">
                                             <label for="code_form">Codigo</label>
@@ -129,7 +124,7 @@
                                 <div class="m-form__actions m-form__actions" style="padding: 15px;">
                                     <div class="row align-items-center">
                                         <div class="col-lg-8 m--align-left">
-                                            <button id="formButton" class="btn btn-primary" data-action="create" type="button">Guardar</button>
+                                            <button id="formButton" class="btn btn-primary" data-action="update" type="button">Guardar</button>
                                         </div>
                                         <div class="col-lg-4 m--align-right">
                                             <button class="btn btn-secondary" data-wizard-action="prev" type="button" ><i class="fa fa-chevron-left"></i><span></span></button>
@@ -149,8 +144,6 @@
 @push('scripts')
     @include('includes.scripts')
     <script>
-        $('#category_id_form').val({{ $article->category_id }});
-        $('#category_id_form').selectpicker('refresh');
         $(function () {
             $('#test').DataTable({
                 "language" : {

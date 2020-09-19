@@ -49,6 +49,9 @@ let crud = window.location.pathname,
     title = formTitle.attr('data-title');
 
 function ajaxRequest(url, data, method, callback, element) {
+    if (crud.indexOf('edit') !== -1) {
+        url = url.replace('/edit/undefined', '');
+    }
     block(element);
     if(method === 'PUT'){
         method = 'POST';
@@ -230,8 +233,7 @@ $('#picture_form').on('change', function(){
 });
 
 function dataSelect(reload) {
-    if (crud === '/articles/create' || crud.indexOf('edit') !== -1) {
-        console.log(crud.indexOf('edit'));
+    if (crud === '/articles/create') {
         ajaxRequest('/select?id=category_id_form&name=category_id', null, 'GET', reloadSelect, formPortlet);
     } else {
         let select = reload.parent().siblings('div').children('select');

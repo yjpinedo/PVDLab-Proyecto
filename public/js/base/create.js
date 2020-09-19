@@ -21,7 +21,7 @@ function createRow(results) {
 
     if (table.length !== 0) dataTable.ajax.reload();
 
-    if (form.length !== 0 && crud !== '/articles/create') {
+    if (form.length !== 0 && crud !== '/articles/create' && crud.indexOf('edit') === -1) {
         if (results.data) showEntity(results.data);
         else resetForm('creating');
     } else {

@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Article extends Base
 {
-
     /**
      * The data to build the layout.
      *

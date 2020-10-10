@@ -23,6 +23,7 @@ class Course extends Base
             'create' => true,
             'export' => true,
             'reload' => false,
+            'to_return' => true
         ],
         'table' => [
             'check' => false,

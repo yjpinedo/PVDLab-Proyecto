@@ -37,6 +37,7 @@ class ProjectController extends BaseController
                         'create' => true,
                         'reload' => false,
                         'export' => true,
+                        'to_return' => true
                     ],
                     'table' => [
                         'check' => false,
@@ -177,13 +178,23 @@ class ProjectController extends BaseController
 
         if ($project->concept !== 'RECHAZADO') {
 
-            $project->concept = 'APROBADO';
+            if ($request->input('concept') === 'RECHAZADO') {
+                $message = 'RECHAZADO';
+                $error = true;
+            }
 
+            if ($request->input('concept') === 'APROBADO') {
+                $message = 'APROBADO';
+                $error = false;
+            }
+
+            $project->concept = $request->input('concept');
             $project->save();
 
             return response()->json([
                 'data' => $project,
-                'message' => __('app.messages.project.APROBADO'),
+                'message' => __("app.messages.project.$message"),
+                'error' => $error
             ]);
         } else {
             return response()->json([

@@ -35,6 +35,7 @@ class CourseController extends BaseController
                         'create' => false,
                         'reload' => false,
                         'export' => true,
+                        'to_return' => true
                     ],
                     'table' => [
                         'check' => false,

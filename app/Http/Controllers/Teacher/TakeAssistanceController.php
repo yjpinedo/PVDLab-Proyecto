@@ -86,7 +86,7 @@ class TakeAssistanceController extends BaseController
            $error = $this->beneficiary->lessons()->detach($this->id);
 
            return response()->json([
-               'message' => __('app.messages.task_assistance.assistance', ['name' => $this->entity->find($this->beneficiary_id)->full_name]),
+               'message' => __('app.messages.task_assistance.not_assistance', ['name' => $this->entity->find($this->beneficiary_id)->full_name]),
                'error' => $error,
                'id' => $this->beneficiary_id,
                'assistance' => false,

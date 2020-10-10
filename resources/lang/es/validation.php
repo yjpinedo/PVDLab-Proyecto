@@ -159,6 +159,7 @@ return [
 
 
         'address' => 'Dirección',
+        'assistance_value' => 'Asistencia',
         'beneficiary_id' => 'Beneficiario',
         'birth_date' => 'Fecha de Nacimiento',
         'brand' => 'Marca',
@@ -204,7 +205,7 @@ return [
         'reviewed_at' => 'Fecha de Revisión',
         'serial' => 'Serial',
         'sex' => 'Sexo',
-        'start' => 'Inicio',
+        'start' => 'Fecha de Inicio',
         'start_date' => 'Fecha de Inicio',
         'state' => 'Estado',
         'stratum' => 'Estrato',

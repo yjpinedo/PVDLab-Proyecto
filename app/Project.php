@@ -48,10 +48,6 @@ class Project extends Base
                 'type' => 'text',
             ],
             [
-                'name' => 'date',
-                'type' => 'date',
-            ],
-            [
                 'name' => 'start',
                 'type' => 'date',
             ],
@@ -83,23 +79,6 @@ class Project extends Base
                 'value' => 'app.selects.project.state',
             ],
             [
-                'type' => 'section',
-                'value' => 'app.sections.financing_information',
-            ],
-            [
-                'name' => 'financing',
-                'type' => 'select',
-                'value' => 'app.selects.project.financing',
-            ],
-            [
-                'name' => 'financial_entity',
-                'type' => 'text',
-            ],
-            [
-                'name' => 'financing_description',
-                'type' => 'textarea',
-            ],
-            [
                 'name' => 'concept',
                 'type' => 'select',
                 'value' => 'app.selects.project.concept',
@@ -116,6 +95,23 @@ class Project extends Base
                 'name' => 'reviewed_at',
                 'type' => 'date',
             ],
+            [
+                'type' => 'section',
+                'value' => 'app.sections.financing_information',
+            ],
+            [
+                'name' => 'financing',
+                'type' => 'select',
+                'value' => 'app.selects.project.financing',
+            ],
+            [
+                'name' => 'financial_entity',
+                'type' => 'text',
+            ],
+            [
+                'name' => 'financing_description',
+                'type' => 'textarea',
+            ],
         ],
     ];
 
@@ -131,6 +127,7 @@ class Project extends Base
         return [
             'id' => $this->id,
             'cancel' => $this->concept == 'PENDIENTE',
+            'approved' => $this->concept == 'APROBADO',
             'next' => __('app.selects.project.concept_next.' . $this->concept),
         ];
     }

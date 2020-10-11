@@ -23,7 +23,6 @@ class BeneficiaryRequest extends BaseRequest
             'neighborhood' => 'required|min:3|max:50',
             'phone' => 'required_without:cellphone|numeric|digits_between:6,12|bail',
             'cellphone' => 'nullable|numeric|digits_between:6,12|bail',
-            'email' => 'required|email|unique:users,email,' . $this->id . '|unique:beneficiaries,email,' . $this->id,
             'occupation' => 'min:3|max:200',
             'ethnic_group' => 'required|in:' . implode(',', array_keys(__('app.selects.person.ethnic_group'))),
             'other_ethnic_group' => 'max:90',

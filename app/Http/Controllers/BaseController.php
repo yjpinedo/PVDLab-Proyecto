@@ -7,6 +7,7 @@ use Exception;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\View\View;
@@ -57,7 +58,7 @@ class BaseController extends Controller
      * Display the specified resource.
      *
      * @param  int $id
-     * @return Response
+     * @return JsonResponse
      */
     protected function show(int $id)
     {
@@ -69,7 +70,7 @@ class BaseController extends Controller
      *
      * @param FormRequest $request
      * @param bool $reload
-     * @return Response
+     * @return JsonResponse
      */
     protected function storeBase(FormRequest $request, $reload = false)
     {
@@ -97,7 +98,7 @@ class BaseController extends Controller
      *
      * @param FormRequest $request
      * @param int $id
-     * @return Response
+     * @return JsonResponse
      */
     protected function updateBase(FormRequest $request, int $id)
     {

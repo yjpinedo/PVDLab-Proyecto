@@ -2,6 +2,10 @@
 
 namespace App;
 
+use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+
 /**
  * @property mixed concept
  * @property mixed id
@@ -38,10 +42,6 @@ class Project extends Base
             [
                 'type' => 'section',
                 'value' => 'app.sections.project_information',
-            ],
-            [
-                'name' => 'code',
-                'type' => 'text',
             ],
             [
                 'name' => 'name',
@@ -155,6 +155,16 @@ class Project extends Base
         return $this->name;
     }
 
+    /**
+     * Mutator for the full name
+     *
+     * @param $value
+     * @return string
+     */
+    public function getStartAttribute($value){
+        return Carbon::parse($value)->format('Y-m-d');
+    }
+
     // Relationships
 
     /**
@@ -168,7 +178,7 @@ class Project extends Base
     /**
      * Employee relationship
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return BelongsTo
      */
     public function employee()
     {
@@ -178,7 +188,7 @@ class Project extends Base
     /**
      * Employee relationship
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      */
     public function members()
     {
@@ -188,12 +198,10 @@ class Project extends Base
     /**
      * Transfer relationship
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      */
     public function transfers()
     {
         return $this->hasMany(Transfer::class);
     }
-
-
 }

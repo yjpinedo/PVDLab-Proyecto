@@ -12,10 +12,7 @@ class ProjectRequest extends BaseRequest
     public function rules()
     {
         return [
-            'code' => 'required|unique:projects,code,' . $this->id,
             'name' => 'required|min:3|max:50|alpha_space',
-            'date' => 'required|date|after_or_equal:today',
-            'start' => 'required|date|after_or_equal:today',
             'type' => 'required|in:' . implode(',', array_keys(__('app.selects.project.type'))),
             'other_type' => 'max:90',
             'description' => 'min:3|max:200',

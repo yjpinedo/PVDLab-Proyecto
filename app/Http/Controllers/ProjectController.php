@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ProjectRequest;
 use App\Project;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -17,17 +18,24 @@ class ProjectController extends BaseController
     public function __construct(Project $entity)
     {
         parent::__construct($entity, false);
-        $this->model = $this->entity->with('employee')->orderBy('created_at');
+        $this->model = $this->entity->with('employee')->orderBy('created_at', 'DESC');
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param ProjectRequest $request
-     * @return Response
+     * @return JsonResponse
      */
     public function store(ProjectRequest $request)
     {
+        $request->validate([
+            'start' => 'required|date',
+        ]);
+
+        $lastId = Project::all()->last()->id;
+        $request['code'] = 'PRO - ' . ($lastId + 1);
+
         return parent::storeBase($request, false);
     }
 
@@ -36,10 +44,13 @@ class ProjectController extends BaseController
      *
      * @param ProjectRequest $request
      * @param int $id
-     * @return Response
+     * @return JsonResponse
      */
     public function update(ProjectRequest $request, int $id)
     {
+        $request->validate([
+            'start' => 'required|date',
+        ]);
         return parent::updateBase($request, $id);
     }
 
@@ -47,7 +58,7 @@ class ProjectController extends BaseController
      * Update the specified resource in storage.
      *
      * @param Request $request
-     * @return Response
+     * @return JsonResponse
      */
     public function conceptUpdate(Request $request)
     {
@@ -69,7 +80,7 @@ class ProjectController extends BaseController
      * Update the specified resource in storage.
      *
      * @param Request $request
-     * @return Response
+     * @return JsonResponse
      */
     public function updateConcept(Request $request)
     {

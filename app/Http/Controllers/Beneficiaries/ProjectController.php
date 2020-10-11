@@ -6,6 +6,7 @@ use App\Beneficiary;
 use App\Http\Controllers\BaseController;
 use App\Http\Requests\ProjectRequest;
 use App\Project;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -51,16 +52,8 @@ class ProjectController extends BaseController
                             'value' => 'app.sections.project_information',
                         ],
                         [
-                            'name' => 'code',
-                            'type' => 'text',
-                        ],
-                        [
                             'name' => 'name',
                             'type' => 'text',
-                        ],
-                        [
-                            'name' => 'date',
-                            'type' => 'date',
                         ],
                         [
                             'name' => 'start',
@@ -94,6 +87,15 @@ class ProjectController extends BaseController
                             'value' => 'app.selects.project.state',
                         ],
                         [
+                            'name' => 'concept',
+                            'type' => 'select',
+                            'value' => 'app.selects.project.concept',
+                        ],
+                        [
+                            'name' => 'employee_id',
+                            'type' => 'select_reload',
+                        ],
+                        [
                             'type' => 'section',
                             'value' => 'app.sections.financing_information',
                         ],
@@ -109,15 +111,6 @@ class ProjectController extends BaseController
                         [
                             'name' => 'financing_description',
                             'type' => 'textarea',
-                        ],
-                        [
-                            'name' => 'concept',
-                            'type' => 'select',
-                            'value' => 'app.selects.project.concept',
-                        ],
-                        [
-                            'name' => 'employee_id',
-                            'type' => 'select_reload',
                         ],
                     ],
                 ]]);
@@ -135,7 +128,7 @@ class ProjectController extends BaseController
      * Display the specified resource.
      *
      * @param  int $id
-     * @return Response
+     * @return JsonResponse
      */
     public function show(int $id)
     {
@@ -146,10 +139,17 @@ class ProjectController extends BaseController
      * Store a newly created resource in storage.
      *
      * @param ProjectRequest $request
-     * @return Response
+     * @return JsonResponse
      */
     public function store(ProjectRequest $request)
     {
+        $request->validate([
+            'start' => 'required|date',
+        ]);
+
+        $lastId = Project::all()->last()->id;
+        $request['code'] = 'PRO - ' . ($lastId + 1);
+
         return parent::storeBase($request);
     }
 
@@ -157,10 +157,13 @@ class ProjectController extends BaseController
      * Update the specified resource in storage.
      *
      * @param ProjectRequest $request
-     * @return Response
+     * @return JsonResponse
      */
     public function update(ProjectRequest $request)
     {
+        $request->validate([
+            'start' => 'required|date',
+        ]);
         return parent::updateBase($request,$this->id);
     }
 
@@ -168,7 +171,7 @@ class ProjectController extends BaseController
      * Update the specified resource in storage.
      *
      * @param Request $request
-     * @return Response
+     * @return JsonResponse
      */
     public function updateConcept(Request $request)
     {

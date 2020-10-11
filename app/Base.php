@@ -4,6 +4,7 @@ namespace App;
 
 use App\Traits\Uppercase;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Menu\Helpers\Str;
 
 /**
  * @property string name

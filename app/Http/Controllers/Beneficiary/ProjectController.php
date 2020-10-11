@@ -6,6 +6,7 @@ use App\Beneficiary;
 use App\Http\Controllers\BaseController;
 use App\Http\Requests\ProjectRequest;
 use App\Project;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 
@@ -44,16 +45,8 @@ class ProjectController extends BaseController
                             'value' => 'app.sections.project_information',
                         ],
                         [
-                            'name' => 'code',
-                            'type' => 'text',
-                        ],
-                        [
                             'name' => 'name',
                             'type' => 'text',
-                        ],
-                        [
-                            'name' => 'date',
-                            'type' => 'date',
                         ],
                         [
                             'name' => 'start',
@@ -103,10 +96,6 @@ class ProjectController extends BaseController
                             'name' => 'financing_description',
                             'type' => 'textarea',
                         ],
-                        [
-                            'name' => 'reviewed_at',
-                            'type' => 'date',
-                        ],
                     ],
                 ]]);
                 $request->request->add(['beneficiary_id' => $beneficiary->id]);
@@ -123,10 +112,17 @@ class ProjectController extends BaseController
      * Store a newly created resource in storage.
      *
      * @param ProjectRequest $request
-     * @return Response
+     * @return JsonResponse
      */
     public function store(ProjectRequest $request)
     {
+        $request->validate([
+            'start' => 'required|date',
+        ]);
+
+        $lastId = Project::all()->last()->id;
+        $request['code'] = 'PRO - ' . ($lastId + 1);
+
         return parent::storeBase($request, false);
     }
 
@@ -135,10 +131,13 @@ class ProjectController extends BaseController
      *
      * @param ProjectRequest $request
      * @param int $id
-     * @return Response
+     * @return JsonResponse
      */
     public function update(ProjectRequest $request, int $id)
     {
+        $request->validate([
+            'start' => 'required|date',
+        ]);
         return parent::updateBase($request, $id);
     }
 }

@@ -1,11 +1,8 @@
 <?php
 
-use App\Utils\Base;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use \Barryvdh\DomPDF\PDF;
-use \Barryvdh\DomPDF\Facade;
+
 
 Auth::routes(['verify' => true]);
 
@@ -156,8 +153,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 });
 
 
-/*Route::get('foo', function (PDF $pdf) {
-   $fecha = new DateTime();
-
-    var_dump($fecha->format('Y'));
+/*Route::get('foo', function () {
+   $pdf = PDF::loadView('welcome');
+   return $pdf->stream();
 });*/

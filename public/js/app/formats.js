@@ -23,9 +23,9 @@ $('#download').on("click", function () {
     let format = '';
 
     if (format_id === '1') {
-        format = 'format-responsibility';
-    } else if (format_id === '2') {
         format = 'format-authorization';
+    } else if (format_id === '2') {
+        format = 'format-responsibility';
     } else if (format_id === '3') {
         format = 'format-authorization';
     }

@@ -68,10 +68,6 @@
                                             </div>
                                         </div>
                                         <div class="form-group m-form__group col-12">
-                                            <label for="code_form">Codigo</label>
-                                            <input id="code_form" class="form-control m-input" autocomplete="off" name="code" type="text">
-                                        </div>
-                                        <div class="form-group m-form__group col-12">
                                             <label for="name_form">Nombre</label>
                                             <input id="name_form" class="form-control m-input" autocomplete="off" name="name" type="text">
                                         </div>

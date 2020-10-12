@@ -19,7 +19,7 @@ class ArticleController extends BaseController
     public function __construct(Article $entity)
     {
         parent::__construct($entity, false);
-        $this->model = $this->entity->with('category', 'warehouses')->orderBy('created_at');
+        $this->model = $this->entity->with('category', 'warehouses')->orderBy('created_at', 'DESC');
     }
 
     public function create(){
@@ -58,16 +58,16 @@ class ArticleController extends BaseController
     public function store(ArticleRequest $request)
     {
         $request->validate([
-            'code' => 'required|unique:articles',
             'serial' => 'required|numeric|digits_between:6,12|unique:articles',
         ]);
         $input = $request->except(['warehouse_id', 'stock']);
+        $lastId = Article::all()->last()->id;
+        $input['code'] = 'ART - ' . ($lastId + 1);
         $article = Article::create($input);
         foreach ($request->input('warehouse_id') as $key=>$warehouse) {
             if ($request->input('stock')[$key] != '0') {
                 $article->warehouses()->attach($warehouse, ['stock' => $request->input('stock')[$key]]);
                 Movement::create([
-                    'date' => date('Y-m-d h:i:s'),
                     'stock' => $request->input('stock')[$key],
                     'origin_id' => $warehouse,
                 ]);
@@ -90,7 +90,6 @@ class ArticleController extends BaseController
     public function update(ArticleRequest $request, int $id)
     {
         $request->validate([
-            'code' => 'required|unique:articles,code,' . $id,
             'serial' => 'required|numeric|digits_between:6,12|unique:articles,serial,' . $id,
         ]);
         $input = $request->except(['warehouse_id', 'stock']);
@@ -110,6 +109,10 @@ class ArticleController extends BaseController
                     } else {
                         $article->warehouses()->attach($warehouse, ['stock' => $request->input('stock')[$key]]);
                     }
+                    Movement::create([
+                        'stock' => $request->input('stock')[$key],
+                        'origin_id' => $warehouse,
+                    ]);
                 }
             }
         }

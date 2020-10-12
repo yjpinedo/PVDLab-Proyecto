@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Employee;
 use App\Http\Requests\EmployeeRequest;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
 
 class EmployeeController extends BaseController
@@ -16,14 +17,14 @@ class EmployeeController extends BaseController
     public function __construct(Employee $entity)
     {
         parent::__construct($entity, true);
-        $this->model = $this->entity->with('position')->orderBy('created_at');
+        $this->model = $this->entity->with('position')->orderBy('created_at', 'DESC');
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param EmployeeRequest $request
-     * @return Response
+     * @return JsonResponse
      */
     public function store(EmployeeRequest $request)
     {
@@ -35,7 +36,7 @@ class EmployeeController extends BaseController
      *
      * @param EmployeeRequest $request
      * @param int $id
-     * @return Response
+     * @return JsonResponse
      */
     public function update(EmployeeRequest $request, int $id)
     {

@@ -96,6 +96,10 @@ class ProjectController extends BaseController
                             'type' => 'select_reload',
                         ],
                         [
+                            'name' => 'reviewed_at',
+                            'type' => 'date',
+                        ],
+                        [
                             'type' => 'section',
                             'value' => 'app.sections.financing_information',
                         ],

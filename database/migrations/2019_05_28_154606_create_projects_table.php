@@ -17,7 +17,6 @@ class CreateProjectsTable extends Migration
             $table->increments('id');
             $table->string('code', 10);
             $table->string('name', 90);
-            $table->dateTime('date');
             $table->dateTime('start');
             $table->enum('type',  array_keys(__('app.selects.project.type')));
             $table->string('other_type', 90)->nullable();

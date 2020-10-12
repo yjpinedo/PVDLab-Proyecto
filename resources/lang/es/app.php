@@ -27,6 +27,9 @@ return [
     ],
 
     'titles' => [
+        'articles' => 'Artículos',
+        'article' => 'Artículo',
+        'articles_warehouses' => 'Lista de almacenes',
         'beneficiaries' => 'Beneficiarios',
         'beneficiary' => [
             'courses_lists' => 'Cursos',
@@ -67,8 +70,7 @@ return [
         'transfer_furnitures' => 'Tranferencias - Muebles',
         'movements' => 'Movimientos',
         'warehouses' => 'Almacén',
-        'articles' => 'Artículos',
-         'warehouses_articles' => 'Almacén - Artículos'
+        'warehouses_articles' => 'Almacén - Artículos'
     ],
 
     'sections' => [

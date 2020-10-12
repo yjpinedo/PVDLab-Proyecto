@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\TeacherRequest;
 use App\Teacher;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
 
 class TeacherController extends BaseController
@@ -16,13 +17,14 @@ class TeacherController extends BaseController
     public function __construct(Teacher $entity)
     {
         parent::__construct($entity, true);
+        $this->model = $this->entity->orderBy('created_at', 'DESC');
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param TeacherRequest $request
-     * @return Response
+     * @return JsonResponse
      */
     public function store(TeacherRequest $request)
     {
@@ -34,7 +36,7 @@ class TeacherController extends BaseController
      *
      * @param TeacherRequest $request
      * @param int $id
-     * @return Response
+     * @return JsonResponse
      */
     public function update(TeacherRequest $request, int $id)
     {

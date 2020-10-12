@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\MovementRequest;
 use App\Movement;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
 
 class MovementController extends BaseController
@@ -16,14 +17,14 @@ class MovementController extends BaseController
     public function __construct(Movement $entity)
     {
         parent::__construct($entity, false);
-        $this->model = $this->entity->with('warehouse_origin', 'warehouse_destination')->orderBy('created_at');
+        $this->model = $this->entity->with('warehouse_origin', 'warehouse_destination')->orderBy('created_at', 'DESC');
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param MovementRequest $request
-     * @return Response
+     * @return JsonResponse
      */
     public function store(MovementRequest $request)
     {
@@ -35,7 +36,7 @@ class MovementController extends BaseController
      *
      * @param MovementRequest $request
      * @param int $id
-     * @return Response
+     * @return JsonResponse
      */
     public function update(MovementRequest $request, int $id)
     {

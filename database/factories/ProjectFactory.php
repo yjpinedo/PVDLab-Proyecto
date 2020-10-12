@@ -16,7 +16,6 @@ $factory->define(Project::class, function (Faker $faker) {
     return [
         'code' => 'PRO' . ' - ' .$faker->numberBetween($min = 1, $max = 1000),
         'name' => $faker->jobTitle,
-        'date' => $faker->dateTimeBetween($startDate = '-1 year', $endDate = 'now'),
         'start' => $faker->dateTimeBetween($startDate = '-1 year', $endDate = 'now'),
         'type' => $type,
         'other_type' => $type === 'OTRO' ? $faker->jobTitle : null,

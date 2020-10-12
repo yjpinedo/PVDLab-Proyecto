@@ -39,10 +39,6 @@ class Movement extends Base
                 'value' => 'app.selects.movement.type',
             ],
             [
-                'name' => 'date',
-                'type' => 'date',
-            ],
-            [
                 'name' => 'stock',
                 'type' => 'text',
             ],

@@ -16,7 +16,6 @@ class CreateMovementsTable extends Migration
         Schema::create('movements', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->enum('type', array_keys(__('app.selects.movement.type')))->default('ENTRADA');
-            $table->dateTime('date');
             $table->string('stock');
             $table->unsignedBigInteger('origin_id')->nullable();
             $table->foreign('origin_id')->references('id')->on('warehouses');

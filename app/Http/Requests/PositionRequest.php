@@ -12,7 +12,6 @@ class PositionRequest extends BaseRequest
     public function rules()
     {
         return [
-            'code' => 'required|unique:positions,code,' . $this->id,
             'name' => 'required|min:3|max:50|alpha_space',
             'description' => 'min:3|max:200',
         ];

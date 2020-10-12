@@ -24,10 +24,6 @@ class Warehouse extends Base
         ],
         'form' => [
             [
-                'name' => 'code',
-                'type' => 'text',
-            ],
-            [
                 'name' => 'name',
                 'type' => 'text',
             ],

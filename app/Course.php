@@ -2,6 +2,9 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+
 class Course extends Base
 {
     /**
@@ -34,10 +37,6 @@ class Course extends Base
             [
                 'name' => 'teacher_id',
                 'type' => 'select_reload',
-            ],
-            [
-                'name' => 'code',
-                'type' => 'text',
             ],
             [
                 'name' => 'name',
@@ -75,7 +74,7 @@ class Course extends Base
     /**
      * Lesson relationship
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      */
     public function lessons()
     {
@@ -85,7 +84,7 @@ class Course extends Base
     /**
      * Teacher relationship
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return BelongsTo
      */
     public function teacher()
     {

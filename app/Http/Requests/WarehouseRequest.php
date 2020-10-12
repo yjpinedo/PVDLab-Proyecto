@@ -14,7 +14,6 @@ class WarehouseRequest extends BaseRequest
     public function rules()
     {
         return [
-            'code' => 'required|unique:locations,code,' . $this->id,
             'name' => 'required|min:3|max:50|alpha_space',
             'description' => 'min:3|max:200',
         ];

@@ -2,6 +2,8 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Relations\HasMany;
+
 class Position extends Base
 {
     /**
@@ -22,10 +24,6 @@ class Position extends Base
         ],
         'form' => [
             [
-                'name' => 'code',
-                'type' => 'text',
-            ],
-            [
                 'name' => 'name',
                 'type' => 'text',
             ],
@@ -41,9 +39,9 @@ class Position extends Base
     /**
      * Employee relationship
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      */
-    public function employee()
+    public function employees()
     {
         return $this->hasMany(Employee::class);
     }

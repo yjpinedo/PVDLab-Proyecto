@@ -33,7 +33,7 @@ class CreateProjectsTable extends Migration
             $table->foreign('beneficiary_id')->references('id')->on('beneficiaries');
             $table->unsignedInteger('employee_id')->nullable();
             $table->foreign('employee_id')->references('id')->on('employees');
-            $table->dateTime('reviewed_at');
+            $table->dateTime('reviewed_at')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

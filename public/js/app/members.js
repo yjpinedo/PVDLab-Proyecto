@@ -17,3 +17,13 @@ columnsDataTable = [
 function getStatus(column, value) {
 
 }
+
+$( function() {
+    $("#ethnic_group_form").change( function() {
+        if ($(this).val() === "OTROS") {
+            $("#other_ethnic_group_form").prop("disabled", false);
+        } else {
+            $("#other_ethnic_group_form").prop("disabled", true);
+        }
+    });
+});

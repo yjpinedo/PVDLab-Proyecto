@@ -6,6 +6,7 @@ use App\Beneficiary;
 use App\Course;
 use App\Http\Controllers\BaseController;
 use App\Http\Requests\CourseRequest;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
 
 class CourseController extends BaseController
@@ -46,7 +47,7 @@ class CourseController extends BaseController
                     'form' => [],
                 ]]);
                 $request->request->add(['beneficiary_id' => $beneficiary->id]);
-                $this->model = $beneficiary->courses->sortByDesc('name');
+                $this->model = $beneficiary->courses->sortByDesc('created_at');
 
                 return $next($request);
             }
@@ -59,7 +60,7 @@ class CourseController extends BaseController
      * Display the specified resource.
      *
      * @param  int $id
-     * @return Response
+     * @return JsonResponse
      */
     public function show(int $id)
     {
@@ -70,7 +71,7 @@ class CourseController extends BaseController
      * Store a newly created resource in storage.
      *
      * @param CourseRequest $request
-     * @return Response
+     * @return JsonResponse
      */
     public function store(CourseRequest $request)
     {
@@ -81,7 +82,7 @@ class CourseController extends BaseController
      * Update the specified resource in storage.
      *
      * @param CourseRequest $request
-     * @return Response
+     * @return JsonResponse
      */
     public function update(CourseRequest $request)
     {

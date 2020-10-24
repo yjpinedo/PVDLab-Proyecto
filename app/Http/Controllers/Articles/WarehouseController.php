@@ -44,7 +44,7 @@ class WarehouseController extends BaseController
                     'form' => [],
                 ]]);
                 $request->request->add(['warehouse_id' => $article->id]);
-                $this->model = $article->warehouses->sortByDesc('name');
+                $this->model = $article->warehouses->sortByDesc('created_at');
 
                 return $next($request);
             }

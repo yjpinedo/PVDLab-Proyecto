@@ -53,7 +53,7 @@ class TakeAssistanceController extends BaseController
                 ]]);
 
                 $request->request->add(['course_id' => $this->course->id]);
-                $this->model = $this->course->beneficiaries->sortByDesc('name');
+                $this->model = $this->course->beneficiaries->sortBy('last_name');
 
                 return $next($request);
             }
@@ -71,7 +71,6 @@ class TakeAssistanceController extends BaseController
     {
        if (!$this->beneficiary->lessons->contains($this->id)) {
            $error = $this->beneficiary->lessons()->attach($this->id);
-
             return response()->json([
                 'message' => __('app.messages.task_assistance.assistance', ['name' => $this->entity->find($this->beneficiary_id)->full_name]),
                 'error' => $error,
@@ -84,7 +83,6 @@ class TakeAssistanceController extends BaseController
             ]);
        } else {
            $error = $this->beneficiary->lessons()->detach($this->id);
-
            return response()->json([
                'message' => __('app.messages.task_assistance.not_assistance', ['name' => $this->entity->find($this->beneficiary_id)->full_name]),
                'error' => $error,
@@ -97,82 +95,4 @@ class TakeAssistanceController extends BaseController
            ]);
        }
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @return JsonResponse
-     */
-    public function destroy()
-    {
-       if (! $this->beneficiary->lessons->contains($this->id)) {
-           $this->beneficiary->lessons()->dettach($this->id);
-            return response()->json([
-                'message' => __('app.messages.task_assistance.assistance', ['name' => $this->entity->find($this->beneficiary_id)->full_name]),
-            ]);
-        } else {
-            return response()->json([
-                'message' => __('app.messages.task_assistance.error', ['name' => $this->entity->find($this->beneficiary_id)->full_name]),
-                'error' => true,
-            ]);
-        }
-    }
-
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param Request $request
-     * @return void
-     */
-  /*  public function conceptUpdate(Request $request)
-    {
-        if ( is_null($this->beneficiary) ) return abort(404);
-
-            if ($request->input('assistance') == 'FALLO') {
-                if (! $this->beneficiary->lessons->contains($this->id)) {
-                    $this->beneficiary->lessons()->attach($this->id);
-                    $this->message = __('app.messages.task_assistance.assistance', ['name' => $this->entity->find($this->beneficiary_id)->full_name]);
-                    $this->error = true;
-                } else {
-                    $this->error = false;
-                    $this->message = __('app.messages.task_assistance.error', ['name' => $this->entity->find($this->beneficiary_id)->full_name]),
-                }
-        }
-        return response()->json([
-            'message' => $this->message,
-            'error' =>$this->error
-        ]);
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param Request $request
-     * @return Response
-     */
-   /* public function updateConcept(Request $request)
-    {
-        //$project = $this->entity::find($request->input('id'));
-
-        if ( is_null($this->beneficiary) ) return abort(404);
-
-        if ($project->concept !== 'RECHAZADO') {
-
-            $project->concept = 'APROBADO';
-
-            $project->save();
-
-            return response()->json([
-                'data' => $project,
-                'message' => __('app.messages.project.APROBADO'),
-            ]);
-        } else {
-            return response()->json([
-                'error' => true,
-                'message' => __('app.messages.project.update'),
-            ]);
-        }
-
-    }*/
 }

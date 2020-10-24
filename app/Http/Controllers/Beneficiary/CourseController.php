@@ -34,7 +34,7 @@ class CourseController extends BaseController
                 ]]);
 
                 $request->request->add(['beneficiary_id' => $beneficiary->id]);
-                $this->model = $beneficiary->courses->sortByDesc('name');
+                $this->model = $beneficiary->courses->sortByDesc('created_at');
 
                 return $next($request);
             }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\LessonRequest;
 use App\Lesson;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
 
 class LessonController extends BaseController
@@ -16,14 +17,14 @@ class LessonController extends BaseController
     public function __construct(Lesson $entity)
     {
         parent::__construct($entity, false);
-        $this->model = $this->entity->with('course')->orderBy('created_at');
+        $this->model = $this->entity->with('course')->orderBy('created_at', 'DESC');
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param LessonRequest $request
-     * @return Response
+     * @return JsonResponse
      */
     public function store(LessonRequest $request)
     {
@@ -35,7 +36,7 @@ class LessonController extends BaseController
      *
      * @param LessonRequest $request
      * @param int $id
-     * @return Response
+     * @return JsonResponse
      */
     public function update(LessonRequest $request, int $id)
     {

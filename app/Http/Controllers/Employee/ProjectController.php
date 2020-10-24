@@ -6,7 +6,9 @@ use App\Employee;
 use App\Http\Controllers\BaseController;
 use App\Http\Requests\ProjectRequest;
 use App\Project;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 
 class ProjectController extends BaseController
@@ -128,7 +130,7 @@ class ProjectController extends BaseController
      * Store a newly created resource in storage.
      *
      * @param ProjectRequest $request
-     * @return \Illuminate\Http\Response
+     * @return JsonResponse
      */
     public function store(ProjectRequest $request)
     {
@@ -140,7 +142,7 @@ class ProjectController extends BaseController
      *
      * @param ProjectRequest $request
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return JsonResponse
      */
     public function update(ProjectRequest $request, int $id)
     {
@@ -151,7 +153,7 @@ class ProjectController extends BaseController
      * Update the specified resource in storage.
      *
      * @param Request $request
-     * @return Response
+     * @return JsonResponse
      */
     public function conceptUpdate(Request $request)
     {

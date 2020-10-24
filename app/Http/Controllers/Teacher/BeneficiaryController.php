@@ -35,6 +35,7 @@ class BeneficiaryController extends BaseController
                         'create' => false,
                         'reload' => false,
                         'export' => true,
+                        'to_return' => true
                     ],
                     'table' => [
                         'check' => false,
@@ -46,7 +47,7 @@ class BeneficiaryController extends BaseController
                 ]]);
 
                 $request->request->add(['course_id' => $course->id]);
-                $this->model = $course->beneficiaries->sortByDesc('name');
+                $this->model = $course->beneficiaries->sortBy('last_name');
 
                 return $next($request);
             }

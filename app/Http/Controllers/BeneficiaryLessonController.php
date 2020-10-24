@@ -16,7 +16,7 @@ class BeneficiaryLessonController extends BaseController
     public function __construct(BeneficiaryLesson $entity)
     {
         parent::__construct($entity, false);
-        $this->model = $this->entity->with('beneficiary','lesson')->orderBy('created_at');
+        $this->model = $this->entity->with('beneficiary','lesson')->orderBy('created_at', 'DESC');
     }
 
     /**

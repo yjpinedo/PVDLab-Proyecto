@@ -6,6 +6,7 @@ use App\Http\Controllers\BaseController;
 use App\Http\Requests\MemberRequest;
 use App\Member;
 use App\Project;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
 
 class MemberController extends BaseController
@@ -110,7 +111,7 @@ class MemberController extends BaseController
                 ]]);
 
                 $request->request->add(['project_id' => $project->id]);
-                $this->model = $project->members->sortByDesc('name');
+                $this->model = $project->members->sortByDesc('created_at');
 
                 return $next($request);
             }
@@ -123,7 +124,7 @@ class MemberController extends BaseController
      * Display the specified resource.
      *
      * @param  int $id
-     * @return Response
+     * @return JsonResponse
      */
     public function show(int $id)
     {
@@ -134,7 +135,7 @@ class MemberController extends BaseController
      * Store a newly created resource in storage.
      *
      * @param MemberRequest $request
-     * @return Response
+     * @return JsonResponse
      */
     public function store(MemberRequest $request)
     {
@@ -146,7 +147,7 @@ class MemberController extends BaseController
      *
      * @param MemberRequest $request
      * @param int $id
-     * @return Response
+     * @return JsonResponse
      */
     public function update(MemberRequest $request, int $id)
     {

@@ -6,6 +6,7 @@ use App\Beneficiary;
 use App\Course;
 use App\Lesson;
 use App\Http\Controllers\BaseController;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
 
 class LessonController extends BaseController
@@ -37,7 +38,7 @@ class LessonController extends BaseController
                 ]]);
 
                 $request->request->add(['course_id' => $course->id]);
-                $this->model = $course->lessons->sortByDesc('name');
+                $this->model = $course->lessons->sortByDesc('created_at');
 
                 return $next($request);
             }
@@ -50,7 +51,7 @@ class LessonController extends BaseController
      * Display the specified resource.
      *
      * @param  int $id
-     * @return \Illuminate\Http\Response
+     * @return JsonResponse
      */
     public function show(int $id)
     {

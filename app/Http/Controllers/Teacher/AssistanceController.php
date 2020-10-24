@@ -46,7 +46,7 @@ class AssistanceController extends BaseController
                 ]]);
 
                 $request->request->add(['lesson_id' => $lesson->id]);
-                $this->model = $lesson->beneficiaries->sortByDesc('name');
+                $this->model = $lesson->beneficiaries->sortByDesc('created_at');
 
                 return $next($request);
             }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use App\Http\Requests\CategoryRequest;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
 
 class CategoryController extends BaseController
@@ -16,13 +17,14 @@ class CategoryController extends BaseController
     public function __construct(Category $entity)
     {
         parent::__construct($entity, false);
+        $this->model = $this->entity->orderBy('created_at', 'DESC');
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param CategoryRequest $request
-     * @return Response
+     * @return JsonResponse
      */
     public function store(CategoryRequest $request)
     {
@@ -34,7 +36,7 @@ class CategoryController extends BaseController
      *
      * @param CategoryRequest $request
      * @param int $id
-     * @return Response
+     * @return JsonResponse
      */
     public function update(CategoryRequest $request, int $id)
     {

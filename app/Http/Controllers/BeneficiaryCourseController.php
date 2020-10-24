@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\BeneficiaryCourseRequest;
 use App\BeneficiaryCourse;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
 
 class BeneficiaryCourseController extends BaseController
@@ -16,14 +17,14 @@ class BeneficiaryCourseController extends BaseController
     public function __construct(BeneficiaryCourse $entity)
     {
         parent::__construct($entity, false);
-        $this->model = $this->entity->with('beneficiary','course')->orderBy('created_at');
+        $this->model = $this->entity->with('beneficiary','course')->orderBy('created_at', 'DESC');
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param BeneficiaryCourseRequest $request
-     * @return Response
+     * @return JsonResponse
      */
     public function store(BeneficiaryCourseRequest $request)
     {
@@ -35,7 +36,7 @@ class BeneficiaryCourseController extends BaseController
      *
      * @param BeneficiaryCourseRequest $request
      * @param int $id
-     * @return Response
+     * @return JsonResponse
      */
     public function update(BeneficiaryCourseRequest $request, int $id)
     {

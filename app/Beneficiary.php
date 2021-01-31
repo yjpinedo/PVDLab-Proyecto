@@ -224,4 +224,12 @@ class Beneficiary extends Base
     {
         return $this->hasMany(Transfer::class);
     }
+
+    /**
+     * @return HasMany
+     */
+    public function loans()
+    {
+        return $this->hasMany(Loan::class);
+    }
 }

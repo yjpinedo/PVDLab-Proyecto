@@ -2,6 +2,9 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+
 class Employee extends Base
 {
     /**
@@ -123,7 +126,7 @@ class Employee extends Base
     /**
      * Position relationship
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return BelongsTo
      */
     public function position()
     {
@@ -133,7 +136,7 @@ class Employee extends Base
     /**
      * Transfer relationship
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      */
     public function projects()
     {
@@ -143,10 +146,18 @@ class Employee extends Base
     /**
      * Transfer relationship
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      */
-    public function transfer()
+    public function transfers()
     {
         return $this->hasMany(Transfer::class);
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function loans()
+    {
+        return $this->hasMany(Loan::class);
     }
 }

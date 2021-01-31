@@ -48,4 +48,12 @@ class Article extends Base
     {
         return $this->belongsToMany(Warehouse::class, 'article_warehouse')->withPivot('stock')->withTimestamps();
     }
+
+    /**
+     * @return BelongsToMany
+     */
+    public function loans()
+    {
+        return $this->belongsToMany(Loan::class, 'article_loan')->withPivot('quantity')->withTimestamps();
+    }
 }

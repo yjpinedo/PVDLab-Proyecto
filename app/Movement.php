@@ -33,7 +33,7 @@ class Movement extends Base
             'actions' => false,
         ],
         'form' => [
-            [
+            /*[
                 'name' => 'type',
                 'type' => 'select',
                 'value' => 'app.selects.movement.type',
@@ -49,7 +49,7 @@ class Movement extends Base
             [
                 'name' => 'destination_id',
                 'type' => 'select_reload',
-            ],
+            ],*/
         ],
     ];
 

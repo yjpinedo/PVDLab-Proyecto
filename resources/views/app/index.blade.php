@@ -9,7 +9,7 @@
 @section('tools')
     @component('components.tools', [
         'crud' => $crud,
-        'create' => $crud !== 'articles' ? $tools['create'] ?? false and !empty($form) : $tools['create'] ?? false,
+        'create' => $crud !== 'articles' && $crud !== 'loans' ? $tools['create'] ?? false and !empty($form) : $tools['create'] ?? false,
         'reload' => $tools['reload'] ?? false,
         'export' => $tools['export'] ?? false,
         'to_return' => $tools['to_return'] ?? false

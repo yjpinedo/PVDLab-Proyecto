@@ -7,10 +7,12 @@ function active(id, active) {
 }
 
 function create() {
-    if (crud !== '/articles') {
+    if (crud !== '/articles' && crud !== '/loans') {
         resetForm();
         $('#form .form-group:first .form-control').focus();
         dataTable.rows().deselect();
+    } else if (crud === '/loans') {
+        window.location.href = '/loans/create';
     } else {
         window.location.href = '/articles/create';
     }

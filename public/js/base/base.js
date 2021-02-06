@@ -235,6 +235,9 @@ $('#picture_form').on('change', function(){
 function dataSelect(reload) {
     if (crud === '/articles/create') {
         ajaxRequest('/select?id=category_id_form&name=category_id', null, 'GET', reloadSelect, formPortlet);
+    } else if (crud === '/loans/create') {
+        ajaxRequest('/select?id=beneficiary_id_form&name=beneficiary_id', null, 'GET', reloadSelect, formPortlet);
+        ajaxRequest('/select?id=article_id_form&name=article_id', null, 'GET', reloadSelect, formPortlet);
     } else {
         let select = reload.parent().siblings('div').children('select');
         let url = routes['select'].url + '?id=' + select.attr('id') + '&name=' + select.attr('name');
@@ -294,7 +297,7 @@ $(document).ready( function () {
     //Init bootstrap switch
     $('.switch').bootstrapSwitch();
     if (form.length !== 0){
-        if (crud === '/articles/create' || crud.indexOf('edit')) {
+        if (crud === '/articles/create' || crud.indexOf('edit') || crud === '/loans/create') {
             disableForm(false, false);
         } else {
             disableForm(true);

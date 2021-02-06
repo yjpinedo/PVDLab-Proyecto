@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Article;
 use App\Loan;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -17,6 +18,11 @@ class LoanController extends BaseController
     {
         parent::__construct($entity, false);
         $this->model = $this->entity->with('articles', 'beneficiary', 'employee')->orderBy('created_at', 'DESC');
+    }
+
+    public function create(){
+        $articles = Article::orderBy('created_at', 'DESC')->get();
+        return view('loans.create', compact('articles'));
     }
 
     /**

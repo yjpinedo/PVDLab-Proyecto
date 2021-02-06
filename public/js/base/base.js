@@ -266,14 +266,13 @@ function state(id, next) {
     let url = routes.update.url.replace('/:id', '');
     ajaxRequest(url, formData, routes.update.method, createRow, tablePortlet);
 }
+
 function concept(id, next) {
     let formData = new FormData();
     formData.append('concept', next);
     formData.append('id', id);
 
     let url = routes.update.url.replace('/:id', '');
-    console.log(routes.update.method);
-    console.log(url);
     ajaxRequest(url, formData, routes.update.method, createRow, tablePortlet);
 }
 function assistance_list(id, next) {

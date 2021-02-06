@@ -104,6 +104,9 @@ return [
                     [
                         'crud' => 'movements',
                     ],
+                    [
+                        'crud' => 'loans',
+                    ],
                 ],
             ],
         ],

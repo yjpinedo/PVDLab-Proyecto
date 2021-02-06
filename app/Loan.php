@@ -2,12 +2,68 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
-class Loan extends Model
+class Loan extends Base
 {
+    /**
+     * The mutated attributes that should be added for arrays.
+     *
+     * @var array
+     */
+    protected $appends = [
+        'actions', 'translated_state',
+    ];
+    /**
+     * The data to build the layout.
+     *
+     * @var array
+     */
+    protected $layout = [
+        'tools' => [
+            'create' => true,
+            'reload' => false,
+        ],
+        'table' => [
+            'check' => false,
+            'fields' => ['id', 'employee_id', 'beneficiary_id', 'refund', 'state'],
+            'active' => false,
+            'actions' => true,
+        ],
+        'form' => [],
+    ];
+
+    // Mutator
+
+    /**
+     * Mutator for the actions
+     *
+     * @return array
+     */
+    public function getActionsAttribute()
+    {
+        return [
+            'id' => $this->id,
+            'cancel' => $this->state == 'PENDIENTE',
+            'approved' => $this->state == 'APROBADO',
+            'next' => __('app.selects.loan.state_next.' . $this->state),
+        ];
+    }
+
+    /**
+     * Mutator for the actions
+     *
+     * @return array
+     */
+    public function getTranslatedStateAttribute()
+    {
+        return [
+            'state' => $this->state,
+            'class' => __('app.selects.project.concept_class.' . $this->state),
+        ];
+    }
+
     /**
      * @return BelongsToMany
      */

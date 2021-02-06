@@ -16,7 +16,7 @@ class CreateLoansTable extends Migration
         Schema::create('loans', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->date('refund')->default(\Carbon\Carbon::now()->addMonth());
-            $table->boolean('state')->default(0);
+            $table->enum('state', array_keys(__('app.selects.loans.state')))->default('PENDIENTE');
             $table->unsignedInteger('employee_id')->nullable();
             $table->foreign('employee_id')->references('id')->on('employees');
             $table->unsignedInteger('beneficiary_id')->nullable();

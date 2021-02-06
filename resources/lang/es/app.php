@@ -18,7 +18,12 @@ return [
             'not_assistance' => 'Se ha cancelado la asistencia del alumno :name',
             'error' => 'Ya se encuentra lista el alumno :name'
         ],
-
+        'loan' => [
+            'APROBADO' => 'Préstamo Aprobado',
+            'RECHAZADO' => 'Préstamo Rechazado',
+            'PENDIENTE' => 'Préstamo Pendiente',
+            'update' => 'No se puede aprobar un préstamo RECHAZADO',
+        ],
     ],
 
     'buttons' => [
@@ -55,6 +60,7 @@ return [
         'formats' => 'Formatos',
         'home' => 'Inicio',
         'lessons' => 'Lecciones',
+        'loans' => 'Préstamos',
         'locations' => 'Localizaciones',
         'members' => 'Integrantes',
         'positions' => 'Cargos',
@@ -207,6 +213,23 @@ return [
                 'FABRICACIÓN FICTICIA' => 'FABRICACIÓN FICTICIA',
                 'REGULARIZACIÓN' => 'REGULACIÓN',
                 'LIBERACIÓN' => 'LIBERACIÓN',
+            ],
+        ],
+        'loans' => [
+            'state' => [
+                'APROBADO' => 'APROBADO',
+                'RECHAZADO' => 'RECHAZADO',
+                'PENDIENTE' => 'PENDIENTE',
+            ],
+            'state_class' => [
+                'APROBADO' => 'success',
+                'RECHAZADO' => 'danger',
+                'PENDIENTE' => 'warning',
+            ],
+            'state_next' => [
+                'APROBADO' => '',
+                'RECHAZADO' => '',
+                'PENDIENTE' => 'APROBADO',
             ],
         ],
     ],

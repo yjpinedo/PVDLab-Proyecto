@@ -215,6 +215,7 @@ return [
         'transfer_id' => 'Transferencias',
         'type' => 'Tipo',
         'title_type' => 'Tipo de Título',
+        'refund' => 'Fecha de entrega',
         'year' => 'Año',
         'stock' => 'Cantidad',
         'warehouse_id' => 'Almacén',

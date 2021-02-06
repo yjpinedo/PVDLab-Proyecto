@@ -175,5 +175,7 @@ class TestSeeder extends Seeder
                 ]);
             }
         }
+
+        factory(\App\Loan::class, 100)->create();
     }
 }

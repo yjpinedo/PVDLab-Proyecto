@@ -86,6 +86,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::resource('articles', 'ArticleController');
         Route::resource('articles/{article}/warehouse', 'Articles\WarehouseController', ['except' => ['create', 'edit']]);
         Route::resource('movements', 'MovementController', ['except' => ['create', 'edit']]);
+
+        // Loans
+        Route::resource('loans', 'LoanController', ['except' => ['create', 'edit']]);
+        Route::put('loans', 'LoanController@updateState');
     });
 
     // Beneficiaries

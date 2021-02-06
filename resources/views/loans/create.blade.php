@@ -52,19 +52,20 @@
                             </div>
                             <div class="form-group m-form__group col-12">
                                 <label for="quantity_form">Cantidad</label>
-                                <input id="quantity_form" class="form-control m-input" autocomplete="off" name="quantity" type="text">
+                                <input id="quantity_form" class="form-control m-input" autocomplete="off" name="quantity" type="number">
                             </div>
                             <div class="form-group m-form__group col-12">
-                                <button id="btnAddArticle" class="btn btn-primary btn-block" type="button">Agregar Artículo</button>
+                                <button id="btn_add_article" class="btn btn-primary btn-block" type="button">Agregar Artículo</button>
                             </div>
                             <div class="form-group m-form__group col-12">
                                 <table id="articles_loans" class="table table-striped- table-bordered table-hover table-checkable table-component dtr-inline">
                                     <thead>
                                     <tr>
-                                        <th>Id</th>
+                                        <th>Codigo</th>
                                         <th>Nombre</th>
                                         <th>Serial</th>
                                         <th>Cantidad</th>
+                                        <th>Acciones</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -77,7 +78,7 @@
                     <div class="m-portlet__foot m-portlet__foot--fit">
                         <div class="m-form__actions m-form__actions" style="padding: 15px;">
                             <div class="row align-items-center">
-                                <div class="col-lg-8 m--align-left">
+                                <div class="col-lg-12 m--align-left">
                                     <button id="formButton" class="btn btn-primary btn-block add-loan" data-action="creating" type="button">Guardar</button>
                                 </div>
                             </div>
@@ -92,8 +93,65 @@
 @push('scripts')
     @include('includes.scripts')
     <script>
+        let cont = 0;
+        let numbers_row = $('#articles_loans tr').length;
         $(function (){
             $('.add-loan').hide();
+            $('#btn_add_article').click(function(){
+                let article_id = $('#article_id_form').val();
+                let quantity = $('#quantity_form').val();
+                if (article_id !== '') {
+                    if (quantity !== ''){
+                        if (quantity > '0'){
+                            $.get("{!!  route('loans.get_articles_by_id') !!}", { article_id:article_id, quantity:quantity }, function (article){
+                                if (article.data) {
+                                    let data = article.data;
+                                    let row =
+                                        '<tr id="row' + cont + '" role="row" class="odd selected">' +
+                                        '<td tabindex="0"><input type="hidden" name="article_id_table[]" value="' + data.id + '">' + data.code + '</td>' +
+                                        '<td>'+ data.name +'</td>' +
+                                        '<td>'+ data.serial +'</td>' +
+                                        '<td><input class="form-control" type="hidden" name="quantity_table[]" value="' + quantity + '" disabled>' + quantity + '</td>' +
+                                        '<td class=" dt-center"><button type="button" onclick="deleteRow(' + cont + ')" class="m-portlet__nav-link btn m-btn m-btn--icon m-btn--icon-only m-btn--pill m-btn--hover-danger" title="Eliminar Fila"><i class="fa fa-times"></i></button></td>' +
+                                        '</tr>';
+                                    cont++;
+                                    clear();
+                                    $('#articles_loans').append(row);
+                                    numbers_row = $('#articles_loans tr').length;
+                                    validateCounterRow(numbers_row);
+                                } else {
+                                    showMessage(article.message, true);
+                                }
+                            });
+                        } else {
+                            showMessage("La cantidad debe ser mayor a cero(0).", true);
+                        }
+                    } else {
+                        showMessage("Debe ingresar una cantidad.", true);
+                    }
+                } else {
+                    showMessage("Debe seleccionar un artículo.", true);
+                }
+            });
         });
+        function deleteRow(cont) {
+            $('#row' + cont).remove();
+            numbers_row = $('#articles_loans tr').length;
+            validateCounterRow(numbers_row);
+        }
+        function addRow(data) {
+
+        }
+        function clear() {
+            $('#article_id_form').val('');
+            $('#quantity_form').val('');
+        }
+        function validateCounterRow(cont) {
+            if (cont !== 1){
+                $('.add-loan').show();
+            } else {
+                $('.add-loan').hide();
+            }
+        }
     </script>
 @endpush

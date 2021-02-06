@@ -88,8 +88,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::resource('movements', 'MovementController', ['except' => ['create', 'edit']]);
 
         // Loans
-        Route::resource('loans', 'LoanController');
+        Route::resource('loans', 'LoanController')->except('show');
         Route::put('loans', 'LoanController@updateState');
+        Route::get('loans/get_articles_by_id', 'LoanController@getArticleById')->name('loans.get_articles_by_id');
     });
 
     // Beneficiaries

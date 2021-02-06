@@ -20,9 +20,9 @@ class LoanController extends BaseController
         $this->model = $this->entity->with('articles', 'beneficiary', 'employee')->orderBy('created_at', 'DESC');
     }
 
-    public function create(){
-        $articles = Article::orderBy('created_at', 'DESC')->get();
-        return view('loans.create', compact('articles'));
+    public function create()
+    {
+        return view('loans.create');
     }
 
     /**
@@ -63,5 +63,26 @@ class LoanController extends BaseController
                 'message' => __('app.messages.loan.update'),
             ]);
         }
+    }
+    public function getArticleById(Request $request)
+    {
+        $sumStock = 0;
+        $article = Article::whereId($request->input('article_id'))->with('warehouses')->first();
+        foreach ($article->warehouses as $warehouse) {
+            $sumStock =+ $warehouse->pivot->stock;
+        }
+        if ($sumStock >= intval($request->input('quantity'))) {
+            $response = [
+                'data' => $article,
+                'message' => '',
+                'error' => false,
+            ];
+        } else {
+            $response = [
+                'error' => true,
+                'message' => __('app.messages.loan.validate_quantity', ['quantity' => $sumStock]),
+            ];
+        }
+        return response()->json($response);
     }
 }

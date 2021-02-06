@@ -23,6 +23,7 @@ return [
             'RECHAZADO' => 'Préstamo Rechazado',
             'PENDIENTE' => 'Préstamo Pendiente',
             'update' => 'No se puede aprobar un préstamo RECHAZADO',
+            'validate_quantity' => 'Artículos insuficientes - (:quantity) artículos disponibles.',
         ],
     ],
 

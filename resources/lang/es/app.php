@@ -62,6 +62,7 @@ return [
         'home' => 'Inicio',
         'lessons' => 'Lecciones',
         'loans' => 'Préstamos',
+        'loans_articles' => 'Lista de Artículos',
         'locations' => 'Localizaciones',
         'members' => 'Integrantes',
         'positions' => 'Cargos',

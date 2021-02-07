@@ -37,6 +37,10 @@ function getStatus(column, value) {
                 '</a>'
             ;
         }
+        actions +=
+            '<a href="' + crud + '/' + value.id + '/article" class="m-portlet__nav-link btn m-btn m-btn--icon m-btn--icon-only m-btn--pill m-btn--hover-brand" title="Lista de artículos">' +
+            '<i class="fa fa-clipboard-check"></i>' +
+            '</a>';
 
         return actions;
     }

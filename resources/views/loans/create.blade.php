@@ -104,6 +104,7 @@
                     if (quantity !== ''){
                         if (quantity > '0'){
                             $.get("{!!  route('loans.get_articles_by_id') !!}", { article_id:article_id, quantity:quantity }, function (article){
+                                // console.log(article.data.);
                                 if (article.data) {
                                     let data = article.data;
                                     let row =
@@ -111,7 +112,7 @@
                                         '<td tabindex="0"><input type="hidden" name="article_id_table[]" value="' + data.id + '">' + data.code + '</td>' +
                                         '<td>'+ data.name +'</td>' +
                                         '<td>'+ data.serial +'</td>' +
-                                        '<td><input class="form-control" type="hidden" name="quantity_table[]" value="' + quantity + '" disabled>' + quantity + '</td>' +
+                                        '<td><input type="hidden" name="quantity_table[]" value="' + quantity + '">' + quantity + '</td>' +
                                         '<td class=" dt-center"><button type="button" onclick="deleteRow(' + cont + ')" class="m-portlet__nav-link btn m-btn m-btn--icon m-btn--icon-only m-btn--pill m-btn--hover-danger" title="Eliminar Fila"><i class="fa fa-times"></i></button></td>' +
                                         '</tr>';
                                     cont++;
@@ -143,7 +144,6 @@
 
         }
         function clear() {
-            $('#article_id_form').val('');
             $('#quantity_form').val('');
         }
         function validateCounterRow(cont) {

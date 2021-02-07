@@ -22,11 +22,14 @@ function createRow(results) {
     if (results === undefined) results = {};
 
     if (table.length !== 0) dataTable.ajax.reload();
-
+    console.log(crud);
+    console.log(crud === '/loans/create');
     if (crud === '/loans') {
-    } else if (form.length !== 0 && crud !== '/articles/create' && crud.indexOf('edit') === -1) {
+    } else if (form.length !== 0 && crud.indexOf('create') === -1 && crud.indexOf('edit') === -1) {
         if (results.data) showEntity(results.data);
         else resetForm('creating');
+    } else if (crud === '/loans/create'){
+        window.location.href = '/loans';
     } else {
         window.location.href = '/articles';
     }

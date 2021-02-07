@@ -156,8 +156,6 @@ return [
         'search' => 'Buscar',
 
         // App
-
-
         'address' => 'Dirección',
         'assistance_value' => 'Asistencia',
         'beneficiary_id' => 'Beneficiario',
@@ -220,5 +218,4 @@ return [
         'stock' => 'Cantidad',
         'warehouse_id' => 'Almacén',
     ],
-
 ];

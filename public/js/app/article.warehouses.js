@@ -1,6 +1,7 @@
 columnsDataTable = [
     {data: 'code'},
     {data: 'name'},
+    {data: 'pivot.stock'},
 ];
 
 /**

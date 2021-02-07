@@ -37,7 +37,7 @@ class WarehouseController extends BaseController
                     ],
                     'table' => [
                         'check' => false,
-                        'fields' => ['code', 'name',],
+                        'fields' => ['code', 'name', 'stock'],
                         'active' => false,
                         'actions' => false,
                     ],

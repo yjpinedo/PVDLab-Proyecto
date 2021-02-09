@@ -45,8 +45,8 @@ $(function() {
    dataTable.on('key-focus', function (e, table, cell) {
        if (table.$('tr.selected').attr('id') === '3') {
            $('#download').hide();
+           $('#loan_id_form').empty().append('<option value="">Seleccione un opción</option>');
            $("#beneficiary_id_form").change( function() {
-               $('#loan_id_form').empty().append('<option value="">Seleccione un opción</option>').selectpicker('refresh');;
                $.get('format-loans-beneficiaries', { beneficiary_id : $(this).val() }, function (loans){
                    if (loans.data){
                        $('#loan_id_form').prop('disabled', false);
@@ -59,7 +59,7 @@ $(function() {
                            $('#download').hide();
                        }
                    } else {
-                       $('#loan_id_form').prop('disabled', true);
+                       $('#loan_id_form').prop('disabled', true).empty().append('<option value="">Seleccione un opción</option>').selectpicker('refresh');
                        $('#download').hide();
                        showMessage(loans.message, true);
                    }
@@ -67,7 +67,8 @@ $(function() {
            });
        } else {
            $('#download').show();
-           $('#loan_id_form').prop('disabled', true);
+           $('#loan_id_form').prop('disabled', true).empty().append('<option value="">Seleccione un opción</option>').selectpicker('refresh');
+           $("#beneficiary_id_form").off();
        }
     });
 });

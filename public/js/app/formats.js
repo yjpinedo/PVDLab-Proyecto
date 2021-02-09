@@ -42,33 +42,39 @@ $('#download').on("click", function () {
 
 $(function() {
     $('#loan_id_form').prop('disabled', true);
+    let cont = 0;
    dataTable.on('key-focus', function (e, table, cell) {
        if (table.$('tr.selected').attr('id') === '3') {
+           cont = 0;
            $('#download').hide();
            $('#loan_id_form').empty().append('<option value="">Seleccione un opción</option>');
            $("#beneficiary_id_form").change( function() {
-               $.get('format-loans-beneficiaries', { beneficiary_id : $(this).val() }, function (loans){
-                   if (loans.data){
-                       $('#loan_id_form').prop('disabled', false);
-                       $.each(loans.data, function (index, value) {
-                            $('#loan_id_form').append('<option value="' + value.id + '">' + value.name + '</option>').selectpicker('refresh');
-                       });
-                       if ($('#loan_id_form option').length > 1) {
-                           $('#download').show();
+               if (cont === 0) {
+                   $.get('format-loans-beneficiaries', { beneficiary_id : $(this).val() }, function (loans){
+                       if (loans.data){
+                           $('#loan_id_form').prop('disabled', false);
+                           $.each(loans.data, function (index, value) {
+                                $('#loan_id_form').append('<option value="' + value.id + '">' + value.name + '</option>').selectpicker('refresh');
+                           });
+                           if ($('#loan_id_form option').length > 1) {
+                               $('#download').show();
+                           } else {
+                               $('#download').hide();
+                           }
                        } else {
+                           $('#loan_id_form').prop('disabled', true).empty().append('<option value="">Seleccione un opción</option>').selectpicker('refresh');
                            $('#download').hide();
+                           showMessage(loans.message, true);
                        }
-                   } else {
-                       $('#loan_id_form').prop('disabled', true).empty().append('<option value="">Seleccione un opción</option>').selectpicker('refresh');
-                       $('#download').hide();
-                       showMessage(loans.message, true);
-                   }
-               });
+                       cont = 0;
+                   });
+               }
+               cont++;
            });
        } else {
            $('#download').show();
            $('#loan_id_form').prop('disabled', true).empty().append('<option value="">Seleccione un opción</option>').selectpicker('refresh');
-           $("#beneficiary_id_form").off();
+           cont++;
        }
     });
 });

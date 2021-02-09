@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Beneficiary;
 use App\Employee;
 use App\Format;
+use App\Loan;
+use Illuminate\Http\Request;
 use PDF;
 use DateTime;
 use Illuminate\Support\Facades\Auth;
@@ -38,5 +40,38 @@ class FormatController extends BaseController
         $month = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
         $month = strtoupper($month[$date->format('m') - 1]) . ' ' . strtoupper($date->format('Y'));
         return PDF::loadView('formats.authorization', ['beneficiary' => $beneficiary, 'month' => $month])->stream();
+    }
+
+    public function format_loans($beneficiary_id, $loan_id)
+    {
+        $beneficiary = Beneficiary::find($beneficiary_id);
+        $loan = Loan::whereId($loan_id)->with('articles')->first();
+        $date = new DateTime();
+        $month = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+        $month = strtoupper($month[$date->format('m') - 1]) . ' ' . strtoupper($date->format('Y'));
+
+        return PDF::loadView('formats.loans', ['beneficiary' => $beneficiary, 'month' => $month, 'loan' => $loan])->stream();
+    }
+
+    public function getLoansByBeneficiary(Request $request)
+    {
+        $request->validate([
+            'beneficiary_id' => 'required|exists:beneficiaries,id'
+        ]);
+
+        $beneficiary = Beneficiary::whereId($request->only('beneficiary_id'))->first();
+        $loans = $beneficiary->loans;
+        if (count($loans) > 0) {
+            $response = [
+                'data' => $loans,
+                'error' => false
+            ];
+        } else {
+            $response = [
+                'message' => __('app.messages.loan.validate_loans', ['name' => $beneficiary->full_name]),
+                'error' => true
+            ];
+        }
+        return response()->json($response);
     }
 }

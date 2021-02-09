@@ -25,6 +25,10 @@ class Format extends Base
                 'name' => 'beneficiary_id',
                 'type' => 'select_reload',
             ],
+            [
+                'name' => 'loan_id',
+                'type' => 'select_reload',
+            ],
         ],
     ];
 

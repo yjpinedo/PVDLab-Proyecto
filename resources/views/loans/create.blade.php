@@ -23,6 +23,17 @@
                     <div class="m-portlet__body m--padding-10">
                         <div class="m-form__section m-form__section--first">
                             <div class="form-group m-form__group col-12 mt-2">
+                                <label for="name_form">Nombre de la actividad</label>
+                                <input id="name_form" class="form-control" style="width: 100%" autocomplete="off" name="name" type="text">
+                            </div>
+                            <div class="form-group m-form__group col-12 mt-2">
+                                <label for="place_form">Lugar de la actividad</label>
+                                <input id="place_form" class="form-control" style="width: 100%" autocomplete="off" name="place" type="text">
+                            </div><div class="form-group m-form__group col-12 mt-2">
+                                <label for="description_form">Descripción de la actividad</label>
+                                <textarea id="description_form" rows="5" class="form-control m-input" style="width: 100%" autocomplete="off" name="description"></textarea>
+                            </div>
+                            <div class="form-group m-form__group col-12 mt-2">
                                 <label for="refund_form">Fecha de Entrega</label>
                                 <input id="refund_form" class="form-control datepicker" data-provide="datepicker" style="width: 100%" autocomplete="off" name="refund" type="text">
                             </div>

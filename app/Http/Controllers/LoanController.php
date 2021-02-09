@@ -33,9 +33,12 @@ class LoanController extends BaseController
         $quantity = 0;
 
         $request->validate([
-            'refund' => 'required|date|after:'.Carbon::now()->format('Y-m-d'),
+            'name' => 'required',
+            'place' => 'required',
+            'description' => 'min:3|max:500',
+            'refund' => 'required|date|after:today',
             'beneficiary_id' => 'required|exists:beneficiaries,id',
-        ], ['after' => 'El campo :attribute debe ser una fecha posterior a la fecha actual']);
+        ]);
 
         $input = $request->except(['article_id_table', 'quantity_table', 'article_id', 'quantity']);
         $input['employee_id'] = auth()->user()->id;

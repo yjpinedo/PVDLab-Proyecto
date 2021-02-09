@@ -13,7 +13,7 @@ class Loan extends Base
      * @var array
      */
     protected $appends = [
-        'actions', 'translated_state',
+        'actions', 'full_name', 'translated_state',
     ];
     /**
      * The data to build the layout.
@@ -62,6 +62,16 @@ class Loan extends Base
             'state' => $this->state,
             'class' => __('app.selects.project.concept_class.' . $this->state),
         ];
+    }
+
+    /**
+     * Mutator for the full name
+     *
+     * @return string
+     */
+    public function getFullNameAttribute()
+    {
+        return $this->name;
     }
 
     /**

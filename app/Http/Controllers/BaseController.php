@@ -33,7 +33,7 @@ class BaseController extends Controller
         $this->crud = $this->entity->getTable();
         $this->model = $this->entity->orderBy('created_at');
         $this->user = $user;
-        $this->middleware('ajax')->except('index', 'format_responsibility', 'format_authorization', 'create', 'edit');
+        $this->middleware('ajax')->except('index', 'format_responsibility', 'format_authorization', 'format_loans', 'create', 'edit');
     }
 
     /**

@@ -8,6 +8,9 @@ use Illuminate\Database\Eloquent\Factory;
 
 $factory->define(Loan::class, function (Faker $faker) {
     return [
+        'name' => $faker->sentence,
+        'description' => $faker->text,
+        'place' => $faker->city,
         'refund' => \Carbon\Carbon::now()->addMonth(),
         'state' => $faker->randomElement(array_keys(__('app.selects.loans.state'))),
         'employee_id' => \App\Employee::all()->random()->id,

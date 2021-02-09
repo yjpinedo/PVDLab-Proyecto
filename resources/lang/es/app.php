@@ -24,6 +24,7 @@ return [
             'PENDIENTE' => 'Préstamo Pendiente',
             'update' => 'No se puede aprobar un préstamo RECHAZADO',
             'validate_quantity' => 'Artículos insuficientes - (:quantity) artículos disponibles.',
+            'validate_loans' => 'El beneficiario :name no ha realizado solcitudes de présamos.',
         ],
     ],
 

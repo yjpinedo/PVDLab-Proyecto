@@ -186,6 +186,7 @@ return [
         'furniture_id' => 'Muebles',
         'last_name' => 'Apellidos',
         'lesson_id' => 'Lecciones',
+        'loan_id' => 'Préstamo',
         'location_id' => 'Locaciones',
         'model' => 'Modelo',
         'neighborhood' => 'Barrio',
@@ -218,4 +219,10 @@ return [
         'stock' => 'Cantidad',
         'warehouse_id' => 'Almacén',
     ],
+
+    'values' => [
+        'refund' => [
+            'today' => 'hoy',
+        ]
+    ]
 ];

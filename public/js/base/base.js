@@ -238,6 +238,8 @@ function dataSelect(reload) {
     } else if (crud === '/loans/create') {
         ajaxRequest('/select?id=beneficiary_id_form&name=beneficiary_id', null, 'GET', reloadSelect, formPortlet);
         ajaxRequest('/select?id=article_id_form&name=article_id', null, 'GET', reloadSelect, formPortlet);
+    } else if (crud === '/beneficiary/loans/create') {
+        ajaxRequest('/select?id=article_id_form&name=article_id', null, 'GET', reloadSelect, formPortlet);
     } else {
         let select = reload.parent().siblings('div').children('select');
         let url = routes['select'].url + '?id=' + select.attr('id') + '&name=' + select.attr('name');

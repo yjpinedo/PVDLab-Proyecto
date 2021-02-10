@@ -82,6 +82,10 @@ class LoanController extends BaseController
 
         if ($loan->state !== 'RECHAZADO') {
 
+            if (is_null($loan->employee)){
+                $loan->employee_id = auth()->user()->id;
+            }
+
             if ($request->input('state') === 'RECHAZADO') {
                 $message = 'RECHAZADO';
                 $error = true;

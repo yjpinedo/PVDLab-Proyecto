@@ -123,8 +123,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::resource('lessons', 'LessonController', ['except' => ['create', 'destroy', 'edit', 'store']])->names('beneficiary.lessons');
 
         // Loans
-        Route::resource('loans', 'LoanController')->names('beneficiary.loans');
+        Route::resource('loans', 'LoanController', ['except' => ['show']])->names('beneficiary.loans');
         Route::resource('loans/{loan}/article', 'LoanArticleController')->names('beneficiary.loans.article');
+        Route::get('loans/get_articles_by_id', 'LoanController@getArticleById')->name('beneficiary.loans.get_articles_by_id');
     });
 
     // Teachers

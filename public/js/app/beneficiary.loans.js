@@ -20,7 +20,7 @@ function getStatus(column, value) {
     } else if (column === 4) {
         return (
             '<div>' +
-            '<a href="' + crud + '/' + value + '/article" class="m-portlet__nav-link btn m-btn m-btn--icon m-btn--icon-only m-btn--pill m-btn--hover-brand" title="Ver Artículos">' +
+            '<a href="' + crud + value + '/article" class="m-portlet__nav-link btn m-btn m-btn--icon m-btn--icon-only m-btn--pill m-btn--hover-brand" title="Ver Artículos">' +
             '<i class="fas fa-list-ol"></i>' +
             '</a>' +
             '</div>'

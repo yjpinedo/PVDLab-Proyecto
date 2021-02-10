@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Beneficiary;
 
+use App\Article;
 use App\Beneficiary;
 use App\Http\Controllers\BaseController;
 use App\Loan;
@@ -49,5 +50,73 @@ class LoanController extends BaseController
             }
             return abort(404);
         });
+    }
+
+    public function create()
+    {
+        return view('beneficiaries.loans.create');
+    }
+
+    public function store(Request $request)
+    {
+        $stock = 0;
+        $quantityStock = 0;
+        $quantity = 0;
+
+        $request->validate([
+            'name' => 'required',
+            'place' => 'required',
+            'description' => 'min:3|max:500',
+            'refund' => 'required|date|after:today',
+        ]);
+
+        $input = $request->except(['article_id_table', 'quantity_table', 'article_id', 'quantity']);
+        $input['beneficiary_id'] = Auth::user()['model_id'];
+        $loan = Loan::create($input);
+
+        foreach ($request->input('article_id_table') as $index => $article_id) {
+            $quantity = $request->input('quantity_table')[$index];
+            $loan->articles()->attach($article_id, ['quantity' => $quantity]);
+            $article = Article::whereId($article_id)->with('warehouses')->first();
+            foreach ($article->warehouses as $key => $warehouses) {
+                $quantityStock = $quantity - $warehouses->pivot->stock;
+                if ($quantityStock <= 0) {
+                    $quantityStock = ($quantityStock * (-1));
+                    $warehouses->articles()->updateExistingPivot($article_id, ['stock' => $quantityStock]);
+                    break;
+                } else {
+                    $warehouses->articles()->updateExistingPivot($article_id, ['stock' => '0']);
+                    $quantity = $quantityStock;
+                }
+            }
+        }
+
+        return response()->json([
+            'data' => $loan,
+            'message' => __('base.messages.store', ['name' => 'Préstamo']),
+            'reload' => false,
+        ]);
+    }
+
+    public function getArticleById(Request $request)
+    {
+        $sumStock = 0;
+        $article = Article::whereId($request->input('article_id'))->with('warehouses')->first();
+        foreach ($article->warehouses as $warehouse) {
+            $sumStock += $warehouse->pivot->stock;
+        }
+        if ($sumStock >= intval($request->input('quantity'))) {
+            $response = [
+                'data' => $article,
+                'message' => '',
+                'error' => false,
+            ];
+        } else {
+            $response = [
+                'error' => true,
+                'message' => __('app.messages.loan.validate_quantity', ['quantity' => $sumStock]),
+            ];
+        }
+        return response()->json($response);
     }
 }

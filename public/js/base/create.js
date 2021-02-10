@@ -7,10 +7,12 @@ function active(id, active) {
 }
 
 function create() {
-    if (crud !== '/articles' && crud !== '/loans') {
+    if (crud !== '/articles' && crud !== '/loans' && crud !== '/beneficiary/loans') {
         resetForm();
         $('#form .form-group:first .form-control').focus();
         dataTable.rows().deselect();
+    } else if (crud === '/beneficiary/loans') {
+        window.location.href = '/beneficiary/loans/create';
     } else if (crud === '/loans') {
         window.location.href = '/loans/create';
     } else {
@@ -23,13 +25,14 @@ function createRow(results) {
 
     if (table.length !== 0) dataTable.ajax.reload();
     console.log(crud);
-    console.log(crud === '/loans/create');
     if (crud === '/loans') {
     } else if (form.length !== 0 && crud.indexOf('create') === -1 && crud.indexOf('edit') === -1) {
         if (results.data) showEntity(results.data);
         else resetForm('creating');
     } else if (crud === '/loans/create'){
         window.location.href = '/loans';
+    } else if (crud === '/beneficiary/loans/create'){
+        window.location.href = '/beneficiary/loans/';
     } else {
         window.location.href = '/articles';
     }

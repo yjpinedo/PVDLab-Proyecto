@@ -38,10 +38,13 @@ function getStatus(column, value) {
             ;
         }
         actions +=
-            '<a href="' + crud + '/' + value.id + '/article" class="m-portlet__nav-link btn m-btn m-btn--icon m-btn--icon-only m-btn--pill m-btn--hover-brand" title="Lista de artículos">' +
+            '<a href="format-loan/' + value.beneficiary_id + '/' + value.id + '/loan" target="_blank" onclick="window.open(this.href) return false;" class="m-portlet__nav-link btn m-btn m-btn--icon m-btn--icon-only m-btn--pill m-btn--hover-info" title="Ver en PDF">' +
+            '<i class="fas fa-file-pdf"></i>' +
+            '</a>' +
+            '<a href="' + crud + '/' + value.id + '/article" class="m-portlet__nav-link btn m-btn m-btn--icon m-btn--icon-only m-btn--pill m-btn--hover-brand" title="Ver artículos">' +
             '<i class="fa fa-clipboard-check"></i>' +
-            '</a>';
-
+            '</a>'
+        ;
         return actions;
     }
 }

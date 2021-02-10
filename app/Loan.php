@@ -45,6 +45,7 @@ class Loan extends Base
     {
         return [
             'id' => $this->id,
+            'beneficiary_id' => $this->beneficiary->id,
             'cancel' => $this->state == 'PENDIENTE',
             'approved' => $this->state == 'APROBADO',
             'next' => __('app.selects.loan.state_next.' . $this->state),

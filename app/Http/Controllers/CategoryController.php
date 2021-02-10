@@ -28,6 +28,8 @@ class CategoryController extends BaseController
      */
     public function store(CategoryRequest $request)
     {
+        $lastId = Category::all()->last()->id;
+        $request['code'] = 'CAT - ' . ($lastId + 1);
         return parent::storeBase($request, false);
     }
 

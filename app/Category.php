@@ -3,6 +3,8 @@
 namespace App;
 
 
+use Illuminate\Database\Eloquent\Relations\HasMany;
+
 class Category extends Base
 {
 
@@ -33,10 +35,6 @@ class Category extends Base
         ],
         'form' => [
             [
-                'name' => 'code',
-                'type' => 'text',
-            ],
-            [
                 'name' => 'name',
                 'type' => 'text',
             ],
@@ -52,7 +50,7 @@ class Category extends Base
     /**
      * Furniture relationship
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      */
     public function furniture()
     {

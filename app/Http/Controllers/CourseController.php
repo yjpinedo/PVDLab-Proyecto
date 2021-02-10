@@ -45,7 +45,6 @@ class CourseController extends BaseController
      */
     public function update(CourseRequest $request, int $id)
     {
-        return
-            parent::updateBase($request, $id);
+        return parent::updateBase($request, $id);
     }
 }

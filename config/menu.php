@@ -100,6 +100,9 @@ return [
                 'name' => 'movements',
                 'submenu' => [
                     [
+                        'crud' => 'categories',
+                    ],
+                    [
                         'crud' => 'warehouses',
                     ],
                     [

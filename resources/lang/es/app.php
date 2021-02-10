@@ -39,11 +39,16 @@ return [
         'articles_warehouses' => 'Lista de almacenes',
         'beneficiaries' => 'Beneficiarios',
         'beneficiary' => [
-            'courses_lists' => 'Cursos',
+            'courses_lists' => 'Cursos Disponibles',
             'application_course' => 'Aplicar Curso',
             'courses' => ' Mis Cursos',
             'projects' => 'Mis Proyectos',
             'lessons' => 'Lecciones',
+            'loan' => [
+                'articles' => 'Artículos asociados al préstamo',
+                'list_loans' => 'Lista de préstamos',
+            ],
+            'loans' => 'Solicitud de Préstamos',
             'members' => 'Integrantes',
         ],
         'beneficiary_courses' => 'Beneficiarios - Cursos',

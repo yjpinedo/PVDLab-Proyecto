@@ -102,13 +102,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     // Beneficiaries
     Route::middleware(['role:beneficiaries'])->namespace('Beneficiary')->prefix('beneficiary')->group(function () {
+
         // Courses
         Route::resource('courses', 'CourseController', ['except' => ['create', 'destroy', 'edit', 'store']])->names('beneficiary.courses');
-
         Route::resource('courses_lists', 'CourseListController', ['except' => ['create', 'destroy', 'edit', 'store']])->names('beneficiary.courses_lists');
         Route::resource('courses_lists/{course}/application_course', 'ApplicationCourseController', ['only' => ['store', 'show', 'index']]);
-
-
         Route::name('course_')->group(function () {
             // Lessons
             Route::resource('courses/{course}/lessons', 'LessonController', ['except' => ['create', 'destroy', 'edit']]);
@@ -116,7 +114,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
         // Projects
         Route::resource('projects', 'ProjectController', ['except' => ['create', 'destroy']])->names('beneficiary.projects');
-
         Route::name('project_')->group(function () {
             // Member
             Route::resource('projects/{project}/members', 'MemberController', ['except' => ['create', 'destroy', 'edit']]);
@@ -125,6 +122,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
         // Lessons
         Route::resource('lessons', 'LessonController', ['except' => ['create', 'destroy', 'edit', 'store']])->names('beneficiary.lessons');
 
+        // Loans
+        Route::resource('loans', 'LoanController')->names('beneficiary.loans');
+        Route::resource('loans/{loan}/article', 'LoanArticleController')->names('beneficiary.loans.article');
     });
 
     // Teachers

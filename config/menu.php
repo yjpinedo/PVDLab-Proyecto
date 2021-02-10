@@ -17,6 +17,10 @@ return [
                 'crud' => 'beneficiary.courses_lists',
                 'icon' => 'fa fa-book-open',
             ],
+            [
+                'crud' => 'beneficiary.loans',
+                'icon' => 'fas fa-dolly',
+            ],
         ],
     ],
 

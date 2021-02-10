@@ -40,6 +40,10 @@ $(document).ready(function () {
         optionsDataTable(table)
     ).on('key-focus', function (e, table, cell) {
         keyFocus(e, table, cell);
+        if (crud === '/courses' || crud === '/teacher/courses') {
+            $('#format_slug_form').show();
+            $('label[for=format_slug_form]').show();
+        }
         if (form.length !== 0) show(table.$('tr.selected').attr('id'));
     }).on('change', '.m-group-checkable', function(){
         let a = $(this).closest('table').find('td:first-child .m-checkable'),

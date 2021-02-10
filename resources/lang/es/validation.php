@@ -183,6 +183,7 @@ return [
         'financing' => 'Financiación',
         'financial_entity' => 'Entidad',
         'financing_description' => 'Descripción',
+        'format_slug' => 'URL',
         'furniture_id' => 'Muebles',
         'last_name' => 'Apellidos',
         'lesson_id' => 'Lecciones',

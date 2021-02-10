@@ -13,7 +13,7 @@ class Course extends Base
      * @var array
      */
     protected $appends = [
-        'full_name',
+        'full_name', 'format_slug'
     ];
 
     /**
@@ -46,6 +46,10 @@ class Course extends Base
                 'name' => 'description',
                 'type' => 'textarea',
             ],
+            [
+                'name' => 'format_slug',
+                'type' => 'text',
+            ],
         ],
     ];
 
@@ -59,6 +63,16 @@ class Course extends Base
     public function getFullNameAttribute()
     {
         return $this->name;
+    }
+
+    /**
+     * Mutator for the full name
+     *
+     * @return string
+     */
+    public function getFormatSlugAttribute()
+    {
+        return strtolower($this->slug);
     }
 
     // Relationships

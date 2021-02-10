@@ -74,7 +74,11 @@ class BaseController extends Controller
      */
     protected function storeBase(FormRequest $request, $reload = false)
     {
-        $entity = $this->entity->create($request->all());
+        if ($this->crud == 'courses' || $this->crud == 'teacher.courses'){
+            $entity = $this->entity->create($request->except('format_slug'));
+        } else {
+            $entity = $this->entity->create($request->all());
+        }
 
         if ($this->user) {
             $className = get_class($this->entity);
@@ -102,7 +106,11 @@ class BaseController extends Controller
      */
     protected function updateBase(FormRequest $request, int $id)
     {
-        $entity = $this->entity->find($id)->fill($request->all());
+        if ($this->crud == 'courses' || $this->crud == 'teacher.courses'){
+            $entity = $this->entity->find($id)->fill($request->except('format_slug'));
+        } else {
+            $entity = $this->entity->find($id)->fill($request->all());
+        }
         $entity->save();
 
         if ($this->user) {

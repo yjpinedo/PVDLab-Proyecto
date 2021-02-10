@@ -48,7 +48,10 @@ class CourseController extends BaseController
                             'name' => 'description',
                             'type' => 'textarea',
                         ],
-
+                        [
+                            'name' => 'format_slug',
+                            'type' => 'text',
+                        ],
                     ],
                 ]]);
 
@@ -72,6 +75,7 @@ class CourseController extends BaseController
     {
         $lastId = Course::all()->last()->id;
         $request['code'] = 'CUR - ' . ($lastId + 1);
+        $request['slug'] = $request->root() . "/beneficiary/courses_lists/" . ($lastId + 1) . "/application_course";
         return parent::storeBase($request, false);
     }
 

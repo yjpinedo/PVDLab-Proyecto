@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Course;
 use App\Http\Requests\CourseRequest;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
 class CourseController extends BaseController
@@ -29,7 +30,9 @@ class CourseController extends BaseController
     public function store(CourseRequest $request)
     {
         $lastId = Course::all()->last()->id;
+        $request->except(['format_slug']);
         $request['code'] = 'CUR - ' . ($lastId + 1);
+        $request['slug'] = $request->root() . "/beneficiary/courses_lists/" . ($lastId + 1) . "/application_course";
         return parent::storeBase($request, false);
     }
 

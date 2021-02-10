@@ -10,6 +10,10 @@ function create() {
     if (crud !== '/articles' && crud !== '/loans' && crud !== '/beneficiary/loans') {
         resetForm();
         $('#form .form-group:first .form-control').focus();
+        if (crud === '/courses' || crud === '/teacher/courses') {
+            $('#format_slug_form').hide();
+            $('label[for=format_slug_form]').hide();
+        }
         dataTable.rows().deselect();
     } else if (crud === '/beneficiary/loans') {
         window.location.href = '/beneficiary/loans/create';
@@ -24,11 +28,17 @@ function createRow(results) {
     if (results === undefined) results = {};
 
     if (table.length !== 0) dataTable.ajax.reload();
-    console.log(crud);
     if (crud === '/loans') {
     } else if (form.length !== 0 && crud.indexOf('create') === -1 && crud.indexOf('edit') === -1) {
-        if (results.data) showEntity(results.data);
-        else resetForm('creating');
+        if (results.data) {
+            showEntity(results.data);
+            if (crud === '/courses' || crud === '/teacher/courses') {
+                $('#format_slug_form').show();
+                $('label[for=format_slug_form]').show();
+            }
+        } else {
+            resetForm('creating');
+        }
     } else if (crud === '/loans/create'){
         window.location.href = '/loans';
     } else if (crud === '/beneficiary/loans/create'){

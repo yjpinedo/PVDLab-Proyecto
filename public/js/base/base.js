@@ -112,6 +112,10 @@ formButton.on("click", function () {
     } else if (action === 'show') {
         disableForm(false);
         $('#form .form-group:first .form-control').focus();
+        if (crud === '/courses' || crud === '/teacher/courses') {
+            $('#format_slug_form').hide();
+            $('label[for=format_slug_form]').hide();
+        }
         formReset.removeClass("m--hide");
         formTitle.html(Lang.get('base/base.titles.update', {name: formTitle.attr('data-name')}));
         formButton.html(Lang.get('base/base.buttons.update')).attr('data-action', 'update');
@@ -129,9 +133,17 @@ formReset.on("click", function () {
 
     if (action === 'update') {
         show($('#id_form').val());
+        if (crud === '/courses' || crud === '/teacher/courses') {
+            $('#format_slug_form').show();
+            $('label[for=format_slug_form]').show();
+        }
     } else if (action === 'creating' && table.length === 0) {
         window.location.href = "/home";
     } else {
+        if (crud === '/courses' || crud === '/teacher/courses') {
+            $('#format_slug_form').show();
+            $('label[for=format_slug_form]').show();
+        }
         dataTable.rows().deselect();
         resetForm('creating');
     }

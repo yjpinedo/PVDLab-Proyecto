@@ -1,8 +1,8 @@
 columnsDataTable = [
     {data: 'id'},
     {data: 'full_name'},
-    {data: 'title'},
-    {data: 'title_type'},
+    {data: 'title', customValue: true},
+    {data: 'title_type', customValue: true},
 ];
 
 /**
@@ -14,5 +14,9 @@ columnsDataTable = [
  * @returns {String} The HTML string with the status
  */
 function getStatus(column, value) {
-
+    if (column === 2) {
+        return value === null ? 'SIN DEFINIR, POR FAVOR ACTUALIZAR DATOS' : value;
+    } else if (column === 3) {
+        return value === null ? 'SIN DEFINIR, POR FAVOR ACTUALIZAR DATOS' : value;
+    }
 }

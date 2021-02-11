@@ -77,7 +77,6 @@ function ajaxRequest(url, data, method, callback, element) {
         },
         error: function(results){
             if(results.status === 422){
-                // noinspection JSUnresolvedVariable
                 showValidations(results.responseJSON.errors);
             }
         },
@@ -121,6 +120,8 @@ formButton.on("click", function () {
         formButton.html(Lang.get('base/base.buttons.update')).attr('data-action', 'update');
         if (crud === '/formats') {
             formButton.html('Descargar');
+        } else if (crud === '/users') {
+            formButton.html('Asignar Rol');
         }
     } else {
         let url = routes['update'].url.replace(':id', id);

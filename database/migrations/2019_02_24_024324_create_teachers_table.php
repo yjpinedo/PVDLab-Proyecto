@@ -26,10 +26,10 @@ class CreateTeachersTable extends Migration
             $table->string('phone', 15)->nullable();
             $table->string('cellphone', 15)->nullable();
             $table->string('email')->unique();
-            $table->string('title', 100);
-            $table->enum('title_type', array_keys(__('app.selects.teacher.title_type')));
-            $table->string('collage', 100);
-            $table->string('year', 4);
+            $table->string('title', 100)->nullable();
+            $table->enum('title_type', array_keys(__('app.selects.teacher.title_type')))->nullable();
+            $table->string('collage', 100)->nullable();
+            $table->string('year', 4)->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

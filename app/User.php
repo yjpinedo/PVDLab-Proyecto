@@ -37,4 +37,39 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+
+    /**
+     * The data to build the layout.
+     *
+     * @var array
+     */
+    public function getLayout(): array
+    {
+        return [
+            'title' => __('app.titles.users'),
+            'subtitle' => __('Lista de usuarios'),
+            'tools' => [
+                'create' => false,
+                'reload' => false,
+            ],
+            'table' => [
+                'check' => false,
+                'fields' => ['id', 'name', 'email'],
+                'active' => false,
+                'actions' => false,
+            ],
+            'form' => [
+                [
+                    'name' => 'beneficiary_id',
+                    'type' => 'select_reload',
+                ],
+                [
+                    'name' => 'role_id',
+                    'type' => 'select_reload',
+                ],
+            ],
+        ];
+    }
 }

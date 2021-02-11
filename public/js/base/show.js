@@ -1,7 +1,9 @@
 function show(id) {
     if (id !== 0) {
-        let url = routes.show.url.replace(':id', id);
-        ajaxRequest(url, null, routes.show.method, showEntity, formPortlet);
+        if (crud !== '/users') {
+            let url = routes.show.url.replace(':id', id);
+            ajaxRequest(url, null, routes.show.method, showEntity, formPortlet);
+        }
     } else create();
 }
 

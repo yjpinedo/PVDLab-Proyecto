@@ -75,6 +75,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::resource('loans/{loan}/article', 'Loans\ArticleController', ['except' => ['create', 'edit']]);
         Route::put('loans', 'LoanController@updateState');
         Route::get('loans/get_articles_by_id', 'LoanController@getArticleById')->name('loans.get_articles_by_id');
+
+        // Users
+        Route::resource('users', 'UserController', ['except' => ['create', 'edit', 'show', 'update', 'destroy']])->names('users');
+        Route::get('users/get-roles', 'UserController@getRoles')->name('users.getRoles');
     });
 
     // Beneficiaries

@@ -63,6 +63,15 @@ return [
                 'icon' => 'fa fa-file-alt',
             ],
             [
+                'icon' => 'fa fa-user-cog',
+                'name' => 'users',
+                'submenu' => [
+                    [
+                        'crud' => 'users',
+                    ],
+                ],
+            ],
+            [
                 'icon' => 'fa fa-clipboard-list',
                 'name' => 'courses',
                 'submenu' => [

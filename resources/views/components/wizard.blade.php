@@ -114,7 +114,8 @@
     </div>
     @if(
         $crud !== 'beneficiary.courses_application' and
-        $crud !== 'formats'
+        $crud !== 'formats' and
+        $crud !== 'users'
         )
         <div class="m-portlet__foot">
             <div class="row align-items-center">
@@ -129,6 +130,14 @@
             <div class="row align-items-center">
                 <div class="col-lg-12">
                     {{Form::button(__('app.buttons.download'), ['id' => 'download', 'class' => 'btn btn-primary', 'data-action' => 'create'])}}
+                </div>
+            </div>
+        </div>
+    @elseif ($crud === 'users')
+        <div class="m-portlet__foot">
+            <div class="row align-items-center">
+                <div class="col-lg-12">
+                    {{Form::button(__('app.buttons.assign_role'), ['id' => 'assign', 'class' => 'btn btn-primary', 'data-action' => 'create'])}}
                 </div>
             </div>
         </div>

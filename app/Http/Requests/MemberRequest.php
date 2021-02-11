@@ -17,7 +17,7 @@ class MemberRequest extends BaseRequest
             'name' => 'required|min:3|max:50|alpha_space',
             'last_name' => 'required|min:3|max:50|alpha_space',
             'sex' => 'required|in:' . implode(',', array_keys(__('app.selects.person.sex'))),
-            'birth_date' => 'required|date|before:Today',
+            'birth_date' => 'required|date|before:today',
             'place_of_birth' => 'required|min:3|max:50',
             'address' => 'required|min:3|max:50',
             'neighborhood' => 'required|min:3|max:50',

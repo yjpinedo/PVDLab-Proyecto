@@ -26,11 +26,16 @@ return [
             'validate_quantity' => 'Artículos insuficientes - (:quantity) artículos disponibles.',
             'validate_loans' => 'El beneficiario :name no ha realizado solcitudes de présamos.',
         ],
+        'users' => [
+            'assign' => 'Role asignado con éxito',
+            'error' => 'No se asignó el rol con éxito'
+        ],
     ],
 
     'buttons' => [
         'apply' => 'Aplicar',
         'download' => 'Descargar',
+        'assign_role' => 'Asignar Rol',
     ],
 
     'titles' => [
@@ -62,14 +67,11 @@ return [
             'beneficiaries' => 'Beneficiarios',
             'projects' => 'Proyectos',
         ],
-        'furniture' => 'Muebles',
-        'furniture_categories' => 'Categorias - Muebles',
         'formats' => 'Formatos',
         'home' => 'Inicio',
         'lessons' => 'Lecciones',
         'loans' => 'Préstamos',
         'loans_articles' => 'Lista de Artículos',
-        'locations' => 'Localizaciones',
         'members' => 'Integrantes',
         'positions' => 'Cargos',
         'projects' => 'Proyectos',
@@ -80,8 +82,7 @@ return [
             'courses' => 'Cursos',
             'lessons' => 'Lecciones',
         ],
-        'transfers' => 'Tranferencias',
-        'transfer_furnitures' => 'Tranferencias - Muebles',
+        'users' => 'Asignar rol',
         'movements' => 'Movimientos',
         'warehouses' => 'Almacén',
         'warehouses_articles' => 'Almacén - Artículos'

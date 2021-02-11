@@ -282,7 +282,9 @@ class Base
      */
     public static function select(string $model)
     {
-        return Base::dynamicModelInstance($model)->select();
+        if ($model != 'role_id') {
+            return Base::dynamicModelInstance($model)->select();
+        }
     }
 
     /**

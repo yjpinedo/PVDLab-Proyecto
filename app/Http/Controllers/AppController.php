@@ -28,7 +28,7 @@ class AppController extends Controller
     {
         if (Auth::user()->hasRole('beneficiaries')) return redirect()->route('beneficiary.projects.index');
         else if (Auth::user()->hasRole('teachers')) return redirect()->route('teacher.courses.index');
-        else if (Auth::user()->hasRole('employees')) return redirect()->route('employee.transfers.index');
+        else if (Auth::user()->hasRole('employees')) return redirect()->route('employee.projects.index');
         else if (Auth::user()->hasRole('admin')) return redirect()->route('projects.index');
         else return abort(404);
     }

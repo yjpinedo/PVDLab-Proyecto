@@ -28,12 +28,12 @@ $factory->define(Project::class, function (Faker $faker) {
         'financing_description' => $faker->text($maxNbChars = 200),
         'observations' => $faker->text($maxNbChars = 200),
         'concept' => $faker->randomElement(array_keys(__('app.selects.project.concept'))),
-        'beneficiary_id' => function () {
+        /*'beneficiary_id' => function () {
             return factory(Beneficiary::class)->create()->id;
         },
         'employee_id' => function () {
             return factory(Employee::class)->create()->id;
-        },
+        },*/
         'reviewed_at' => $faker->dateTimeBetween($startDate = '-1 year', $endDate = 'now'),
     ];
 });

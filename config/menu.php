@@ -1,7 +1,6 @@
 <?php
 
 return [
-
     [
         'name' => 'beneficiaries',
         'menu' => [
@@ -28,16 +27,12 @@ return [
         'name' => 'employees',
         'menu' => [
             [
-                'crud' => 'employee.transfers',
-                'icon' => 'fa fa-exchange-alt',
+                'crud' => 'employee.projects',
+                'icon' => 'fa fa-project-diagram',
             ],
             [
                 'crud' => 'employee.beneficiaries',
                 'icon' => 'fa fa-users',
-            ],
-            [
-                'crud' => 'employee.projects',
-                'icon' => 'fa fa-project-diagram',
             ],
         ],
     ],
@@ -48,11 +43,7 @@ return [
             [
                 'crud' => 'teacher.courses',
                 'icon' => 'fa fa-clipboard-list',
-            ],/*
-            [
-                'crud' => 'teacher.lessons',
-                'icon' => 'fa fa-list-ul',
-            ],*/
+            ],
         ],
     ],
 
@@ -118,27 +109,4 @@ return [
             ],
         ],
     ],
-
 ];
-
-/*
- * [
-                'icon' => 'fa fa-boxes',
-                'name' => 'furniture',
-                'submenu' => [
-                    [
-                        'crud' => 'transfers',
-                    ],
-                    [
-                        'crud' => 'furniture',
-                    ],
-                    [
-                        'crud' => 'locations',
-                    ],
-                    [
-                        'crud' => 'categories',
-                    ],
-                ],
-            ],
- *
- * */

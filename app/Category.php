@@ -48,13 +48,13 @@ class Category extends Base
     // Relationships
 
     /**
-     * Furniture relationship
+     * Articles relationship
      *
      * @return HasMany
      */
-    public function furniture()
+    public function articles()
     {
-        return $this->hasMany(Furniture::class);
+        return $this->hasMany(Article::class);
     }
 
 

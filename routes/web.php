@@ -43,19 +43,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
         // Lessons
         Route::resource('lessons', 'LessonController', ['except' => ['create', 'edit']]);
-
         // Categories
         Route::resource('categories', 'CategoryController', ['except' => ['create', 'edit']]);
-
-        // Locations
-        Route::resource('locations', 'LocationController', ['except' => ['create', 'edit']]);
-
-        // Furniture
-        Route::resource('furniture', 'FurnitureController', ['except' => ['create', 'edit']]);
-
         // Positions
         Route::resource('positions', 'PositionController', ['except' => ['create', 'edit']]);
-
         // Employees
         Route::resource('employees', 'EmployeeController', ['except' => ['create', 'edit']]);
 
@@ -63,25 +54,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::resource('projects', 'ProjectController', ['except' => ['create', 'edit']]);
         Route::put('projects', 'ProjectController@updateConcept');
 
-        // Transfers
-        Route::resource('transfers', 'TransferController', ['except' => ['create', 'edit']]);
-
         // Member
         Route::resource('members', 'MemberController', ['except' => ['create', 'edit']]);
 
-        // Transfer - Furniture
-        Route::resource('furniture_transfers', 'FurnitureTransferController', ['except' => ['create', 'edit']]);
-
-        // responsibility
-        //Route::resource('responsibility', 'ResponsibilityController');
-
         // Format
         Route::resource('formats', 'FormatController', ['only' => ['store', 'show', 'index']]);
-        /*Route::get('/format-loan/{beneficiary_id}/{loan_id}/loan', function ($beneficiary_id, $loan_id){
-            return 'el id del beneficiario = ' . $beneficiary_id .' - '. 'El id del préstamo = ' . $loan_id;
-        });*/
         Route::get('/format-loan/{beneficiary_id}/{loan_id}/loan', 'FormatController@format_loans');
-        // FormatController@format_loans'
         Route::get('/format-responsibility/{beneficiary_id}', 'FormatController@format_responsibility');
         Route::get('/format-authorization/{beneficiary_id}', 'FormatController@format_authorization');
         Route::get('/format-loans-beneficiaries', 'FormatController@getLoansByBeneficiary')->name('formats.format-loans-beneficiaries');
@@ -102,7 +80,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     // Beneficiaries
     Route::middleware(['role:beneficiaries'])->namespace('Beneficiary')->prefix('beneficiary')->group(function () {
-
         // Courses
         Route::resource('courses', 'CourseController', ['except' => ['create', 'destroy', 'edit', 'store']])->names('beneficiary.courses');
         Route::resource('courses_lists', 'CourseListController', ['except' => ['create', 'destroy', 'edit', 'store']])->names('beneficiary.courses_lists');
@@ -140,35 +117,25 @@ Route::middleware(['auth', 'verified'])->group(function () {
             Route::resource('courses/{course}/lessons', 'LessonController', ['except' => ['create', 'destroy', 'edit']]);
             // Lessons - Beneficiaries
             Route::resource('courses/{course}/lessons/{lesson}/take_assistance', 'TakeAssistanceController', ['except' => ['create', 'destroy', 'edit']]);
-            //Route::put('projects', 'ProjectController@updateConcept');
             // Lessons - Beneficiaries
             Route::resource('courses/{course}/lessons/{lesson}/assistance', 'AssistanceController', ['except' => ['create', 'destroy', 'edit']]);
         });
-
     });
 
     // Employees
     Route::middleware(['role:employees'])->namespace('Employee')->prefix('employee')->group(function () {
-        // Transfers
-        Route::resource('transfers', 'TransferController', ['except' => ['create', 'destroy', 'edit', 'store']])->names('employee.transfers');
         // Beneficiaries
         Route::resource('beneficiaries', 'BeneficiaryController', ['except' => ['create', 'destroy', 'edit', 'store']])->names('employee.beneficiaries');
         // Projects
         Route::resource('projects', 'ProjectController', ['except' => ['create']])->names('employee.projects');
         Route::put('projects', 'ProjectController@conceptUpdate');
-        // Courses
-        // Route::resource('courses', 'CourseController', ['except' => ['create', 'destroy', 'edit', 'store']])->names('teacher.courses');
-
     });
 
     Route::get('select', 'AppController@select')->middleware('ajax');
 
 });
 
-
 /*Route::get('foo', function () {
    $pdf = PDF::loadView('welcome');
    return $pdf->stream();
 });*/
-
-Route::view('salida-equipos', 'formats.loans');

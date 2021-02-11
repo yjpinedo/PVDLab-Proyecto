@@ -14,8 +14,8 @@ $factory->define(Article::class, function (Faker $faker) {
         'serial' => $faker->unique()->randomNumber($nbDigits = 9),
         'pattern' => $faker->jobTitle,
         'description' => $faker->text($maxNbChars = 200),
-        'category_id' => function () {
+        /*'category_id' => function () {
             return factory(App\Category::class)->create()->id;
-        },
+        },*/
     ];
 });

@@ -82,7 +82,7 @@ class Course extends Base
      */
     public function beneficiaries()
     {
-        return $this->belongsToMany(Beneficiary::class);
+        return $this->belongsToMany(Beneficiary::class)->withTimestamps();
     }
 
     /**

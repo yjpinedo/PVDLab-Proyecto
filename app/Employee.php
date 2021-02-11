@@ -144,16 +144,6 @@ class Employee extends Base
     }
 
     /**
-     * Transfer relationship
-     *
-     * @return HasMany
-     */
-    public function transfers()
-    {
-        return $this->hasMany(Transfer::class);
-    }
-
-    /**
      * @return HasMany
      */
     public function loans()

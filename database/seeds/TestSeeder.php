@@ -69,74 +69,46 @@ class TestSeeder extends Seeder
             'model_id' => $employee->id,
         ])->assignRole('employees');
 
+        factory(Teacher::class, 3)->create();
+        factory(Employee::class, 3)->create();
+        factory(Beneficiary::class, 49)->create();
+
         $teachers = Teacher::all();
 
-        foreach ($teachers as $teacher) {
-            for ($i = 0; $i < random_int(1, 10); $i++) {
-                factory(Course::class)->create([
-                    'teacher_id' => $teacher->id,
-                ]);
-            }
+        foreach ($teachers as $teacher){
+            factory(Course::class, 10)->create([
+                'teacher_id' => $teacher->id,
+            ])->each(function ($course){
+                for ($i = 0; $i < 26; $i++){
+                    $course->beneficiaries()->attach(Beneficiary::all()->random()->id);
+                }
+                factory(Lesson::class, 10)->create([
+                    'course_id' => $course->id,
+                ])->each(function ($lesson){
+                    for ($i = 0; $i < 26; $i++){
+                        $lesson->beneficiaries()->attach(Beneficiary::all()->random()->id);
+                    }
+                });
+            });
         }
 
-        $courses = Course::all();
+        /*$courses = Course::all();
 
         foreach ($courses as $course) {
-            for ($i = 0; $i < random_int(1, 10); $i++) {
-                factory(Lesson::class)->create([
-                    'course_id' => $course->id,
-                ]);
-            }
-        }
 
-        factory(Beneficiary::class, 25)->create();
-        factory(Course::class, 10)->create();
-        factory(Project::class, 10)->create();
-        factory(Lesson::class, 10)->create();
+        }*/
 
         $beneficiaries = Beneficiary::all();
 
-        foreach ($beneficiaries as $beneficiary) {
-            for ($i = 0; $i < random_int(1, 10); $i++) {
-                factory(BeneficiaryCourse::class)->create([
-                    'beneficiary_id' => $beneficiary->id,
-                    'course_id' => random_int(1, Course::count()),
+        foreach ($beneficiaries as $beneficiary){
+            factory(Project::class, 5)->create([
+                'beneficiary_id' => $beneficiary->id,
+                'employee_id' => rand(1,5),
+            ])->each(function ($project){
+                factory(Member::class, 5)->create([
+                    'project_id' => $project->id
                 ]);
-                factory(Project::class)->create([
-                    'beneficiary_id' => $beneficiary->id,
-                ]);
-                factory(BeneficiaryLesson::class)->create([
-                    'beneficiary_id' => $beneficiary->id,
-                    'lesson_id' => random_int(1, Lesson::count()),
-                ]);
-            }
-        }
-
-        factory(Employee::class, 25)->create();
-
-        $employees = Employee::all();
-
-        foreach ($employees as $employee) {
-            for ($i = 0; $i < random_int(1, 10); $i++) {
-                factory(Transfer::class)->create([
-                    'employee_id' => $employee->id,
-                ]);
-            }
-            for ($i = 0; $i < random_int(1, 10); $i++) {
-                factory(Project::class)->create([
-                    'employee_id' => $employee->id,
-                ]);
-            }
-        }
-
-        $projects = Project::all();
-
-        foreach ($projects as $project) {
-            for ($i = 0; $i < random_int(1, 10); $i++) {
-                factory(Member::class)->create([
-                    'project_id' => $project->id,
-                ]);
-            }
+            });
         }
 
         factory(Format::class)->create([
@@ -151,30 +123,18 @@ class TestSeeder extends Seeder
             'name' => "Salida de equipos"
         ]);
 
-        factory(Category::class, 5)->create();
-        factory(Location::class, 5)->create();
-        factory(Furniture::class, 5)->create();
-        factory(Warehouse::class, 10)->create();
-        factory(Movement::class, 40)->create();
+        factory(Category::class, 5)->create()->each(function ($category){
+            factory(Article::class, 10)->create([
+                'category_id' => $category->id
+            ]);
+        });
 
-        $warehouses = Warehouse::all();
-        $articles = Article::all();
-
-        foreach ($warehouses as $warehouse){
-            for ($i = 0; $i < random_int(1, 10); $i++) {
-                factory(ArticleWarehouse::class)->create([
-                    'warehouse_id' => $warehouse->id,
-                ]);
+        factory(Warehouse::class, 10)->create()->each(function ($warehouse){
+            for ($i = 0; $i < 16; $i++){
+                $warehouse->articles()->attach(Article::all()->random()->id, ['stock' => rand(0,100)]);
+                factory(Movement::class)->create();
             }
-        }
-
-        foreach ($articles as $article){
-            for ($i = 0; $i < random_int(1, 10); $i++) {
-                factory(ArticleWarehouse::class)->create([
-                    'article_id' => $article->id,
-                ]);
-            }
-        }
+        });
 
         factory(\App\Loan::class, 100)->create();
     }

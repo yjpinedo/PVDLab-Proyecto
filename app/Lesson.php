@@ -71,7 +71,7 @@ class Lesson extends Base
      */
     public function beneficiaries()
     {
-        return $this->belongsToMany(Beneficiary::class)->withPivot('id');
+        return $this->belongsToMany(Beneficiary::class)->withPivot('id')->withTimestamps();
     }
 
     /**

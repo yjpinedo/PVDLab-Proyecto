@@ -2,7 +2,7 @@ columnsDataTable = [
     {data: 'id'},
     {data: 'employee', customValue: true},
     {data: 'beneficiary.full_name'},
-    {data: 'refund'},
+    {data: 'refund', className: 'dt-center'},
     {data: 'translated_state', searchable: false, className: 'dt-center', customValue: true},
     {data: 'actions', searchable: false, className: 'dt-center', customValue: true},
 ];

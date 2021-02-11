@@ -194,14 +194,4 @@ class Project extends Base
     {
         return $this->hasMany(Member::class);
     }
-
-    /**
-     * Transfer relationship
-     *
-     * @return HasMany
-     */
-    public function transfers()
-    {
-        return $this->hasMany(Transfer::class);
-    }
 }

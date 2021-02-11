@@ -14,8 +14,6 @@ $factory->define(Course::class, function (Faker $faker) {
         'name' => $faker->jobTitle,
         'description' => $faker->text($maxNbChars = 200),
         'slug' => "/beneficiary/courses_lists/" . $id++ . "/application_course",
-        'teacher_id' => function () {
-            return factory(Teacher::class)->create()->id;
-        },
+        //'teacher_id' => Teacher::all()->random()->id,
     ];
 });

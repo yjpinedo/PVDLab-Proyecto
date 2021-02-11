@@ -24,7 +24,7 @@ $factory->define(Employee::class, function (Faker $faker) {
         'cellphone' => '3' . random_int (0, 2) . random_int (0, 9) . $faker->unique()->randomNumber($nbDigits = 7),
         'email' => $faker->unique()->safeEmail,
         'position_id' => function () {
-            return factory(Position::class)->create()->id;
+            return Position::all()->random()->id;
         },
     ];
 });

@@ -10,11 +10,7 @@ $factory->define(Movement::class, function (Faker $faker) {
     return [
         'type' => $type,
         'stock' => $faker->numberBetween(0,100),
-        'origin_id' => $type === 'ENTRADA' ? null : function () {
-            return factory(App\Warehouse::class)->create()->id;
-        },
-        'destination_id' => $type === 'SALIDA' ? null : function () {
-            return factory(App\Warehouse::class)->create()->id;
-        },
+        'origin_id' => $type === 'ENTRADA' ? null : \App\Warehouse::all()->random()->id,
+        'destination_id' => $type === 'SALIDA' ? null : \App\Warehouse::all()->random()->id,
     ];
 });

@@ -5,7 +5,6 @@ use Illuminate\Support\Facades\Route;
 
 
 Auth::routes(['verify' => true]);
-
 Route::redirect('/', 'home');
 
 Route::middleware(['auth', 'verified'])->group(function () {

@@ -1,5 +1,6 @@
 columnsDataTable = [
     {data: 'id'},
+    {data: 'name'},
     {data: 'employee', customValue: true},
     {data: 'beneficiary.full_name'},
     {data: 'refund', className: 'dt-center'},
@@ -16,12 +17,12 @@ columnsDataTable = [
  * @returns {String} The HTML string with the status
  */
 function getStatus(column, value) {
-    if (column === 1) {
+    if (column === 2) {
         console.log(column);
         return value === null ? 'NO SE ASIGNO NINGUN EMPLEADO' : value.full_name;
-    } else if (column === 4) {
-        return '<span class="m-badge m-badge--' + value.class + ' m-badge--wide">' + value.state + '</span>';
     } else if (column === 5) {
+        return '<span class="m-badge m-badge--' + value.class + ' m-badge--wide">' + value.state + '</span>';
+    } else if (column === 6) {
         let actions = '';
 
         if (value.cancel) {

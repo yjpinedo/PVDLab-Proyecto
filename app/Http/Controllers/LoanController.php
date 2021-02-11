@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Article;
 use App\Loan;
-use Carbon\Carbon;
+use App\Movement;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
@@ -47,7 +47,7 @@ class LoanController extends BaseController
         foreach ($request->input('article_id_table') as $index => $article_id) {
             $quantity = $request->input('quantity_table')[$index];
             $loan->articles()->attach($article_id, ['quantity' => $quantity]);
-            $article = Article::whereId($article_id)->with('warehouses')->first();
+            /*$article = Article::whereId($article_id)->with('warehouses')->first();
             foreach ($article->warehouses as $key => $warehouses) {
                 $quantityStock = $quantity - $warehouses->pivot->stock;
                 if ($quantityStock <= 0) {
@@ -58,7 +58,7 @@ class LoanController extends BaseController
                     $warehouses->articles()->updateExistingPivot($article_id, ['stock' => '0']);
                     $quantity = $quantityStock;
                 }
-            }
+            }*/
         }
 
         return response()->json([
@@ -76,7 +76,7 @@ class LoanController extends BaseController
      */
     public function updateState(Request $request)
     {
-        $loan = $this->entity::find($request->input('id'));
+        $loan = $this->entity::whereId($request->input('id'))->with('articles.warehouses')->first();
 
         if ( is_null($loan) ) return abort(404);
 
@@ -94,6 +94,30 @@ class LoanController extends BaseController
             if ($request->input('state') === 'APROBADO') {
                 $message = 'APROBADO';
                 $error = false;
+                foreach ($loan->articles as $article) {
+                    $quantity = $article->pivot->quantity;
+                    foreach ($article->warehouses as $key => $warehouses) {
+                        $quantityStock = $quantity - $warehouses->pivot->stock;
+                        if ($quantityStock <= 0) {
+                            $quantityStock = ($quantityStock * (-1));
+                            $warehouses->articles()->updateExistingPivot($article->id, ['stock' => $quantityStock]);
+                            Movement::create([
+                                'type' => 'SALIDA',
+                                'stock' => $quantity,
+                                'origin_id' => $warehouses->id,
+                            ]);
+                            break;
+                        } else {
+                            $warehouses->articles()->updateExistingPivot($article->id, ['stock' => '0']);
+                            Movement::create([
+                                'type' => 'SALIDA',
+                                'stock' => $quantity,
+                                'origin_id' => $warehouses->id,
+                            ]);
+                            $quantity = $quantityStock;
+                        }
+                    }
+                }
             }
 
             $loan->state = $request->input('state');

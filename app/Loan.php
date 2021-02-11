@@ -27,7 +27,7 @@ class Loan extends Base
         ],
         'table' => [
             'check' => false,
-            'fields' => ['id', 'employee_id', 'beneficiary_id', 'refund', 'state'],
+            'fields' => ['id', 'name', 'employee_id', 'beneficiary_id', 'refund', 'state'],
             'active' => false,
             'actions' => true,
         ],

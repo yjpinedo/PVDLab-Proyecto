@@ -2,6 +2,7 @@ columnsDataTable = [
     {data: 'id'},
     {data: 'name'},
     {data: 'email'},
+    {data: 'role', searchable: false, className: 'dt-center', customValue: true},
 ];
 
 /**
@@ -13,7 +14,15 @@ columnsDataTable = [
  * @returns {String} The HTML string with the status
  */
 function getStatus(column, value) {
-
+    if (column === 3) {
+        if (value[0] === 'teachers'){
+            return '<span class="m-badge m-badge--brand m-badge--wide">'+value+'</span>'
+        } else if (value[0] === 'beneficiaries') {
+            return '<span class="m-badge m-badge--accent m-badge--wide">'+value+'</span>'
+        } else {
+            return '<span class="m-badge m-badge--danger m-badge--wide">'+value+'</span>'
+        }
+    }
 }
 formTitle.html('Asignar un rol');
 
@@ -27,7 +36,7 @@ $(function (){
                 text : Lang.get('base/base.placeholder')
             }));
             $.each(data, function(key, value) {
-                if (value === 'teachers' || value === 'employees') {
+                if (value !== 'admin') {
                     select.append($('<option>', {
                         value: key,
                         text : value.toUpperCase()
@@ -45,19 +54,19 @@ $(function (){
 });
 
 $('#assign').on("click", function () {
-    const beneficiary_id = $('#beneficiary_id_form').val();
+    const user_id = $('#user_id_form').val();
     const role = $('#role_id_form').val();
     let formData = new FormData();
-    formData.append("beneficiary_id", beneficiary_id);
+    formData.append("user_id", user_id);
     formData.append("role", role);
 
-    if (beneficiary_id !== ''){
+    if (user_id !== ''){
         if (role !== '') {
             ajaxRequest(crud, formData, routes['create'].method, createRow, formPortlet);
         } else {
             showMessage('Debe seleccionar un rol', true);
         }
     } else {
-        showMessage('Debe seleccionar un beneficiario', true);
+        showMessage('Debe seleccionar un usuario', true);
     }
 });

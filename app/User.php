@@ -10,6 +10,14 @@ use Spatie\Permission\Traits\HasRoles;
 class User extends Authenticatable implements MustVerifyEmail
 {
     use HasRoles, Notifiable;
+    /**
+     * The mutated attributes that should be added for arrays.
+     *
+     * @var array
+     */
+    protected $appends = [
+        'full_name', 'role'
+    ];
 
     /**
      * The attributes that are mass assignable.
@@ -39,10 +47,10 @@ class User extends Authenticatable implements MustVerifyEmail
     ];
 
 
-
     /**
      * The data to build the layout.
      *
+     * @return array
      * @var array
      */
     public function getLayout(): array
@@ -56,13 +64,13 @@ class User extends Authenticatable implements MustVerifyEmail
             ],
             'table' => [
                 'check' => false,
-                'fields' => ['id', 'name', 'email'],
+                'fields' => ['id', 'name', 'email', 'role_id'],
                 'active' => false,
                 'actions' => false,
             ],
             'form' => [
                 [
-                    'name' => 'beneficiary_id',
+                    'name' => 'user_id',
                     'type' => 'select_reload',
                 ],
                 [
@@ -72,4 +80,46 @@ class User extends Authenticatable implements MustVerifyEmail
             ],
         ];
     }
+
+    /**
+     * Mutator for the full name
+     *
+     * @return string
+     */
+    public function getFullNameAttribute(): string
+    {
+        return $this->name;
+    }
+
+    /**
+     * Mutator for the full name
+     *
+     * @return string
+     */
+    public function getRoleAttribute()
+    {
+        return $this->getRoleNames();
+    }
+
+    /**
+     * Set baseQuery variable
+     *
+     * @param string $field
+     * @return array
+     */
+    public function select($field = 'select_value')
+    {
+        return $this->get()->sortBy($field)->pluck($field, 'id');
+    }
+
+    /**
+     * Mutator for the value to show in the select
+     *
+     * @return string
+     */
+    public function getSelectValueAttribute(): string
+    {
+        return $this->name;
+    }
+
 }

@@ -268,10 +268,19 @@ function reloadSelect(results) {
         text : Lang.get('base/base.placeholder')
     }));
     $.each(results.data, function(key, value) {
-        select.append($('<option>', {
-            value: key,
-            text : value
-        }));
+        if (results.name === 'user_id'){
+            if (key !== '1') {
+                select.append($('<option>', {
+                    value: key,
+                    text : value
+                }));
+            }
+        } else {
+            select.append($('<option>', {
+                value: key,
+                text : value
+            }));
+        }
     });
     select.selectpicker('refresh');
 }

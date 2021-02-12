@@ -216,6 +216,8 @@ return [
         'type' => 'Tipo',
         'title_type' => 'Tipo de Título',
         'refund' => 'Fecha de entrega',
+        'role_id' => 'Roles',
+        'user_id' => 'Usuarios',
         'year' => 'Año',
         'stock' => 'Cantidad',
         'warehouse_id' => 'Almacén',

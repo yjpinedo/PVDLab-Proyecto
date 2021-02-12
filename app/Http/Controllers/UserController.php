@@ -20,7 +20,7 @@ class UserController extends BaseController
     public function __construct(User $entity)
     {
         parent::__construct($entity, false);
-        $this->model = $this->entity->orderBy('created_at', 'DESC');
+        $this->model = $this->entity->where('id', '!=', 1)->orderBy('created_at', 'DESC');
     }
 
     /**
@@ -30,54 +30,73 @@ class UserController extends BaseController
      * @return JsonResponse
      */
 
-    public function store(Request $request)
+    public function store(Request $request): JsonResponse
     {
-        $user = User::where([
-            ['model_id', $request->input('beneficiary_id')],
-            ['model_type', 'App\Beneficiary']
-        ])->first();
-
+        $model = null;
+        $user = User::whereId($request->input('user_id'))->first();
         if (!is_null($user)) {
-            $beneficiary = Beneficiary::whereId($request->input('beneficiary_id'))->first();
             if (count($user->getRoleNames()) > 0) {
                 foreach ($user->getRoleNames() as $roles) {
                     $user->removeRole($roles);
                 }
             }
-            if ($request->input('role') == 'teachers') {
-                $teacher = Teacher::create([
-                    "document_type" => $beneficiary->document_type,
-                    "document" => $beneficiary->document,
-                    "name" => $beneficiary->name,
-                    "last_name" => $beneficiary->last_name,
-                    "birth_date" => $beneficiary->birth_date,
-                    "sex" => $beneficiary->sex,
-                    "address" => $beneficiary->address,
-                    "neighborhood" => $beneficiary->neighborhood,
-                    "phone" => $beneficiary->phone,
-                    "cellphone" => $beneficiary->cellphone,
-                    "email" => $beneficiary->email,
-                ]);
-                $user->model_id = $teacher->id;
-                $user->model_type = 'App\Teacher';
-            } else if ($request->input('role') == 'employees') {
-                $employee = Employee::create([
-                    "document_type" => $beneficiary->document_type,
-                    "document" => $beneficiary->document,
-                    "name" => $beneficiary->name,
-                    "last_name" => $beneficiary->last_name,
-                    "birth_date" => $beneficiary->birth_date,
-                    "sex" => $beneficiary->sex,
-                    "address" => $beneficiary->address,
-                    "neighborhood" => $beneficiary->neighborhood,
-                    "phone" => $beneficiary->phone,
-                    "cellphone" => $beneficiary->cellphone,
-                    "email" => $beneficiary->email,
-                ]);
-                $user->model_id = $employee->id;
-                $user->model_type = 'App\Employee';
+            if ($user->model_type == 'App\Beneficiary') {
+                $model = Beneficiary::whereId($user->model_id)->first();
+            } elseif ($user->model_type == 'App\Employee') {
+                $model = Employee::whereId($user->model_id)->first();
+            } else {
+                $model = Teacher::whereId($user->model_id)->first();
             }
-            $beneficiary->delete();
+
+            $input = [
+                "document_type" => $model->document_type,
+                "document" => $model->document,
+                "name" => $model->name,
+                "last_name" => $model->last_name,
+                "birth_date" => $model->birth_date,
+                "sex" => $model->sex,
+                "address" => $model->address,
+                "neighborhood" => $model->neighborhood,
+                "phone" => $model->phone,
+                "cellphone" => $model->cellphone,
+                "email" => $model->email,
+            ];
+
+            if ($request->input('role') == 'teachers') {
+                if ($user->model_type != 'App\Teacher'){
+                    $teacher = Teacher::create($input);
+                    $user->model_id = $teacher->id;
+                    $user->model_type = 'App\Teacher';
+                } else {
+                    return response()->json([
+                        'error' => true,
+                        'message' => "El usuario $model->name ya cuenta con el rol docente",
+                    ]);
+                }
+            } else if ($request->input('role') == 'employees') {
+                if ($user->model_type != 'App\Employee') {
+                    $employee = Employee::create($input);
+                    $user->model_id = $employee->id;
+                    $user->model_type = 'App\Employee';
+                } else {
+                    return response()->json([
+                        'error' => true,
+                        'message' => "El usuario $model->name ya cuenta con el rol empleado",
+                    ]);
+                }
+            } else {
+                if ($user->model_type != 'App\Beneficiary') {
+                    $beneficiary = Beneficiary::create($input);
+                    $user->model_id = $beneficiary->id;
+                    $user->model_type = 'App\Beneficiary';
+                } else {
+                    return response()->json([
+                        'error' => true,
+                        'message' => "El usuario $model->name ya cuenta con el rol beneficiario",
+                    ]);
+                }
+            }
+            $model->delete();
             $user->save();
             $user->assignRole($request->input('role'));
             return response()->json([
@@ -85,12 +104,12 @@ class UserController extends BaseController
                 'message' => __('app.messages.users.assign'),
                 'reload' => false,
             ]);
+        } else {
+            return response()->json([
+                'error' => true,
+                'message' => __('app.messages.users.error'),
+            ]);
         }
-
-        return response()->json([
-            'error' => true,
-            'message' => __('app.messages.users.error'),
-        ]);
     }
 
     /**

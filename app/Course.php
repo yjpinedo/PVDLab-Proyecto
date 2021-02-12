@@ -29,7 +29,7 @@ class Course extends Base
         ],
         'table' => [
             'check' => false,
-            'fields' => ['code', 'name', 'teacher'],
+            'fields' => ['code', 'name', 'teacher', 'state'],
             'active' => false,
             'actions' => true,
         ],
@@ -49,6 +49,11 @@ class Course extends Base
             [
                 'name' => 'format_slug',
                 'type' => 'text',
+            ],
+            [
+                'name' => 'state',
+                'type' => 'select',
+                'value' => 'app.selects.course.state',
             ],
         ],
     ];

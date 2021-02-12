@@ -26,40 +26,45 @@ class ApplicationCourseController extends BaseController
 
         $this->middleware(function ($request, $next) {
             $this->id = $request->course;
-            $this->model = $this->entity->where('id', $this->id);
-            $this->beneficiary = Beneficiary::where('id', Auth::user()['model_id'])->first();
+            $this->model = $this->entity->where([
+                ['id', $this->id],
+                ['state', __('app.selects.course.state.DISPONIBLE')],
+            ]);
+            if (!is_null($this->model->first())) {
+                $this->beneficiary = Beneficiary::where('id', Auth::user()['model_id'])->first();
 
-            if ( !is_null($this->beneficiary) ) {
-                $request->request->add(['data' => [
-                    'title' => __('app.titles.beneficiary.application_course'),
-                    'subtitle' => __('app.titles.courses'),
-                    'tools' => [
-                        'create' => false,
-                        'reload' => false,
-                        'export' => false,
-                    ],
-                    'table' => [],
-                    'form' => [
-                        [
-                            'name' => 'code',
-                            'type' => 'text',
+                if (!is_null($this->beneficiary)) {
+                    $request->request->add(['data' => [
+                        'title' => __('app.titles.beneficiary.application_course'),
+                        'subtitle' => __('app.titles.courses'),
+                        'tools' => [
+                            'create' => false,
+                            'reload' => false,
+                            'export' => false,
                         ],
-                        [
-                            'name' => 'name',
-                            'type' => 'text',
+                        'table' => [],
+                        'form' => [
+                            [
+                                'name' => 'code',
+                                'type' => 'text',
+                            ],
+                            [
+                                'name' => 'name',
+                                'type' => 'text',
+                            ],
+                            [
+                                'name' => 'description',
+                                'type' => 'textarea',
+                            ],
                         ],
-                        [
-                            'name' => 'description',
-                            'type' => 'textarea',
-                        ],
-                    ],
-                ]]);
+                    ]]);
 
-                return $next($request);
+                    return $next($request);
+                }
             }
-
             return abort(404);
         });
+
     }
 
     /**

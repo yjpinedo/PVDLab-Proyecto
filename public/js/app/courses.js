@@ -2,6 +2,7 @@ columnsDataTable = [
     {data: 'code'},
     {data: 'name'},
     {data: 'teacher.full_name'},
+    {data: 'state', searchable: false, className: 'dt-center', customValue: true},
     {data: 'id', searchable: false, className: 'dt-center', customValue: true},
 ];
 
@@ -14,7 +15,9 @@ columnsDataTable = [
  * @returns {String} The HTML string with the status
  */
 function getStatus(column, value) {
-    if (column === 3){
+    if (column === 3) {
+        return value === 'DISPONIBLE' ? '<span class="m-badge m-badge--success m-badge--wide">' + value + '</span>' : '<span class="m-badge m-badge--danger m-badge--wide">' + value + '</span>';
+    } else if (column === 4){
         return (
             '<a href="' + crud + '/' + value + '/lessons" class="m-portlet__nav-link btn m-btn m-btn--icon m-btn--icon-only m-btn--pill m-btn--hover-brand" title="Lecciones">' +
             '<i class="fa fa-list-ul"></i>' +

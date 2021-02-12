@@ -27,7 +27,7 @@ return [
             'validate_loans' => 'El beneficiario :name no ha realizado solcitudes de présamos.',
         ],
         'users' => [
-            'assign' => 'Role asignado con éxito',
+            'assign' => 'Rol asignado con éxito',
             'error' => 'No se asignó el rol con éxito'
         ],
     ],
@@ -44,7 +44,7 @@ return [
         'articles_warehouses' => 'Lista de almacenes',
         'beneficiaries' => 'Beneficiarios',
         'beneficiary' => [
-            'courses_lists' => 'Cursos Disponibles',
+            'courses_lists' => 'Lista de Cursos',
             'application_course' => 'Aplicar Curso',
             'courses' => ' Mis Cursos',
             'projects' => 'Mis Proyectos',
@@ -130,6 +130,10 @@ return [
                 'MIERCOLES_JUEVES' => 'MIERCOLES - JUEVES',
                 'MIERCOLES_VIERNES' => 'MIERCOLES - VIERNES',
                 'JUEVES_VIERNES' => 'JUEVES - VIERNES',
+            ],
+            'state' => [
+                'DISPONIBLE' => 'DISPONIBLE',
+                'CERRADO' => 'CERRADO',
             ]
         ],
         'project' => [
@@ -242,7 +246,6 @@ return [
             ],
         ],
     ],
-
 
     'roles' => [
         'admin' => 'Administrador',

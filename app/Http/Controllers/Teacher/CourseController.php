@@ -35,7 +35,7 @@ class CourseController extends BaseController
                     ],
                     'table' => [
                         'check' => false,
-                        'fields' => ['code', 'name', 'teacher'],
+                        'fields' => ['code', 'name', 'state'],
                         'active' => false,
                         'actions' => true,
                     ],
@@ -47,6 +47,11 @@ class CourseController extends BaseController
                         [
                             'name' => 'description',
                             'type' => 'textarea',
+                        ],
+                        [
+                            'name' => 'state',
+                            'type' => 'select',
+                            'value' => 'app.selects.course.state',
                         ],
                         [
                             'name' => 'format_slug',

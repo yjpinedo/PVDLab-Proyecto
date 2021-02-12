@@ -19,6 +19,7 @@ class CreateCoursesTable extends Migration
             $table->string('name', 90);
             $table->string('description', 200);
             $table->string('slug');
+            $table->enum('state', array_keys(__('app.selects.course.state')))->default(__('app.selects.course.state.DISPONIBLE'));
             $table->unsignedInteger('teacher_id');
             $table->foreign('teacher_id')->references('id')->on('teachers');
             $table->timestamps();

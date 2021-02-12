@@ -34,7 +34,7 @@ class CourseListController extends BaseController
                     ],
                     'table' => [
                         'check' => false,
-                        'fields' => ['code', 'name', 'description'],
+                        'fields' => ['code', 'name', 'description', 'state'],
                         'active' => false,
                         'actions' => true,
                     ],

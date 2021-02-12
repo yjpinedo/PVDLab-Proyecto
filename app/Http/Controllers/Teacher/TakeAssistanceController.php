@@ -71,6 +71,7 @@ class TakeAssistanceController extends BaseController
     {
        if (!$this->beneficiary->lessons->contains($this->id)) {
            $error = $this->beneficiary->lessons()->attach($this->id);
+           //$this->course->beneficiaries()->attach($this->beneficiary_id, ['progress' => __('app.selects.course.progress.EN_CURSO')]);
             return response()->json([
                 'message' => __('app.messages.task_assistance.assistance', ['name' => $this->entity->find($this->beneficiary_id)->full_name]),
                 'error' => $error,

@@ -92,12 +92,6 @@ class TestSeeder extends Seeder
             });
         }
 
-        /*$courses = Course::all();
-
-        foreach ($courses as $course) {
-
-        }*/
-
         $beneficiaries = Beneficiary::all();
 
         foreach ($beneficiaries as $beneficiary){

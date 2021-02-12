@@ -87,7 +87,7 @@ class Course extends Base
      */
     public function beneficiaries()
     {
-        return $this->belongsToMany(Beneficiary::class)->withTimestamps();
+        return $this->belongsToMany(Beneficiary::class)->withPivot('progress')->withTimestamps();
     }
 
     /**

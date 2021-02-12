@@ -15,6 +15,7 @@ class CreateBeneficiaryCourseTable extends Migration
     {
         Schema::create('beneficiary_course', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->enum('progress', array_keys(__('app.selects.course.progress')))->default(__('app.selects.course.progress.INSCRITO'));
             $table->unsignedInteger('beneficiary_id');
             $table->foreign('beneficiary_id')->references('id')->on('beneficiaries');
             $table->unsignedInteger('course_id');

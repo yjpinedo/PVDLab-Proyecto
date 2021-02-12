@@ -4,7 +4,7 @@ columnsDataTable = [
     {data: 'sex'},
     {data: 'ethnic_group'},
     {data: 'translated_assistance', searchable: false, className: 'dt-center', customValue: true},
-    {data: 'actions', searchable: false, className: 'dt-center', customValue: true},
+    {data: 'translated_assistance', searchable: false, className: 'dt-center', customValue: true},
 ];
 
 /**

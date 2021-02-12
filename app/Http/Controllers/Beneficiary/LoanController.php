@@ -59,10 +59,6 @@ class LoanController extends BaseController
 
     public function store(Request $request)
     {
-        $stock = 0;
-        $quantityStock = 0;
-        $quantity = 0;
-
         $request->validate([
             'name' => 'required',
             'place' => 'required',
@@ -77,7 +73,7 @@ class LoanController extends BaseController
         foreach ($request->input('article_id_table') as $index => $article_id) {
             $quantity = $request->input('quantity_table')[$index];
             $loan->articles()->attach($article_id, ['quantity' => $quantity]);
-            $article = Article::whereId($article_id)->with('warehouses')->first();
+            /*$article = Article::whereId($article_id)->with('warehouses')->first();
             foreach ($article->warehouses as $key => $warehouses) {
                 $quantityStock = $quantity - $warehouses->pivot->stock;
                 if ($quantityStock <= 0) {
@@ -88,7 +84,7 @@ class LoanController extends BaseController
                     $warehouses->articles()->updateExistingPivot($article_id, ['stock' => '0']);
                     $quantity = $quantityStock;
                 }
-            }
+            }*/
         }
 
         return response()->json([

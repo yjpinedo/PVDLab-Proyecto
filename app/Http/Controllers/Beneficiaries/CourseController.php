@@ -40,7 +40,7 @@ class CourseController extends BaseController
                     ],
                     'table' => [
                         'check' => false,
-                        'fields' => ['code', 'name', 'teacher'],
+                        'fields' => ['code', 'name', 'teacher', 'progress'],
                         'active' => false,
                         'actions' => false,
                     ],

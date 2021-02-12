@@ -134,7 +134,12 @@ return [
             'state' => [
                 'DISPONIBLE' => 'DISPONIBLE',
                 'CERRADO' => 'CERRADO',
-            ]
+            ],
+            'progress' => [
+                'INSCRITO' => 'INSCRITO',
+                'FINALIZADO' => 'FINALIZADO',
+                'PROCESO' => 'PROCESO',
+            ],
         ],
         'project' => [
             'concept' => [

@@ -138,9 +138,31 @@ class Beneficiary extends Base
      */
     public function getTranslatedAssistanceAttribute()
     {
+        $assistanceLength = 0;
+        $lengthLesson = 0;
         $lessons = [];
         foreach ($this->lessons as $lesson) {
             $lessons[] = $lesson->id;
+        }
+
+        foreach ($this->courses as $course) {
+            foreach ($course->lessons as $lesson) {
+                if (in_array($lesson->id, $lessons)) {
+                    $assistanceLength++;
+                }
+                $lengthLesson++;
+            }
+
+            if ($assistanceLength == 0) {
+                $course->beneficiaries()->updateExistingPivot($this->id, ['progress' => __('app.selects.course.progress.INSCRITO')]);
+            } else if ($lengthLesson == $assistanceLength) {
+                $course->beneficiaries()->updateExistingPivot($this->id, ['progress' => __('app.selects.course.progress.FINALIZADO')]);
+            } else {
+                $course->beneficiaries()->updateExistingPivot($this->id, ['progress' => __('app.selects.course.progress.PROCESO')]);
+            }
+
+            $lengthLesson = 0;
+            $assistanceLength = 0;
         }
 
         return [
@@ -158,14 +180,9 @@ class Beneficiary extends Base
      */
     public function getActionsAttribute()
     {
-        $lessons = [];
-        foreach ($this->lessons as $lesson) {
-            $lessons[] = $lesson->id;
-        }
-
         return [
             'id' => $this->id,
-            'lessons' => $lessons,
+            //'lessons' => $this->translated_assistance['lessons'],
         ];
     }
 
@@ -196,7 +213,7 @@ class Beneficiary extends Base
      */
     public function courses()
     {
-        return $this->belongsToMany(Course::class)->withTimestamps();
+        return $this->belongsToMany(Course::class)->withPivot('progress')->withTimestamps();
     }
 
     /**

@@ -19,9 +19,6 @@ function getStatus(column, value) {
         return (
             '<a href="' + crud + '/' + value + '/take_assistance" class="m-portlet__nav-link btn m-btn m-btn--icon m-btn--icon-only m-btn--pill m-btn--hover-brand" title="Tomar Asistencia">' +
             '<i class="fa fa-user-check"></i>' +
-            '</a>'+
-            '<a href="' + crud + '/' + value + '/assistance" class="m-portlet__nav-link btn m-btn m-btn--icon m-btn--icon-only m-btn--pill m-btn--hover-brand" title="Lista de Asistencia">' +
-            '<i class="fa fa-list-ol"></i>' +
             '</a>'
         );
     }

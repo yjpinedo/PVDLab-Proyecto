@@ -141,28 +141,33 @@ class Beneficiary extends Base
         $assistanceLength = 0;
         $lengthLesson = 0;
         $lessons = [];
-        foreach ($this->lessons as $lesson) {
-            $lessons[] = $lesson->id;
+
+        if (count($this->lessons)) {
+            foreach ($this->lessons as $lesson) {
+                $lessons[] = $lesson->id;
+            }
         }
 
-        foreach ($this->courses as $course) {
-            foreach ($course->lessons as $lesson) {
-                if (in_array($lesson->id, $lessons)) {
-                    $assistanceLength++;
+        if (count($this->courses) > 0) {
+            foreach ($this->courses as $course) {
+                foreach ($course->lessons as $lesson) {
+                    if (in_array($lesson->id, $lessons)) {
+                        $assistanceLength++;
+                    }
+                    $lengthLesson++;
                 }
-                $lengthLesson++;
-            }
 
-            if ($assistanceLength == 0) {
-                $course->beneficiaries()->updateExistingPivot($this->id, ['progress' => __('app.selects.course.progress.INSCRITO')]);
-            } else if ($lengthLesson == $assistanceLength) {
-                $course->beneficiaries()->updateExistingPivot($this->id, ['progress' => __('app.selects.course.progress.FINALIZADO')]);
-            } else {
-                $course->beneficiaries()->updateExistingPivot($this->id, ['progress' => __('app.selects.course.progress.PROCESO')]);
-            }
+                if ($assistanceLength == 0) {
+                    $course->beneficiaries()->updateExistingPivot($this->id, ['progress' => __('app.selects.course.progress.INSCRITO')]);
+                } else if ($lengthLesson == $assistanceLength) {
+                    $course->beneficiaries()->updateExistingPivot($this->id, ['progress' => __('app.selects.course.progress.FINALIZADO')]);
+                } else {
+                    $course->beneficiaries()->updateExistingPivot($this->id, ['progress' => __('app.selects.course.progress.PROCESO')]);
+                }
 
-            $lengthLesson = 0;
-            $assistanceLength = 0;
+                $lengthLesson = 0;
+                $assistanceLength = 0;
+            }
         }
 
         return [

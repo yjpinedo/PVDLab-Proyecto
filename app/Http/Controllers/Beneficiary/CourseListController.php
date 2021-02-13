@@ -22,6 +22,11 @@ class CourseListController extends BaseController
 
         $this->middleware(function ($request, $next) {
             $beneficiary = Beneficiary::where('id', Auth::user()['model_id'])->first();
+            $ids = [];
+            $courses_list = $beneficiary->courses->sortByDesc('created_at');
+            foreach ($courses_list as $list) {
+                array_push($ids, $list->id);
+            }
 
             if ( !is_null($beneficiary) ) {
                 $request->request->add(['data' => [
@@ -34,7 +39,7 @@ class CourseListController extends BaseController
                     ],
                     'table' => [
                         'check' => false,
-                        'fields' => ['code', 'name', 'description', 'state'],
+                        'fields' => ['code', 'name', 'description'],
                         'active' => false,
                         'actions' => true,
                     ],
@@ -42,7 +47,7 @@ class CourseListController extends BaseController
                 ]]);
 
                 $request->request->add(['beneficiary_id' => $beneficiary->id]);
-                //$this->model = $beneficiary->courses->sortByDesc('name');
+                $this->model = $this->entity->whereNotIn('id', $ids)->whereState('DISPONIBLE')->orderBy('created_at', 'DESC');
 
                 return $next($request);
             }

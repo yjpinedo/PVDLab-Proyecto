@@ -44,7 +44,7 @@ return [
         'articles_warehouses' => 'Lista de almacenes',
         'beneficiaries' => 'Beneficiarios',
         'beneficiary' => [
-            'courses_lists' => 'Lista de Cursos',
+            'courses_lists' => 'Cursos Disponibles',
             'application_course' => 'Aplicar Curso',
             'courses' => ' Mis Cursos',
             'projects' => 'Mis Proyectos',

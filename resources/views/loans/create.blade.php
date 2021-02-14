@@ -115,7 +115,6 @@
                     if (quantity !== ''){
                         if (quantity > '0'){
                             $.get("{!!  route('loans.get_articles_by_id') !!}", { article_id:article_id, quantity:quantity }, function (article){
-                                // console.log(article.data.);
                                 if (article.data) {
                                     let data = article.data;
                                     let row =
@@ -150,9 +149,6 @@
             $('#row' + cont).remove();
             numbers_row = $('#articles_loans tr').length;
             validateCounterRow(numbers_row);
-        }
-        function addRow(data) {
-
         }
         function clear() {
             $('#quantity_form').val('');

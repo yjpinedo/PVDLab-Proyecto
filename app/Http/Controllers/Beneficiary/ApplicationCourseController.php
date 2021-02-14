@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Beneficiary;
 use App\Beneficiary;
 use App\Course;
 use App\Http\Controllers\BaseController;
+use App\Mail\ApplyCourse;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class ApplicationCourseController extends BaseController
 {
@@ -29,7 +31,7 @@ class ApplicationCourseController extends BaseController
             $this->model = $this->entity->where([
                 ['id', $this->id],
                 ['state', __('app.selects.course.state.DISPONIBLE')],
-            ]);
+            ])->with('teacher');
             if (!is_null($this->model->first())) {
                 $this->beneficiary = Beneficiary::where('id', Auth::user()['model_id'])->first();
 
@@ -77,8 +79,13 @@ class ApplicationCourseController extends BaseController
         $location = route('beneficiary.courses.index');
 
         if (! $this->beneficiary->courses->contains($this->id)) {
+            $emailFormat = [
+                'course' => $this->model->first(),
+                'beneficiary' => $this->beneficiary,
+                'url'=> request()->root() . "/teacher/courses/$this->id/beneficiaries"
+            ];
+            Mail::to($this->model->first()->teacher->email)->send(new ApplyCourse($emailFormat));
             $this->beneficiary->courses()->attach($this->id);
-
             return response()->json([
                 'message' => __('app.messages.apply.apply', ['name' => $this->entity->find($this->id)->full_name]),
                 'location' => $location

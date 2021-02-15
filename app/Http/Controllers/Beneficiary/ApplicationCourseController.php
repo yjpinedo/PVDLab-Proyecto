@@ -6,6 +6,7 @@ use App\Beneficiary;
 use App\Course;
 use App\Http\Controllers\BaseController;
 use App\Mail\ApplyCourse;
+use App\Mail\ApplyCourseBeneficiary;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -82,9 +83,13 @@ class ApplicationCourseController extends BaseController
             $emailFormat = [
                 'course' => $this->model->first(),
                 'beneficiary' => $this->beneficiary,
-                'url'=> request()->root() . "/teacher/courses/$this->id/beneficiaries"
+                'url'=> request()->root() . "/teacher/courses/$this->id/beneficiaries",
+                'urlBeneficiary' => request()->root() . "/beneficiary/courses",
             ];
+
             Mail::to($this->model->first()->teacher->email)->send(new ApplyCourse($emailFormat));
+            Mail::to($this->beneficiary->email)->send(new ApplyCourseBeneficiary($emailFormat));
+
             $this->beneficiary->courses()->attach($this->id);
             return response()->json([
                 'message' => __('app.messages.apply.apply', ['name' => $this->entity->find($this->id)->full_name]),

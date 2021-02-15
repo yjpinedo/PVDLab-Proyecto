@@ -7,7 +7,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class ApplyCourse extends Mailable
+class ApplyCourseBeneficiary extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -16,9 +16,9 @@ class ApplyCourse extends Mailable
     /**
      * Create a new message instance.
      *
-     * @param array $emailFormat
+     * @param $emailFormat
      */
-    public function __construct(array $emailFormat)
+    public function __construct($emailFormat)
     {
         $this->emailFormat = $emailFormat;
     }
@@ -30,8 +30,8 @@ class ApplyCourse extends Mailable
      */
     public function build()
     {
-        return $this->markdown('email.courses.apply', [
-            'url' => $this->emailFormat['url']
+        return $this->markdown('email.courses.apply-course-beneficiary', [
+            'url' => $this->emailFormat['urlBeneficiary']
         ])->subject('Información de cursos - PVDLABS')->from(['pvdlabs@admin.com', 'Administración']);
     }
 }

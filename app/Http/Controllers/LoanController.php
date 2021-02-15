@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Article;
 use App\Loan;
+use App\Mail\LoanStateUpdate;
 use App\Movement;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class LoanController extends BaseController
 {
@@ -28,10 +30,6 @@ class LoanController extends BaseController
 
     public function store(Request $request)
     {
-        $stock = 0;
-        $quantityStock = 0;
-        $quantity = 0;
-
         $request->validate([
             'name' => 'required',
             'place' => 'required',
@@ -64,7 +62,7 @@ class LoanController extends BaseController
      */
     public function updateState(Request $request)
     {
-        $loan = $this->entity::whereId($request->input('id'))->with('articles.warehouses')->first();
+        $loan = $this->entity::whereId($request->input('id'))->with(['articles.warehouses', 'beneficiary'])->first();
 
         if ( is_null($loan) ) return abort(404);
 
@@ -110,6 +108,13 @@ class LoanController extends BaseController
 
             $loan->state = $request->input('state');
             $loan->save();
+
+            $body = [
+                'loan' => $loan,
+                'url' => $request->root() . "/beneficiary/loans",
+            ];
+
+            Mail::to($loan->beneficiary->email)->send(new LoanStateUpdate($body));
 
             return response()->json([
                 'data' => $loan,

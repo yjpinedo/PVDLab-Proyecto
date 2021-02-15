@@ -16,13 +16,13 @@
     ])@endcomponent
 @endsection
 
-{{--@section('filters')--}}
-    {{--@component('components.filters', [--}}
-        {{--'crud' => $crud,--}}
-        {{--'active' => $table['active'] ?? false,--}}
-        {{--'fields' => $filters ?? [],--}}
-    {{--])@endcomponent--}}
-{{--@endsection--}}
+@section('filters')
+    @component('components.filters', [
+        'crud' => $crud,
+        'active' => $table['active'] ?? false,
+        'fields' => $filters ?? [],
+    ])@endcomponent
+@endsection
 
 @section('table')
     @component('components.table', [

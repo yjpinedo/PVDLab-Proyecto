@@ -37,6 +37,12 @@ function getStatus(column, value) {
             ;
         }
 
+        actions +=
+            '<a href="format-project/' + value.id + '/project" target="_blank" onclick="window.open(this.href) return false;" class="m-portlet__nav-link btn m-btn m-btn--icon m-btn--icon-only m-btn--pill m-btn--hover-info" title="Ver en PDF">' +
+            '<i class="fas fa-file-pdf"></i>' +
+            '</a>'
+        ;
+
         return actions;
     }
 }

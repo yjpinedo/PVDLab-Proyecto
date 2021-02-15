@@ -6,6 +6,7 @@ use App\Beneficiary;
 use App\Employee;
 use App\Format;
 use App\Loan;
+use App\Project;
 use Illuminate\Http\Request;
 use PDF;
 use DateTime;
@@ -51,6 +52,16 @@ class FormatController extends BaseController
         $month = strtoupper($month[$date->format('m') - 1]) . ' ' . strtoupper($date->format('Y'));
 
         return PDF::loadView('formats.loans', ['beneficiary' => $beneficiary, 'month' => $month, 'loan' => $loan])->stream();
+    }
+
+    public function format_project($project_id)
+    {
+        $project = Project::whereId($project_id)->with(['beneficiary', 'employee.position', 'members'])->first();
+        $date = new DateTime();
+        $month = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+        $month = strtoupper($month[$date->format('m') - 1]) . ' ' . strtoupper($date->format('Y'));
+
+        return PDF::loadView('formats.projects', ['project' => $project, 'month' => $month])->stream();
     }
 
     public function getLoansByBeneficiary(Request $request)

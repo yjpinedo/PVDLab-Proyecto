@@ -127,10 +127,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
     // Employees
     Route::middleware(['role:employees'])->namespace('Employee')->prefix('employee')->group(function () {
         // Beneficiaries
-        Route::resource('beneficiaries', 'BeneficiaryController', ['except' => ['create', 'destroy', 'edit', 'store']])->names('employee.beneficiaries');
+        Route::resource('beneficiaries', 'BeneficiaryController', ['except' => ['create', 'destroy', 'edit']])->names('employee.beneficiaries');
         // Projects
         Route::resource('projects', 'ProjectController', ['except' => ['create']])->names('employee.projects');
-        Route::put('projects', 'ProjectController@conceptUpdate');
+        Route::put('projects', 'ProjectController@updateConcept');
     });
 
     Route::get('select', 'AppController@select')->middleware('ajax');

@@ -5,11 +5,13 @@ namespace App\Http\Controllers\Employee;
 use App\Employee;
 use App\Http\Controllers\BaseController;
 use App\Http\Requests\ProjectRequest;
+use App\Mail\ProjectStateUpdate;
 use App\Project;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class ProjectController extends BaseController
 {
@@ -26,7 +28,8 @@ class ProjectController extends BaseController
         $this->crud = 'employee.projects';
 
         $this->middleware(function ($request, $next) {
-            $employee = Employee::where('id', Auth::user()['model_id'])->first();
+            $employee = Employee::whereId(Auth::user()['model_id'])->first();
+            $this->model = $this->entity->orderBy('created_at', 'DESC');
             if ( !is_null($employee) ) {
                 $request->request->add(['data' => [
                     'tools' => [
@@ -36,7 +39,7 @@ class ProjectController extends BaseController
                     ],
                     'table' => [
                         'check' => false,
-                        'fields' => ['code', 'name', 'start', 'type', 'concept'],
+                        'fields' => ['code', 'name', 'start', 'concept'],
                         'active' => false,
                         'actions' => true,
                     ],
@@ -46,16 +49,8 @@ class ProjectController extends BaseController
                             'value' => 'app.sections.project_information',
                         ],
                         [
-                            'name' => 'code',
-                            'type' => 'text',
-                        ],
-                        [
                             'name' => 'name',
                             'type' => 'text',
-                        ],
-                        [
-                            'name' => 'date',
-                            'type' => 'date',
                         ],
                         [
                             'name' => 'start',
@@ -89,6 +84,14 @@ class ProjectController extends BaseController
                             'value' => 'app.selects.project.state',
                         ],
                         [
+                            'name' => 'beneficiary_id',
+                            'type' => 'select_reload',
+                        ],
+                        [
+                            'name' => 'reviewed_at',
+                            'type' => 'date',
+                        ],
+                        [
                             'type' => 'section',
                             'value' => 'app.sections.financing_information',
                         ],
@@ -105,19 +108,10 @@ class ProjectController extends BaseController
                             'name' => 'financing_description',
                             'type' => 'textarea',
                         ],
-                        [
-                            'name' => 'concept',
-                            'type' => 'select',
-                            'value' => 'app.selects.project.concept',
-                        ],
-                        [
-                            'name' => 'employee_id',
-                            'type' => 'select_reload',
-                        ],
                     ],
                 ]]);
-                $request->request->add(['beneficiary_id' => $employee->id]);
-                $this->model = $employee->projects->sortByDesc('name');
+                $request->request->add(['employee_id' => $employee->id]);
+                //$this->model = $employee->projects->sortByDesc('created_at');
 
                 return $next($request);
             }
@@ -134,6 +128,11 @@ class ProjectController extends BaseController
      */
     public function store(ProjectRequest $request)
     {
+        $request->validate([
+            'start' => 'required|date',
+        ]);
+        $lastId = Project::all()->last()->id;
+        $request['code'] = 'PRO - ' . ($lastId + 1);
         return parent::storeBase($request, false);
     }
 
@@ -146,6 +145,9 @@ class ProjectController extends BaseController
      */
     public function update(ProjectRequest $request, int $id)
     {
+        $request->validate([
+            'start' => 'required|date',
+        ]);
         return parent::updateBase($request, $id);
     }
 
@@ -155,19 +157,45 @@ class ProjectController extends BaseController
      * @param Request $request
      * @return JsonResponse
      */
-    public function conceptUpdate(Request $request)
+    public function updateConcept(Request $request)
     {
-        $project = $this->entity::find($request->input('id'));
+        $project = $this->entity::whereId($request->input('id'))->with('beneficiary')->first();
+        $message = '';
 
         if ( is_null($project) ) return abort(404);
 
-        if ($request->input('concept') == __('app.selects.project.concept_next.' . $project->concept)) {
+        if ($project->concept !== 'RECHAZADO') {
+
+            if ($request->input('concept') === 'RECHAZADO') {
+                $message = 'RECHAZADO';
+                $error = true;
+            }
+
+            if ($request->input('concept') === 'APROBADO') {
+                $message = 'APROBADO';
+                $error = false;
+            }
+
             $project->concept = $request->input('concept');
             $project->save();
-        }
 
-        return response()->json([
-            'message' => __('app.messages.project.' . $project->concept),
-        ]);
+            $body = [
+                'project' => $project,
+                'url' => $request->root() . "/beneficiary/projects",
+            ];
+
+            Mail::to($project->beneficiary->email)->send(new ProjectStateUpdate($body));
+
+            return response()->json([
+                'data' => $project,
+                'message' => __("app.messages.project.$message"),
+                'error' => $error
+            ]);
+        } else {
+            return response()->json([
+                'error' => true,
+                'message' => __('app.messages.project.update'),
+            ]);
+        }
     }
 }

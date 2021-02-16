@@ -20,7 +20,7 @@ class ProjectController extends BaseController
     public function __construct(Project $entity)
     {
         parent::__construct($entity, false);
-        $this->model = $this->entity->with('employee')->orderBy('created_at', 'DESC');
+        $this->model = $this->entity->orderBy('created_at', 'DESC')->with('employee');
     }
 
     /**
@@ -124,6 +124,5 @@ class ProjectController extends BaseController
                 'message' => __('app.messages.project.update'),
             ]);
         }
-
     }
 }

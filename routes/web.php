@@ -129,6 +129,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
         // Beneficiaries
         Route::resource('beneficiaries', 'BeneficiaryController', ['except' => ['create', 'destroy', 'edit']])->names('employee.beneficiaries');
         Route::resource('beneficiaries/{beneficiary}/courses', 'Beneficiaries\CourseController', ['only' => ['index']])->names('employee.beneficiaries.courses');
+        Route::resource('beneficiaries/{beneficiary}/projects', 'Beneficiaries\ProjectController', ['except' => ['create', 'destroy', 'edit']])->names('employee.beneficiaries.projects');
+        Route::put('beneficiaries/{beneficiary}/projects', 'Beneficiaries\ProjectController@updateConcept')->name('employee.beneficiaries.projects.update');
+
 
         // Projects
         Route::resource('projects', 'ProjectController', ['except' => ['create']])->names('employee.projects');

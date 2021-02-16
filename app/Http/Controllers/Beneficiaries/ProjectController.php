@@ -5,10 +5,12 @@ namespace App\Http\Controllers\Beneficiaries;
 use App\Beneficiary;
 use App\Http\Controllers\BaseController;
 use App\Http\Requests\ProjectRequest;
+use App\Mail\ProjectStateUpdate;
 use App\Project;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Mail;
 
 class ProjectController extends BaseController
 {
@@ -179,7 +181,8 @@ class ProjectController extends BaseController
      */
     public function updateConcept(Request $request)
     {
-        $project = $this->entity::find($request->input('id'));
+        $project = $this->entity::whereId($request->input('id'))->with('beneficiary')->first();
+        $message = '';
 
         if ( is_null($project) ) return abort(404);
 
@@ -198,6 +201,13 @@ class ProjectController extends BaseController
             $project->concept = $request->input('concept');
             $project->save();
 
+            $body = [
+                'project' => $project,
+                'url' => $request->root() . "/beneficiary/projects",
+            ];
+
+            Mail::to($project->beneficiary->email)->send(new ProjectStateUpdate($body));
+
             return response()->json([
                 'data' => $project,
                 'message' => __("app.messages.project.$message"),
@@ -209,6 +219,5 @@ class ProjectController extends BaseController
                 'message' => __('app.messages.project.update'),
             ]);
         }
-
     }
 }

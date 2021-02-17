@@ -24,11 +24,11 @@ $('#download').on("click", function () {
     let url = '';
 
     if (format_id === '1') {
-        url = `/format-authorization/${beneficiary_id}`;
+        url = `/employee/format-authorization/${beneficiary_id}`;
     } else if (format_id === '2') {
-        url = `/format-responsibility/${beneficiary_id}`;
+        url = `/employee/format-responsibility/${beneficiary_id}`;
     } else if (format_id === '3') {
-        url = `/format-loan/${beneficiary_id}/${loan_id}/loan`;
+        url = `/employee/format-loan/${beneficiary_id}/${loan_id}/loan`;
     }
 
     if (beneficiary_id === ""){
@@ -52,7 +52,7 @@ $(function() {
                if (cont === 0) {
                    $.get('format-loans-beneficiaries', { beneficiary_id : $(this).val() }, function (loans){
                        if (loans.data){
-                           $('#loan_id_form').prop('disabled', false).empty().append('<option value="">Seleccione un opción</option>').selectpicker('refresh');
+                           f
                            $.each(loans.data, function (index, value) {
                                 $('#loan_id_form').append('<option value="' + value.id + '">' + value.name + '</option>').selectpicker('refresh');
                            });

@@ -118,7 +118,7 @@ formButton.on("click", function () {
         formReset.removeClass("m--hide");
         formTitle.html(Lang.get('base/base.titles.update', {name: formTitle.attr('data-name')}));
         formButton.html(Lang.get('base/base.buttons.update')).attr('data-action', 'update');
-        if (crud === '/formats') {
+        if (crud === '/formats' || crud === '/employee/formats') {
             formButton.html('Descargar');
         } else if (crud === '/users') {
             formButton.html('Asignar Rol');
@@ -166,7 +166,7 @@ function resetForm(action = 'create', name) {
     } else if (action === 'show') {
         disableForm(true, false);
         formReset.addClass("m--hide");
-        if (crud !== '/formats') {
+        if (crud !== '/formats' && crud !== '/employee/formats') {
             formTitle.html(Lang.get('base/base.titles.show', {name: name})).attr('data-name', name);
         } else {
             disableForm(false, false);
@@ -175,8 +175,8 @@ function resetForm(action = 'create', name) {
     }
 
     formButton.html(Lang.get('base/base.buttons.' + action)).attr('data-action', action);
-    if (crud === '/formats') {
-        formButton.html('Descargar').attr('data-action', 'creating');
+    if (crud === '/formats' || crud === '/employee/formats') {
+        formButton.html('Descargar').attr('data-action', 'create').attr('id', 'download');
     }
     $('span[name=form-error]').remove();
     $('#validations').addClass('m--hide');

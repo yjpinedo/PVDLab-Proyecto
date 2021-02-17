@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Formato de salida de equipos</title>
+    <title>FORMATO DE REGISTRO DE PROYECTOS</title>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 </head>
 <style>
@@ -32,7 +32,7 @@
         </tr>
         <tr>
             <td valign="top">
-                <p class="co"><strong>FORMATO DE SALIDA DE EQUIPOS</strong></p>
+                <p class="co"><strong>FORMATO DE REGISTRO DE PROYECTOS</strong></p>
             </td>
             <td>
                 <p class="cod">FECHA: {{ $month }} </p>
@@ -80,7 +80,7 @@
             </tr>
         @endforeach
         <tr>
-            <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan=2 height="40" align="left" valign=middle><b><font color="#000000">CONTACTO PRINCIPAL :</font></b>&nbsp;<font style="font-size: 5px !important;">{{ $project->beneficiary->email }}</font></td>
+            <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan=2 height="40" align="left" valign=middle><b><font color="#000000">CONTACTO PRINCIPAL :</font></b>&nbsp;<span style="font-size: 15px !important;">{{ $project->beneficiary->email }}</span></td>
             <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan=2 align="left" valign=middle><b><font color="#000000">OCUPACI&Oacute;N: </font></b>&nbsp;{{ !is_null($project->beneficiary->occupation) ? $project->beneficiary->occupation : 'NO TIENE OCUPACIÓN' }}</td>
         </tr>
         <tr>

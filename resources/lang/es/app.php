@@ -63,9 +63,9 @@ return [
         'courses' => 'Cursos',
         'employees' => 'Empleados',
         'employee' => [
-            'transfers' => 'Transferencias',
             'beneficiaries' => 'Beneficiarios',
             'projects' => 'Proyectos',
+            'formats' => 'Formatos',
         ],
         'formats' => 'Formatos',
         'home' => 'Inicio',

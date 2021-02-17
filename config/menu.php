@@ -34,6 +34,10 @@ return [
                 'crud' => 'employee.beneficiaries',
                 'icon' => 'fa fa-users',
             ],
+            [
+                'crud' => 'employee.formats',
+                'icon' => 'fa fa-file-alt',
+            ],
         ],
     ],
 

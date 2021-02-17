@@ -132,6 +132,13 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::resource('beneficiaries/{beneficiary}/projects', 'Beneficiaries\ProjectController', ['except' => ['create', 'destroy', 'edit']])->names('employee.beneficiaries.projects');
         Route::put('beneficiaries/{beneficiary}/projects', 'Beneficiaries\ProjectController@updateConcept')->name('employee.beneficiaries.projects.update');
 
+        // Courses
+        Route::resource('courses', 'CourseController', ['except' => ['create', 'edit']])->names('employee.courses');
+        /*Route::name('course_')->group(function () {
+            // Lessons
+            Route::resource('courses/{course}/lessons', 'Beneficiaries\LessonController', ['except' => ['create', 'destroy', 'edit']]);
+        });*/
+
         Route::resource('formats', 'FormatController', ['only' => ['store', 'show', 'index']])->names('employee.formats');
         Route::get('/format-loan/{beneficiary_id}/{loan_id}/loan', 'FormatController@format_loans')->name('employee.format.loans');
         Route::get('/format-project/{project_id}/project', 'FormatController@format_project')->name('employee.format.project');

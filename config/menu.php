@@ -38,6 +38,18 @@ return [
                 'crud' => 'employee.formats',
                 'icon' => 'fa fa-file-alt',
             ],
+            [
+                'icon' => 'fa fa-clipboard-list',
+                'name' => 'employee.courses',
+                'submenu' => [
+                    [
+                        'crud' => 'employee.courses',
+                    ],/*
+                    [
+                        'crud' => 'teachers',
+                    ],*/
+                ],
+            ],
         ],
     ],
 

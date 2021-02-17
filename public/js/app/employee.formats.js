@@ -52,7 +52,7 @@ $(function() {
                if (cont === 0) {
                    $.get('format-loans-beneficiaries', { beneficiary_id : $(this).val() }, function (loans){
                        if (loans.data){
-                           f
+                           $('#loan_id_form').prop('disabled', false).empty().append('<option value="">Seleccione un opción</option>').selectpicker('refresh');
                            $.each(loans.data, function (index, value) {
                                 $('#loan_id_form').append('<option value="' + value.id + '">' + value.name + '</option>').selectpicker('refresh');
                            });

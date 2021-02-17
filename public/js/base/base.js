@@ -111,7 +111,7 @@ formButton.on("click", function () {
     } else if (action === 'show') {
         disableForm(false);
         $('#form .form-group:first .form-control').focus();
-        if (crud === '/courses' || crud === '/teacher/courses') {
+        if (crud === '/courses' || crud === '/teacher/courses' || crud === '/employee/courses') {
             $('#format_slug_form').hide();
             $('label[for=format_slug_form]').hide();
         }
@@ -134,14 +134,14 @@ formReset.on("click", function () {
 
     if (action === 'update') {
         show($('#id_form').val());
-        if (crud === '/courses' || crud === '/teacher/courses') {
+        if (crud === '/courses' || crud === '/teacher/courses' || crud === '/employee/courses') {
             $('#format_slug_form').show();
             $('label[for=format_slug_form]').show();
         }
     } else if (action === 'creating' && table.length === 0) {
         window.location.href = "/home";
     } else {
-        if (crud === '/courses' || crud === '/teacher/courses') {
+        if (crud === '/courses' || crud === '/teacher/courses' || crud === '/employee/courses') {
             $('#format_slug_form').show();
             $('label[for=format_slug_form]').show();
         }

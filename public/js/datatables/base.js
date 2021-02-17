@@ -40,7 +40,7 @@ $(document).ready(function () {
         optionsDataTable(table)
     ).on('key-focus', function (e, table, cell) {
         keyFocus(e, table, cell);
-        if (crud === '/courses' || crud === '/teacher/courses') {
+        if (crud === '/courses' || crud === '/teacher/courses' || crud === '/employee/courses') {
             $('#format_slug_form').show();
             $('label[for=format_slug_form]').show();
         }

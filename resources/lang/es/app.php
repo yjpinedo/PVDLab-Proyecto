@@ -66,6 +66,7 @@ return [
             'beneficiaries' => 'Beneficiarios',
             'projects' => 'Proyectos',
             'formats' => 'Formatos',
+            'courses' => 'Cursos',
         ],
         'formats' => 'Formatos',
         'home' => 'Inicio',

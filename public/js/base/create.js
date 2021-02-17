@@ -10,7 +10,7 @@ function create() {
     if (crud !== '/articles' && crud !== '/loans' && crud !== '/beneficiary/loans') {
         resetForm();
         $('#form .form-group:first .form-control').focus();
-        if (crud === '/courses' || crud === '/teacher/courses') {
+        if (crud === '/courses' || crud === '/teacher/courses' || crud === '/employee/courses') {
             $('#format_slug_form').hide();
             $('label[for=format_slug_form]').hide();
         }
@@ -28,11 +28,11 @@ function createRow(results) {
     if (results === undefined) results = {};
 
     if (table.length !== 0) dataTable.ajax.reload();
-    if (crud === '/loans' || crud === '/users' || crud.indexOf('/employee/beneficiaries/*/projects') === -1) {
+    if (crud === '/loans' || crud === '/users' || crud.indexOf('/employee/beneficiaries/*/projects') === -1 && crud !== '/employee/courses') {
     } else if (form.length !== 0 && crud.indexOf('create') === -1 && crud.indexOf('edit') === -1) {
         if (results.data) {
             showEntity(results.data);
-            if (crud === '/courses' || crud === '/teacher/courses') {
+            if (crud === '/courses' || crud === '/teacher/courses' || crud === '/employee/courses') {
                 $('#format_slug_form').show();
                 $('label[for=format_slug_form]').show();
             }

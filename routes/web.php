@@ -134,10 +134,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
         // Courses
         Route::resource('courses', 'CourseController', ['except' => ['create', 'edit']])->names('employee.courses');
-        /*Route::name('course_')->group(function () {
+        Route::name('course_')->group(function () {
             // Lessons
-            Route::resource('courses/{course}/lessons', 'Beneficiaries\LessonController', ['except' => ['create', 'destroy', 'edit']]);
-        });*/
+            Route::resource('courses/{course}/lessons', 'Beneficiaries\LessonController', ['except' => ['create', 'destroy', 'edit']])->names('employee.courses.lessons');
+        });
 
         Route::resource('formats', 'FormatController', ['only' => ['store', 'show', 'index']])->names('employee.formats');
         Route::get('/format-loan/{beneficiary_id}/{loan_id}/loan', 'FormatController@format_loans')->name('employee.format.loans');

@@ -33,7 +33,7 @@ class ProjectController extends BaseController
             if ( !is_null($employee) ) {
                 $request->request->add(['data' => [
                     'tools' => [
-                        'create' => true,
+                        'create' => false,
                         'reload' => false,
                         'export' => true,
                     ],
@@ -43,7 +43,7 @@ class ProjectController extends BaseController
                         'active' => false,
                         'actions' => true,
                     ],
-                    'form' => [
+                    'form' => [/*
                         [
                             'type' => 'section',
                             'value' => 'app.sections.project_information',
@@ -108,7 +108,7 @@ class ProjectController extends BaseController
                             'name' => 'financing_description',
                             'type' => 'textarea',
                         ],
-                    ],
+                    */],
                 ]]);
                 $request->request->add(['employee_id' => $employee->id]);
                 //$this->model = $employee->projects->sortByDesc('created_at');

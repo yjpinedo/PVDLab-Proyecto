@@ -40,7 +40,7 @@ class CourseController extends BaseController
                         'active' => false,
                         'actions' => true,
                     ],
-                    'form' => [
+                    'form' => [/*
                         [
                             'name' => 'teacher_id',
                             'type' => 'select_reload',
@@ -62,7 +62,7 @@ class CourseController extends BaseController
                             'type' => 'select',
                             'value' => 'app.selects.course.state',
                         ],
-                    ],
+                    */],
                 ]]);
 
                 //$request->request->add(['employee_id' => $employee->id]);

@@ -31,7 +31,7 @@ class BeneficiaryController extends BaseController
             if ( !is_null($employee) ) {
                 $request->request->add(['data' => [
                     'tools' => [
-                        'create' => true,
+                        'create' => false,
                         'reload' => false,
                         'export' => true,
                     ],
@@ -41,7 +41,7 @@ class BeneficiaryController extends BaseController
                         'active' => false,
                         'actions' => true,
                     ],
-                    'form' => [
+                    'form' => [/*
                         [
                             'type' => 'section',
                             'value' => 'app.sections.personal_information',
@@ -122,7 +122,7 @@ class BeneficiaryController extends BaseController
                             'type' => 'select',
                             'value' => 'app.selects.person.stratum',
                         ],
-                    ],
+                    */],
                 ]]);
                 //$request->request->add(['employee_id' => $employee->id]);
                 //$this->model = $employee->beneficiary->sortByDesc('name');

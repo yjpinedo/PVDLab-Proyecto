@@ -67,6 +67,7 @@ return [
             'projects' => 'Proyectos',
             'formats' => 'Formatos',
             'courses' => 'Cursos',
+            'teachers' => 'Docentes',
         ],
         'formats' => 'Formatos',
         'home' => 'Inicio',

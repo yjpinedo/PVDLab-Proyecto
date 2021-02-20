@@ -44,10 +44,10 @@ return [
                 'submenu' => [
                     [
                         'crud' => 'employee.courses',
-                    ],/*
+                    ],
                     [
-                        'crud' => 'teachers',
-                    ],*/
+                        'crud' => 'employee.teachers',
+                    ],
                 ],
             ],
         ],

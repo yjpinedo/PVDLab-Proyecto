@@ -67,8 +67,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
         // Warehouses
         Route::resource('warehouses', 'WarehouseController', ['except' => ['create', 'edit']]);
         Route::resource('warehouses/{warehouse}/article', 'Warehouses\ArticleController', ['except' => ['create', 'edit']]);
+        // Articles
         Route::resource('articles', 'ArticleController');
         Route::resource('articles/{article}/warehouse', 'Articles\WarehouseController', ['except' => ['create', 'edit']]);
+        // Movements
         Route::resource('movements', 'MovementController', ['except' => ['create', 'edit']]);
 
         // Loans
@@ -138,6 +140,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
             // Lessons
             Route::resource('courses/{course}/lessons', 'Beneficiaries\LessonController', ['except' => ['create', 'destroy', 'edit']])->names('employee.courses.lessons');
         });
+        Route::resource('teachers', 'TeacherController', ['except' => ['create', 'edit']])->names('employee.teachers');
 
         Route::resource('formats', 'FormatController', ['only' => ['store', 'show', 'index']])->names('employee.formats');
         Route::get('/format-loan/{beneficiary_id}/{loan_id}/loan', 'FormatController@format_loans')->name('employee.format.loans');

@@ -28,7 +28,7 @@ function createRow(results) {
     if (results === undefined) results = {};
 
     if (table.length !== 0) dataTable.ajax.reload();
-    if (crud === '/loans' || crud === '/users' || crud.indexOf('/employee/beneficiaries/*/projects') === -1 && crud !== '/employee/courses') {
+    if (crud === '/loans' || crud === '/employee/loans' || crud === '/users' || crud.indexOf('/employee/beneficiaries/*/projects') === -1 && crud !== '/employee/courses') {
     } else if (form.length !== 0 && crud.indexOf('create') === -1 && crud.indexOf('edit') === -1) {
         if (results.data) {
             showEntity(results.data);

@@ -65,10 +65,10 @@ return [
                     ],
                     [
                         'crud' => 'employee.movements',
-                    ],/*
+                    ],
                     [
                         'crud' => 'employee.loans',
-                    ],*/
+                    ],
                 ],
             ],
         ],

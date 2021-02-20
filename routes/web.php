@@ -148,12 +148,19 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
         // Formats
         Route::resource('formats', 'FormatController', ['only' => ['store', 'show', 'index']])->names('employee.formats');
-        Route::get('/format-loan/{beneficiary_id}/{loan_id}/loan', 'FormatController@format_loans')->name('employee.format.loans');
-        Route::get('/format-project/{project_id}/project', 'FormatController@format_project')->name('employee.format.project');
-        Route::get('/format-responsibility/{beneficiary_id}', 'FormatController@format_responsibility')->name('employee.format.responsibility');
-        Route::get('/format-authorization/{beneficiary_id}', 'FormatController@format_authorization')->name('employee.format.authorization');
+        Route::get('/format-loan/{beneficiary_id}/{loan_id}/loan', 'FormatController@format_loans')->name('employee.formats.loans');
+        Route::get('/format-project/{project_id}/project', 'FormatController@format_project')->name('employee.formats.project');
+        Route::get('/format-responsibility/{beneficiary_id}', 'FormatController@format_responsibility')->name('employee.formats.responsibility');
+        Route::get('/format-authorization/{beneficiary_id}', 'FormatController@format_authorization')->name('employee.formats.authorization');
         Route::get('/format-loans-beneficiaries', 'FormatController@getLoansByBeneficiary')->name('employee.formats.format-loans-beneficiaries');
 
+        // loans
+        Route::resource('loans', 'LoanController')->except('show')->names('employee.loans');
+        Route::resource('loans/{loan}/article', 'Loans\ArticleController', ['except' => ['create', 'edit']])->names('employee.loans.articles');
+        Route::put('loans', 'LoanController@updateState')->name('employee.loans.updateState');
+
+        // Movements
+        Route::resource('movements', 'MovementController', ['except' => ['create', 'edit']])->names('employee.movements');
 
         // Projects
         Route::resource('projects', 'ProjectController', ['except' => ['create']])->names('employee.projects');
@@ -165,7 +172,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         // Warehouses
         Route::resource('warehouses', 'WarehouseController', ['except' => ['create', 'edit']])->names('employee.warehouses');
         Route::resource('warehouses/{warehouse}/article', 'Warehouses\ArticleController', ['except' => ['create', 'edit']])->names('employee.warehouses.articles');
-        Route::resource('movements', 'MovementController', ['except' => ['create', 'edit']])->names('employee.movements');
+
     });
 
     Route::get('select', 'AppController@select')->middleware('ajax');

@@ -50,6 +50,27 @@ return [
                     ],
                 ],
             ],
+            [
+                'icon' => 'fa fa-exchange-alt',
+                'name' => 'employee.movements',
+                'submenu' => [
+                    /*[
+                        'crud' => 'employee.categories',
+                    ],*/
+                    [
+                        'crud' => 'employee.warehouses',
+                    ],
+                    /*[
+                        'crud' => 'employee.articles',
+                    ],
+                    [
+                        'crud' => 'employee.movements',
+                    ],
+                    [
+                        'crud' => 'employee.loans',
+                    ],*/
+                ],
+            ],
         ],
     ],
 

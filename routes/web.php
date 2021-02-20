@@ -140,8 +140,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
             // Lessons
             Route::resource('courses/{course}/lessons', 'Beneficiaries\LessonController', ['except' => ['create', 'destroy', 'edit']])->names('employee.courses.lessons');
         });
-        Route::resource('teachers', 'TeacherController', ['except' => ['create', 'edit']])->names('employee.teachers');
 
+        // Formats
         Route::resource('formats', 'FormatController', ['only' => ['store', 'show', 'index']])->names('employee.formats');
         Route::get('/format-loan/{beneficiary_id}/{loan_id}/loan', 'FormatController@format_loans')->name('employee.format.loans');
         Route::get('/format-project/{project_id}/project', 'FormatController@format_project')->name('employee.format.project');
@@ -153,6 +153,14 @@ Route::middleware(['auth', 'verified'])->group(function () {
         // Projects
         Route::resource('projects', 'ProjectController', ['except' => ['create']])->names('employee.projects');
         Route::put('projects', 'ProjectController@updateConcept');
+
+        // Teachers
+        Route::resource('teachers', 'TeacherController', ['except' => ['create', 'edit']])->names('employee.teachers');
+
+        // Warehouses
+        Route::resource('warehouses', 'WarehouseController', ['except' => ['create', 'edit']])->names('employee.warehouses');
+        Route::resource('warehouses/{warehouse}/article', 'Warehouses\ArticleController', ['except' => ['create', 'edit']])->names('employee.warehouses.articles');
+        Route::resource('movements', 'MovementController', ['except' => ['create', 'edit']])->names('employee.movements');
     });
 
     Route::get('select', 'AppController@select')->middleware('ajax');

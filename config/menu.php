@@ -63,9 +63,9 @@ return [
                     [
                         'crud' => 'employee.articles',
                     ],
-                    /*[
+                    [
                         'crud' => 'employee.movements',
-                    ],
+                    ],/*
                     [
                         'crud' => 'employee.loans',
                     ],*/

@@ -166,6 +166,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::resource('projects', 'ProjectController', ['except' => ['create']])->names('employee.projects');
         Route::put('projects', 'ProjectController@updateConcept');
 
+        // Profile
+        Route::resource('profile', 'ProfileController')->names('employee.profile');
+
         // Teachers
         Route::resource('teachers', 'TeacherController', ['except' => ['create', 'edit']])->names('employee.teachers');
 

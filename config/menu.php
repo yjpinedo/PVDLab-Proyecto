@@ -71,6 +71,18 @@ return [
                     ],
                 ],
             ],
+            [
+                'icon' => 'fas fa-user-cog',
+                'name' => 'employee.profile',
+                'submenu' => [
+                    [
+                        'crud' => 'employee.profile',
+                    ],/*
+                    [
+                        'crud' => 'employee.update_password',
+                    ],*/
+                ],
+            ],
         ],
     ],
 

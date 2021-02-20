@@ -60,10 +60,10 @@ return [
                     [
                         'crud' => 'employee.warehouses',
                     ],
-                    /*[
+                    [
                         'crud' => 'employee.articles',
                     ],
-                    [
+                    /*[
                         'crud' => 'employee.movements',
                     ],
                     [

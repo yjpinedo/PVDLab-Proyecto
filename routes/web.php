@@ -128,6 +128,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     // Employees
     Route::middleware(['role:employees'])->namespace('Employee')->prefix('employee')->group(function () {
+
+        // Articles
+        Route::resource('articles', 'ArticleController')->names('employee.articles');
+        Route::resource('articles/{article}/warehouse', 'Articles\WarehouseController', ['except' => ['create', 'edit']])->names('employee.articles.warehouses');
+
         // Beneficiaries
         Route::resource('beneficiaries', 'BeneficiaryController', ['except' => ['create', 'destroy', 'edit']])->names('employee.beneficiaries');
         Route::resource('beneficiaries/{beneficiary}/courses', 'Beneficiaries\CourseController', ['only' => ['index']])->names('employee.beneficiaries.courses');

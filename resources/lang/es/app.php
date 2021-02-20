@@ -63,6 +63,7 @@ return [
         'courses' => 'Cursos',
         'employees' => 'Empleados',
         'employee' => [
+            'articles' => 'Artículos',
             'beneficiaries' => 'Beneficiarios',
             'courses' => 'Cursos',
             'formats' => 'Formatos',

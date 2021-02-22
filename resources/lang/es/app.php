@@ -72,6 +72,7 @@ return [
             'profile' => 'Mi Perfil',
             'projects' => 'Proyectos',
             'teachers' => 'Docentes',
+            'update-password' => 'Actualizar contraseña',
             'warehouses' => 'Almacén',
             'warehouses_articles' => 'Artículos',
         ],

@@ -166,6 +166,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::resource('projects', 'ProjectController', ['except' => ['create']])->names('employee.projects');
         Route::put('projects', 'ProjectController@updateConcept');
 
+        // Update Password
+        Route::resource('update-password', 'UpdatePasswordController', ['except' => ['create', 'edit','update', 'destroy']])->names('employee.update-password');
+
         // Profile
         Route::resource('profile', 'ProfileController')->names('employee.profile');
 

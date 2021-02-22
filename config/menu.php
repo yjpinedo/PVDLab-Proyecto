@@ -77,10 +77,10 @@ return [
                 'submenu' => [
                     [
                         'crud' => 'employee.profile',
-                    ],/*
+                    ],
                     [
-                        'crud' => 'employee.update_password',
-                    ],*/
+                        'crud' => 'employee.update-password',
+                    ],
                 ],
             ],
         ],

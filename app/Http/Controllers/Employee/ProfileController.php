@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Employee;
 use App\Employee;
 use App\Http\Requests\EmployeeRequest;
 use App\Position;
+use App\User;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -27,10 +29,18 @@ class ProfileController extends Controller
     }
 
     /**
-     * @param EmployeeRequest $request
+     * @param Request $request
+     * @return JsonResponse
      */
     public function store(Request $request) {
-        $id = $request->input('id');
+        $id = Auth::user()['model_id'];
+        $user = User::where('model_id', $id)->first();
+        $user_id = 0;
+
+        if (!is_null($user)){
+            $user_id = $user->id;
+        }
+
         $request->validate([
             'document_type' => 'required',
             'document' => 'required|numeric|digits_between:6,12|unique:employees,document,' . $id,
@@ -45,11 +55,25 @@ class ProfileController extends Controller
             'email' => [
                 'required',
                 'email',
-                Rule::unique('users', 'email')->ignore($id, 'id'),
-                Rule::unique('employee', 'email')->ignore($id, 'id'),
+                Rule::unique('beneficiaries', 'email')->ignore($user_id),
+                Rule::unique('employees', 'email')->ignore($id),
+                Rule::unique('users', 'email')->ignore($user_id),
+                Rule::unique('teachers', 'email')->ignore($user_id),
             ],
             'position_id' => 'required|exists:positions,id',
         ]);
-        dd($request->all());
+
+        $employee = Employee::find($id)->fill($request->all());
+        $employee->save();
+
+        if ($user->email != $employee->email) {
+            $user->email = $employee->email;
+            $user->save();
+        }
+
+        return response()->json([
+            'data' => $employee,
+            'message' => __('base.messages.update', ['name' => $employee->full_name]),
+        ]);
     }
 }

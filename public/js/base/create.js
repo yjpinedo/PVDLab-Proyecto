@@ -29,6 +29,10 @@ function createRow(results) {
 
     if (table.length !== 0) dataTable.ajax.reload();
     if (crud === '/loans' || crud === '/employee/loans' || crud === '/users' || crud.indexOf('/employee/beneficiaries/*/projects') === -1 && crud !== '/employee/courses') {
+        if (crud === '/employee/update-password') {
+            $('span[name=form-error]').remove();
+            form[0].reset();
+        }
     } else if (form.length !== 0 && crud.indexOf('create') === -1 && crud.indexOf('edit') === -1) {
         if (results.data) {
             showEntity(results.data);

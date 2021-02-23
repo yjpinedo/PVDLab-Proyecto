@@ -17,24 +17,22 @@
                     <strong>¡Alerta!</strong> Hay errores de validación en el formulario.
                 </div>
             </div>
-            <form method="POST" action="#" accept-charset="UTF-8" class="m-form" id="form">
+            <form method="POST" accept-charset="UTF-8" class="m-form" id="form">
                 @csrf
                 <div class="m-portlet__body m--padding-10">
-                    <div class="form-group m-form__group col-12">
-                        <label for="password-current">Contraseña Actual</label>
-                        <input id="password-current" class="form-control m-input" autocomplete="off" name="password-current" type="password">
-                    </div>
-                </div>
-                <div class="m-portlet__body m--padding-10">
-                    <div class="form-group m-form__group col-12">
-                        <label for="password">Nueva Contraseña</label>
-                        <input id="password" class="form-control m-input" autocomplete="off" name="password" type="password">
-                    </div>
-                </div>
-                <div class="m-portlet__body m--padding-10">
-                    <div class="form-group m-form__group col-12">
-                        <label for="password_confirmation">Confirmación Nueva Contraseña</label>
-                        <input id="password_confirmation" class="form-control m-input" autocomplete="off" name="password_confirmation" type="password">
+                    <div class="m-form__section m-form__section--first">
+                        <div class="form-group m-form__group col-12">
+                            <label for="password-current_form">Contraseña Actual</label>
+                            <input id="password-current_form" class="form-control m-input" autocomplete="off" name="password-current" type="password">
+                        </div>
+                        <div class="form-group m-form__group col-12">
+                            <label for="password_form">Nueva Contraseña</label>
+                            <input id="password_form" class="form-control m-input" autocomplete="off" name="password" type="password">
+                        </div>
+                        <div class="form-group m-form__group col-12">
+                            <label for="password_confirmation">Confirmación Nueva Contraseña</label>
+                            <input id="password_confirmation" class="form-control m-input" autocomplete="off" name="password_confirmation" type="password">
+                        </div>
                     </div>
                 </div>
                 <div class="m-portlet__foot m-portlet__foot--fit">
@@ -53,4 +51,9 @@
 
 @push('scripts')
     @include('includes.scripts')
+    <script>
+        //$('#form')[0].reset();
+        $(function (){
+        });
+    </script>
 @endpush

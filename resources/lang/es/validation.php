@@ -151,6 +151,7 @@ return [
         'id' => 'N°',
         'name' => 'Nombre',
         'password' => 'Contraseña',
+        'password-current' => 'Contraseña Actual',
         'password_confirmation' => 'Confirmar Contraseña',
         'remember' => 'Recordar Sesión',
         'search' => 'Buscar',

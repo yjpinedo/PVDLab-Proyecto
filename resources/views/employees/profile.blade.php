@@ -58,8 +58,8 @@
                                         <label for="document_type_form">Tipo de Documento</label>
                                         <select id="document_type_form" class="form-control m-bootstrap-select m_selectpicker" name="document_type" tabindex="-98">
                                             <option selected="selected" value="">Seleccione una opción</option>
-                                            <option value="CÉDULA DE CIUDADANÍA" {{ old('document_type') == $employee->document_type || in_array($employee->document_type, __('app.selects.person.document_type')) ? 'selected' : "" }}>CÉDULA DE CIUDADANÍA</option>
-                                            <option value="CÉDULA DE EXTRANJERÍA" {{ old('document_type') == $employee->document_type || in_array($employee->document_type, __('app.selects.person.document_type')) ? 'selected' : "" }}>CÉDULA DE EXTRANJERÍA</option>
+                                            <option value="CÉDULA DE CIUDADANÍA" {{ old('document_type') == $employee->document_type || $employee->document_type == __('app.selects.person.document_type.CÉDULA DE CIUDADANÍA') ? 'selected' : "" }}>CÉDULA DE CIUDADANÍA</option>
+                                            <option value="CÉDULA DE EXTRANJERÍA" {{ old('document_type') == $employee->document_type || $employee->document_type == __('app.selects.person.document_type.CÉDULA DE EXTRANJERÍA') ? 'selected' : "" }}>CÉDULA DE EXTRANJERÍA</option>
                                         </select>
                                     </div>
                                     <div class="form-group m-form__group col-12">
@@ -86,8 +86,8 @@
                                         <label for="sex_form">Sexo</label>
                                         <select id="sex_form" class="form-control m-bootstrap-select m_selectpicker" name="sex" tabindex="-98">
                                             <option selected="selected" value="">Seleccione una opción</option>
-                                            <option value="FEMENINO" {{ old('sex') == $employee->sex || in_array($employee->sex, __('app.selects.person.sex')) ? 'selected' : "" }}>FEMENINO</option>
-                                            <option value="MASCULINO" {{ old('sex') == $employee->sex || in_array($employee->sex, __('app.selects.person.sex')) ? 'selected' : "" }}>MASCULINO</option>
+                                            <option value="FEMENINO" {{ old('sex') == $employee->sex || $employee->sex == __('app.selects.person.sex.FEMENINO') ? 'selected' : "" }}>FEMENINO</option>
+                                            <option value="MASCULINO" {{ old('sex') == $employee->sex || $employee->sex == __('app.selects.person.sex.MASCULINO') ? 'selected' : "" }}>MASCULINO</option>
                                         </select>
                                     </div>
                                     <div class="form-group m-form__group col-12">

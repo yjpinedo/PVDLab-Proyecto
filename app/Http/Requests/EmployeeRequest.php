@@ -22,7 +22,6 @@ class EmployeeRequest extends BaseRequest
             'neighborhood' => 'required|min:3|max:50',
             'phone' => 'required_without:cellphone|numeric|digits_between:6,12|bail',
             'cellphone' => 'nullable|numeric|digits_between:6,12|bail',
-            'email' => 'required|email|unique:users,email,' . $this->id . '|unique:employees,email,' . $this->id,
             'position_id' => 'required|exists:positions,id',
         ];
     }

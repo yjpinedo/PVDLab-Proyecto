@@ -55,6 +55,8 @@ return [
             ],
             'loans' => 'Solicitud de Préstamos',
             'members' => 'Integrantes',
+            'update-password' => 'Actualizar contraseña',
+            'profile' => 'Mi Perfil',
         ],
         'beneficiary_courses' => 'Beneficiarios - Cursos',
         'beneficiary_lessons' => 'Beneficiarios - Lecciones',

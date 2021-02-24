@@ -20,6 +20,18 @@ return [
                 'crud' => 'beneficiary.loans',
                 'icon' => 'fas fa-dolly',
             ],
+            [
+                'icon' => 'fas fa-user-cog',
+                'name' => 'beneficiary.profile',
+                'submenu' => [
+                    [
+                        'crud' => 'beneficiary.profile',
+                    ],
+                    [
+                        'crud' => 'beneficiary.update-password',
+                    ],
+                ],
+            ],
         ],
     ],
 

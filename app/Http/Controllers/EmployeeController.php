@@ -4,8 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Employee;
 use App\Http\Requests\EmployeeRequest;
+use App\User;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 
 class EmployeeController extends BaseController
 {
@@ -28,6 +32,9 @@ class EmployeeController extends BaseController
      */
     public function store(EmployeeRequest $request)
     {
+        $request->validate([
+            'email' => 'required|email|unique:users,email|unique:employees,email',
+        ]);
         return parent::storeBase($request, false);
     }
 
@@ -40,6 +47,9 @@ class EmployeeController extends BaseController
      */
     public function update(EmployeeRequest $request, int $id)
     {
+        $request->validate([
+            'email' => 'required|email|unique:employees,email,' . $id,
+        ]);
         return parent::updateBase($request, $id);
     }
 }

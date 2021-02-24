@@ -29,7 +29,7 @@ function createRow(results) {
 
     if (table.length !== 0) dataTable.ajax.reload();
     if (crud === '/loans' || crud === '/employee/loans' || crud === '/users' || crud.indexOf('/employee/beneficiaries/*/projects') === -1 && crud !== '/employee/courses') {
-        if (crud === '/employee/update-password') {
+        if (crud === '/employee/update-password' || crud === '/beneficiary/update-password') {
             $('span[name=form-error]').remove();
             form[0].reset();
         }

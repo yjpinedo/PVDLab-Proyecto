@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Employee;
 
 use App\Employee;
-use App\Http\Requests\EmployeeRequest;
 use App\Position;
 use App\User;
 use Illuminate\Contracts\Foundation\Application;
@@ -34,8 +33,12 @@ class ProfileController extends Controller
      */
     public function store(Request $request) {
         $id = Auth::user()['model_id'];
-        $user = User::where('model_id', $id)->first();
         $user_id = 0;
+
+        $user = User::where([
+            ['model_id', $id],
+            ['model_type', Auth::user()['model_type']]
+        ])->first();
 
         if (!is_null($user)){
             $user_id = $user->id;
@@ -55,10 +58,8 @@ class ProfileController extends Controller
             'email' => [
                 'required',
                 'email',
-                Rule::unique('beneficiaries', 'email')->ignore($user_id),
                 Rule::unique('employees', 'email')->ignore($id),
                 Rule::unique('users', 'email')->ignore($user_id),
-                Rule::unique('teachers', 'email')->ignore($user_id),
             ],
             'position_id' => 'required|exists:positions,id',
         ]);

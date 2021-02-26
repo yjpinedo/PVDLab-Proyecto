@@ -105,6 +105,18 @@ return [
                 'crud' => 'teacher.courses',
                 'icon' => 'fa fa-clipboard-list',
             ],
+            [
+                'icon' => 'fas fa-user-cog',
+                'name' => 'teacher.profile',
+                'submenu' => [
+                    [
+                        'crud' => 'teacher.profile',
+                    ],
+                    [
+                        'crud' => 'teacher.update-password',
+                    ],
+                ],
+            ],
         ],
     ],
 

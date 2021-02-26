@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\Beneficiary;
+namespace App\Http\Controllers\Teacher;
 
-use App\Beneficiary;
+use App\Teacher;
 use App\User;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -20,8 +20,8 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        return view('Beneficiaries.profile', [
-            'beneficiary' => Beneficiary::whereId(Auth::user()['model_id'])->first()
+        return view('teachers.profile', [
+            'teacher' => Teacher::whereId(Auth::user()['model_id'])->first(),
         ]);
     }
 
@@ -30,11 +30,13 @@ class ProfileController extends Controller
      * @return JsonResponse
      */
     public function store(Request $request) {
+
         $id = Auth::user()['model_id'];
         $user = User::where([
             ['model_id', $id],
             ['model_type', Auth::user()['model_type']]
         ])->first();
+
         $user_id = 0;
 
         if (!is_null($user)){
@@ -43,12 +45,11 @@ class ProfileController extends Controller
 
         $request->validate([
             'document_type' => 'required',
-            'document' => 'required|numeric|digits_between:6,12|unique:beneficiaries,document,' . $id,
+            'document' => 'required|numeric|digits_between:6,12|unique:employees,document,' . $id,
             'name' => 'required|min:3|max:50|alpha_space',
             'last_name' => 'required|min:3|max:50|alpha_space',
             'sex' => 'required|in:' . implode(',', array_keys(__('app.selects.person.sex'))),
             'birth_date' => 'required|date|before:today',
-            'place_of_birth' => 'required|min:3|max:50',
             'address' => 'required|min:3|max:50',
             'neighborhood' => 'required|min:3|max:50',
             'phone' => 'required_without:cellphone|numeric|digits_between:6,12|bail',
@@ -56,26 +57,28 @@ class ProfileController extends Controller
             'email' => [
                 'required',
                 'email',
-                Rule::unique('beneficiaries', 'email')->ignore($id),
+                Rule::unique('teachers', 'email')->ignore($id),
                 Rule::unique('users', 'email')->ignore($user_id),
             ],
-            'occupation' => 'min:3|max:200',
-            'ethnic_group' => 'required|in:' . implode(',', array_keys(__('app.selects.person.ethnic_group'))),
-            'other_ethnic_group' => 'max:90',
-            'stratum' => 'required|in:' . implode(',', array_keys(__('app.selects.person.stratum'))),
+            'title' => 'required|min:3|max:100',
+            'title_type' => 'required|in:' . implode(',', array_keys(__('app.selects.teacher.title_type'))),
+            'collage' => 'required|min:3|max:100',
+            'year' => 'required|date_format:Y',
         ]);
 
-        $beneficiary = Beneficiary::find($id)->fill($request->all());
-        $beneficiary->save();
+        $teacher = Teacher::find($id)->fill($request->all());
+        dd($teacher);
 
-        if ($user->email != $beneficiary->email) {
-            $user->email = $beneficiary->email;
+        $teacher->save();
+
+        if ($user->email != $teacher->email) {
+            $user->email = $teacher->email;
             $user->save();
         }
 
         return response()->json([
-            'data' => $beneficiary,
-            'message' => __('base.messages.update', ['name' => $beneficiary->full_name]),
+            'data' => $teacher,
+            'message' => __('base.messages.update', ['name' => $teacher->full_name]),
         ]);
     }
 }

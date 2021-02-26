@@ -93,6 +93,8 @@ return [
             'beneficiaries' => 'Beneficiarios',
             'courses' => 'Cursos',
             'lessons' => 'Lecciones',
+            'profile' => 'Mi Perfil',
+            'update-password' => 'Actualizar contraseña',
         ],
         'users' => 'Asignar rol',
         'movements' => 'Movimientos',

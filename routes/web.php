@@ -84,10 +84,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('users/get-roles', 'UserController@getRoles')->name('users.getRoles');
 
         // Update Password
-        Route::resource('update-password', 'UpdatePasswordController', ['except' => ['create', 'edit','update', 'destroy']])->names('update-password');
+        /*Route::resource('update-password', 'UpdatePasswordController', ['except' => ['create', 'edit','update', 'destroy']])->names('update-password');
 
         // Profile
-        Route::resource('profile', 'ProfileController', ['except' => ['create', 'edit','update', 'destroy']])->names('profile');
+        Route::resource('profile', 'ProfileController', ['except' => ['create', 'edit','update', 'destroy']])->names('profile');*/
     });
 
     // Beneficiaries
@@ -136,13 +136,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
             Route::resource('courses/{course}/lessons', 'LessonController', ['except' => ['create', 'destroy', 'edit']]);
             // Lessons - Beneficiaries
             Route::resource('courses/{course}/lessons/{lesson}/take_assistance', 'TakeAssistanceController', ['except' => ['create', 'destroy', 'edit']]);
-
-            // Update Password
-            Route::resource('update-password', 'UpdatePasswordController', ['except' => ['create', 'edit','update', 'destroy']])->names('teacher.update-password');
-
-            // Profile
-            Route::resource('profile', 'ProfileController', ['except' => ['create', 'edit','update', 'destroy']])->names('teacher.profile');
         });
+        // Update Password
+        Route::resource('update-password', 'UpdatePasswordController', ['except' => ['create', 'edit','update', 'destroy']])->names('teacher.update-password');
+
+        // Profile
+        Route::resource('profile', 'ProfileController', ['except' => ['create', 'edit','update', 'destroy']])->names('teacher.profile');
     });
 
     // Employees

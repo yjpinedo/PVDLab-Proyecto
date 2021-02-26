@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Employee;
+namespace App\Http\Controllers\Teacher;
 
 use App\User;
 use Illuminate\Http\Request;
@@ -12,7 +12,7 @@ class UpdatePasswordController extends Controller
 {
     public function index()
     {
-        return view('employees.update-password');
+        return view('teachers.update-password');
     }
 
     public function store(Request $request)

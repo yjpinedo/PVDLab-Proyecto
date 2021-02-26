@@ -18,7 +18,10 @@ class UpdatePasswordController extends Controller
     public function store(Request $request)
     {
         $response = [];
-        $user = User::where('model_id', Auth::user()['model_id'])->first();
+        $user = User::where([
+            ['model_id', Auth::user()['model_id']],
+            ['model_type', Auth::user()['model_type']]
+        ])->first();
 
         $request->validate([
             'password-current' => ['required'],

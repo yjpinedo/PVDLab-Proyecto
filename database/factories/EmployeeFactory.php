@@ -17,6 +17,7 @@ $factory->define(Employee::class, function (Faker $faker) {
         'name' => $faker->firstName($gender),
         'last_name' => $faker->lastName . ' ' . $faker->lastName,
         'birth_date' => $faker->dateTimeBetween($startDate = '-60 years', $endDate = '-18 years'),
+        'place_of_birth' => $faker->streetName,
         'sex' => $gender,
         'address' => $faker->streetAddress,
         'neighborhood' => $faker->streetName,

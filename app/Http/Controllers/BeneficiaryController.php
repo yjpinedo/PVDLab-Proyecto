@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\BeneficiaryRequest;
 use App\Beneficiary;
+use App\User;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Response;
+use Illuminate\Validation\Rule;
 
 class BeneficiaryController extends BaseController
 {
@@ -43,8 +44,23 @@ class BeneficiaryController extends BaseController
      */
     public function update(BeneficiaryRequest $request, int $id)
     {
+        $user = User::where([
+            ['model_id', $id],
+            ['model_type', 'App\Beneficiary']
+        ])->first();
+        $user_id = 0;
+
+        if (!is_null($user)){
+            $user_id = $user->id;
+        }
+
         $request->validate([
-            'email' => 'required|email|unique:beneficiaries,email,' . $id,
+            'email' => [
+                'required',
+                'email',
+                Rule::unique('beneficiaries', 'email')->ignore($id),
+                Rule::unique('users', 'email')->ignore($user_id),
+            ],
         ]);
         return parent::updateBase($request, $id);
     }

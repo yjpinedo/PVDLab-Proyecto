@@ -17,9 +17,11 @@ class CreateTeachersTable extends Migration
             $table->increments('id');
             $table->enum('document_type', array_keys(__('app.selects.person.document_type')));
             $table->string('document', 12)->unique();
+            $table->string('expedition_place', 50)->nullable();
             $table->string('name', 50);
             $table->string('last_name', 50);
             $table->date('birth_date');
+            $table->string('place_of_birth',50)->nullable();
             $table->enum('sex', array_keys(__('app.selects.person.sex')));
             $table->string('address', 50);
             $table->string('neighborhood', 50);

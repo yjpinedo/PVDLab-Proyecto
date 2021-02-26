@@ -12,9 +12,11 @@ $factory->define(Teacher::class, function (Faker $faker) {
     return [
         'document_type' => $faker->randomElement(array_keys(__('app.selects.person.document_type'))),
         'document' => $faker->unique()->randomNumber($nbDigits = 9),
+        'expedition_place' => $faker->streetName,
         'name' => $faker->firstName($gender),
         'last_name' => $faker->lastName . ' ' . $faker->lastName,
         'birth_date' => $faker->dateTimeBetween($startDate = '-60 years', $endDate = '-18 years'),
+        'place_of_birth' => $faker->streetName,
         'sex' => $gender,
         'address' => $faker->streetAddress,
         'neighborhood' => $faker->streetName,

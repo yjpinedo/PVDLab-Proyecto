@@ -44,6 +44,10 @@ class Teacher extends Base
                 'type' => 'text',
             ],
             [
+                'name' => 'expedition_place',
+                'type' => 'text',
+            ],
+            [
                 'name' => 'name',
                 'type' => 'text',
             ],
@@ -52,13 +56,17 @@ class Teacher extends Base
                 'type' => 'text',
             ],
             [
+                'name' => 'sex',
+                'type' => 'select',
+                'value' => 'app.selects.person.sex',
+            ],
+            [
                 'name' => 'birth_date',
                 'type' => 'date',
             ],
             [
-                'name' => 'sex',
-                'type' => 'select',
-                'value' => 'app.selects.person.sex',
+                'name' => 'place_of_birth',
+                'type' => 'text',
             ],
             [
                 'type' => 'section',

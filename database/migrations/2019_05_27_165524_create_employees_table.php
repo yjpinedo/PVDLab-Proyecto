@@ -22,6 +22,7 @@ class CreateEmployeesTable extends Migration
             $table->string('last_name',50);;
             $table->enum('sex', array_keys(__('app.selects.person.sex')));
             $table->date('birth_date');
+            $table->string('place_of_birth',50)->nullable();
             $table->string('address', 50);
             $table->string('neighborhood', 50);
             $table->string('phone', 15)->nullable();

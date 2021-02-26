@@ -68,6 +68,10 @@ class Employee extends Base
                 'type' => 'date',
             ],
             [
+                'name' => 'place_of_birth',
+                'type' => 'text',
+            ],
+            [
                 'type' => 'section',
                 'value' => 'app.sections.contact_information',
             ],

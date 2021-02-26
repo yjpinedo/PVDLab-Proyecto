@@ -6,9 +6,6 @@ use App\Employee;
 use App\Http\Requests\EmployeeRequest;
 use App\User;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
-use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 
 class EmployeeController extends BaseController
@@ -47,8 +44,23 @@ class EmployeeController extends BaseController
      */
     public function update(EmployeeRequest $request, int $id)
     {
+        $user = User::where([
+            ['model_id', $id],
+            ['model_type', 'App\Employee']
+        ])->first();
+        $user_id = 0;
+
+        if (!is_null($user)){
+            $user_id = $user->id;
+        }
+
         $request->validate([
-            'email' => 'required|email|unique:employees,email,' . $id,
+            'email' => [
+                'required',
+                'email',
+                Rule::unique('employees', 'email')->ignore($id),
+                Rule::unique('users', 'email')->ignore($user_id),
+            ],
         ]);
         return parent::updateBase($request, $id);
     }

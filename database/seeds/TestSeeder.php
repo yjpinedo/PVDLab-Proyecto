@@ -69,9 +69,30 @@ class TestSeeder extends Seeder
             'model_id' => $employee->id,
         ])->assignRole('employees');
 
-        factory(Teacher::class, 3)->create();
-        factory(Employee::class, 3)->create();
-        factory(Beneficiary::class, 49)->create();
+        factory(Teacher::class, 3)->create()->each(function ($teacher){
+            factory(User::class)->create([
+                'name' => $teacher->full_name,
+                'email' => $teacher->email,
+                'model_type' => 'App\Teacher',
+                'model_id' => $teacher->id,
+            ])->assignRole('teachers');
+        });
+        factory(Employee::class, 3)->create()->each(function ($employee){
+            factory(User::class)->create([
+                'name' => $employee->full_name,
+                'email' => $employee->email,
+                'model_type' => 'App\Employee',
+                'model_id' => $employee->id,
+            ])->assignRole('employees');
+        });
+        factory(Beneficiary::class, 49)->create()->each(function ($beneficiary){
+            factory(User::class)->create([
+                'name' => $beneficiary->full_name,
+                'email' => $beneficiary->email,
+                'model_type' => 'App\Beneficiary',
+                'model_id' => $beneficiary->id,
+            ])->assignRole('beneficiaries');
+        });
 
         $teachers = Teacher::all();
 

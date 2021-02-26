@@ -60,6 +60,7 @@ return [
         ],
         'beneficiary_courses' => 'Beneficiarios - Cursos',
         'beneficiary_lessons' => 'Beneficiarios - Lecciones',
+        'courses_lessons' => 'Cursos - Lecciones',
         'categories' => 'Categorías',
         'configuration' => 'Configuracion',
         'courses' => 'Cursos',

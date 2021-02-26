@@ -28,7 +28,7 @@ class LessonController extends BaseController
 
             if ( !is_null($course) ) {
                 $request->request->add(['data' => [
-                    'title' => __('app.titles.beneficiary.courses'),
+                    'title' => __('app.titles.courses_lessons'),
                     'subtitle' => __('app.titles.beneficiary.lessons', ['name' => $course->full_name]),
                     'form' => [],
                 ]]);

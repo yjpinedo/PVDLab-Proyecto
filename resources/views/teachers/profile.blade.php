@@ -72,17 +72,21 @@
                                         <input id="document_form" class="form-control m-input" autocomplete="off" name="document" type="text" value="{{ old('document', $teacher->document) }}">
                                     </div>
                                     <div class="form-group m-form__group col-12">
-                                        <label for="name_form">Nombre</label>
-                                        <input id="name_form" class="form-control m-input" autocomplete="off" name="name" type="text" value="{{ old('name', $teacher->name) }}">
+                                        <label for="expedition_place_form">Lugar de Expedición</label>
+                                        <input id="expedition_place_form" class="form-control m-input" autocomplete="off" name="expedition_place" type="text" value="{{ old('expedition_place', $teacher->expedition_place) }}">
                                     </div>
                                     <div class="form-group m-form__group col-12">
-                                        <label for="last_name_form">Apellidos</label>
-                                        <input id="last_name_form" class="form-control m-input" autocomplete="off" name="last_name" type="text" value="{{ old('last_name', $teacher->last_name) }}">
+                                        <label for="name_form">Nombre</label>
+                                        <input id="name_form" class="form-control m-input" autocomplete="off" name="name" type="text" value="{{ old('name', $teacher->name) }}">
                                     </div>
                                 </div>
                             </div>
                             <div class="m-wizard__form-step " id="m_wizard_form_step_2">
                                 <div class="m-form__section m-form__section--first">
+                                    <div class="form-group m-form__group col-12">
+                                        <label for="last_name_form">Apellidos</label>
+                                        <input id="last_name_form" class="form-control m-input" autocomplete="off" name="last_name" type="text" value="{{ old('last_name', $teacher->last_name) }}">
+                                    </div>
                                     <div class="form-group m-form__group col-12">
                                         <label for="sex_form">Sexo</label>
                                         <select id="sex_form" class="form-control m-bootstrap-select m_selectpicker" name="sex" tabindex="-98">
@@ -96,6 +100,14 @@
                                         <input id="birth_date_form" class="form-control datepicker" data-provide="datepicker" style="width: 100%" autocomplete="off" name="birth_date" type="text" value="{{ old('birth_date', $teacher->birth_date) }}">
                                     </div>
                                     <div class="form-group m-form__group col-12">
+                                        <label for="place_of_birth_form">Lugar de nacimiento</label>
+                                        <input id="place_of_birth_form" class="form-control m-input" autocomplete="off" name="place_of_birth" type="text" value="{{ old('place_of_birth', $teacher->place_of_birth) }}">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="m-wizard__form-step " id="m_wizard_form_step_3">
+                                <div class="m-form__section m-form__section--first">
+                                    <div class="form-group m-form__group col-12">
                                         <h5>Información de Contacto</h5>
                                     </div>
                                     <div class="form-group m-form__group col-12">
@@ -106,10 +118,6 @@
                                         <label for="neighborhood_form">Barrio</label>
                                         <input id="neighborhood_form" class="form-control m-input" autocomplete="off" name="neighborhood" type="text" value="{{ old('cellphone', $teacher->neighborhood) }}">
                                     </div>
-                                </div>
-                            </div>
-                            <div class="m-wizard__form-step " id="m_wizard_form_step_3">
-                                <div class="m-form__section m-form__section--first">
                                     <div class="form-group m-form__group col-12">
                                         <label for="phone_form">Telefono</label>
                                         <input id="phone_form" class="form-control m-input" autocomplete="off" name="phone" type="text" value="{{ old('phone', $teacher->phone) }}">
@@ -122,6 +130,10 @@
                                         <label for="email_form">Correo Electrónico</label>
                                         <input id="email_form" class="form-control m-input" autocomplete="off" name="email" type="text" value="{{ old('email', $teacher->email) }}">
                                     </div>
+                                </div>
+                            </div>
+                            <div class="m-wizard__form-step " id="m_wizard_form_step_4">
+                                <div class="m-form__section m-form__section--first">
                                     <div class="form-group m-form__group col-12">
                                         <h5>Información Académica</h5>
                                     </div>
@@ -129,10 +141,6 @@
                                         <label for="title_form">Título</label>
                                         <input id="title_form" class="form-control m-input" autocomplete="off" name="title" type="text" value="{{ old('title', $teacher->title) }}">
                                     </div>
-                                </div>
-                            </div>
-                            <div class="m-wizard__form-step " id="m_wizard_form_step_4">
-                                <div class="m-form__section m-form__section--first">
                                     <div class="form-group m-form__group col-12">
                                         <label for="title_type_form">Tipo de Título</label>
                                         <select id="title_type_form" class="form-control m-bootstrap-select m_selectpicker" name="title_type" tabindex="-98">

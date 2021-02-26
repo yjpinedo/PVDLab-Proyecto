@@ -95,16 +95,20 @@
                                         <input id="birth_date_form" class="form-control datepicker" data-provide="datepicker" style="width: 100%" autocomplete="off" name="birth_date" type="text" value="{{ old('birth_date', $employee->birth_date) }}">
                                     </div>
                                     <div class="form-group m-form__group col-12">
+                                        <label for="place_of_birth_form">Lugar de nacimiento</label>
+                                        <input id="place_of_birth_form" class="form-control m-input" autocomplete="off" name="place_of_birth" type="text" value="{{ old('place_of_birth', $employee->place_of_birth) }}">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="m-wizard__form-step " id="m_wizard_form_step_3">
+                                <div class="m-form__section m-form__section--first">
+                                    <div class="form-group m-form__group col-12">
                                         <h5>Información de Contacto</h5>
                                     </div>
                                     <div class="form-group m-form__group col-12">
                                         <label for="address_form">Dirección</label>
                                         <input id="address_form" class="form-control m-input" autocomplete="off" name="address" type="text" value="{{ old('address', $employee->address) }}">
                                     </div>
-                                </div>
-                            </div>
-                            <div class="m-wizard__form-step " id="m_wizard_form_step_3">
-                                <div class="m-form__section m-form__section--first">
                                     <div class="form-group m-form__group col-12">
                                         <label for="neighborhood_form">Barrio</label>
                                         <input id="neighborhood_form" class="form-control m-input" autocomplete="off" name="neighborhood" type="text" value="{{ old('cellphone', $employee->neighborhood) }}">

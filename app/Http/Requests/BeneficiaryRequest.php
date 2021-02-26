@@ -14,6 +14,7 @@ class BeneficiaryRequest extends BaseRequest
         return [
             'document_type' => 'required',
             'document' => 'required|numeric|digits_between:6,12|unique:beneficiaries,document,' . $this->id,
+            'expedition_place' => 'required|min:3|max:50',
             'name' => 'required|min:3|max:50|alpha_space',
             'last_name' => 'required|min:3|max:50|alpha_space',
             'sex' => 'required|in:' . implode(',', array_keys(__('app.selects.person.sex'))),

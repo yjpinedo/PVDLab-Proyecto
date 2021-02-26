@@ -17,7 +17,7 @@ function getStatus(column, value) {
         return (
             '<div>' +
             '<a href="' + crud + '/' + value + '/article" class="m-portlet__nav-link btn m-btn m-btn--icon m-btn--icon-only m-btn--pill m-btn--hover-brand" title="Artículos">' +
-            '<i class="fa fa-clipboard-check"></i>' +
+            '<i class="fa fa-list-ul"></i>' +
             '</a>'
         );
     }

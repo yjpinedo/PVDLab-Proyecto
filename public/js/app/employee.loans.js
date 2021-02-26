@@ -46,7 +46,7 @@ function getStatus(column, value) {
             '<i class="fas fa-file-pdf"></i>' +
             '</a>' +
             '<a href="' + crud + '/' + value.id + '/article" class="m-portlet__nav-link btn m-btn m-btn--icon m-btn--icon-only m-btn--pill m-btn--hover-brand" title="Ver artículos">' +
-            '<i class="fa fa-clipboard-check"></i>' +
+            '<i class="fa fa-list-ul"></i>' +
             '</a>'
         ;
         return actions;

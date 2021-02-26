@@ -18,7 +18,7 @@ function getStatus(column, value) {
     if (column === 4) {
         return (
             '<a href="' + crud + '/' + value + '/warehouse" class="m-portlet__nav-link btn m-btn m-btn--icon m-btn--icon-only m-btn--pill m-btn--hover-brand" title="Lista de Almacén">' +
-            '<i class="fa fa-clipboard-check"></i>' +
+            '<i class="fa fa-list-ul"></i>' +
             '</a>' /*+
             '<a href="' + crud + '/' + value + '/edit" class="m-portlet__nav-link btn m-btn m-btn--icon m-btn--icon-only m-btn--pill m-btn--hover-brand" title="Editar">' +
             '<i class="fa fa-edit"></i>' +

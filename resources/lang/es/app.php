@@ -45,6 +45,7 @@ return [
         'beneficiaries' => 'Beneficiarios',
         'beneficiary' => [
             'courses_lists' => 'Cursos Disponibles',
+            'courses_admin' => ':name - Cursos',
             'application_course' => 'Aplicar Curso',
             'courses' => ' Mis Cursos',
             'projects' => 'Mis Proyectos',

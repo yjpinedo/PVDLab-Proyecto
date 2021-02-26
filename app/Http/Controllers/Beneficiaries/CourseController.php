@@ -31,7 +31,7 @@ class CourseController extends BaseController
             if ( !is_null($beneficiary) ) {
                 $request->request->add(['data' => [
                     'title' => __('app.titles.beneficiaries'),
-                    'subtitle' => __('app.titles.beneficiary.courses', ['name' => $beneficiary->full_name]),
+                    'subtitle' => __('app.titles.beneficiary.courses_admin', ['name' => $beneficiary->full_name]),
                     'tools' => [
                         'create' => false,
                         'reload' => false,

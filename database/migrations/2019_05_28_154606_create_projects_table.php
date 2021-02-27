@@ -30,9 +30,9 @@ class CreateProjectsTable extends Migration
             $table->string('observations', 200)->nullable();
             $table->enum('concept',  array_keys(__('app.selects.project.concept')))->default('PENDIENTE');
             $table->unsignedInteger('beneficiary_id');
-            $table->foreign('beneficiary_id')->references('id')->on('beneficiaries');
+            $table->foreign('beneficiary_id')->references('id')->on('beneficiaries')->onDelete('cascade')->onUpdate('cascade');;
             $table->unsignedInteger('employee_id')->nullable();
-            $table->foreign('employee_id')->references('id')->on('employees');
+            $table->foreign('employee_id')->references('id')->on('employees')->onDelete('cascade')->onUpdate('cascade');;
             $table->dateTime('reviewed_at')->nullable();
             $table->timestamps();
             $table->softDeletes();

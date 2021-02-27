@@ -124,6 +124,10 @@ return [
         'name' => 'admin',
         'menu' => [
             [
+                'crud' => 'dashboard',
+                'icon' => 'fas fa-home',
+            ],
+            [
                 'crud' => 'projects',
                 'icon' => 'fa fa-project-diagram',
             ],

@@ -17,7 +17,7 @@ class CreateBeneficiaryCourseTable extends Migration
             $table->bigIncrements('id');
             $table->enum('progress', array_keys(__('app.selects.course.progress')))->default(__('app.selects.course.progress.INSCRITO'));
             $table->unsignedInteger('beneficiary_id');
-            $table->foreign('beneficiary_id')->references('id')->on('beneficiaries');
+            $table->foreign('beneficiary_id')->references('id')->on('beneficiaries')->onDelete('cascade')->onUpdate('cascade');
             $table->unsignedInteger('course_id');
             $table->foreign('course_id')->references('id')->on('courses');
             $table->timestamps();

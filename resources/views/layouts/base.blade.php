@@ -19,10 +19,12 @@
             }
         });
     </script>
+    <!--<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">-->
     <link href="{{ asset('css/vendors.bundle.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('css/style.bundle.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('css/datatables.bundle.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css">
+    @stack('css')
 </head>
 @yield('body')
 </html>

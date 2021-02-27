@@ -32,7 +32,7 @@ class CreateMembersTable extends Migration
             $table->string('other_ethnic_group', 90)->nullable();
             $table->enum('stratum', array_keys(__('app.selects.person.stratum')));
             $table->unsignedInteger('project_id');
-            $table->foreign('project_id')->references('id')->on('projects');
+            $table->foreign('project_id')->references('id')->on('projects')->onDelete('cascade')->onUpdate('cascade');;
             $table->timestamps();
             $table->softDeletes();
         });

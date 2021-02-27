@@ -16,7 +16,7 @@ class CreateBeneficiaryProjectTable extends Migration
         Schema::create('beneficiary_project', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedInteger('beneficiary_id');
-            $table->foreign('beneficiary_id')->references('id')->on('beneficiaries');
+            $table->foreign('beneficiary_id')->references('id')->on('beneficiaries')->onDelete('cascade')->onUpdate('cascade');;
             $table->unsignedInteger('project_id');
             $table->foreign('project_id')->references('id')->on('projects');
             $table->timestamps();

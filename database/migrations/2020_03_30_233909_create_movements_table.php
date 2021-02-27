@@ -18,9 +18,9 @@ class CreateMovementsTable extends Migration
             $table->enum('type', array_keys(__('app.selects.movement.type')))->default('ENTRADA');
             $table->string('stock');
             $table->unsignedBigInteger('origin_id')->nullable();
-            $table->foreign('origin_id')->references('id')->on('warehouses');
+            $table->foreign('origin_id')->references('id')->on('warehouses')->onDelete('cascade')->onUpdate('cascade');;
             $table->unsignedBigInteger('destination_id')->nullable();
-            $table->foreign('destination_id')->references('id')->on('warehouses');
+            $table->foreign('destination_id')->references('id')->on('warehouses')->onDelete('cascade')->onUpdate('cascade');;
             $table->timestamps();
             $table->softDeletes();
         });

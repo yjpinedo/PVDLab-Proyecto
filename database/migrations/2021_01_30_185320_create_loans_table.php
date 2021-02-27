@@ -21,9 +21,9 @@ class CreateLoansTable extends Migration
             $table->date('refund')->default(\Carbon\Carbon::now()->addMonth());
             $table->enum('state', array_keys(__('app.selects.loans.state')))->default('PENDIENTE');
             $table->unsignedInteger('employee_id')->nullable();
-            $table->foreign('employee_id')->references('id')->on('employees');
+            $table->foreign('employee_id')->references('id')->on('employees')->onDelete('cascade')->onUpdate('cascade');;
             $table->unsignedInteger('beneficiary_id')->nullable();
-            $table->foreign('beneficiary_id')->references('id')->on('beneficiaries');
+            $table->foreign('beneficiary_id')->references('id')->on('beneficiaries')->onDelete('cascade')->onUpdate('cascade');;
             $table->timestamps();
         });
     }

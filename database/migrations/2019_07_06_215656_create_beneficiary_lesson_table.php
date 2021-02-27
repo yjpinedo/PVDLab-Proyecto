@@ -16,7 +16,7 @@ class CreateBeneficiaryLessonTable extends Migration
         Schema::create('beneficiary_lesson', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedInteger('beneficiary_id');
-            $table->foreign('beneficiary_id')->references('id')->on('beneficiaries');
+            $table->foreign('beneficiary_id')->references('id')->on('beneficiaries')->onDelete('cascade')->onUpdate('cascade');;
             $table->unsignedInteger('lesson_id');
             $table->foreign('lesson_id')->references('id')->on('lessons');
             $table->timestamps();

@@ -17,7 +17,7 @@ class CreateLessonsTable extends Migration
             $table->increments('id');
             $table->date('date');
             $table->unsignedInteger('course_id');
-            $table->foreign('course_id')->references('id')->on('courses');
+            $table->foreign('course_id')->references('id')->on('courses')->onDelete('cascade')->onUpdate('cascade');;
             $table->timestamps();
             $table->softDeletes();
         });

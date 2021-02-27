@@ -17,9 +17,9 @@ class CreateArticleWarehouseTable extends Migration
             $table->bigIncrements('id');
             $table->string('stock');
             $table->unsignedBigInteger('warehouse_id');
-            $table->foreign('warehouse_id')->references('id')->on('warehouses');
+            $table->foreign('warehouse_id')->references('id')->on('warehouses')->onDelete('cascade')->onUpdate('cascade');;
             $table->unsignedBigInteger('article_id');
-            $table->foreign('article_id')->references('id')->on('articles');
+            $table->foreign('article_id')->references('id')->on('articles')->onDelete('cascade')->onUpdate('cascade');;
             $table->timestamps();
             $table->softDeletes();
         });

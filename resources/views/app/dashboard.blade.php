@@ -198,7 +198,7 @@
 
             let formatTypeUserForMonth = <?= json_encode($formatTypeUserForMonth)?>;
             let baseChartBar = [
-                    { month: 'Ene', beneficiary: 0, teacher: 0, employee: 0,},
+                { month: 'Ene', beneficiary: 0, teacher: 0, employee: 0,},
                 { month: 'Feb', beneficiary: 0, teacher: 0, employee: 0,},
                 { month: 'Mar', beneficiary: 0, teacher: 0, employee: 0,},
                 { month: 'Abr', beneficiary: 0, teacher: 0, employee: 0,},

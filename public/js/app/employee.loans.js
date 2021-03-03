@@ -1,8 +1,8 @@
 columnsDataTable = [
     {data: 'id'},
     {data: 'name'},
-    {data: 'employee', customValue: true},
-    {data: 'beneficiary.full_name'},
+    {data: 'employee', customValue: true, searchable: false},
+    {data: 'beneficiary.full_name', searchable: false},
     {data: 'refund', className: 'dt-center'},
     {data: 'translated_state', searchable: false, className: 'dt-center', customValue: true},
     {data: 'actions', searchable: false, className: 'dt-center', customValue: true},

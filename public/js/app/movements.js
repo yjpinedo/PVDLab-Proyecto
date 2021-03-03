@@ -1,8 +1,8 @@
 columnsDataTable = [
     {data: 'id'},
     {data: 'type'},
-    {data: 'warehouse_origin', customValue: true},
-    {data: 'warehouse_destination', customValue: true},
+    {data: 'warehouse_origin', customValue: true, searchable: false},
+    {data: 'warehouse_destination', customValue: true, searchable: false},
 ];
 
 /**

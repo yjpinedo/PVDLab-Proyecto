@@ -1,9 +1,11 @@
 columnsDataTable = [
     {data: 'id'},
-    {data: 'full_name'},
+    {data: 'full_name', searchable: false},
     {data: 'sex'},
     {data: 'ethnic_group'},
     {data: 'id', searchable: false, className: 'dt-center', customValue: true},
+    {data: 'name', visible: false},
+    {data: 'last_name', visible: false},
 ];
 
 /**

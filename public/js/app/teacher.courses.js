@@ -1,7 +1,7 @@
 columnsDataTable = [
     {data: 'code'},
     {data: 'name'},
-    {data: 'state', searchable: false, className: 'dt-center', customValue: true},
+    {data: 'state', searchable: true, className: 'dt-center', customValue: true},
     {data: 'id', searchable: false, className: 'dt-center', customValue: true},
 ];
 

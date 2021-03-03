@@ -124,10 +124,6 @@ return [
         'name' => 'admin',
         'menu' => [
             [
-                'crud' => 'dashboard',
-                'icon' => 'fas fa-home',
-            ],
-            [
                 'crud' => 'projects',
                 'icon' => 'fa fa-project-diagram',
             ],
@@ -142,6 +138,18 @@ return [
             [
                 'crud' => 'users',
                 'icon' => 'fa fa-user-cog',
+            ],
+            [
+                'icon' => 'fas fa-chart-bar',
+                'name' => 'dashboard',
+                'submenu' => [
+                    [
+                        'crud' => 'dashboards.users',
+                    ],/*
+                    [
+                        'crud' => 'teachers',
+                    ],*/
+                ],
             ],
             [
                 'icon' => 'fa fa-clipboard-list',

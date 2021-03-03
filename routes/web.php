@@ -90,7 +90,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::resource('profile', 'ProfileController', ['except' => ['create', 'edit','update', 'destroy']])->names('profile');*/
 
         // Dashboard
-        Route::resource('dashboard', 'DashboardController', ['except' => ['create', 'edit','update', 'destroy', 'store']])->names('dashboard');
+        Route::resource('dashboard', 'DashboardController', ['except' => ['create', 'edit','update', 'destroy', 'store']])->names('dashboards.users');
     });
 
     // Beneficiaries

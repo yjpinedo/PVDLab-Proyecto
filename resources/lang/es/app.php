@@ -65,6 +65,10 @@ return [
         'categories' => 'Categorías',
         'configuration' => 'Configuracion',
         'courses' => 'Cursos',
+        'dashboard' => 'Estadísticas',
+        'dashboards' => [
+            'users' => 'Usuarios'
+        ],
         'employees' => 'Empleados',
         'employee' => [
             'articles' => 'Artículos',

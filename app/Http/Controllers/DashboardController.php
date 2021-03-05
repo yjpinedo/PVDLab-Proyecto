@@ -71,6 +71,8 @@ class DashboardController extends Controller
             'teacher' => round((($totalTeacher * 100) / $totalUser)),
         ];
 
+        $userLimit = User::limit(10)->orderBy('created_at', 'DESC')->get();
+
         return view('app.dashboard', [
             'totalUser' => $totalUser,
             'totalBeneficiary' => $totalBeneficiary,
@@ -79,6 +81,7 @@ class DashboardController extends Controller
             'percents' => $percents,
             'formatUserForMonth' => $formatUserForMonth,
             'formatTypeUserForMonth' => $formatTypeUserForMonth,
+            'userLimit' => $userLimit,
         ]);
     }
 }

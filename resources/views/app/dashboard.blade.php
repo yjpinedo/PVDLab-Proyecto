@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="m-content">
-        <div class="m-portlet ">
+        <div class="m-portlet">
             <div class="m-portlet__body  m-portlet__body--no-padding">
                 <div class="row m-row--no-padding m-row--col-separator-xl">
                     <div class="col-md-12 col-lg-6 col-xl-4">
@@ -94,6 +94,58 @@
                 </div>
             </div>
         </div>
+        <div class="m-portlet">
+            <div class="m-portlet__head">
+                <div class="m-portlet__head-caption">
+                    <div class="m-portlet__head-title">
+                        <h3 class="m-portlet__head-text">
+                            Últimos diez(10) usuarios registrados
+                        </h3>
+                    </div>
+                </div>
+            </div>
+            <div class="m-portlet__body">
+                <!--begin::Section-->
+                <div class="m-section">
+                    <div class="m-section__content">
+                        <table class="table table-bordered m-table">
+                            <thead>
+                            <tr>
+                                <th class="text-center">#</th>
+                                <th>Nombre</th>
+                                <th>Email</th>
+                                <th class="text-center">Rol</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach($userLimit as $index => $limit)
+                                <tr>
+                                <th scope="row" class="text-center">{{ ($index+1) }}</th>
+                                    <td>{{ $limit->name }}</td>
+                                    <td>{{ $limit->email }}</td>
+                                    <td class="text-center">
+                                    @if(count($limit->role) > 0)
+                                        @if ($limit->role[0] == 'teachers')
+                                            <span class="m-badge m-badge--brand m-badge--wide">{{ $limit->role[0] }}</span>
+                                        @elseif ($limit->role[0] == 'beneficiaries')
+                                            <span class="m-badge m-badge--accent m-badge--wide">{{ $limit->role[0] }}</span>
+                                        @else
+                                            <span class="m-badge m-badge--success m-badge--wide">{{ $limit->role[0] }}</span>
+                                        @endif
+                                    @else
+                                        <span class="m-badge m-badge--danger m-badge--wide">Sin rol</span>
+                                    @endif
+                                    </td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!--end::Section-->
+            </div>
+            <!--end::Form-->
+        </div>
         <div class="row">
             <div class="col-lg-12">
                 <!--begin::Portlet-->
@@ -126,7 +178,7 @@
                                     <i class="la la-gear"></i>
                                 </span>
                                 <h3 class="m-portlet__head-text">
-                                    Bar Chart
+                                    Registro de tipo de usuario por mes (Beneficiarios, docentes y empleados)
                                 </h3>
                             </div>
                         </div>
@@ -227,7 +279,7 @@
                             for (const options in baseChartBar) {
                                 for (const column in baseChartBar[options]) {
                                     if (baseChartBar[options][column] === month) {
-                                        baseChartBar[options]['teacher'] = formatTypeUserForMonth[index][user][month];
+                                        baseChartBar[options]['employee'] = formatTypeUserForMonth[index][user][month];
                                     }
                                 }
                             }
@@ -235,7 +287,7 @@
                             for (const options in baseChartBar) {
                                 for (const column in baseChartBar[options]) {
                                     if (baseChartBar[options][column] === month) {
-                                        baseChartBar[options]['employee'] = formatTypeUserForMonth[index][user][month];
+                                        baseChartBar[options]['teacher'] = formatTypeUserForMonth[index][user][month];
                                     }
                                 }
                             }
@@ -249,8 +301,8 @@
                 resize: true,
                 data: baseChartBar,
                 xkey: 'month',
-                ykeys: ['beneficiary', 'teacher', 'employee'],
-                labels: ['Brnenficiarios', 'Docentes', 'Empleados'],
+                ykeys: ['beneficiary', 'employee', 'teacher'],
+                labels: ['Beneficiarios', 'Empleados', 'Docentes'],
             });
         });
     </script>

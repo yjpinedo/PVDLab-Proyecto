@@ -67,7 +67,9 @@ return [
         'courses' => 'Cursos',
         'dashboard' => 'Estadísticas',
         'dashboards' => [
-            'users' => 'Usuarios'
+            'users' => 'Usuarios',
+            'projects' => 'Proyectos',
+            'courses' => 'Cursos',
         ],
         'employees' => 'Empleados',
         'employee' => [

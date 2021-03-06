@@ -11,26 +11,16 @@
                         <!--begin::Total Profit-->
                         <div class="m-widget24">
                             <div class="m-widget24__item">
-                                <h4 class="m-widget24__title">
-                                    Beneficiarios
-                                </h4>
+                                <h4 class="m-widget24__title">Beneficiarios</h4>
                                 <br>
-                                <span class="m-widget24__desc">
-													Total
-												</span>
-                                <span class="m-widget24__stats m--font-brand">
-													{{ $totalBeneficiary }}
-												</span>
+                                <span class="m-widget24__desc">Total</span>
+                                <span class="m-widget24__stats m--font-brand">{{ $totalBeneficiary }}</span>
                                 <div class="m--space-10"></div>
                                 <div class="progress m-progress--sm">
                                     <div class="progress-bar m--bg-brand" role="progressbar" style="width: {{ $percents['beneficiary'] }}%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="{{ $totalUser }}"></div>
                                 </div>
-                                <span class="m-widget24__change">
-													Porcentaje
-												</span>
-                                <span class="m-widget24__number">
-													{{ $percents['beneficiary'] }}%
-												</span>
+                                <span class="m-widget24__change">Porcentaje</span>
+                                <span class="m-widget24__number">{{ $percents['beneficiary'] }}%</span>
                             </div>
                         </div>
                         <!--end::Total Profit-->
@@ -39,26 +29,16 @@
                         <!--begin::New Feedbacks-->
                         <div class="m-widget24">
                             <div class="m-widget24__item">
-                                <h4 class="m-widget24__title">
-                                    Empleados
-                                </h4>
+                                <h4 class="m-widget24__title">Empleados</h4>
                                 <br>
-                                <span class="m-widget24__desc">
-													Total
-												</span>
-                                <span class="m-widget24__stats m--font-info">
-													{{ $totalEmployee }}
-												</span>
+                                <span class="m-widget24__desc">Total</span>
+                                <span class="m-widget24__stats m--font-info">{{ $totalEmployee }}</span>
                                 <div class="m--space-10"></div>
                                 <div class="progress m-progress--sm">
                                     <div class="progress-bar m--bg-info" role="progressbar" style="width: {{ $percents['employee'] }}%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="{{ $totalUser }}"></div>
                                 </div>
-                                <span class="m-widget24__change">
-													Porcentaje
-												</span>
-                                <span class="m-widget24__number">
-													{{ $percents['employee'] }}%
-												</span>
+                                <span class="m-widget24__change">Porcentaje</span>
+                                <span class="m-widget24__number">{{ $percents['employee'] }}%</span>
                             </div>
                         </div>
                         <!--end::New Feedbacks-->
@@ -67,26 +47,16 @@
                         <!--begin::New Orders-->
                         <div class="m-widget24">
                             <div class="m-widget24__item">
-                                <h4 class="m-widget24__title">
-                                    Docentes
-                                </h4>
+                                <h4 class="m-widget24__title">Docentes</h4>
                                 <br>
-                                <span class="m-widget24__desc">
-													Total
-												</span>
-                                <span class="m-widget24__stats m--font-danger">
-													{{ $totalTeacher }}
-												</span>
+                                <span class="m-widget24__desc">Total</span>
+                                <span class="m-widget24__stats m--font-danger">{{ $totalTeacher }}</span>
                                 <div class="m--space-10"></div>
                                 <div class="progress m-progress--sm">
                                     <div class="progress-bar m--bg-danger" role="progressbar" style="width: {{ $percents['teacher'] }}%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="{{ $totalUser }}"></div>
                                 </div>
-                                <span class="m-widget24__change">
-													Porcentaje
-												</span>
-                                <span class="m-widget24__number">
-													{{ $percents['teacher'] }}%
-												</span>
+                                <span class="m-widget24__change">Porcentaje</span>
+                                <span class="m-widget24__number">{{ $percents['teacher'] }}%</span>
                             </div>
                         </div>
                         <!--end::New Orders-->
@@ -99,7 +69,7 @@
                 <div class="m-portlet__head-caption">
                     <div class="m-portlet__head-title">
                         <h3 class="m-portlet__head-text">
-                            Últimos diez(10) usuarios registrados
+                            Usuarios más recientes
                         </h3>
                     </div>
                 </div>

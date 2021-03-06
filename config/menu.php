@@ -145,10 +145,13 @@ return [
                 'submenu' => [
                     [
                         'crud' => 'dashboards.users',
-                    ],/*
+                    ],
                     [
-                        'crud' => 'teachers',
-                    ],*/
+                        'crud' => 'dashboards.projects',
+                    ],
+                    [
+                        'crud' => 'dashboards.courses',
+                    ],
                 ],
             ],
             [

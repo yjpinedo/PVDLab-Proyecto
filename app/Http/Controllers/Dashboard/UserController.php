@@ -1,16 +1,15 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Dashboard;
 
 use App\User;
-use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 
-class DashboardController extends Controller
+class UserController extends Controller
 {
     public function index ()
     {
-
         $formatUserForMonth = [];
         $formatTypeUserForMonth = [];
         $monthFormat = ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"];
@@ -54,7 +53,7 @@ class DashboardController extends Controller
             } else {
                 array_push($formatTypeUserForMonth, [
                     'teacher' => [
-                    $monthFormat[$user->month-1] => $user->count,
+                        $monthFormat[$user->month-1] => $user->count,
                     ]
                 ]);
             }
@@ -73,7 +72,7 @@ class DashboardController extends Controller
 
         $userLimit = User::limit(10)->orderBy('created_at', 'DESC')->get();
 
-        return view('app.dashboard', [
+        return view('dashboard.users', [
             'totalUser' => $totalUser,
             'totalBeneficiary' => $totalBeneficiary,
             'totalTeacher' => $totalTeacher,

@@ -152,6 +152,9 @@ return [
                     [
                         'crud' => 'dashboards.courses',
                     ],
+                    [
+                        'crud' => 'dashboards.loans',
+                    ],
                 ],
             ],
             [

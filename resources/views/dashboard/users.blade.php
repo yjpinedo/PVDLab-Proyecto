@@ -77,7 +77,7 @@
             <div class="m-portlet__body">
                 <!--begin::Section-->
                 <div class="m-section">
-                    <div class="m-section__content">
+                    <div class="m-section__content table-responsive">
                         <table class="table table-bordered m-table">
                             <thead>
                             <tr>

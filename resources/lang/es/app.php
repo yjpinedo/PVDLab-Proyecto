@@ -70,6 +70,7 @@ return [
             'users' => 'Usuarios',
             'projects' => 'Proyectos',
             'courses' => 'Cursos',
+            'loans' => 'Préstamos',
         ],
         'employees' => 'Empleados',
         'employee' => [

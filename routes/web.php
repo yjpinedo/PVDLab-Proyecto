@@ -95,6 +95,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
             Route::resource('courses', 'Dashboard\CourseController', ['except' => ['create', 'edit','update', 'destroy', 'store', 'show']])->names('dashboards.courses');
             Route::resource('projects', 'Dashboard\ProjectController', ['except' => ['create', 'edit','update', 'destroy', 'store', 'show']])->names('dashboards.projects');
             Route::resource('users', 'Dashboard\UserController', ['except' => ['create', 'edit','update', 'destroy', 'store', 'show']])->names('dashboards.users');
+            Route::resource('loans', 'Dashboard\LoanController', ['except' => ['create', 'edit','update', 'destroy', 'store', 'show']])->names('dashboards.loans');
         });
     });
 

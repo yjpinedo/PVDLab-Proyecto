@@ -10,7 +10,7 @@
                     <div class="m-portlet__head">
                         <div class="m-portlet__head-caption">
                             <div class="m-portlet__head-title">
-                                <h3 class="m-portlet__head-text">Proyectos recientes</h3>
+                                <h3 class="m-portlet__head-text">Préstamos recientes</h3>
                             </div>
                         </div>
                     </div>
@@ -21,31 +21,31 @@
                                 <table class="table table-bordered table-hover">
                                     <thead>
                                         <tr>
-                                            <th>Codigo</th>
+                                            <th>id</th>
                                             <th>Nombre</th>
                                             <th>Empleado</th>
                                             <th>Beneficiario</th>
-                                            <th>Concepto</th>
+                                            <th>Estado</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach($projectsLimit as $project)
+                                        @foreach($loansLimit as $loan)
                                             <tr>
-                                                <th scope="row">{{ $project->code }}</th>
-                                                <td>{{ $project->name }}</td>
+                                                <th scope="row">{{ $loan->id }}</th>
+                                                <td>{{ $loan->name }}</td>
                                                 <td>
-                                                    @if(!is_null($project->employee))
-                                                        {{ $project->employee->full_name }}
+                                                    @if(!is_null($loan->employee))
+                                                        {{ $loan->employee->full_name }}
                                                     @endif
                                                 </td>
-                                                <td>{{ $project->beneficiary->full_name }}</td>
+                                                <td>{{ $loan->beneficiary->full_name }}</td>
                                                 <td class="text-center">
-                                                    @if($project->concept == 'APROBADO')
-                                                        <span class="m-badge m-badge--success m-badge--wide">{{ $project->concept }}</span>
-                                                    @elseif($project->concept == 'RECHAZADO')
-                                                        <span class="m-badge m-badge--danger m-badge--wide">{{ $project->concept }}</span>
+                                                    @if($loan->state == 'APROBADO')
+                                                        <span class="m-badge m-badge--success m-badge--wide">{{ $loan->state }}</span>
+                                                    @elseif($loan->state == 'RECHAZADO')
+                                                        <span class="m-badge m-badge--danger m-badge--wide">{{ $loan->state }}</span>
                                                     @else
-                                                        <span class="m-badge m-badge--warning m-badge--wide">{{ $project->concept }}</span>
+                                                        <span class="m-badge m-badge--warning m-badge--wide">{{ $loan->state }}</span>
                                                     @endif
                                                 </td>
                                             </tr>
@@ -75,7 +75,7 @@
                         </div>
                     </div>
                     <div class="m-portlet__body">
-                        <div id="projects_for_month" style="height:100%;"></div>
+                        <div id="loans_for_month" style="height:100%;"></div>
                     </div>
                 </div>
                 <!--end::Portlet-->
@@ -87,12 +87,12 @@
                         <div class="m-portlet__head-caption">
                             <div class="m-portlet__head-title">
                                 <span class="m-portlet__head-icon m--hide"><i class="la la-gear"></i></span>
-                                <h3 class="m-portlet__head-text">Total por conceptos(Aprovados, Rechazados y pendientes)</h3>
+                                <h3 class="m-portlet__head-text">Total por estado(Aprovados, Rechazados y pendientes)</h3>
                             </div>
                         </div>
                     </div>
                     <div class="m-portlet__body">
-                        <div id="concept_project_total" style="height:100%;"></div>
+                        <div id="state_loan_total" style="height:100%;"></div>
                     </div>
                 </div>
                 <!--end::Portlet-->
@@ -104,12 +104,12 @@
                         <div class="m-portlet__head-caption">
                             <div class="m-portlet__head-title">
                                 <span class="m-portlet__head-icon m--hide"><i class="la la-gear"></i></span>
-                                <h3 class="m-portlet__head-text">Porcenaje por conceptos(Aprovados, Rechazados y pendientes)</h3>
+                                <h3 class="m-portlet__head-text">Porcenaje por estado(Aprovados, Rechazados y pendientes)</h3>
                             </div>
                         </div>
                     </div>
                     <div class="m-portlet__body">
-                        <div id="concept_project_percents" style="height:100%;"></div>
+                        <div id="state_loan_percents" style="height:100%;"></div>
                     </div>
                 </div>
                 <!--end::Portlet-->
@@ -124,13 +124,13 @@
                                     <i class="la la-gear"></i>
                                 </span>
                                 <h3 class="m-portlet__head-text">
-                                    Concepto por mes (Aprovados, Rechazados y Pendientes)
+                                    Estado por mes (Aprovados, Rechazados y Pendientes)
                                 </h3>
                             </div>
                         </div>
                     </div>
                     <div class="m-portlet__body">
-                        <div id="concept_project_for_mont" style="height:100%;"></div>
+                        <div id="state_loan_for_mont" style="height:100%;"></div>
                     </div>
                 </div>
                 <!--end::Portlet-->
@@ -158,7 +158,7 @@
             ];
             let today = new Date();
             let year = today.getFullYear();
-            let $formatProjectForMonth = <?= json_encode($formatProjectForMonth)?>;
+            let formatLoanForMonth = <?= json_encode($formatLoanForMonth)?>;
             let baseChart = [
                 { month: year + '-01', value: 0, },
                 { month: year + '-02', value: 0, },
@@ -176,21 +176,21 @@
 
             for (const index in baseChart) {
                 for (const column in baseChart[index]) {
-                    for (const property in $formatProjectForMonth) {
+                    for (const property in formatLoanForMonth) {
                         if (baseChart[index][column] === property) {
-                            baseChart[index]['value'] = $formatProjectForMonth[property];
+                            baseChart[index]['value'] = formatLoanForMonth[property];
                         }
                     }
                 }
             }
 
             new Morris.Line({
-                element: 'projects_for_month',
+                element: 'loans_for_month',
                 resize: true,
                 data: baseChart,
                 xkey: 'month',
                 ykeys: ['value'],
-                labels: ['Proyectos Rgistrados'],
+                labels: ['Préstamos Rgistrados'],
                 xLabelFormat: function(x) {
                     return months[x.getMonth()];
                 },
@@ -199,7 +199,7 @@
                 },
             });
 
-            let formatConceptProjectForMonth = <?= json_encode($formatConceptProjectForMonth)?>;
+            let formatStateLoanForMonth = <?= json_encode($formatStateLoanForMonth)?>;
             let baseChartBar = [
                 { month: 'Ene', approved: 0, rejected: 0, pending: 0,},
                 { month: 'Feb', approved: 0, rejected: 0, pending: 0,},
@@ -215,22 +215,22 @@
                 { month: 'Dic', approved: 0, rejected: 0, pending: 0,},
             ];
 
-            for (const index in formatConceptProjectForMonth) {
-                for (const project in formatConceptProjectForMonth[index]) {
-                    for (const month in formatConceptProjectForMonth[index][project]) {
-                        if (project === 'approved') {
+            for (const index in formatStateLoanForMonth) {
+                for (const loan in formatStateLoanForMonth[index]) {
+                    for (const month in formatStateLoanForMonth[index][loan]) {
+                        if (loan === 'approved') {
                             for (const options in baseChartBar) {
                                 for (const column in baseChartBar[options]) {
                                     if (baseChartBar[options][column] === month) {
-                                        baseChartBar[options]['approved'] = formatConceptProjectForMonth[index][project][month];
+                                        baseChartBar[options]['approved'] = formatStateLoanForMonth[index][loan][month];
                                     }
                                 }
                             }
-                        } else if (project === 'rejected') {
+                        } else if (loan === 'rejected') {
                             for (const options in baseChartBar) {
                                 for (const column in baseChartBar[options]) {
                                     if (baseChartBar[options][column] === month) {
-                                        baseChartBar[options]['rejected'] = formatConceptProjectForMonth[index][project][month];
+                                        baseChartBar[options]['rejected'] = formatStateLoanForMonth[index][loan][month];
                                     }
                                 }
                             }
@@ -238,7 +238,7 @@
                             for (const options in baseChartBar) {
                                 for (const column in baseChartBar[options]) {
                                     if (baseChartBar[options][column] === month) {
-                                        baseChartBar[options]['pending'] = formatConceptProjectForMonth[index][project][month];
+                                        baseChartBar[options]['pending'] = formatStateLoanForMonth[index][loan][month];
                                     }
                                 }
                             }
@@ -248,7 +248,7 @@
             }
 
             new Morris.Bar({
-                element: 'concept_project_for_mont',
+                element: 'state_loan_for_mont',
                 resize: true,
                 data: baseChartBar,
                 xkey: 'month',
@@ -258,7 +258,7 @@
             });
 
             new Morris.Donut({
-               element: 'concept_project_percents',
+               element: 'state_loan_percents',
                resize: true,
                data: [
                    { label: 'Aprovados', value: {{ $percents['approved']  }} },
@@ -270,12 +270,12 @@
            });
 
             new Morris.Donut({
-                element: 'concept_project_total',
+                element: 'state_loan_total',
                 resize: true,
                 data: [
-                    { label: 'Aprovados', value: {{ $conceptApprovedCount  }} },
-                    { label: 'Rechazados', value: {{ $conceptRejectedCount  }} },
-                    { label: 'Pendientes', value: {{ $conceptPendingCount  }} },
+                    { label: 'Aprovados', value: {{ $stateApprovedCount  }} },
+                    { label: 'Rechazados', value: {{ $stateRejectedCount  }} },
+                    { label: 'Pendientes', value: {{ $statePendingCount  }} },
                 ],
                 colors: customColor,
             });

@@ -64,11 +64,14 @@ class LoanController extends BaseController
     {
         $loan = $this->entity::whereId($request->input('id'))->with(['articles.warehouses', 'beneficiary'])->first();
 
-        if ( is_null($loan) ) return abort(404);
+        if (is_null($loan)) return abort(404);
 
         if ($loan->state !== 'RECHAZADO') {
+            if (is_null($loan->employee)) {
+                $loan->employee_id = auth()->user()->id;
+            }
 
-            if (is_null($loan->employee)){
+            if ($loan->employee->id != auth()->user()->id) {
                 $loan->employee_id = auth()->user()->id;
             }
 
@@ -128,6 +131,7 @@ class LoanController extends BaseController
             ]);
         }
     }
+
     public function getArticleById(Request $request)
     {
         $sumStock = 0;

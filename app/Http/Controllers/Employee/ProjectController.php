@@ -30,7 +30,7 @@ class ProjectController extends BaseController
         $this->middleware(function ($request, $next) {
             $employee = Employee::whereId(Auth::user()['model_id'])->first();
             $this->model = $this->entity->orderBy('created_at', 'DESC');
-            if ( !is_null($employee) ) {
+            if (!is_null($employee)) {
                 $request->request->add(['data' => [
                     'tools' => [
                         'create' => false,
@@ -162,9 +162,17 @@ class ProjectController extends BaseController
         $project = $this->entity::whereId($request->input('id'))->with('beneficiary')->first();
         $message = '';
 
-        if ( is_null($project) ) return abort(404);
+        if (is_null($project)) return abort(404);
 
         if ($project->concept !== 'RECHAZADO') {
+
+            if (is_null($project->employee)) {
+                $project->employee_id = auth()->user()->id;
+            }
+
+            if ($project->employee->id != auth()->user()->id) {
+                $project->employee_id = auth()->user()->id;
+            }
 
             if ($request->input('concept') === 'RECHAZADO') {
                 $message = 'RECHAZADO';

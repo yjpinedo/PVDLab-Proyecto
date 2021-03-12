@@ -28,7 +28,7 @@ class LoanController extends BaseController
 
         $this->middleware(function ($request, $next) {
             $employee = Employee::whereId(Auth::user()['model_id'])->first();
-            if ( !is_null($employee) ) {
+            if (!is_null($employee)) {
                 $request->request->add(['data' => [
                     'tools' => [
                         'create' => false,
@@ -65,12 +65,16 @@ class LoanController extends BaseController
         $loan = $this->entity::whereId($request->input('id'))->with(['articles.warehouses', 'beneficiary', 'employee'])->first();
         $message = '';
 
-        if ( is_null($loan) ) return abort(404);
+        if (is_null($loan)) return abort(404);
 
         if ($loan->state !== 'RECHAZADO') {
 
-            if (is_null($loan->employee)){
-                $loan->employee_id = Auth::user()['model_id'];
+            if (is_null($loan->employee)) {
+                $loan->employee_id = auth()->user()->id;
+            }
+
+            if ($loan->employee->id != auth()->user()->id) {
+                $loan->employee_id = auth()->user()->id;
             }
 
             if ($request->input('state') === 'RECHAZADO') {

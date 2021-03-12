@@ -66,7 +66,7 @@ class ProjectController extends BaseController
     {
         $project = $this->entity::find($request->input('id'));
 
-        if ( is_null($project) ) return abort(404);
+        if (is_null($project)) return abort(404);
 
         if ($request->input('concept') == 'RECHAZADO' and $project->concept == 'PENDIENTE') {
             $project->concept = $request->input('concept');
@@ -89,9 +89,17 @@ class ProjectController extends BaseController
         $project = $this->entity::whereId($request->input('id'))->with('beneficiary')->first();
         $message = '';
 
-        if ( is_null($project) ) return abort(404);
+        if (is_null($project)) return abort(404);
 
         if ($project->concept !== 'RECHAZADO') {
+
+            if (is_null($project->employee)) {
+                $project->employee_id = auth()->user()->id;
+            }
+
+            if ($project->employee->id != auth()->user()->id) {
+                $project->employee_id = auth()->user()->id;
+            }
 
             if ($request->input('concept') === 'RECHAZADO') {
                 $message = 'RECHAZADO';

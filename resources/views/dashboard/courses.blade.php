@@ -9,7 +9,7 @@
                 <div class="m-portlet__head-caption">
                     <div class="m-portlet__head-title">
                         <h3 class="m-portlet__head-text">
-                            Cursos más recientes
+                            Cursos recientes
                         </h3>
                     </div>
                 </div>

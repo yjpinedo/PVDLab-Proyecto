@@ -69,7 +69,7 @@
                                     <i class="la la-gear"></i>
                                 </span>
                                 <h3 class="m-portlet__head-text">
-                                    Registro por mes
+                                    Préstamos por mes
                                 </h3>
                             </div>
                         </div>

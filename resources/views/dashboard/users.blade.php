@@ -69,7 +69,7 @@
                 <div class="m-portlet__head-caption">
                     <div class="m-portlet__head-title">
                         <h3 class="m-portlet__head-text">
-                            Usuarios más recientes
+                            Usuarios recientes
                         </h3>
                     </div>
                 </div>
@@ -127,7 +127,7 @@
                                     <i class="la la-gear"></i>
                                 </span>
                                 <h3 class="m-portlet__head-text">
-                                    Registro de usuarios por mes
+                                    Usuarios por mes
                                 </h3>
                             </div>
                         </div>
@@ -148,7 +148,7 @@
                                     <i class="la la-gear"></i>
                                 </span>
                                 <h3 class="m-portlet__head-text">
-                                    Registro de tipo de usuario por mes (Beneficiarios, docentes y empleados)
+                                    Tipo de usuario por mes (Beneficiarios, docentes y empleados)
                                 </h3>
                             </div>
                         </div>

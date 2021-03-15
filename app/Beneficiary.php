@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @property mixed id
@@ -10,6 +11,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  */
 class Beneficiary extends Base
 {
+    use SoftDeletes;
     /**
      * The mutated attributes that should be added for arrays.
      *

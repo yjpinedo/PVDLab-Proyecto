@@ -4,9 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Employee extends Base
 {
+    use SoftDeletes;
     /**
      * The mutated attributes that should be added for arrays.
      *

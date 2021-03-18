@@ -36,9 +36,17 @@
                                                 <td>
                                                     @if(!is_null($project->employee))
                                                         {{ $project->employee->full_name }}
+                                                    @else
+                                                        NO TIENE DEFINIDO UN EMPLEADO
                                                     @endif
                                                 </td>
-                                                <td>{{ $project->beneficiary->full_name }}</td>
+                                                <td>
+                                                    @if(!is_null($project->beneficiary))
+                                                        {{ $project->beneficiary->full_name }}</td>
+                                                    @else
+                                                        NO TIENE DEFINIDO UN BENEFICIARIO
+                                                    @endif
+                                                </td>
                                                 <td class="text-center">
                                                     @if($project->concept == 'APROBADO')
                                                         <span class="m-badge m-badge--success m-badge--wide">{{ $project->concept }}</span>

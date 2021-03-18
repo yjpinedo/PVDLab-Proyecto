@@ -77,6 +77,12 @@ return [
             'articles' => 'Artículos',
             'beneficiaries' => 'Beneficiarios',
             'courses' => 'Cursos',
+            'dashboards' => [
+                'users' => 'Usuarios',
+                'projects' => 'Proyectos',
+                'courses' => 'Cursos',
+                'loans' => 'Préstamos',
+            ],
             'formats' => 'Formatos',
             'loans' => 'loans',
             'movements' => 'Movimientos',

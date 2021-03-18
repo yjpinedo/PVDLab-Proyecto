@@ -90,7 +90,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::resource('profile', 'ProfileController', ['except' => ['create', 'edit','update', 'destroy']])->names('profile');*/
 
         // Dashboard
-        //Route::resource('dashboard', 'DashboardController', ['except' => ['create', 'edit','update', 'destroy', 'store', 'show']])->names('dashboards.users');
         Route::prefix('dashboards')->group(function (){
             Route::resource('courses', 'Dashboard\CourseController', ['except' => ['create', 'edit','update', 'destroy', 'store', 'show']])->names('dashboards.courses');
             Route::resource('projects', 'Dashboard\ProjectController', ['except' => ['create', 'edit','update', 'destroy', 'store', 'show']])->names('dashboards.projects');
@@ -171,6 +170,14 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::name('course_')->group(function () {
             // Lessons
             Route::resource('courses/{course}/lessons', 'Beneficiaries\LessonController', ['except' => ['create', 'destroy', 'edit']])->names('employee.courses.lessons');
+        });
+
+        // Dashboard
+        Route::prefix('dashboards')->group(function (){
+            Route::resource('courses', 'Dashboard\CourseController', ['except' => ['create', 'edit','update', 'destroy', 'store', 'show']])->names('employee.dashboards.courses');
+            Route::resource('projects', 'Dashboard\ProjectController', ['except' => ['create', 'edit','update', 'destroy', 'store', 'show']])->names('employee.dashboards.projects');
+            Route::resource('users', 'Dashboard\UserController', ['except' => ['create', 'edit','update', 'destroy', 'store', 'show']])->names('employee.dashboards.users');
+            Route::resource('loans', 'Dashboard\LoanController', ['except' => ['create', 'edit','update', 'destroy', 'store', 'show']])->names('employee.dashboards.loans');
         });
 
         // Formats

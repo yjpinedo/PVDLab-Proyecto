@@ -51,6 +51,24 @@ return [
                 'icon' => 'fa fa-file-alt',
             ],
             [
+                'icon' => 'fas fa-chart-bar',
+                'name' => 'dashboard',
+                'submenu' => [
+                    [
+                        'crud' => 'employee.dashboards.users',
+                    ],
+                    [
+                        'crud' => 'employee.dashboards.projects',
+                    ],
+                    [
+                        'crud' => 'employee.dashboards.courses',
+                    ],
+                    [
+                        'crud' => 'employee.dashboards.loans',
+                    ],
+                ],
+            ],
+            [
                 'icon' => 'fa fa-clipboard-list',
                 'name' => 'employee.courses',
                 'submenu' => [

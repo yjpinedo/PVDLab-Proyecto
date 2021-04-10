@@ -28,6 +28,7 @@ class CreateEmployeesTable extends Migration
             $table->string('phone', 15)->nullable();
             $table->string('cellphone', 15)->nullable();
             $table->string('email')->unique();
+            $table->enum('state', array_keys(__('app.selects.state')))->default(__('app.selects.state.ACTIVO'));
             $table->unsignedInteger('position_id')->nullable();
             $table->foreign('position_id')->references('id')->on('positions');
             $table->timestamps();

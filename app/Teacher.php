@@ -28,7 +28,7 @@ class Teacher extends Base
         ],
         'table' => [
             'check' => false,
-            'fields' => ['id', 'name', 'title', 'title_type'],
+            'fields' => ['document', 'name', 'title', 'title_type'],
             'active' => false,
             'actions' => false,
         ],

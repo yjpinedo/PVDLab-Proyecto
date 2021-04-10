@@ -1,5 +1,5 @@
 columnsDataTable = [
-    {data: 'id'},
+    {data: 'document'},
     {data: 'full_name', searchable: false},
     {data: 'sex'},
     {data: 'position.full_name', customValue: true, searchable: false},

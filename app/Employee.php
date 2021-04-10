@@ -30,7 +30,7 @@ class Employee extends Base
         ],
         'table' => [
             'check' => false,
-            'fields' => ['id', 'name', 'sex', 'position_id'],
+            'fields' => ['document', 'name', 'sex', 'position_id'],
             'active' => false,
             'actions' => false,
         ],

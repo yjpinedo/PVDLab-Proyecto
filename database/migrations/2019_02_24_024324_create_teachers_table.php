@@ -32,6 +32,7 @@ class CreateTeachersTable extends Migration
             $table->enum('title_type', array_keys(__('app.selects.teacher.title_type')))->nullable();
             $table->string('collage', 100)->nullable();
             $table->string('year', 4)->nullable();
+            $table->enum('state', array_keys(__('app.selects.state')))->default(__('app.selects.state.ACTIVO'));
             $table->timestamps();
             $table->softDeletes();
         });

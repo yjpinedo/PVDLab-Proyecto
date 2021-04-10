@@ -27,5 +27,6 @@ $factory->define(Teacher::class, function (Faker $faker) {
         'title_type' => $faker->randomElement(array_keys(__('app.selects.teacher.title_type'))),
         'collage' => $faker->company,
         'year' => $faker->year($max = 'now'),
+        'state' => $faker->randomElement(array_keys(__('app.selects.state'))),
     ];
 });

@@ -128,6 +128,10 @@ return [
     ],
 
     'selects' => [
+        'state' => [
+            'ACTIVO' => 'ACTIVO',
+            'INACTIVO' => 'INACTIVO',
+        ],
         'lesson' => [
             'assistance' => [
                 'ASISTIO' => 'ASISTIÓ',

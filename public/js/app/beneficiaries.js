@@ -1,8 +1,8 @@
 columnsDataTable = [
-    {data: 'id'},
+    {data: 'document'},
     {data: 'full_name', searchable: false},
     {data: 'sex'},
-    {data: 'ethnic_group'},
+    {data: 'state', searchable: true, className: 'dt-center', customValue: true},
     {data: 'id', searchable: false, className: 'dt-center', customValue: true},
     {data: 'name', visible: false},
     {data: 'last_name', visible: false},
@@ -17,7 +17,9 @@ columnsDataTable = [
  * @returns {String} The HTML string with the status
  */
 function getStatus(column, value) {
-    if (column === 4){
+    if (column === 3) {
+        return value === 'ACTIVO' ? '<span class="m-badge m-badge--success m-badge--wide">' + value + '</span>' : '<span class="m-badge m-badge--danger m-badge--wide">' + value + '</span>';
+    } else if (column === 4){
         return (
             '<div>' +
             '<a href="' + crud + '/' + value + '/courses" class="m-portlet__nav-link btn m-btn m-btn--icon m-btn--icon-only m-btn--pill m-btn--hover-brand" title="Cursos">' +

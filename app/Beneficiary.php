@@ -43,7 +43,7 @@ class Beneficiary extends Base
         ],
         'table' => [
             'check' => false,
-            'fields' => ['id', 'name', 'sex', 'ethnic_group'],
+            'fields' => ['document', 'name', 'sex', 'state'],
             'active' => false,
             'actions' => true,
         ],
@@ -127,6 +127,11 @@ class Beneficiary extends Base
                 'name' => 'stratum',
                 'type' => 'select',
                 'value' => 'app.selects.person.stratum',
+            ],
+            [
+                'name' => 'state',
+                'type' => 'select',
+                'value' => 'app.selects.state',
             ],
         ],
     ];

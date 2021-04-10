@@ -28,5 +28,6 @@ $factory->define(Beneficiary::class, function (Faker $faker) {
         'ethnic_group' => $ethnic_group,
         'other_ethnic_group' => $ethnic_group === 'OTROS' ? $faker->jobTitle : null,
         'stratum' => $faker->randomElement(array_keys(__('app.selects.person.stratum'))),
+        'state' => $faker->randomElement(array_keys(__('app.selects.state'))),
     ];
 });

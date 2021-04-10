@@ -29,6 +29,15 @@ function createRow(results) {
 
     if (table.length !== 0) dataTable.ajax.reload();
     if (crud === '/loans' || crud === '/employee/loans' || crud === '/users' || crud.indexOf('/employee/beneficiaries/*/projects') === -1 && crud !== '/employee/courses') {
+        if (crud === '/articles/create'){
+            window.location.href = '/articles';
+        }
+        if (crud === '/loans/create'){
+            window.location.href = '/loans';
+        }
+        if (crud === '/beneficiary/loans/create'){
+            window.location.href = '/beneficiary/loans/';
+        }
         if (crud === '/employee/update-password' || crud === '/beneficiary/update-password' || crud === '/teacher/update-password') {
             $('span[name=form-error]').remove();
             form[0].reset();
@@ -43,8 +52,6 @@ function createRow(results) {
         } else {
             resetForm('creating');
         }
-    } else if (crud === '/loans/create'){
-        window.location.href = '/loans';
     } else if (crud === '/beneficiary/loans/create'){
         window.location.href = '/beneficiary/loans/';
     } else {

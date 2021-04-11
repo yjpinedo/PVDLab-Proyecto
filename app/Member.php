@@ -35,7 +35,7 @@ class Member extends Base
         ],
         'table' => [
             'check' => false,
-            'fields' => ['id', 'name', 'sex', 'ethnic_group', 'project_id'],
+            'fields' => ['document', 'name', 'sex', 'ethnic_group', 'project_id'],
             'active' => false,
             'actions' => false,
         ],

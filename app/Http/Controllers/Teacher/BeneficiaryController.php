@@ -39,7 +39,7 @@ class BeneficiaryController extends BaseController
                     ],
                     'table' => [
                         'check' => false,
-                        'fields' => ['id', 'name', 'sex', 'ethnic_group'],
+                        'fields' => ['document', 'name', 'sex', 'ethnic_group'],
                         'active' => false,
                         'actions' => false,
                     ],

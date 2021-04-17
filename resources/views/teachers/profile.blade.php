@@ -119,7 +119,7 @@
                                         <input id="neighborhood_form" class="form-control m-input" autocomplete="off" name="neighborhood" type="text" value="{{ old('cellphone', $teacher->neighborhood) }}">
                                     </div>
                                     <div class="form-group m-form__group col-12">
-                                        <label for="phone_form">Telefono</label>
+                                        <label for="phone_form">Teléfono</label>
                                         <input id="phone_form" class="form-control m-input" autocomplete="off" name="phone" type="text" value="{{ old('phone', $teacher->phone) }}">
                                     </div>
                                     <div class="form-group m-form__group col-12">

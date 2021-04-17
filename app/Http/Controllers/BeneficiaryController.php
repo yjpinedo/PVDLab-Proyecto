@@ -30,7 +30,7 @@ class BeneficiaryController extends BaseController
     public function store(BeneficiaryRequest $request)
     {
         $request->validate([
-            'email' => 'required|email|unique:users,email|unique:beneficiaries,email',
+            'email' => 'required|email|max:50|unique:users,email|unique:beneficiaries,email',
         ]);
         return parent::storeBase($request, false);
     }

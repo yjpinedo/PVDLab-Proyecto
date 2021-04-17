@@ -72,7 +72,7 @@
                                 <table id="articles_loans" class="table table-striped- table-bordered table-hover table-checkable table-component dtr-inline">
                                     <thead>
                                     <tr>
-                                        <th>Codigo</th>
+                                        <th>Código</th>
                                         <th>Nombre</th>
                                         <th>Serial</th>
                                         <th>Cantidad</th>

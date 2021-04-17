@@ -22,15 +22,15 @@
                 <div class="m-portlet__body m--padding-10">
                     <div class="m-form__section m-form__section--first">
                         <div class="form-group m-form__group col-12">
-                            <label for="password-current_form">Contraseña Actual</label>
+                            <label for="password-current_form">Contraseña actual</label>
                             <input id="password-current_form" class="form-control m-input" autocomplete="off" name="password-current" type="password">
                         </div>
                         <div class="form-group m-form__group col-12">
-                            <label for="password_form">Nueva Contraseña</label>
+                            <label for="password_form">Nueva contraseña</label>
                             <input id="password_form" class="form-control m-input" autocomplete="off" name="password" type="password">
                         </div>
                         <div class="form-group m-form__group col-12">
-                            <label for="password_confirmation">Confirmación Nueva Contraseña</label>
+                            <label for="password_confirmation">Confirmación nueva contraseña</label>
                             <input id="password_confirmation" class="form-control m-input" autocomplete="off" name="password_confirmation" type="password">
                         </div>
                     </div>
@@ -51,9 +51,4 @@
 
 @push('scripts')
     @include('includes.scripts')
-    <script>
-        //$('#form')[0].reset();
-        $(function (){
-        });
-    </script>
 @endpush

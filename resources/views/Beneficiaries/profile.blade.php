@@ -96,7 +96,7 @@
                                         </select>
                                     </div>
                                     <div class="form-group m-form__group col-12">
-                                        <label for="birth_date_form">Fecha de Nacimiento</label>
+                                        <label for="birth_date_form">Fecha de nacimiento</label>
                                         <input id="birth_date_form" class="form-control datepicker" data-provide="datepicker" style="width: 100%" autocomplete="off" name="birth_date" type="text" value="{{ old('birth_date', $beneficiary->birth_date) }}">
                                     </div>
                                     <div class="form-group m-form__group col-12">
@@ -119,7 +119,7 @@
                                         <input id="neighborhood_form" class="form-control m-input" autocomplete="off" name="neighborhood" type="text" value="{{ old('cellphone', $beneficiary->neighborhood) }}">
                                     </div>
                                     <div class="form-group m-form__group col-12">
-                                        <label for="phone_form">Telefono</label>
+                                        <label for="phone_form">Teléfono</label>
                                         <input id="phone_form" class="form-control m-input" autocomplete="off" name="phone" type="text" value="{{ old('phone', $beneficiary->phone) }}">
                                     </div>
                                     <div class="form-group m-form__group col-12">

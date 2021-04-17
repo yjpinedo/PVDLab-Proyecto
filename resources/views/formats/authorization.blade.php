@@ -53,8 +53,8 @@
     <strong>PRIMERA - AUTORIZACI&Oacute;N:</strong> mediante el presente documento autorizo de forma irrevocable y
     gratuita, la utilizaci&oacute;n de los derechos de imagen sobre fotograf&iacute;as o procedimientos an&aacute;logos
     y/o digitales a la fotograf&iacute;a, o producciones audiovisuales (videos) a <strong>EL PUNTO VIVE DIGITAL LAB
-        Valledupar</strong> &nbsp;para incluirlos en su galeria y usarlas en activiades de promoci&oacute;n del proyecto
-    audiovisual.&nbsp; <strong>SEGUNDA - OBJETO: </strong>Autorizar el uso de derechos de imagen sobre fotografias y
+        Valledupar</strong> &nbsp;para incluirlos en su galería y usarlas en actividades de promoci&oacute;n del proyecto
+    audiovisual.&nbsp; <strong>SEGUNDA - OBJETO: </strong>Autorizar el uso de derechos de imagen sobre fotografías y
     fijaciones audiovisuales en el marco del proyecto Audiovisual: <strong>Programa de televisi&oacute;n &ldquo;Pol&iacute;tica
         P&uacute;blica y Algo M&aacute;s&rdquo; PAR&Aacute;GRAFO I - ALCANCE DEL OBJETO:</strong> la presente autorizaci&oacute;n
     de uso se otorga a <strong>EL PUNTO VIVE DIGITAL LAB Valledupar</strong>, para ser utilizada en (ediciones
@@ -72,7 +72,7 @@
     y cuando mantenga el reconocimiento al <strong>EL PUNTO VIVE DIGITAL LAB Valledupar.</strong> &nbsp;<strong>SEXTA
         &ndash; EXIMENTE DE RESPONSABILIDAD:</strong> <strong>EL PUNTO VIVE DIGITAL LAB Valledupar</strong>, se exime de
     responsabilidad sobre cualquier uso que pueda hacer un tercero de las Im&aacute;genes fuera del &aacute;mbito
-    territorial, temporal y material objeto del presente acuerdo. <strong>SEPTIMA- DERECHOS MORALES </strong>(Cr&eacute;ditos
+    territorial, temporal y material objeto del presente acuerdo. <strong>SÉPTIMA - DERECHOS MORALES </strong>(Cr&eacute;ditos
     y menci&oacute;n): la autorizaci&oacute;n de los derechos antes mencionados no implica la cesi&oacute;n de los
     derechos morales sobre los mismos por cuanto de conformidad con lo establecido en el art&iacute;culo 6 Bis del
     Convenio de Berna para la protecci&oacute;n de las obras literarias, art&iacute;sticas y cient&iacute;ficas; art&iacute;culo

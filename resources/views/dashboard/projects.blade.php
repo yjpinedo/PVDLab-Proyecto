@@ -21,7 +21,7 @@
                                 <table class="table table-bordered table-hover">
                                     <thead>
                                         <tr>
-                                            <th>Codigo</th>
+                                            <th>Código</th>
                                             <th>Nombre</th>
                                             <th>Empleado</th>
                                             <th>Beneficiario</th>
@@ -95,7 +95,7 @@
                         <div class="m-portlet__head-caption">
                             <div class="m-portlet__head-title">
                                 <span class="m-portlet__head-icon m--hide"><i class="la la-gear"></i></span>
-                                <h3 class="m-portlet__head-text">Total por conceptos(Aprovados, Rechazados y pendientes)</h3>
+                                <h3 class="m-portlet__head-text">Total por conceptos (Aprobados, Rechazados y Pendientes)</h3>
                             </div>
                         </div>
                     </div>
@@ -112,7 +112,7 @@
                         <div class="m-portlet__head-caption">
                             <div class="m-portlet__head-title">
                                 <span class="m-portlet__head-icon m--hide"><i class="la la-gear"></i></span>
-                                <h3 class="m-portlet__head-text">Porcenaje por conceptos(Aprovados, Rechazados y pendientes)</h3>
+                                <h3 class="m-portlet__head-text">Porcentaje por conceptos (Aprobados, Rechazados y Pendientes)</h3>
                             </div>
                         </div>
                     </div>
@@ -132,7 +132,7 @@
                                     <i class="la la-gear"></i>
                                 </span>
                                 <h3 class="m-portlet__head-text">
-                                    Concepto por mes (Aprovados, Rechazados y Pendientes)
+                                    Concepto por mes (Aprobados, Rechazados y Pendientes)
                                 </h3>
                             </div>
                         </div>
@@ -198,7 +198,7 @@
                 data: baseChart,
                 xkey: 'month',
                 ykeys: ['value'],
-                labels: ['Proyectos Rgistrados'],
+                labels: ['Proyectos Registrados'],
                 xLabelFormat: function(x) {
                     return months[x.getMonth()];
                 },
@@ -261,7 +261,7 @@
                 data: baseChartBar,
                 xkey: 'month',
                 ykeys: ['approved', 'rejected', 'pending'],
-                labels: ['Aprovado', 'Rechazado', 'Pendiente'],
+                labels: ['Aprobado', 'Rechazado', 'Pendiente'],
                 barColors : customColor,
             });
 
@@ -269,7 +269,7 @@
                element: 'concept_project_percents',
                resize: true,
                data: [
-                   { label: 'Aprovados', value: {{ $percents['approved']  }} },
+                   { label: 'Aprobados', value: {{ $percents['approved']  }} },
                    { label: 'Rechazados', value: {{ $percents['rejected']  }} },
                    { label: 'Pendientes', value: {{ $percents['pending']  }} },
                ],
@@ -281,7 +281,7 @@
                 element: 'concept_project_total',
                 resize: true,
                 data: [
-                    { label: 'Aprovados', value: {{ $conceptApprovedCount  }} },
+                    { label: 'Aprobados', value: {{ $conceptApprovedCount  }} },
                     { label: 'Rechazados', value: {{ $conceptRejectedCount  }} },
                     { label: 'Pendientes', value: {{ $conceptPendingCount  }} },
                 ],

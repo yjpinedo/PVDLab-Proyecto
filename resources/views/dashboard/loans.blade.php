@@ -95,7 +95,7 @@
                         <div class="m-portlet__head-caption">
                             <div class="m-portlet__head-title">
                                 <span class="m-portlet__head-icon m--hide"><i class="la la-gear"></i></span>
-                                <h3 class="m-portlet__head-text">Total por estado(Aprovados, Rechazados y pendientes)</h3>
+                                <h3 class="m-portlet__head-text">Total por estado(Aprobados, Rechazados y Pendientes)</h3>
                             </div>
                         </div>
                     </div>
@@ -112,7 +112,7 @@
                         <div class="m-portlet__head-caption">
                             <div class="m-portlet__head-title">
                                 <span class="m-portlet__head-icon m--hide"><i class="la la-gear"></i></span>
-                                <h3 class="m-portlet__head-text">Porcenaje por estado(Aprovados, Rechazados y pendientes)</h3>
+                                <h3 class="m-portlet__head-text">Porcentaje por estado (Aprobados, Rechazados y Pendientes)</h3>
                             </div>
                         </div>
                     </div>
@@ -132,7 +132,7 @@
                                     <i class="la la-gear"></i>
                                 </span>
                                 <h3 class="m-portlet__head-text">
-                                    Estado por mes (Aprovados, Rechazados y Pendientes)
+                                    Estado por mes (Aprobados, Rechazados y Pendientes)
                                 </h3>
                             </div>
                         </div>
@@ -198,7 +198,7 @@
                 data: baseChart,
                 xkey: 'month',
                 ykeys: ['value'],
-                labels: ['Préstamos Rgistrados'],
+                labels: ['Préstamos Registrados'],
                 xLabelFormat: function(x) {
                     return months[x.getMonth()];
                 },
@@ -261,7 +261,7 @@
                 data: baseChartBar,
                 xkey: 'month',
                 ykeys: ['approved', 'rejected', 'pending'],
-                labels: ['Aprovado', 'Rechazado', 'Pendiente'],
+                labels: ['Aprobado', 'Rechazado', 'Pendiente'],
                 barColors : customColor,
             });
 
@@ -269,7 +269,7 @@
                element: 'state_loan_percents',
                resize: true,
                data: [
-                   { label: 'Aprovados', value: {{ $percents['approved']  }} },
+                   { label: 'Aprobados', value: {{ $percents['approved']  }} },
                    { label: 'Rechazados', value: {{ $percents['rejected']  }} },
                    { label: 'Pendientes', value: {{ $percents['pending']  }} },
                ],
@@ -281,7 +281,7 @@
                 element: 'state_loan_total',
                 resize: true,
                 data: [
-                    { label: 'Aprovados', value: {{ $stateApprovedCount  }} },
+                    { label: 'Aprobados', value: {{ $stateApprovedCount  }} },
                     { label: 'Rechazados', value: {{ $stateRejectedCount  }} },
                     { label: 'Pendientes', value: {{ $statePendingCount  }} },
                 ],

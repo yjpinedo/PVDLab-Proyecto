@@ -99,11 +99,11 @@ class Beneficiary extends Base
                 'type' => 'text',
             ],
             [
-                'name' => 'phone',
+                'name' => 'cellphone',
                 'type' => 'text',
             ],
             [
-                'name' => 'cellphone',
+                'name' => 'phone',
                 'type' => 'text',
             ],
             [

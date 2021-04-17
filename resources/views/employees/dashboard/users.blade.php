@@ -148,7 +148,7 @@
                                     <i class="la la-gear"></i>
                                 </span>
                                 <h3 class="m-portlet__head-text">
-                                    Tipo de usuario por mes (Beneficiarios, docentes y empleados)
+                                    Tipo de usuario por mes (Beneficiarios, Docentes y Empleados)
                                 </h3>
                             </div>
                         </div>
@@ -209,7 +209,7 @@
                 data: baseChart,
                 xkey: 'month',
                 ykeys: ['value'],
-                labels: ['Usuarios Rgistrados'],
+                labels: ['Usuarios Registrados'],
                 xLabelFormat: function(x) {
                     return months[x.getMonth()];
                 },

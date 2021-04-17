@@ -22,8 +22,8 @@ class EmployeeRequest extends BaseRequest
             'place_of_birth' => 'required|min:3|max:50',
             'address' => 'required|min:3|max:50',
             'neighborhood' => 'required|min:3|max:50',
-            'phone' => 'required_without:cellphone|numeric|digits_between:6,12|bail',
-            'cellphone' => 'nullable|numeric|digits_between:6,12|bail',
+            'cellphone' => 'required_without:cellphone|numeric|digits_between:6,12|bail',
+            'phone' => 'nullable|numeric|digits_between:6,12|bail',
             'position_id' => 'required|exists:positions,id',
         ];
     }

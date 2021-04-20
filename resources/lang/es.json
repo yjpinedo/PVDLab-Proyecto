@@ -1,6 +1,6 @@
 {
-    "Reset Password": "Reestablecer contraseña",
-    "Reset Password Notification": "Aviso de reestablecimiento de contraseña",
+    "Reset Password": "Restablecer contraseña",
+    "Reset Password Notification": "Aviso de restablecimiento de contraseña",
     "You are receiving this email because we received a password reset request for your account.": "Estás recibiendo este correo electrónico porque se ha solicitado un cambio de contraseña para tu cuenta.",
     "This password reset link will expire in :count minutes.": "Este enlace de restablecimiento de contraseña expirara en :count minutos.",
     "If you did not request a password reset, no further action is required.": "Si no has solicitado un cambio de contraseña, puedes ignorar o eliminar este correo electrónico.",

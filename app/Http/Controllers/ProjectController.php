@@ -33,6 +33,7 @@ class ProjectController extends BaseController
     {
         $request->validate([
             'start' => 'required|date',
+            'reviewed_at' => 'date',
         ]);
 
         $lastId = Project::all()->last()->id;
@@ -52,6 +53,7 @@ class ProjectController extends BaseController
     {
         $request->validate([
             'start' => 'required|date',
+            'reviewed_at' => 'date',
         ]);
         return parent::updateBase($request, $id);
     }

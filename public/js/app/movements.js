@@ -3,6 +3,7 @@ columnsDataTable = [
     {data: 'type'},
     {data: 'warehouse_origin', customValue: true, searchable: false},
     {data: 'warehouse_destination', customValue: true, searchable: false},
+    {data: 'created_at', searchable: true},
 ];
 
 /**
@@ -14,7 +15,7 @@ columnsDataTable = [
  * @returns {String} The HTML string with the status
  */
 function getStatus(column, value) {
-    if (column === 2){
+    if (column === 2) {
         return value === null ? 'NO TIENE ALMACÉN DE ORIGEN' : value.name;
     } else if (column === 3) {
         return value === null ? 'NO TIENE ALMACÉN DE DESTINO' : value.name;

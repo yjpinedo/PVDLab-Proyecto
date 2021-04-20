@@ -170,6 +170,7 @@ return [
         'concept' => 'Concepto',
         'confirm' => 'Asistencia',
         'course_id' => 'Cursos',
+        'created_at' => 'Fecha de creación',
         'date' => 'Fecha',
         'days' => 'Dias',
         'description' => 'Descripción',

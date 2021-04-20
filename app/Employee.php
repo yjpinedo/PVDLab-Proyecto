@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Employee extends Base
 {
-    use SoftDeletes;
+    //use SoftDeletes;
     /**
      * The mutated attributes that should be added for arrays.
      *

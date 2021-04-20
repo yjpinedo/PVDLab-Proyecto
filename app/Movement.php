@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Movement extends Base
@@ -28,7 +29,7 @@ class Movement extends Base
         ],
         'table' => [
             'check' => false,
-            'fields' => ['id', 'type', 'origin_id', 'destination_id'],
+            'fields' => ['id', 'type', 'origin_id', 'destination_id', 'created_at'],
             'active' => false,
             'actions' => false,
         ],
@@ -61,6 +62,17 @@ class Movement extends Base
     public function getFullNameAttribute()
     {
         return $this->type;
+    }
+
+    /**
+     * Mutator for the full name
+     *
+     * @param $value
+     * @return string
+     */
+    public function getCreatedAtAttribute($value)
+    {
+        return Carbon::parse($value)->format('Y-m-d');
     }
 
     // Relationship

@@ -84,7 +84,7 @@ return [
                 'loans' => 'Préstamos',
             ],
             'formats' => 'Formatos',
-            'loans' => 'loans',
+            'loans' => 'Préstamos',
             'movements' => 'Movimientos',
             'profile' => 'Mi Perfil',
             'projects' => 'Proyectos',
@@ -237,7 +237,7 @@ return [
             'ethnic_group' => [
                 'PUEBLOS Y COMUNIDADES INDÍGENAS' => 'PUEBLOS Y COMUNIDADES INDÍGENAS',
                 'COMUNIDADES NEGRAS O AFROCOLOMBIANAS' => 'COMUNIDADES NEGRAS O AFROCOLOMBIANAS',
-                'COMUNIDAD RAIZAL' => 'COMUNIDAD RACIAL',
+                'COMUNIDAD RAIZAL' => 'COMUNIDAD RAIZAL',
                 'NO PERTENECE A NINGUNO DE LOS ANTERIORES' => 'NO PERTENECE A NINGUNO DE LOS ANTERIORES',
                 'OTROS' => 'OTROS',
             ],

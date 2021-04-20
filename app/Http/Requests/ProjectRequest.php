@@ -14,15 +14,15 @@ class ProjectRequest extends BaseRequest
         return [
             'name' => 'required|min:3|max:50|alpha_space',
             'type' => 'required|in:' . implode(',', array_keys(__('app.selects.project.type'))),
-            'other_type' => 'max:90',
+            'other_type' => 'min:3|max:90',
             'description' => 'min:3|max:200',
             'origin' => 'required|in:' . implode(',', array_keys(__('app.selects.project.origin'))),
-            'other_origin' => 'max:90',
+            'other_origin' => 'min:3|max:90',
             'state' => 'required|in:' . implode(',', array_keys(__('app.selects.project.state'))),
             'financing' => 'required|in:' . implode(',', array_keys(__('app.selects.project.financing'))),
-            'financial_entity' => 'max:90',
-            'financing_description' => 'max:200',
-            'observations' => 'max:200',
+            'financial_entity' => 'min:3|max:90',
+            'financing_description' => 'min:3|max:200',
+            'observations' => 'min:3|max:200',
             'concept' => 'in:' . implode(',', array_keys(__('app.selects.project.concept'))),
         ];
     }

@@ -54,7 +54,7 @@ class RegisterController extends Controller
     /**
      * Get a validator for an incoming registration request.
      *
-     * @param  array  $data
+     * @param array $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
     protected function validator(array $data)
@@ -74,15 +74,15 @@ class RegisterController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'occupation' => ['min:3', 'max:200'],
             'ethnic_group' => ['required', 'in:' . implode(',', array_keys(__('app.selects.person.ethnic_group')))],
-            'stratum' => ['required', 'numeric', 'between:0,6'],
-            'password' => ['required', 'string', 'min:6', 'confirmed'],
-        ]);
+            'stratum' => ['required', 'in:' . implode(',', array_keys(__('app.selects.person.stratum')))],
+            'password' => ['required', 'regex:/^(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/', 'min:6', 'confirmed'],
+        ], ['password.regex' => 'El campo contraseña debe tener al menos una letra minúscula, mayúscula, número y/o carácter especial']);
     }
 
     /**
      * Create a new user instance after a valid registration.
      *
-     * @param  array  $data
+     * @param array $data
      * @return User
      */
     protected function create(array $data)

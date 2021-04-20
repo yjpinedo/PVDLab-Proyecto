@@ -199,8 +199,17 @@
 
         <div class="form-group m-form__group">
             <label for="stratum" class="m--hide">{{ __('validation.attributes.stratum') }}</label>
-            <input id="stratum" type="text" class="form-control @error('stratum') is-invalid @enderror" name="stratum" value="{{ old('stratum') }}" placeholder="{{ __('validation.attributes.stratum') }}" required>
-
+            <div class="form-group m-form__group col-12">
+                <select id="stratum" class="form-control @error('stratum') is-invalid @enderror" name="stratum" tabindex="-98">
+                    <option selected="selected" value="">{{ __('validation.attributes.stratum') }}</option>
+                    <option value="{{ __('app.selects.person.stratum.1') }}" {{ old('stratum') == __('app.selects.person.stratum.1') ? 'selected' : "" }}>1</option>
+                    <option value="{{ __('app.selects.person.stratum.2') }}" {{ old('stratum') == __('app.selects.person.stratum.2') ? 'selected' : "" }}>2</option>
+                    <option value="{{ __('app.selects.person.stratum.3') }}" {{ old('stratum') == __('app.selects.person.stratum.3') ? 'selected' : "" }}>3</option>
+                    <option value="{{ __('app.selects.person.stratum.4') }}" {{ old('stratum') == __('app.selects.person.stratum.4') ? 'selected' : "" }}>4</option>
+                    <option value="{{ __('app.selects.person.stratum.5') }}" {{ old('stratum') == __('app.selects.person.stratum.5') ? 'selected' : "" }}>5</option>
+                    <option value="{{ __('app.selects.person.stratum.6') }}" {{ old('stratum') == __('app.selects.person.stratum.6') ? 'selected' : "" }}>6</option>
+                </select>
+            </div>
             @error('stratum')
             <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>

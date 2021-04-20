@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Beneficiary extends Base
 {
-    use SoftDeletes;
+    //use SoftDeletes;
     /**
      * The mutated attributes that should be added for arrays.
      *

@@ -26,14 +26,14 @@ class UpdatePasswordController extends Controller
         $request->validate([
             'password-current' => ['required'],
             'password' => ['required', 'regex:/^(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/', 'min:6', 'confirmed'],
-        ], ['password.regex' => 'El campo contraseña debe tener al menos una letra minuscula, mayuscula, número y/o caracter especial']);
+        ], ['password.regex' => 'El campo contraseña debe tener al menos una letra minúscula, mayúscula, número y/o carácter especial']);
 
         if (Hash::check($request->input('password-current'), $user->password)) {
             $user->password = Hash::make(implode($request->only('password')));
             $user->save();
             $response = [
                 'data' => $user,
-                'message' => 'La contraseña ha sido actualizada con exito',
+                'message' => 'La contraseña ha sido actualizada con éxito',
                 'reload' => false,
             ];
         } else {

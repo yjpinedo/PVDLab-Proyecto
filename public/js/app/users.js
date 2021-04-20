@@ -15,31 +15,40 @@ columnsDataTable = [
  */
 function getStatus(column, value) {
     if (column === 3) {
-        if (value[0] === 'teachers'){
-            return '<span class="m-badge m-badge--brand m-badge--wide">'+value+'</span>'
+        if (value[0] === 'teachers') {
+            return '<span class="m-badge m-badge--brand m-badge--wide">' + value + '</span>'
         } else if (value[0] === 'beneficiaries') {
-            return '<span class="m-badge m-badge--accent m-badge--wide">'+value+'</span>'
+            return '<span class="m-badge m-badge--accent m-badge--wide">' + value + '</span>'
         } else {
-            return '<span class="m-badge m-badge--danger m-badge--wide">'+value+'</span>'
+            return '<span class="m-badge m-badge--danger m-badge--wide">' + value + '</span>'
         }
     }
 }
+
 formTitle.html('Asignar un rol');
 
-$(function (){
-    let select =  $('#role_id_form');
+$(function () {
+    let select = $('#role_id_form');
+    let text = '';
     $.get("users/get-roles", function (data) {
         if (data) {
             select.empty();
             select.append($('<option>', {
                 value: '',
-                text : Lang.get('base/base.placeholder')
+                text: Lang.get('base/base.placeholder')
             }));
-            $.each(data, function(key, value) {
+            $.each(data, function (key, value) {
                 if (value !== 'admin') {
+                    if (value === 'beneficiaries') {
+                        text = 'BENEFICIARIO';
+                    } else if (value === 'teachers') {
+                        text = 'DOCENTE';
+                    } else {
+                        text = 'EMPLEADO';
+                    }
                     select.append($('<option>', {
                         value: key,
-                        text : value.toUpperCase()
+                        text: text
                     }));
                 }
             });
@@ -47,7 +56,7 @@ $(function (){
         } else {
             select.append($('<option>', {
                 value: '',
-                text : Lang.get('base/base.placeholder')
+                text: Lang.get('base/base.placeholder')
             }));
         }
     });
@@ -60,7 +69,7 @@ $('#assign').on("click", function () {
     formData.append("user_id", user_id);
     formData.append("role", role);
 
-    if (user_id !== ''){
+    if (user_id !== '') {
         if (role !== '') {
             ajaxRequest(crud, formData, routes['create'].method, createRow, formPortlet);
         } else {

@@ -1,8 +1,9 @@
 columnsDataTable = [
     {data: 'code'},
     {data: 'name'},
-    {data: 'brand'},
+    {data: 'serial'},
     {data: 'pivot.quantity'},
+    {data: 'category.name'},
 ];
 
 /**

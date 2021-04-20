@@ -23,7 +23,7 @@ class ArticleController extends BaseController
 
         $this->middleware(function ($request, $next) {
             $this->id = $request->loan;
-            $loan = Loan::whereId($this->id)->with('articles')->first();
+            $loan = Loan::whereId($this->id)->with('articles.category')->first();
 
             if ( !is_null($loan) ) {
                 $request->request->add(['data' => [
@@ -37,7 +37,7 @@ class ArticleController extends BaseController
                     ],
                     'table' => [
                         'check' => false,
-                        'fields' => ['code', 'name', 'brand', 'stock'],
+                        'fields' => ['code', 'name', 'serial', 'stock', 'category'],
                         'active' => false,
                         'actions' => false,
                     ],

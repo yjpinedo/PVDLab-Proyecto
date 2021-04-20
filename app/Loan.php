@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
@@ -27,7 +28,7 @@ class Loan extends Base
         ],
         'table' => [
             'check' => false,
-            'fields' => ['id', 'name', 'employee_id', 'beneficiary_id', 'refund', 'state'],
+            'fields' => ['id', 'name', 'employee_id', 'beneficiary_id', 'created_at', 'state'],
             'active' => false,
             'actions' => true,
         ],
@@ -73,6 +74,17 @@ class Loan extends Base
     public function getFullNameAttribute()
     {
         return $this->name;
+    }
+
+    /**
+     * Mutator for the created at
+     *
+     * @param $value
+     * @return string
+     */
+    public function getCreatedAtAttribute($value)
+    {
+        return Carbon::parse($value)->format('Y-m-d');
     }
 
     /**

@@ -1,9 +1,10 @@
 columnsDataTable = [
     {data: 'id'},
     {data: 'full_name'},
-    {data: 'refund'},
+    {data: 'created_at', searchable: true, className: 'dt-center',},
     {data: 'translated_state', searchable: false, className: 'dt-center', customValue: true},
     {data: 'id', searchable: false, className: 'dt-center', customValue: true},
+    {data: 'state', searchable: true, visible: false},
 ];
 
 /**

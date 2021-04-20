@@ -65,7 +65,7 @@ class Movement extends Base
     }
 
     /**
-     * Mutator for the full name
+     * Mutator for the created at
      *
      * @param $value
      * @return string

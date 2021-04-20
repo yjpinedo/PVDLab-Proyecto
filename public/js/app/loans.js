@@ -3,9 +3,10 @@ columnsDataTable = [
     {data: 'name'},
     {data: 'employee', customValue: true, searchable: false},
     {data: 'beneficiary.full_name', searchable: false},
-    {data: 'refund', className: 'dt-center'},
+    {data: 'created_at', className: 'dt-center', searchable: true},
     {data: 'translated_state', searchable: false, className: 'dt-center', customValue: true},
     {data: 'actions', searchable: false, className: 'dt-center', customValue: true},
+    {data: 'state', searchable: true, visible: false},
 ];
 
 /**
@@ -29,7 +30,7 @@ function getStatus(column, value) {
             actions =
                 '<a onclick="state(' + value.id + ',\'RECHAZADO\')" class="m-portlet__nav-link btn m-btn m-btn--icon m-btn--icon-only m-btn--pill m-btn--hover-danger" title="Rechazar">' +
                 '<i class="fa fa-times"></i>' +
-                '</a>'+
+                '</a>' +
                 '<a onclick="state(' + value.id + ',\'APROBADO\')" class="m-portlet__nav-link btn m-btn m-btn--icon m-btn--icon-only m-btn--pill m-btn--hover-success" title="Aprobar">' +
                 '<i class="fa fa-plus"></i>' +
                 '</a>'

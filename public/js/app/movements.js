@@ -3,7 +3,7 @@ columnsDataTable = [
     {data: 'type'},
     {data: 'warehouse_origin', customValue: true, searchable: false},
     {data: 'warehouse_destination', customValue: true, searchable: false},
-    {data: 'created_at', searchable: true},
+    {data: 'created_at', searchable: true, className: 'dt-center'},
 ];
 
 /**

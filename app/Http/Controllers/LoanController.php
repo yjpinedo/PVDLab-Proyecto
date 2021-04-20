@@ -31,8 +31,8 @@ class LoanController extends BaseController
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required',
-            'place' => 'required',
+            'name' => 'required|min:3|max:50',
+            'place' => 'required|min:3|max:50',
             'description' => 'min:3|max:500',
             'refund' => 'required|date|after:today',
             'beneficiary_id' => 'required|exists:beneficiaries,id',

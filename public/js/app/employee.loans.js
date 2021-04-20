@@ -3,9 +3,10 @@ columnsDataTable = [
     {data: 'name'},
     {data: 'employee', customValue: true, searchable: false},
     {data: 'beneficiary.full_name', searchable: false},
-    {data: 'refund', className: 'dt-center'},
+    {data: 'created_at', className: 'dt-center', searchable: true},
     {data: 'translated_state', searchable: false, className: 'dt-center', customValue: true},
     {data: 'actions', searchable: false, className: 'dt-center', customValue: true},
+    {data: 'state', searchable: true, visible: false},
 ];
 
 /**

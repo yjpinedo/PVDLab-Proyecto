@@ -32,10 +32,10 @@ class ProjectController extends BaseController
             $this->id = $request->project;
             $beneficiary = Beneficiary::where('id', $request->beneficiary)->first();
 
-            if ( !is_null($beneficiary) ) {
+            if (!is_null($beneficiary)) {
                 $request->request->add(['data' => [
                     'title' => __('app.titles.beneficiaries'),
-                    'subtitle' => __('app.titles.beneficiary.projects', ['name' => $beneficiary->full_name]),
+                    'subtitle' => __('app.titles.employee.projects', ['name' => $beneficiary->full_name]),
                     'tools' => [
                         'create' => true,
                         'reload' => false,
@@ -49,7 +49,7 @@ class ProjectController extends BaseController
                         'actions' => true,
                     ],
                     'form' => [
-                        [
+                        /*[
                             'type' => 'section',
                             'value' => 'app.sections.project_information',
                         ],
@@ -117,7 +117,7 @@ class ProjectController extends BaseController
                         [
                             'name' => 'financing_description',
                             'type' => 'textarea',
-                        ],
+                        ],*/
                     ],
                 ]]);
                 $request->request->add(['beneficiary_id' => $beneficiary->id]);
@@ -133,7 +133,7 @@ class ProjectController extends BaseController
     /**
      * Display the specified resource.
      *
-     * @param  int $id
+     * @param int $id
      * @return JsonResponse
      */
     public function show(int $id)
@@ -170,7 +170,7 @@ class ProjectController extends BaseController
         $request->validate([
             'start' => 'required|date',
         ]);
-        return parent::updateBase($request,$this->id);
+        return parent::updateBase($request, $this->id);
     }
 
     /**
@@ -184,7 +184,7 @@ class ProjectController extends BaseController
         $project = $this->entity::whereId($request->input('id'))->with('beneficiary')->first();
         $message = '';
 
-        if ( is_null($project) ) return abort(404);
+        if (is_null($project)) return abort(404);
 
         if ($project->concept !== 'RECHAZADO') {
 

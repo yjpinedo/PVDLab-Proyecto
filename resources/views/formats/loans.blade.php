@@ -60,7 +60,7 @@
         <tr>
             <td valign="top"><p>{{ $beneficiary->full_name }}</p></td>
             <td valign="top"><p>{{ $beneficiary->cellphone }}</p></td>
-            <td colspan="2" valign="top"><p>{{ $loan->created_at->format('Y-m-d') }}</p></td>
+            <td colspan="2" valign="top"><p>{{ \Carbon\Carbon::parse($loan->created_at)->format('Y-m-d') }}</p></td>
         </tr>
         <tr>
             <td valign="top"><p><strong>Descripción de la Actividad</strong></p></td>

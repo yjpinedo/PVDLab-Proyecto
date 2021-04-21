@@ -46,7 +46,7 @@
             <td colspan=4 style="border-top: 1px solid; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" height="40" align="left" valign=middle><b><font color="#000000">NOMBRE DEL PROYECTO : </font></b>{{ $project->name }}</td>
         </tr>
         <tr>
-            <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan=1 height="40" align="left" valign=middle><b><font color="#000000">FECHA DE SOLICTUD: </font></b>{{ $project->created_at->format('Y-m-d') }}</td>
+            <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan=1 height="40" align="left" valign=middle><b><font color="#000000">FECHA DE SOLICTUD: </font></b>{{ \Carbon\Carbon::parse($project->created_at)->format('Y-m-d') }}</td>
             <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan=3 align="left" valign=middle><b><font color="#000000">FECHA DE INICIO: </font></b>{{ $project->start }}</td>
         </tr>
         <tr>

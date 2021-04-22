@@ -23,7 +23,7 @@
                             <tr>
                                 <th>Código</th>
                                 <th>Nombre</th>
-                                <th>Teacher</th>
+                                <th>Docente</th>
                                 <th class="text-center">Estado</th>
                             </tr>
                             </thead>

@@ -21,7 +21,7 @@
                                 <table class="table table-bordered table-hover">
                                     <thead>
                                         <tr>
-                                            <th>id</th>
+                                            <th>N°</th>
                                             <th>Nombre</th>
                                             <th>Empleado</th>
                                             <th>Beneficiario</th>
@@ -29,9 +29,9 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach($loansLimit as $loan)
+                                        @foreach($loansLimit as $index => $loan)
                                             <tr>
-                                                <th scope="row">{{ $loan->id }}</th>
+                                                <th scope="row">{{ ($index + 1) }}</th>
                                                 <td>{{ $loan->name }}</td>
                                                 <td>
                                                     @if(!is_null($loan->employee))
@@ -168,18 +168,18 @@
             let year = today.getFullYear();
             let formatLoanForMonth = <?= json_encode($formatLoanForMonth)?>;
             let baseChart = [
-                { month: year + '-01', value: 0, },
-                { month: year + '-02', value: 0, },
-                { month: year + '-03', value: 0, },
-                { month: year + '-04', value: 0, },
-                { month: year + '-05', value: 0, },
-                { month: year + '-06', value: 0, },
-                { month: year + '-07', value: 0, },
-                { month: year + '-08', value: 0, },
-                { month: year + '-09', value: 0, },
-                { month: year + '-10', value: 0, },
-                { month: year + '-11', value: 0, },
-                { month: year + '-12', value: 0, },
+                { month: year + '-01', value: 0 },
+                { month: year + '-02', value: 0 },
+                { month: year + '-03', value: 0 },
+                { month: year + '-04', value: 0 },
+                { month: year + '-05', value: 0 },
+                { month: year + '-06', value: 0 },
+                { month: year + '-07', value: 0 },
+                { month: year + '-08', value: 0 },
+                { month: year + '-09', value: 0 },
+                { month: year + '-10', value: 0 },
+                { month: year + '-11', value: 0 },
+                { month: year + '-12', value: 0 },
             ];
 
             for (const index in baseChart) {
@@ -209,18 +209,18 @@
 
             let formatStateLoanForMonth = <?= json_encode($formatStateLoanForMonth)?>;
             let baseChartBar = [
-                { month: 'Ene', approved: 0, rejected: 0, pending: 0,},
-                { month: 'Feb', approved: 0, rejected: 0, pending: 0,},
-                { month: 'Mar', approved: 0, rejected: 0, pending: 0,},
-                { month: 'Abr', approved: 0, rejected: 0, pending: 0,},
-                { month: 'May', approved: 0, rejected: 0, pending: 0,},
-                { month: 'Jun', approved: 0, rejected: 0, pending: 0,},
-                { month: 'Jul', approved: 0, rejected: 0, pending: 0,},
-                { month: 'Ago', approved: 0, rejected: 0, pending: 0,},
-                { month: 'Sep', approved: 0, rejected: 0, pending: 0,},
-                { month: 'Oct', approved: 0, rejected: 0, pending: 0,},
-                { month: 'Nov', approved: 0, rejected: 0, pending: 0,},
-                { month: 'Dic', approved: 0, rejected: 0, pending: 0,},
+                { month: 'Ene', approved: 0, rejected: 0, pending: 0},
+                { month: 'Feb', approved: 0, rejected: 0, pending: 0},
+                { month: 'Mar', approved: 0, rejected: 0, pending: 0},
+                { month: 'Abr', approved: 0, rejected: 0, pending: 0},
+                { month: 'May', approved: 0, rejected: 0, pending: 0},
+                { month: 'Jun', approved: 0, rejected: 0, pending: 0},
+                { month: 'Jul', approved: 0, rejected: 0, pending: 0},
+                { month: 'Ago', approved: 0, rejected: 0, pending: 0},
+                { month: 'Sep', approved: 0, rejected: 0, pending: 0},
+                { month: 'Oct', approved: 0, rejected: 0, pending: 0},
+                { month: 'Nov', approved: 0, rejected: 0, pending: 0},
+                { month: 'Dic', approved: 0, rejected: 0, pending: 0},
             ];
 
             for (const index in formatStateLoanForMonth) {
@@ -269,9 +269,9 @@
                element: 'state_loan_percents',
                resize: true,
                data: [
-                   { label: 'Aprobados', value: {{ $percents['approved']  }} },
-                   { label: 'Rechazados', value: {{ $percents['rejected']  }} },
-                   { label: 'Pendientes', value: {{ $percents['pending']  }} },
+                   { label: 'Aprobados', value: {{ $percents['approved'] }} },
+                   { label: 'Rechazados', value: {{ $percents['rejected'] }} },
+                   { label: 'Pendientes', value: {{ $percents['pending'] }} },
                ],
                formatter: function (x) { return x + "%"},
                colors: customColor,
@@ -281,9 +281,9 @@
                 element: 'state_loan_total',
                 resize: true,
                 data: [
-                    { label: 'Aprobados', value: {{ $stateApprovedCount  }} },
-                    { label: 'Rechazados', value: {{ $stateRejectedCount  }} },
-                    { label: 'Pendientes', value: {{ $statePendingCount  }} },
+                    { label: 'Aprobados', value: {{ $stateApprovedCount }} },
+                    { label: 'Rechazados', value: {{ $stateRejectedCount }} },
+                    { label: 'Pendientes', value: {{ $statePendingCount }} },
                 ],
                 colors: customColor,
             });

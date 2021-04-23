@@ -45,7 +45,7 @@ class TakeAssistanceController extends BaseController
                     ],
                     'table' => [
                         'check' => false,
-                        'fields' => ['id', 'name', 'sex', 'ethnic_group', 'assistance_value',],
+                        'fields' => ['document', 'name', 'sex', 'ethnic_group', 'assistance_value',],
                         'active' => false,
                         'actions' => true,
                     ],

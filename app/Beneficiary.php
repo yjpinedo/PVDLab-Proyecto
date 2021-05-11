@@ -159,11 +159,9 @@ class Beneficiary extends Base
                     $lengthLesson++;
                 }
 
-                if ($assistanceLength == 0) {
-                    $course->beneficiaries()->updateExistingPivot($this->id, ['progress' => __('app.selects.course.progress.INSCRITO')]);
-                } else if ($lengthLesson == $assistanceLength) {
+                if ($lengthLesson == $assistanceLength) {
                     $course->beneficiaries()->updateExistingPivot($this->id, ['progress' => __('app.selects.course.progress.FINALIZADO')]);
-                } else {
+                } else if ($assistanceLength > 0) {
                     $course->beneficiaries()->updateExistingPivot($this->id, ['progress' => __('app.selects.course.progress.PROCESO')]);
                 }
 

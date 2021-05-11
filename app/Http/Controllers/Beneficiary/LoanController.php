@@ -24,7 +24,7 @@ class LoanController extends BaseController
         $this->crud = 'beneficiary.loans';
 
         $this->middleware(function ($request, $next) {
-            $beneficiary = Beneficiary::whereId(Auth::user()['model_id'])->with('loans.articles')->first();
+            $beneficiary = Beneficiary::whereId(Auth::user()['model_id'])->with('loans.articles', 'loans.employee')->first();
 
             if ( !is_null($beneficiary) ) {
                 $request->request->add(['data' => [
@@ -37,7 +37,7 @@ class LoanController extends BaseController
                     ],
                     'table' => [
                         'check' => false,
-                        'fields' => ['id', 'name', 'refund', 'state'],
+                        'fields' => ['id', 'name', 'employee_id', 'start', 'state'],
                         'active' => false,
                         'actions' => true,
                     ],

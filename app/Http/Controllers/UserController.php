@@ -35,11 +35,7 @@ class UserController extends BaseController
         $model = null;
         $user = User::whereId($request->input('user_id'))->first();
         if (!is_null($user)) {
-            if (count($user->getRoleNames()) > 0) {
-                foreach ($user->getRoleNames() as $roles) {
-                    $user->removeRole($roles);
-                }
-            }
+
             if ($user->model_type == 'App\Beneficiary') {
                 $model = Beneficiary::whereId($user->model_id)->first();
             } elseif ($user->model_type == 'App\Employee') {
@@ -63,9 +59,15 @@ class UserController extends BaseController
             ];
 
             if ($request->input('role') == 'teachers') {
-                if ($user->model_type != 'App\Teacher'){
-                    $teacher = Teacher::create($input);
-                    $user->model_id = $teacher->id;
+                if ($user->model_type != 'App\Teacher') {
+                    $haveTeacher = Teacher::whereDocument($model->document)->first();
+                    if ($haveTeacher) {
+                        $teacherId = $haveTeacher->id;
+                    } else {
+                        $teacher = Teacher::create($input);
+                        $teacherId = $teacher->id;
+                    }
+                    $user->model_id = $teacherId;
                     $user->model_type = 'App\Teacher';
                 } else {
                     return response()->json([
@@ -75,8 +77,14 @@ class UserController extends BaseController
                 }
             } else if ($request->input('role') == 'employees') {
                 if ($user->model_type != 'App\Employee') {
-                    $employee = Employee::create($input);
-                    $user->model_id = $employee->id;
+                    $haveEmployee = Employee::whereDocument($model->document)->first();
+                    if ($haveEmployee) {
+                        $employeeId = $haveEmployee->id;
+                    } else {
+                        $employee = Employee::create($input);
+                        $employeeId = $employee->id;
+                    }
+                    $user->model_id = $employeeId;
                     $user->model_type = 'App\Employee';
                 } else {
                     return response()->json([
@@ -86,8 +94,14 @@ class UserController extends BaseController
                 }
             } else {
                 if ($user->model_type != 'App\Beneficiary') {
-                    $beneficiary = Beneficiary::create($input);
-                    $user->model_id = $beneficiary->id;
+                    $haveBeneficiary = Beneficiary::whereDocument($model->document)->first();
+                    if ($haveBeneficiary) {
+                        $beneficiaryId = $haveBeneficiary->id;
+                    } else {
+                        $beneficiary = Beneficiary::create($input);
+                        $beneficiaryId = $beneficiary->id;
+                    }
+                    $user->model_id = $beneficiaryId;
                     $user->model_type = 'App\Beneficiary';
                 } else {
                     return response()->json([
@@ -96,7 +110,13 @@ class UserController extends BaseController
                     ]);
                 }
             }
-            $model->delete();
+
+            if (count($user->getRoleNames()) > 0) {
+                foreach ($user->getRoleNames() as $roles) {
+                    $user->removeRole($roles);
+                }
+            }
+
             $user->save();
             $user->assignRole($request->input('role'));
             return response()->json([

@@ -97,10 +97,10 @@ class ProjectController extends BaseController
 
             if (is_null($project->employee)) {
                 $project->employee_id = auth()->user()->id;
-            }
-
-            if ($project->employee->id != auth()->user()->id) {
-                $project->employee_id = auth()->user()->id;
+            } else {
+                if ($project->employee->id != auth()->user()->id) {
+                    $project->employee_id = auth()->user()->id;
+                }
             }
 
             if ($request->input('concept') === 'RECHAZADO') {

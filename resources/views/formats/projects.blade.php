@@ -103,7 +103,7 @@
             <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan=2 align="left" valign=middle><b><font color="#000000">Firma solicitante:</font></b></td>
         </tr>
         <tr>
-            <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan=2 height="35" align="left" valign=middle><b><font color="#000000">Revis&oacute;: &nbsp;</font></b>{{ $project->employee->full_name }}<br><strong>(Especificar cargo) : </strong>&nbsp; {{ $project->employee->position->name }}</td>
+            <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan=2 height="35" align="left" valign=middle><b><font color="#000000">Revis&oacute;: &nbsp;</font></b>{{ '$project->employee->full_name' }}<br><strong>(Especificar cargo) : </strong>&nbsp; {{ $project->employee->position->name }}</td>
             <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan=2 align="left" valign=middle><b><font color="#000000">Firma: </font></b></td>
         </tr>
         <tr>

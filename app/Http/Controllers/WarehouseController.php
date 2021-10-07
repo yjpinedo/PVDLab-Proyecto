@@ -28,7 +28,7 @@ class WarehouseController extends BaseController
      */
     public function store(WarehouseRequest $request)
     {
-        $lastId = Warehouse::all()->last()->id;
+        $lastId = Warehouse::all()->last()->id ?? 0;
         $request['code'] = 'ALM - ' . ($lastId + 1);
         return parent::storeBase($request, false);
     }

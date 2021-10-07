@@ -78,7 +78,7 @@ class CourseController extends BaseController
      */
     public function store(CourseRequest $request)
     {
-        $lastId = Course::all()->last()->id;
+        $lastId = Course::all()->last()->id ?? 0;
         $request['code'] = 'CUR - ' . ($lastId + 1);
         $request['slug'] = $request->root() . "/beneficiary/courses_lists/" . ($lastId + 1) . "/application_course";
         return parent::storeBase($request, false);

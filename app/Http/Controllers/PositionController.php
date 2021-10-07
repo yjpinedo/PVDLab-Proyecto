@@ -28,7 +28,7 @@ class PositionController extends BaseController
      */
     public function store(PositionRequest $request)
     {
-        $lastId = Position::all()->last()->id;
+        $lastId = Position::all()->last()->id ?? 0;
         $request['code'] = 'CAR - ' . ($lastId + 1);
         return parent::storeBase($request, false);
     }

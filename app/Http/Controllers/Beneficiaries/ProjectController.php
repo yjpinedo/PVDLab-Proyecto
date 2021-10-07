@@ -153,7 +153,7 @@ class ProjectController extends BaseController
             'start' => 'required|date',
         ]);
 
-        $lastId = Project::all()->last()->id;
+        $lastId = Project::all()->last()->id ?? 0;
         $request['code'] = 'PRO - ' . ($lastId + 1);
 
         return parent::storeBase($request);

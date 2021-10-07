@@ -61,7 +61,7 @@ class ArticleController extends BaseController
             'serial' => 'required|numeric|digits_between:6,12|unique:articles',
         ]);
         $input = $request->except(['warehouse_id', 'stock']);
-        $lastId = Article::all()->last()->id;
+        $lastId = Article::all()->last()->id ?? 0;
         $input['code'] = 'ART - ' . ($lastId + 1);
         $article = Article::create($input);
         foreach ($request->input('warehouse_id') as $key=>$warehouse) {

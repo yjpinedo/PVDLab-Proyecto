@@ -12,7 +12,7 @@
                         <div class="m-login__wrapper">
                             <div class="m-login__logo">
                                 <a href="{{ route('home') }}">
-                                    <img src="img/logo6.png" alt="{{ config('app.name') }}">
+                                    <img src="{{ asset('img/Logo6.png') }}" alt="{{ config('app.name') }}">
                                 </a>
                             </div>
                             <div class="m-login__signin">

@@ -26,7 +26,7 @@ class UsersTableSeeder extends Seeder
         Role::create(['name' => 'teachers']);
         Role::create(['name' => 'employees']);
 
-        factory(Position::class, 10)->create();
+        factory(Position::class, 1)->create();
 
         $employee = factory(Employee::class)->create([
             'email' => 'admin@admin.com'

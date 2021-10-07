@@ -33,7 +33,7 @@ class TestSeeder extends Seeder
      */
     public function run()
     {
-        // Beneficiaries
+        /*// Beneficiaries
         $beneficiary = factory(Beneficiary::class)->create([
             'email' => 'beneficiary@admin.com'
         ]);
@@ -151,6 +151,6 @@ class TestSeeder extends Seeder
             }
         });
 
-        factory(\App\Loan::class, 100)->create();
+        factory(\App\Loan::class, 100)->create();*/
     }
 }

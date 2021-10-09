@@ -2,6 +2,7 @@ columnsDataTable = [
     {data: 'id'},
     {data: 'name'},
     {data: 'email'},
+    {data: 'active', searchable: false, className: 'dt-center', customValue: true},
     {data: 'role', searchable: false, className: 'dt-center', customValue: true},
 ];
 
@@ -15,6 +16,12 @@ columnsDataTable = [
  */
 function getStatus(column, value) {
     if (column === 3) {
+        if (value === '1') {
+            return '<span class="m-badge m-badge--success m-badge--wide">Activo</span>'
+        } else {
+            return '<span class="m-badge m-badge--danger m-badge--wide">Inactivo</span>'
+        }
+    } else if (column === 4) {
         if (value[0] === 'teachers') {
             return '<span class="m-badge m-badge--brand m-badge--wide">' + value + '</span>'
         } else if (value[0] === 'beneficiaries') {

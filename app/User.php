@@ -64,7 +64,7 @@ class User extends Authenticatable implements MustVerifyEmail
             ],
             'table' => [
                 'check' => false,
-                'fields' => ['id', 'name', 'email', 'role_id'],
+                'fields' => ['id', 'name', 'email',  'state', 'role_id'],
                 'active' => false,
                 'actions' => false,
             ],

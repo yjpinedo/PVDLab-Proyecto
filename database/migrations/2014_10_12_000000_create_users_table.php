@@ -22,7 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('model_type')->nullable();
             $table->unsignedBigInteger('model_id')->nullable();
             $table->index(['model_id', 'model_type']);
-            $table->binary('active')->default(1);
+            $table->integer('active')->default(1);
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();

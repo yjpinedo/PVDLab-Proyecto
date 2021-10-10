@@ -16,7 +16,7 @@ columnsDataTable = [
  */
 function getStatus(column, value) {
     if (column === 3) {
-        if (value === '1') {
+        if (value === 1) {
             return '<span class="m-badge m-badge--success m-badge--wide">Activo</span>'
         } else {
             return '<span class="m-badge m-badge--danger m-badge--wide">Inactivo</span>'

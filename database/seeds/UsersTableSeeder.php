@@ -26,7 +26,11 @@ class UsersTableSeeder extends Seeder
         Role::create(['name' => 'teachers']);
         Role::create(['name' => 'employees']);
 
-        factory(Position::class, 1)->create();
+        factory(Position::class, 1)->create([
+            'code' => 'CAR - 1',
+            'name' => 'Administrador',
+            'description' => 'Permite administrar todas las funcionalidades del sistema.',
+        ]);
 
         $employee = factory(Employee::class)->create([
             'email' => 'admin@admin.com'
@@ -37,6 +41,7 @@ class UsersTableSeeder extends Seeder
             'email' => $employee->email,
             'model_type' => 'App\Employee',
             'model_id' => $employee->id,
+            'password' => bcrypt('A9b8C7d6E5f4G3h2*'),
         ])->assignRole('admin');
 
         Model::reguard();
